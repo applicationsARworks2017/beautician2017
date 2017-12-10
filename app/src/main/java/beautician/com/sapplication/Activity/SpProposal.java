@@ -174,6 +174,20 @@ public class SpProposal extends AppCompatActivity {
                 "created": "2017-11-21T14:04:23+05:30",
                 "modified": "2017-11-21T14:04:23+05:30"
             }
+            "service_request": {
+                "id": 88,
+                "shop_id": null,
+                "user_id": 20,
+                "category_id": 2,
+                "sub_category_id": 4,
+                "remarks": "gyhhu",
+                "no_of_user": 1,
+                "status": 1,
+                "other_status": "0",
+                "expected_date": "10-12-2017 1:9",
+                "created": "2017-12-10T01:09:29+05:30",
+                "modified": "2017-12-10T08:46:07+05:30"
+            },
         },
 * */
                 if (response != null && response.length() > 0) {
@@ -190,6 +204,8 @@ public class SpProposal extends AppCompatActivity {
                         for (int i = 0; i < servicePurposalArray.length(); i++) {
                             JSONObject o_list_obj = servicePurposalArray.getJSONObject(i);
                             JSONObject new_obj=o_list_obj.getJSONObject("shop");
+                            JSONObject req_obj=o_list_obj.getJSONObject("service_request");
+                            String user_id=req_obj.getString("user_id");
                             String id = o_list_obj.getString("id");
                             String service_request_id = o_list_obj.getString("service_request_id");
                             String remarks = o_list_obj.getString("remarks");
@@ -201,7 +217,7 @@ public class SpProposal extends AppCompatActivity {
 
                             }
                             else {
-                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name);
+                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name,user_id);
                                 pList.add(list1);
                             }
                         }

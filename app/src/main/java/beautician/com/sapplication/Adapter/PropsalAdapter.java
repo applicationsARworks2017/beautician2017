@@ -27,6 +27,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -43,10 +44,12 @@ import beautician.com.sapplication.Activity.GiveCommentActivity;
 import beautician.com.sapplication.Activity.PropsalView;
 import beautician.com.sapplication.Activity.ShopDetails;
 import beautician.com.sapplication.Activity.SpProposal;
+import beautician.com.sapplication.Activity.Wallet;
 import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.Pojo.Proposals;
 import beautician.com.sapplication.Pojo.RatingsPoints;
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.SplashScreen;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
@@ -58,7 +61,8 @@ public class PropsalAdapter extends BaseAdapter {
     private Context _context;
     Holder holder,holder1;
     Dialog dialog;
-    String from_page;
+    String from_page,wpage="no page",shop_id,user_id;
+    Double user_balance, shop_balance;
     String callPage="blanck";
     private ArrayList<Proposals> new_list;
     public PropsalAdapter(SpProposal spProposal, ArrayList<Proposals> pList,String page) {
@@ -103,6 +107,7 @@ public class PropsalAdapter extends BaseAdapter {
             LayoutInflater mInflater = (LayoutInflater) _context
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.propsal_list, parent, false);
+            shop_id = _context.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
             holder.propsal_hd=(TextView)convertView.findViewById(R.id.propsal_hd);
             holder.vew_details=(TextView)convertView.findViewById(R.id.view_details);
             holder.gv_feedback=(TextView)convertView.findViewById(R.id.gv_feedback);
@@ -280,18 +285,26 @@ public class PropsalAdapter extends BaseAdapter {
                 }
                 else if(status.contentEquals("2")){
                     callTo = "3";
+                    user_id=_pos.getUser_id();
                     AlertDialog.Builder builder = new AlertDialog.Builder(_context);
                     builder.setTitle("User is ready to take the service");
                     builder.setMessage("You have to pay $5 , Do you want to go ahead?");
                     final String finalCallTo = callTo;
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            //   dialog.dismiss();
-                          //  Toast.makeText(_context,"Insufficient wallet balance",Toast.LENGTH_SHORT).show();
-                            String otp=String.valueOf(Constants.generatePIN());
+
+                            //check own balance
+                            wpage="sp_home";
+                            getWdetails getWdetails=new getWdetails();
+                            getWdetails.execute(shop_id);
+
+
+                            //check user balance
+                            // deduct own and user
+                            // if sucess the come to below
+                           /* String otp=String.valueOf(Constants.generatePIN());
                             ConfirmToProp confirmToProp = new ConfirmToProp();
-                            confirmToProp.execute(_pos.getId(), finalCallTo,otp);
+                            confirmToProp.execute(_pos.getId(), finalCallTo,otp);*/
 
                         }
                     });
@@ -347,7 +360,6 @@ public class PropsalAdapter extends BaseAdapter {
                             //   dialog.dismiss();
                             ConfirmToProp confirmToProp = new ConfirmToProp();
                             confirmToProp.execute(_pos.getId(), finalCallTo);
-
                         }
                     });
                     builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -386,6 +398,7 @@ public class PropsalAdapter extends BaseAdapter {
         });
         return convertView;
     }
+
 
     public class ConfirmToProp extends AsyncTask<String, Void, Void> {
 
@@ -511,6 +524,176 @@ public class PropsalAdapter extends BaseAdapter {
         callPage=call;
         ConfirmToProp confirmToProp = new ConfirmToProp();
         confirmToProp.execute(id, status);
+    }
+    /**
+     * Async task to get wallet balance from  camp table from server
+     * */
+    private class getWdetails extends AsyncTask<String, Void, Void> {
+
+        private static final String TAG = "Get Wallet Balance";
+        private ProgressDialog progressDialog = null;
+        int server_status;
+        String server_message;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if(progressDialog == null) {
+                progressDialog = ProgressDialog.show(_context, "Checking wallet", "Please wait...");
+            }
+            // onPreExecuteTask();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+
+            try {
+
+                String _userid = params[0];
+                InputStream in = null;
+                int resCode = -1;
+                String link=null;
+                if(wpage.contentEquals("user_side")) {
+                    link = Constants.ONLINEURL + Constants.USER_BALANCE;
+                }
+                else if(wpage.contentEquals("sp_home")){
+                    link = Constants.ONLINEURL + Constants.SHOP_BALANCE;
+
+                }
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setAllowUserInteraction(false);
+                conn.setInstanceFollowRedirects(true);
+                conn.setRequestMethod("POST");
+
+                Uri.Builder builder = null;
+                if(wpage.contentEquals("user_side")) {
+                    builder = new Uri.Builder()
+                            .appendQueryParameter("user_id", _userid);
+                }
+                else if(wpage.contentEquals("sp_home")){
+                    builder = new Uri.Builder()
+                            .appendQueryParameter("shop_id", _userid);
+                }
+
+                //.appendQueryParameter("deviceid", deviceid);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                conn.connect();
+                resCode = conn.getResponseCode();
+                if (resCode == HttpURLConnection.HTTP_OK) {
+                    in = conn.getInputStream();
+                }
+                if(in == null){
+                    return null;
+                }
+                BufferedReader reader =new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String response = "",data="";
+
+                while ((data = reader.readLine()) != null){
+                    response += data + "\n";
+                }
+
+                Log.i(TAG, "Response : "+response);
+
+                /**
+                 * {
+                 "userWallets": [
+                 {
+                 "id": 7,
+                 "user_id": 10,
+                 "debit": 0,
+                 "credit": 10,
+                 "balance": 10,
+                 "created": "2017-12-03T10:28:29+05:30",
+                 "modified": "2017-12-03T10:28:29+05:30",
+                 "user": {
+                 "id": 10,
+                 "name": "avinash pathak",
+                 "email": "avinasha@yahoo.com",
+                 "mobile": "7205674061",
+                 "photo": null,
+                 "created": "1988-01-23T00:00:00+05:30",
+                 "modified": "1988-01-23T00:00:00+05:30",
+                 "usertype": "test",
+                 "fcm_id": null
+                 }
+                 }
+                 ]
+                 * */
+
+                if(response != null && response.length() > 0) {
+                    JSONObject res = new JSONObject(response.trim());
+                    JSONArray serviceListArray;
+                    if(wpage.contentEquals("user_side")) {
+                        serviceListArray = res.getJSONArray("userWallets");
+                        if(serviceListArray.length()<=0) {
+                            server_status = 0;
+                        }
+                        else{
+                            server_status = 1;
+                            for (int i = 0; i < serviceListArray.length(); i++) {
+                                JSONObject o_list_obj = serviceListArray.getJSONObject(i);
+                                String id = o_list_obj.getString("id");
+                                user_balance = o_list_obj.getDouble("balance");
+                            }
+                        }
+                    }
+                    else if(wpage.contentEquals("sp_home")){
+                        serviceListArray = res.getJSONArray("wallets");
+                        if(serviceListArray.length()<=0) {
+                            server_status = 0;
+                        }
+                        else{
+                            server_status = 1;
+                            for (int i = 0; i < serviceListArray.length(); i++) {
+                                JSONObject o_list_obj = serviceListArray.getJSONObject(i);
+                                String id = o_list_obj.getString("id");
+                                shop_balance = o_list_obj.getDouble("balance");
+                            }
+                        }
+                    }
+
+
+                }
+
+                return null;
+            } catch(Exception exception){
+                Log.e(TAG, "SynchMobnum : doInBackground", exception);
+                server_message="Network Error";
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void user) {
+            super.onPostExecute(user);
+            progressDialog.dismiss();
+            if (server_status == 1) {
+                if(wpage.contentEquals("sp_home")){
+                    wpage="user_side";
+                    Log.i("userid",user_id);
+                    getWdetails getUWdetails=new getWdetails();
+                    getUWdetails.execute(user_id);
+                }
+                Toast.makeText(_context,shop_balance+"/"+user_balance,Toast.LENGTH_LONG).show();
+            }
+
+        }
     }
 
 }

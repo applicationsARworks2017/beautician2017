@@ -262,6 +262,8 @@ public class ServiceList extends Fragment {
                             JSONObject o_list_obj = servicePurposalArray.getJSONObject(i);
                             JSONObject new_obj=o_list_obj.getJSONObject("shop");
                             String id = o_list_obj.getString("id");
+                            JSONObject req_obj=o_list_obj.getJSONObject("service_request");
+                            String user_id=req_obj.getString("user_id");
                             String service_request_id = o_list_obj.getString("service_request_id");
                             String remarks = o_list_obj.getString("remarks");
                             String status = o_list_obj.getString("status");
@@ -269,7 +271,7 @@ public class ServiceList extends Fragment {
                             String shop_id=new_obj.getString("id");
                             String shop_name=new_obj.getString("shopname");
                             if(status.contentEquals("4") || status.contentEquals("5")){
-                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name);
+                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name,user_id);
                                 pList.add(list1);
                             }
                             else {
