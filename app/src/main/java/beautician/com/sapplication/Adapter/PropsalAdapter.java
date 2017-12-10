@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -41,6 +42,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.GiveCommentActivity;
+import beautician.com.sapplication.Activity.HomeActivity;
+import beautician.com.sapplication.Activity.PostActivity;
 import beautician.com.sapplication.Activity.PropsalView;
 import beautician.com.sapplication.Activity.ShopDetails;
 import beautician.com.sapplication.Activity.SpProposal;
@@ -61,7 +64,8 @@ public class PropsalAdapter extends BaseAdapter {
     private Context _context;
     Holder holder,holder1;
     Dialog dialog;
-    String from_page,wpage="no page",shop_id,user_id;
+    int updated_status;
+    String from_page,wpage="no page",shop_id,user_id,propsal_id;
     Double user_balance, shop_balance;
     String callPage="blanck";
     private ArrayList<Proposals> new_list;
@@ -96,8 +100,9 @@ public class PropsalAdapter extends BaseAdapter {
         return position;
     }
     private class Holder{
-        TextView propsal_hd,vew_details,gv_feedback,actualtime,user_details;
+        TextView propsal_hd,vew_details,gv_feedback,actualtime,user_details,tv_otp;
         ImageView im_reply,im_agree;
+        LinearLayout paidline;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -112,9 +117,11 @@ public class PropsalAdapter extends BaseAdapter {
             holder.vew_details=(TextView)convertView.findViewById(R.id.view_details);
             holder.gv_feedback=(TextView)convertView.findViewById(R.id.gv_feedback);
             holder.actualtime=(TextView)convertView.findViewById(R.id.actualtime);
+            holder.tv_otp=(TextView)convertView.findViewById(R.id.tv_otp);
             holder.im_reply=(ImageView)convertView.findViewById(R.id.im_reply);
             holder.im_agree=(ImageView)convertView.findViewById(R.id.im_agree);
             holder.user_details=(TextView) convertView.findViewById(R.id.user_details);
+            holder.paidline=(LinearLayout)convertView.findViewById(R.id.paidline);
             convertView.setTag(holder);
         }
         else{
@@ -123,6 +130,8 @@ public class PropsalAdapter extends BaseAdapter {
         holder.propsal_hd.setTag(position);
         holder.vew_details.setTag(position);
         holder.actualtime.setTag(position);
+        holder.paidline.setTag(position);
+        holder.tv_otp.setTag(position);
         holder.im_reply.setTag(holder);
         holder.im_agree.setTag(holder);
         holder.gv_feedback.setTag(holder);
@@ -135,8 +144,10 @@ public class PropsalAdapter extends BaseAdapter {
         holder.actualtime.setText(_pos.getCreated());
         if(from_page.contentEquals("user_side")){
             holder.im_reply.setVisibility(View.GONE);
+            holder.tv_otp.setVisibility(View.GONE);
             holder.im_agree.setVisibility(View.VISIBLE);
             if(status.contentEquals("1")) {
+                holder.paidline.setVisibility(View.GONE);
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
@@ -144,6 +155,8 @@ public class PropsalAdapter extends BaseAdapter {
                 holder.im_agree.setImageDrawable(drawable1);
             }
             else if(status.contentEquals("2")){
+                holder.paidline.setVisibility(View.GONE);
+                holder.tv_otp.setVisibility(View.GONE);
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
@@ -151,7 +164,8 @@ public class PropsalAdapter extends BaseAdapter {
                 holder.im_agree.setImageDrawable(drawable1);
             }
             else if(status.contentEquals("3")){
-
+                holder.paidline.setVisibility(View.VISIBLE);
+                holder.tv_otp.setVisibility(View.VISIBLE);
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
@@ -159,6 +173,8 @@ public class PropsalAdapter extends BaseAdapter {
                 holder.im_agree.setImageDrawable(drawable1);
             }
             else if(status.contentEquals("4")){ // otp given and 5 $ reversed
+                holder.paidline.setVisibility(View.GONE);
+                holder.tv_otp.setVisibility(View.GONE);
                 holder.gv_feedback.setVisibility(View.VISIBLE);
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_power_input_white_24dp);
@@ -167,6 +183,8 @@ public class PropsalAdapter extends BaseAdapter {
                 holder.im_agree.setImageDrawable(drawable1);
             }
             else if(status.contentEquals("5")){ // completed
+                holder.paidline.setVisibility(View.GONE);
+                holder.tv_otp.setVisibility(View.GONE);
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
@@ -224,6 +242,7 @@ public class PropsalAdapter extends BaseAdapter {
         }
         if(from_page.contentEquals("user_side")){
             holder.propsal_hd.setText(_pos.getShop_name().toUpperCase()+" has replied : "+_pos.getRemarks());
+            holder.tv_otp.setText("Share OTP before service and get back your $ 5. OTP : "+_pos.getOtp());
 
         }
         else {
@@ -286,25 +305,17 @@ public class PropsalAdapter extends BaseAdapter {
                 else if(status.contentEquals("2")){
                     callTo = "3";
                     user_id=_pos.getUser_id();
+                    propsal_id=_pos.getId();
                     AlertDialog.Builder builder = new AlertDialog.Builder(_context);
                     builder.setTitle("User is ready to take the service");
                     builder.setMessage("You have to pay $5 , Do you want to go ahead?");
                     final String finalCallTo = callTo;
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-
                             //check own balance
                             wpage="sp_home";
                             getWdetails getWdetails=new getWdetails();
                             getWdetails.execute(shop_id);
-
-
-                            //check user balance
-                            // deduct own and user
-                            // if sucess the come to below
-                           /* String otp=String.valueOf(Constants.generatePIN());
-                            ConfirmToProp confirmToProp = new ConfirmToProp();
-                            confirmToProp.execute(_pos.getId(), finalCallTo,otp);*/
 
                         }
                     });
@@ -319,8 +330,31 @@ public class PropsalAdapter extends BaseAdapter {
                 }
                 else if(status.contentEquals("3")){
                     callTo = "4";
-                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setTitle("Service Complete");
+                    updated_status=4;
+                    user_id=_pos.getUser_id();
+                    final Dialog dialog = new Dialog(_context);
+                    final String finalCallTo = callTo;
+                    dialog.setContentView(R.layout.otpscreen);
+                    ImageView imageView=(ImageView)dialog.findViewById(R.id.close);
+                    Button submit=(Button)dialog.findViewById(R.id.add_money);
+                    final EditText et_add_money=(EditText) dialog.findViewById(R.id.et_add_money);
+                    dialog.show();
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    submit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ConfirmToProp confirmToProp = new ConfirmToProp();
+                            confirmToProp.execute(_pos.getId(), finalCallTo,et_add_money.getText().toString().trim());
+                            dialog.cancel();
+                        }
+                    });
+                    /*AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                    builder.setTitle("Service");
                     builder.setMessage("Do you want to confirm that your service has completed ?");
                     final String finalCallTo = callTo;
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -339,7 +373,7 @@ public class PropsalAdapter extends BaseAdapter {
                         }
                     });
                     AlertDialog dialog = builder.create();
-                    dialog.show();
+                    dialog.show();*/
                 }
             }
         });
@@ -406,11 +440,16 @@ public class PropsalAdapter extends BaseAdapter {
         String server_message;
         String id,username,email_address,contact_no;
         int server_status;
+        private ProgressDialog progressDialog = null;
+
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             // onPreExecuteTask();
+            if(progressDialog == null) {
+                progressDialog = ProgressDialog.show(_context, "Updating", "Please wait...");
+            }
         }
 
         @Override
@@ -436,7 +475,7 @@ public class PropsalAdapter extends BaseAdapter {
                 conn.setRequestMethod("POST");
 
                 Uri.Builder builder = null;
-                if(_status.contentEquals("3")){
+                if(_status.contentEquals("3") || _status.contentEquals("4")){
                     builder=new Uri.Builder()
                             .appendQueryParameter("id", _id)
                             .appendQueryParameter("status", _status)
@@ -491,7 +530,7 @@ public class PropsalAdapter extends BaseAdapter {
                 }
                 return null;
             } catch (Exception exception) {
-                server_message = "Network Error";
+                server_message = "N Error";
                 Log.e(TAG, "SynchMobnum : doInBackground", exception);
             }
 
@@ -501,19 +540,32 @@ public class PropsalAdapter extends BaseAdapter {
         @Override
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
+            progressDialog.cancel();
             if(callPage.contentEquals("comment")){
 
             }
             else {
-                Toast.makeText(_context, server_message, Toast.LENGTH_SHORT).show();
                 if (server_status == 1) {
-                    if (holder1.im_agree.getVisibility() == View.VISIBLE) {
-                        holder1.im_agree.setVisibility(View.GONE);
-                    } else if (holder1.im_reply.getVisibility() == View.VISIBLE) {
-                        holder1.im_reply.setVisibility(View.GONE);
-                    } else if (holder1.gv_feedback.getVisibility() == View.VISIBLE) {
-                        holder1.gv_feedback.setVisibility(View.GONE);
+                    if(updated_status==4){
+
+                        wpage = "user_side";
+                        Log.i("userid", user_id);
+                        getWdetails getUWdetails = new getWdetails();
+                        getUWdetails.execute(user_id);
                     }
+                    else {
+                        Toast.makeText(_context, server_message, Toast.LENGTH_SHORT).show();
+                        if (holder1.im_agree.getVisibility() == View.VISIBLE) {
+                            holder1.im_agree.setVisibility(View.GONE);
+                        } else if (holder1.im_reply.getVisibility() == View.VISIBLE) {
+                            holder1.im_reply.setVisibility(View.GONE);
+                        } else if (holder1.gv_feedback.getVisibility() == View.VISIBLE) {
+                            holder1.gv_feedback.setVisibility(View.GONE);
+                        }
+                    }
+                }
+                else{
+                    Constants.noInternetDialouge(_context, "Failed to update");
                 }
             }
 
@@ -684,16 +736,184 @@ public class PropsalAdapter extends BaseAdapter {
             super.onPostExecute(user);
             progressDialog.dismiss();
             if (server_status == 1) {
-                if(wpage.contentEquals("sp_home")){
-                    wpage="user_side";
-                    Log.i("userid",user_id);
-                    getWdetails getUWdetails=new getWdetails();
-                    getUWdetails.execute(user_id);
+                if(updated_status==4){
+                    Toast.makeText(_context, "Service started", Toast.LENGTH_SHORT).show();
+                    wpage = "user_side";
+                    Transactwallet transactwallet = new Transactwallet();
+                    transactwallet.execute(user_id, "5", String.valueOf(user_balance+5), "0");
                 }
-                Toast.makeText(_context,shop_balance+"/"+user_balance,Toast.LENGTH_LONG).show();
+                else {
+                    if (wpage.contentEquals("sp_home")) {
+                        if (shop_balance > 5) {
+                            wpage = "user_side";
+                            Log.i("userid", user_id);
+                            getWdetails getUWdetails = new getWdetails();
+                            getUWdetails.execute(user_id);
+                        } else {
+                            Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
+                        }
+                    } else if (wpage.contentEquals("user_side")) {
+                        if (user_balance > 5) {
+                            wpage = "sp_home";
+                            Transactwallet transactwallet = new Transactwallet();
+                            transactwallet.execute(shop_id, "0", String.valueOf(shop_balance - 5), "5");
+                            //Toast.makeText(_context,"go aahead",Toast.LENGTH_LONG).show();
+                        } else {
+                            // this is for insufficient balance in the user side
+                            Constants.noInternetDialouge(_context, "User is not ready to take the service");
+
+                        }
+
+                    }
+                }
+
+
+              //  Toast.makeText(_context,shop_balance+"/"+user_balance,Toast.LENGTH_LONG).show();
             }
 
         }
     }
+        /**
+         *
+         * Async task to Update the wallet
+         * */
+        private class Transactwallet extends AsyncTask<String, Void, Void> {
+
+            private static final String TAG = "update wallet";
+            int wallet_status;
+            String server_message;
+            ProgressDialog progressDialog=null;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                if(progressDialog == null) {
+                    progressDialog = ProgressDialog.show(_context, "Updating wallet", "Please wait...");
+                }
+            }
+            @Override
+            protected Void doInBackground(String... params) {
+
+                try {
+                    String _userid = params[0];
+                    String _recharge_amount = params[1];
+                    String _debit_amount = params[3];
+                    String _balance_amount = params[2];
+                    InputStream in = null;
+                    int resCode = -1;
+
+                    String link = Constants.ONLINEURL+Constants.SHOP_WALLLET_UPDATE;
+                    URL url = new URL(link);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("POST");
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
+                    conn.setAllowUserInteraction(false);
+                    conn.setInstanceFollowRedirects(true);
+                    conn.setRequestMethod("POST");
+                    Uri.Builder builder = null;
+                    if(wpage.contentEquals("sp_home")) {
+                        builder = new Uri.Builder()
+                                .appendQueryParameter("shop_id", _userid)
+                                .appendQueryParameter("debit", _debit_amount)
+                                .appendQueryParameter("credit", _recharge_amount)
+                                .appendQueryParameter("remarks", "Service started")
+                                .appendQueryParameter("balance", _balance_amount);
+                    }
+                    else if(wpage.contentEquals("user_side")){
+                        builder = new Uri.Builder()
+                                .appendQueryParameter("user_id", _userid)
+                                .appendQueryParameter("debit", _debit_amount)
+                                .appendQueryParameter("credit", _recharge_amount)
+                                .appendQueryParameter("remarks", "Service started")
+                                .appendQueryParameter("balance", _balance_amount);
+                    }
+
+                    //.appendQueryParameter("deviceid", deviceid);
+                    String query = builder.build().getEncodedQuery();
+
+                    OutputStream os = conn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(query);
+                    writer.flush();
+                    writer.close();
+                    os.close();
+
+                    conn.connect();
+                    resCode = conn.getResponseCode();
+                    if (resCode == HttpURLConnection.HTTP_OK) {
+                        in = conn.getInputStream();
+                    }
+                    if(in == null){
+                        return null;
+                    }
+                    BufferedReader reader =new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                    String response = "",data="";
+
+                    while ((data = reader.readLine()) != null){
+                        response += data + "\n";
+                    }
+
+                    Log.i(TAG, "Response : "+response);
+
+                    /**
+                     * {
+                     "status": 1,
+                     "message": "Data inserted successfully"
+                     }
+                     * */
+
+                    if(response != null && response.length() > 0) {
+                        JSONObject res = new JSONObject(response.trim());
+                        JSONObject j_obj=res.getJSONObject("res");
+                        wallet_status = j_obj.optInt("status");
+                        if(wallet_status==1) {
+                            server_message="Wallet Updated";
+                        }
+                        else{
+                            server_message="Wallet can't be Updated";
+
+                        }
+
+                    }
+
+                    return null;
+                } catch(Exception exception){
+                    server_message="Wallet error";
+                    Log.e(TAG, "SynchMobnum : doInBackground", exception);
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void user) {
+                super.onPostExecute(user);
+                progressDialog.dismiss();
+                if(wallet_status==1){
+                    if(wpage.contentEquals("sp_home")) {
+                        wpage = "user_side";
+                        Transactwallet transactwallet = new Transactwallet();
+                        transactwallet.execute(user_id, "0", String.valueOf(user_balance - 5), "5");
+                    }
+                    //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
+                    if(updated_status==4){
+                        Toast.makeText(_context,"User's wallet updated",Toast.LENGTH_LONG).show();
+
+                    }
+                    else {
+                        String otp = String.valueOf(Constants.generatePIN());
+                        ConfirmToProp confirmToProp = new ConfirmToProp();
+                        confirmToProp.execute(propsal_id, "3", otp);
+                    }
+                }
+                else{
+                    Constants.noInternetDialouge(_context,"Action failed");
+                }
+            }
+        }
+
 
 }

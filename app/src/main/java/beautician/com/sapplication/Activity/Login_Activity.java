@@ -237,12 +237,12 @@ public class Login_Activity extends AppCompatActivity {
                     if (server_status == 1) {
                         server_message = j_obj.optString("message");
                     } else {
-                        server_message = "Invalid Credentials";
+                        server_message = "Incorrect Username or Password";
                     }
                 }
                 return null;
             } catch (Exception exception) {
-                server_message = "Invalid Credentials";
+                server_message = "Incorrect Username or Password";
                 Log.e(TAG, "SynchMobnum : doInBackground", exception);
             }
 
@@ -386,7 +386,7 @@ public class Login_Activity extends AppCompatActivity {
                 return null;
 
             } catch (Exception exception) {
-                server_message = "Invalid Credentials";
+                server_message = "Incorrect Username or Password";
                 Log.e(TAG, "SynchMobnum : doInBackground", exception);
             }
 

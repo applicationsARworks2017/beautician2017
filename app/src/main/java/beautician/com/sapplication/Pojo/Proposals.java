@@ -5,7 +5,7 @@ package beautician.com.sapplication.Pojo;
  */
 
 public class Proposals {
-    String id,service_request_id,remarks,category,status,created,shop_id, shop_name, user_id;
+    String id,service_request_id,remarks,category,status,created,shop_id, shop_name, user_id, otp;
 
     public String getId() {
         return id;
@@ -79,7 +79,16 @@ public class Proposals {
         this.user_id = user_id;
     }
 
-    public Proposals(String id, String service_request_id, String remarks, String status, String created, String shop_id, String shop_name, String user_id) {
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+    public Proposals(String id, String service_request_id, String remarks, String status, String created,
+                     String shop_id, String shop_name, String user_id, String otp) {
         this.id=id;
         this.service_request_id=service_request_id;
         this.remarks=remarks;
@@ -88,6 +97,7 @@ public class Proposals {
         this.shop_id=shop_id;
         this.shop_name=shop_name;
         this.user_id=user_id;
+        this.otp=otp;
 
     }
 }

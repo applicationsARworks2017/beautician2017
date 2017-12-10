@@ -266,12 +266,13 @@ public class ServiceList extends Fragment {
                             String user_id=req_obj.getString("user_id");
                             String service_request_id = o_list_obj.getString("service_request_id");
                             String remarks = o_list_obj.getString("remarks");
+                            String otp = o_list_obj.getString("otp");
                             String status = o_list_obj.getString("status");
                             String created = o_list_obj.getString("created");
                             String shop_id=new_obj.getString("id");
                             String shop_name=new_obj.getString("shopname");
                             if(status.contentEquals("4") || status.contentEquals("5")){
-                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name,user_id);
+                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name,user_id,otp);
                                 pList.add(list1);
                             }
                             else {

@@ -207,6 +207,7 @@ public class SpProposal extends AppCompatActivity {
                             JSONObject req_obj=o_list_obj.getJSONObject("service_request");
                             String user_id=req_obj.getString("user_id");
                             String id = o_list_obj.getString("id");
+                            String otp = o_list_obj.getString("otp");
                             String service_request_id = o_list_obj.getString("service_request_id");
                             String remarks = o_list_obj.getString("remarks");
                             String status = o_list_obj.getString("status");
@@ -217,7 +218,7 @@ public class SpProposal extends AppCompatActivity {
 
                             }
                             else {
-                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name,user_id);
+                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name,user_id,otp);
                                 pList.add(list1);
                             }
                         }

@@ -53,6 +53,7 @@ public class Constants {
     public static String USER_BALANCE="UserWallets/index.json";
     public static String SHOP_BALANCE="wallets/index.json";
     public static String USER_WALLLET_UPDATE="UserWallets/add.json";
+    public static String SHOP_WALLLET_UPDATE="wallets/add.json";
 
 
     public static final String SHAREDPREFERENCE_KEY = "beautician" ;

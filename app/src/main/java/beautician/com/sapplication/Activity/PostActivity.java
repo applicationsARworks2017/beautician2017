@@ -495,6 +495,7 @@ remarks:jhgjhghjgjg"
                         .appendQueryParameter("user_id", _userid)
                         .appendQueryParameter("debit", _debit_amount)
                         .appendQueryParameter("credit", _recharge_amount)
+                        .appendQueryParameter("remarks", "Posting a request")
                         .appendQueryParameter("balance", _balance_amount);
 
                 //.appendQueryParameter("deviceid", deviceid);
