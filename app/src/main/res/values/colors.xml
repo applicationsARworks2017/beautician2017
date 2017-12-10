@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--
+    <color name="colorPrimary">#c758f7</color>
+-->
+    <color name="colorPrimary">#e853de</color>
+    <color name="colorPrimaryDark">#e853de</color>
+    <color name="colorPrimaryLight">#e7a1ea</color>
+<!--
+    <color name="colorPrimaryDark">#c758f7</color>
+-->
+    <color name="colorAccent">#7a2da6</color>
+    <color name="colorAccent2">#42A5F5</color>
+    <color name="background">#f1f1f1</color>
+    <color name="green">#388E3C</color>
+    <color name="deep_background">	#9c9c9c</color>
+    <color name="white">#FFFFFF</color>
+    <color name="duskyellow">#FFAB00</color>
+    <color name="black">#000000</color>
+    <color name="btn_orange">#f96e3a</color>
+</resources>

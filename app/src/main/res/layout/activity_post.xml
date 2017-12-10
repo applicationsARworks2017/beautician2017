@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="beautician.com.sapplication.Activity.PostActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You are Interested for :"
+        android:layout_margin="10dp"
+        android:id="@+id/postHeading"
+        android:textColor="@color/colorPrimaryDark"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/postHeading"
+        android:layout_margin="10dp"
+        android:text="Haicrut"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tv_services"
+        android:maxLines="3"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/hr_line"
+        android:layout_below="@id/tv_services"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/deep_background"></LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/hr_line"
+        android:layout_marginTop="10dp">
+
+    <TextView
+        android:id="@+id/adult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No of People"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"/>
+    <Spinner
+        android:id="@+id/adult_spin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_gravity="center_horizontal"
+        android:drawSelectorOnTop="true"
+        android:entries="@array/array_name"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/in_date"
+            android:gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="DATE"
+            android:background="@mipmap/ic_date_range_white_24dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/colorPrimaryLight"
+            android:id="@+id/btn_date"
+            android:layout_alignBottom="@+id/in_date"
+            android:layout_toRightOf="@+id/in_date"
+            android:layout_toEndOf="@+id/in_date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/in_time"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/in_date"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="TIME"
+            android:textColor="@color/white"
+            android:background="@mipmap/ic_access_time_white_24dp"
+            android:backgroundTint="@color/colorPrimaryLight"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/btn_time"
+            android:layout_below="@+id/btn_date"
+            android:layout_alignLeft="@+id/btn_date"
+            android:layout_alignStart="@+id/btn_date" />
+        </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:id="@+id/et_contentheading"
+        android:minLines="4"
+        android:paddingLeft="5dp"
+        android:paddingRight="2dp"
+        android:gravity="top|left"
+        android:maxLines="10"
+        android:hint="Add Detail here"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimaryLight"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Post"
+        android:id="@+id/submit_post"
+        android:textColor="@color/white"/>
+    </LinearLayout>
+</RelativeLayout>

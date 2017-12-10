@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="beautician.com.sapplication.Activity.OfferSet">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_set_offers">
+        <ListView
+            android:layout_width="match_parent"
+            android:divider="@null"
+            android:layout_height="match_parent"
+            android:id="@+id/lv_setoffers"></ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No offers"
+        android:visibility="gone"
+        android:id="@+id/off_blank_"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/loader_of_set"
+        android:visibility="gone"/>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:id="@+id/comp_gift"
+        android:src="@drawable/gift"/>
+</RelativeLayout>

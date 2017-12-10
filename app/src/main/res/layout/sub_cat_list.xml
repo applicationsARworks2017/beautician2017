@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category Name"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_catname"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub category"
+        android:layout_below="@+id/tv_catname"
+        android:textColor="@color/black"
+        android:layout_centerVertical="true"
+        android:id="@+id/tv_subcatname"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$ _ _"
+        android:id="@+id/tv_price"
+        android:visibility="gone"
+        android:layout_below="@id/tv_subcatname"
+        android:layout_marginTop="3dp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@mipmap/ic_mode_edit_white_24dp"
+        android:backgroundTint="@color/black"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="80dp"
+        android:id="@+id/iv_edit"
+        android:padding="5dp"/>
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/green"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:id="@+id/bt_add"
+        android:text="add"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/bt_add"
+            android:layout_marginTop="10dp"
+            android:background="@color/background"></LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

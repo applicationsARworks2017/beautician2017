@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="beautician.com.sapplication">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <provider
+            android:name=".Utils.GenericFileProvider"
+            android:authorities="beautician.com.sapplication"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".SplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoAction">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAfTnMETsCDM_RlvvZTU2jH1qnObvGjPMA" />
+
+        <activity
+            android:name=".Activity.Login_Activity"
+            android:label="Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SignupActivity"
+            android:label="Sign Up"
+            android:parentActivityName=".Activity.Login_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyMaterialTheme.Base" />
+        <activity
+            android:name=".Activity.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SPHome"
+            android:label="Dashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Categories"
+            android:label="Service List"
+            android:parentActivityName=".Activity.SPHome"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.PostActivity"
+            android:label="Post for service"
+            android:parentActivityName=".Activity.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Subcategories"
+            android:label="Service Details"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SPProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Manageservice"
+            android:label="Service"
+            android:parentActivityName=".Activity.SPHome"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.RequestSubcategories"
+            android:label="Detail List"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SearchShop"
+            android:label="Search"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SearchShopList"
+            android:label="Search List"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.CategoriesRequest"
+            android:label="Choose Service" />
+        <activity
+            android:name=".Activity.CheckPost"
+            android:label="Public Posts"
+            android:parentActivityName=".Activity.SPHome" />
+        <activity
+            android:name=".Activity.SpProposal"
+            android:label="Proposals"
+            android:parentActivityName=".Activity.SPHome" />
+        <activity
+            android:name=".Activity.Wallet"
+            android:label="Wallet"
+            android:parentActivityName=".Activity.SPHome" />
+        <activity
+            android:name=".Activity.Offer_creation"
+            android:label="Compose Offer"
+            android:parentActivityName=".Activity.SPHome" />
+        <activity
+            android:name=".Activity.OfferSet"
+            android:label="Offers"
+            android:parentActivityName=".Activity.HomeActivity" />
+        <activity
+            android:name=".Activity.PropsalView"
+            android:label="Propsal Detail"
+            android:parentActivityName=".Activity.SPHome" />
+        <activity
+            android:name=".Activity.IndividualRequest"
+            android:label="Request for service"
+            android:parentActivityName=".Activity.HomeActivity" />
+        <activity
+            android:name=".Activity.MapActivity"
+            android:label="Choose Address" />
+        <activity android:name=".Activity.SpRequestHome" />
+        <activity
+            android:name=".Activity.CheckIndividualPost"
+            android:label="Service Requests"
+            android:parentActivityName=".Activity.HomeActivity" />
+
+        <!-- Firebase Notifications -->
+        <service android:name=".Firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".Firebase.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Firebase.MyJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimaryDark" />
+
+        <activity
+            android:name=".Activity.GiveCommentActivity"
+            android:label="Give Ratings" />
+        <activity
+            android:name=".Activity.ShopDetails"
+            android:label="Shop Details" />
+        <activity
+            android:name=".Activity.MyserviceList"
+            android:label="Service"
+            android:parentActivityName=".Activity.Manageservice"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.MySubcategories"></activity>
+    </application>
+
+</manifest>

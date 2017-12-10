@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="beautician.com.sapplication.Activity.SearchShop">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:singleLine="true"
+        android:id="@+id/et_searchText"
+        android:layout_marginTop="50dp"
+        android:hint="Search for shops,services"
+        android:paddingLeft="20dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:text="Search"
+            android:id="@+id/bt_search"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimaryLight"/>
+    </LinearLayout>
+</RelativeLayout>

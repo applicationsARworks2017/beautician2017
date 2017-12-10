@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="beautician.com.sapplication.Activity.GiveCommentActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/txt_ratings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Enter your Ratings"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
+                android:layout_below="@+id/customer_designation"/>
+            <RatingBar
+                android:id="@+id/customer_ratings"
+                android:layout_below="@+id/txt_ratings"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_rating"
+                android:visibility="gone"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/rel_ratingpoints"
+                android:layout_below="@id/customer_ratings"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Tell us what to improve"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:id="@+id/ratings_value"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"></ListView>
+            </RelativeLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel_ratingpoints"
+                android:layout_margin="20dp"
+                android:id="@+id/et_comments_feedback"
+                android:hint="Comments"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@color/colorPrimaryLight"
+                android:text="submit"
+                android:textColor="@color/white"
+                android:id="@+id/bt_subratings"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
