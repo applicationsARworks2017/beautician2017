@@ -95,16 +95,6 @@ public class PostActivity extends AppCompatActivity {
                                 Constants.noInternetDialouge(PostActivity.this, "No Internet");
 
                             }
-                            /*String postDetails = et_contentheading.getText().toString().trim();
-                            String numof = adult.getSelectedItem().toString();
-                            exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
-                            if (CheckInternet.getNetworkConnectivityStatus(PostActivity.this)) {
-                                Postservice postservice = new Postservice();
-                                postservice.execute(user_id, CategoriesRequest.catid, RequestSubcategories.SubcateryId, numof, postDetails, exp_date);
-                            } else {
-                                Constants.noInternetDialouge(PostActivity.this, "No Internet");
-
-                            }*/
                         }
 
 
@@ -435,7 +425,7 @@ remarks:jhgjhghjgjg"
             super.onPostExecute(user);
             progressDialog.dismiss();
             if(server_status==1){
-                if(balance>5.0){
+                if(balance>6.0){
                     String postDetails = et_contentheading.getText().toString().trim();
                     String numof = adult.getSelectedItem().toString();
                     exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();

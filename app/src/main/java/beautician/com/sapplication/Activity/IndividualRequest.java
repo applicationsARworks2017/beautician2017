@@ -3,9 +3,11 @@ package beautician.com.sapplication.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -41,6 +44,7 @@ public class IndividualRequest extends AppCompatActivity {
     EditText et_details;
     Spinner sp_num;
     Button post;
+    Double balance;
     String user_id,shop_id,shop_name,exp_date;
     ImageView btnDatePicker, btnTimePicker;
     EditText txtDate, txtTime;
@@ -70,21 +74,38 @@ public class IndividualRequest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    String postDetails=et_details.getText().toString().trim();
-                    String numof=sp_num.getSelectedItem().toString();
-                    exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
-
+                exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
                 if(txtDate.getText().toString().trim().length()<=0){
                     Toast.makeText(IndividualRequest.this,"Please give Expected Date",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {
-                        Postservice postservice = new Postservice();
-                        postservice.execute(user_id, numof, postDetails, shop_id,exp_date);
-                    } else {
-                        Constants.noInternetDialouge(IndividualRequest.this, "No Internet");
 
-                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(IndividualRequest.this);
+                    builder.setTitle("");
+                    builder.setMessage("Your wallet will be deducted with $1 for this request");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                                if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {
+                                    getWdetails getWdetails=new getWdetails();
+                                    getWdetails.execute(user_id);
+
+                                    /*Postservice postservice = new Postservice();
+                                    postservice.execute(user_id, numof, postDetails, shop_id,exp_date);*/
+                                } else {
+                                    Constants.noInternetDialouge(IndividualRequest.this, "No Internet");
+
+                                }
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
                 }
 
 
@@ -144,6 +165,161 @@ public class IndividualRequest extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Async task to get wallet balance from  camp table from server
+     * */
+    private class getWdetails extends AsyncTask<String, Void, Void> {
+
+        private static final String TAG = "Get Wallet Balance";
+        private ProgressDialog progressDialog = null;
+        int server_status;
+        String server_message;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if(progressDialog == null) {
+                progressDialog = ProgressDialog.show(IndividualRequest.this, "Loading", "Please wait...");
+            }
+            // onPreExecuteTask();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+
+            try {
+
+                String _userid = params[0];
+                InputStream in = null;
+                int resCode = -1;
+
+                String link = Constants.ONLINEURL+Constants.USER_BALANCE;
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setAllowUserInteraction(false);
+                conn.setInstanceFollowRedirects(true);
+                conn.setRequestMethod("POST");
+
+                Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("user_id", _userid);
+
+                //.appendQueryParameter("deviceid", deviceid);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                conn.connect();
+                resCode = conn.getResponseCode();
+                if (resCode == HttpURLConnection.HTTP_OK) {
+                    in = conn.getInputStream();
+                }
+                if(in == null){
+                    return null;
+                }
+                BufferedReader reader =new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String response = "",data="";
+
+                while ((data = reader.readLine()) != null){
+                    response += data + "\n";
+                }
+
+                Log.i(TAG, "Response : "+response);
+
+                /**
+                 * {
+                 "userWallets": [
+                 {
+                 "id": 7,
+                 "user_id": 10,
+                 "debit": 0,
+                 "credit": 10,
+                 "balance": 10,
+                 "created": "2017-12-03T10:28:29+05:30",
+                 "modified": "2017-12-03T10:28:29+05:30",
+                 "user": {
+                 "id": 10,
+                 "name": "avinash pathak",
+                 "email": "avinasha@yahoo.com",
+                 "mobile": "7205674061",
+                 "photo": null,
+                 "created": "1988-01-23T00:00:00+05:30",
+                 "modified": "1988-01-23T00:00:00+05:30",
+                 "usertype": "test",
+                 "fcm_id": null
+                 }
+                 }
+                 ]
+                 * */
+
+                if(response != null && response.length() > 0) {
+                    JSONObject res = new JSONObject(response.trim());
+                    JSONArray serviceListArray = res.getJSONArray("userWallets");
+                    if(serviceListArray.length()<=0) {
+                        server_status = 0;
+                    }
+                    else{
+                        server_status = 1;
+                        for (int i = 0; i < serviceListArray.length(); i++) {
+                            JSONObject o_list_obj = serviceListArray.getJSONObject(i);
+                            String id = o_list_obj.getString("id");
+                            balance = o_list_obj.getDouble("balance");
+                        }
+                    }
+
+                }
+
+                return null;
+            } catch(Exception exception){
+                Log.e(TAG, "SynchMobnum : doInBackground", exception);
+                server_message="Network Error";
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void user) {
+            super.onPostExecute(user);
+            progressDialog.dismiss();
+            if(server_status==1){
+                if(balance>6.0){
+                    final String postDetails=et_details.getText().toString().trim();
+                    final String numof=sp_num.getSelectedItem().toString();
+                    exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
+                    if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {
+                        Postservice postservice = new Postservice();
+                        postservice.execute(user_id, numof, postDetails, shop_id,exp_date);
+                    } else {
+                        Constants.noInternetDialouge(IndividualRequest.this, "No Internet");
+
+                    }
+                }
+
+            }
+            else{
+                Constants.noInternetDialouge(IndividualRequest.this,"Atleast $ 6 is required in your wallet for posting a service");
+            }
+
+        }
+    }
+
+
+    /*
+    * Posting service
+    * */
+
 
     private class Postservice extends AsyncTask<String, Void, Void> {
 
@@ -261,13 +437,133 @@ public class IndividualRequest extends AppCompatActivity {
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
             if (server_status == 1) {
+                Transactwallet transactwallet=new Transactwallet();
+                transactwallet.execute(user_id,"0",String.valueOf(balance-1),"1");
+
+            }
+            Toast.makeText(IndividualRequest.this,server_message,Toast.LENGTH_SHORT).show();
+        }
+    }
+    /**
+     *
+     * Async task to Update the wallet
+     * */
+    private class Transactwallet extends AsyncTask<String, Void, Void> {
+
+        private static final String TAG = "update wallet";
+        int wallet_status;
+        String server_message;
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            if(progressDialog == null) {
+                progressDialog = ProgressDialog.show(IndividualRequest.this, "Deducting", "Please wait...");
+            }
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+
+            try {
+                String _userid = params[0];
+                String _recharge_amount = params[1];
+                String _debit_amount = params[3];
+                String _balance_amount = params[2];
+                InputStream in = null;
+                int resCode = -1;
+
+                String link = Constants.ONLINEURL + Constants.USER_WALLLET_UPDATE;
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setAllowUserInteraction(false);
+                conn.setInstanceFollowRedirects(true);
+                conn.setRequestMethod("POST");
+                Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("user_id", _userid)
+                        .appendQueryParameter("debit", _debit_amount)
+                        .appendQueryParameter("credit", _recharge_amount)
+                        .appendQueryParameter("remarks", "Individual Request")
+                        .appendQueryParameter("balance", _balance_amount);
+
+                //.appendQueryParameter("deviceid", deviceid);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                conn.connect();
+                resCode = conn.getResponseCode();
+                if (resCode == HttpURLConnection.HTTP_OK) {
+                    in = conn.getInputStream();
+                }
+                if (in == null) {
+                    return null;
+                }
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String response = "", data = "";
+
+                while ((data = reader.readLine()) != null) {
+                    response += data + "\n";
+                }
+
+                Log.i(TAG, "Response : " + response);
+
+                /**
+                 * {
+                 "status": 1,
+                 "message": "Data inserted successfully"
+                 }
+                 * */
+
+                if (response != null && response.length() > 0) {
+                    JSONObject res = new JSONObject(response.trim());
+                    JSONObject j_obj = res.getJSONObject("res");
+                    wallet_status = j_obj.optInt("status");
+                    if (wallet_status == 1) {
+                        server_message = "Wallet Updated";
+                    } else {
+                        server_message = "Wallet can't be Updated";
+
+                    }
+
+                }
+
+                return null;
+            } catch (Exception exception) {
+                server_message = "Wallet error";
+                Log.e(TAG, "SynchMobnum : doInBackground", exception);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void user) {
+            super.onPostExecute(user);
+            progressDialog.dismiss();
+            if (wallet_status == 1) {
                 Intent intent = new Intent(IndividualRequest.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
-            Toast.makeText(IndividualRequest.this,server_message,Toast.LENGTH_SHORT).show();
+
+            else{
+                Toast.makeText(IndividualRequest.this,server_message,Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

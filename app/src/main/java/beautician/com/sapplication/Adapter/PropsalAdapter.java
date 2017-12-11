@@ -552,6 +552,9 @@ public class PropsalAdapter extends BaseAdapter {
                         Log.i("userid", user_id);
                         getWdetails getUWdetails = new getWdetails();
                         getUWdetails.execute(user_id);
+                        if (holder1.im_reply.getVisibility() == View.VISIBLE) {
+                            holder1.im_reply.setVisibility(View.GONE);
+                        }
                     }
                     else {
                         Toast.makeText(_context, server_message, Toast.LENGTH_SHORT).show();
@@ -801,7 +804,14 @@ public class PropsalAdapter extends BaseAdapter {
                     InputStream in = null;
                     int resCode = -1;
 
-                    String link = Constants.ONLINEURL+Constants.SHOP_WALLLET_UPDATE;
+                    String link = null;
+                    if(wpage.contentEquals("sp_home")) {
+                        link = Constants.ONLINEURL + Constants.SHOP_WALLLET_UPDATE;
+                    }
+                    else if(wpage.contentEquals("user_side")){
+                        link = Constants.ONLINEURL + Constants.USER_WALLLET_UPDATE;
+
+                    }
                     URL url = new URL(link);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setReadTimeout(10000);
