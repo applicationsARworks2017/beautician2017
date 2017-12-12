@@ -264,6 +264,7 @@ public class PropsalAdapter extends BaseAdapter {
                 holder1=(Holder)v.getTag();
                 holder1.gv_feedback.setVisibility(View.GONE);
                 Intent intent=new Intent(_context,GiveCommentActivity.class);
+                intent.putExtra("PAGE","propsal");
                 intent.putExtra("SHOP_NAME",_pos.getShop_name());
                 intent.putExtra("SHOP_ID",_pos.getShop_id());
                 intent.putExtra("PROPSAL_ID",_pos.getId());

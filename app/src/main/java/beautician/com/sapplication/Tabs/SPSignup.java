@@ -1,6 +1,7 @@
 package beautician.com.sapplication.Tabs;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -361,10 +362,15 @@ public class SPSignup extends Fragment {
 
         String TAG = "Sign Up";
         private boolean is_success = false;
+        private ProgressDialog progressDialog = null;
+
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            if(progressDialog == null) {
+                progressDialog = ProgressDialog.show(getActivity(), "Loading", "Please wait...");
+            }
 
         }
 
@@ -444,6 +450,7 @@ public class SPSignup extends Fragment {
                 startActivity(intent);
             }
             showSnackBar(server_message);
+            progressDialog.cancel();
             //Toast.makeText(UploadAssets.this,server_message,Toast.LENGTH_LONG).show();
         }
     }

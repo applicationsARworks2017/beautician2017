@@ -71,7 +71,7 @@
         <activity
             android:name=".Activity.PostActivity"
             android:label="Post for service"
-            android:parentActivityName=".Activity.HomeActivity"
+            android:parentActivityName=".Activity.SpRequestHome"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Subcategories"
@@ -137,7 +137,9 @@
         <activity
             android:name=".Activity.MapActivity"
             android:label="Choose Address" />
-        <activity android:name=".Activity.SpRequestHome" />
+        <activity android:name=".Activity.SpRequestHome"
+            android:parentActivityName=".Activity.SPHome"
+            android:label="Select Type"/>
         <activity
             android:name=".Activity.CheckIndividualPost"
             android:label="Service Requests"

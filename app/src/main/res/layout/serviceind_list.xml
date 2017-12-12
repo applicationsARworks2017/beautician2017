@@ -35,8 +35,6 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:padding="10dp"
-                android:backgroundTint="@color/deep_background"
-                android:background="@mipmap/ic_assignment_turned_in_white_24dp"
                 android:id="@+id/im_reply"
                 android:layout_below="@id/name_service"
                 />

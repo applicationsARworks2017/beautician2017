@@ -63,6 +63,15 @@ public class CheckIndividualPost extends AppCompatActivity {
 
 
         getAllPost();
+        swipe_Indcheckpost.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipe_Indcheckpost.setRefreshing(false);
+                isrList=new ArrayList<>();
+                getAllPost();
+
+            }
+        });
 
     }
 
@@ -212,9 +221,10 @@ public class CheckIndividualPost extends AppCompatActivity {
                             String personphoto=new_obj.getString("photo");
                             String status=o_list_obj.getString("status");
                             String shopname=new_obj1.getString("shopname");
+                            String shopid=new_obj1.getString("id");
                             String expected_date=o_list_obj.getString("expected_date");
                             IndServiceRequest list1 = new IndServiceRequest(id,remarks,personId,personName,personemail,personmobile,
-                                    personphoto,status,no_of_user,shopname,expected_date,otp);
+                                    personphoto,status,no_of_user,shopname,expected_date,otp,shopid);
                             isrList.add(list1);
                         }
                     }

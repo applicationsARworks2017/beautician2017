@@ -278,11 +278,14 @@ public class Login_Activity extends AppCompatActivity {
         String server_message;
         int server_status;
         String id,shop_name,address,latitudelongitude,photo1,photo2,photo3,email,mobile,created_dt,modified_dt;
-
+        ProgressDialog progressDialog=null;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            if(progressDialog == null) {
+                progressDialog = ProgressDialog.show(Login_Activity.this, "Loading", "Please wait...");
+            }
 
             // onPreExecuteTask();
         }
@@ -414,6 +417,7 @@ public class Login_Activity extends AppCompatActivity {
             else{
                 showSnackBar(server_message);
             }
+            progressDialog.cancel();
         }
     }
     void showSnackBar(String message){

@@ -28,6 +28,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import beautician.com.sapplication.Adapter.IndServiceRequestAdapter;
 import beautician.com.sapplication.Adapter.PropsalAdapter;
 import beautician.com.sapplication.Adapter.RatingspointsAdapter;
 import beautician.com.sapplication.Pojo.RatingsPoints;
@@ -44,9 +45,10 @@ public class GiveCommentActivity extends AppCompatActivity {
     ListView lv_ratings_value;
     Button bt_subratings;
     EditText et_comments_feedback;
-    String improve;
+    String improve,page_name;
     String shop_id,shop_name,user_id,propsal_id;
     PropsalAdapter objadapter=new PropsalAdapter();
+    IndServiceRequestAdapter reqadapter=new IndServiceRequestAdapter();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,7 @@ public class GiveCommentActivity extends AppCompatActivity {
             shop_id = extras.getString("SHOP_ID");
             shop_name = extras.getString("SHOP_NAME");
             propsal_id = extras.getString("PROPSAL_ID");
+            page_name = extras.getString("PAGE");
             // and get whatever type user account id is
         }
         user_id = GiveCommentActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
@@ -290,7 +293,12 @@ user_id:12
             super.onPostExecute(user);
             if (server_status == 1) {
                 finish();
-                objadapter.calltoupdate(propsal_id,"5","comment");
+                if(page_name.contentEquals("propsal")) {
+                    objadapter.calltoupdate(propsal_id, "5", "comment");
+                }
+                else if(page_name.contentEquals("indrequest")){
+                    reqadapter.statuschange(propsal_id,"4","1234");
+                }
             }
             progressDialog.dismiss();
             Toast.makeText(GiveCommentActivity.this,server_message,Toast.LENGTH_SHORT).show();

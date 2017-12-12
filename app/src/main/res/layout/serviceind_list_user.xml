@@ -18,22 +18,14 @@
                 android:text="Amaresh"
                 android:textColor="@color/black"
                 android:id="@+id/name_service"
-                android:layout_margin="15dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name_service"
-                android:layout_marginLeft="15dp"
-                android:text="OTP"
-                android:textColor="@color/black"
-                android:layout_marginRight="60dp"
-                android:id="@+id/otp_service"
-                android:visibility="gone"/>
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
-                android:layout_below="@id/otp_service"
+                android:layout_below="@id/name_service"
                 android:id="@+id/servicedetails"
                 android:text="I am ready"
                 android:layout_marginLeft="15dp"
@@ -43,11 +35,30 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/servicedetails"
                 android:layout_marginLeft="15dp"
+                android:text="OTP"
+                android:textColor="@color/black"
+                android:layout_marginRight="60dp"
+                android:id="@+id/otp_service"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/otp_service"
+                android:layout_marginLeft="15dp"
                 android:textColor="@color/colorPrimaryLight"
                 android:text="expected_date"
                 android:textSize="10dp"
                 android:id="@+id/expected_date"
                 android:layout_marginBottom="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/expected_date"
+                android:layout_marginLeft="15dp"
+                android:text="Give feedback"
+                android:textStyle="bold|italic"
+                android:id="@+id/gv_feedback"
+                android:visibility="visible"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,8 +66,6 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:padding="10dp"
-                android:backgroundTint="@color/deep_background"
-                android:background="@mipmap/ic_error_black_24dp"
                 android:id="@+id/im_reply"
                 android:layout_below="@id/name_service"
                 />
