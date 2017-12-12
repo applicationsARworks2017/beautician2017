@@ -2,6 +2,9 @@ package beautician.com.sapplication.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +47,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
         return position;
     }
     public class Holder{
-        TextView Name_service,remarks,expected_date;
+        TextView Name_service,remarks,expected_date,otp_service;
 
     }
     @Override
@@ -58,6 +61,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
             user_id = _context.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
             holder.Name_service=(TextView)convertView.findViewById(R.id.name_service);
             holder.remarks=(TextView)convertView.findViewById(R.id.servicedetails);
+            holder.otp_service=(TextView)convertView.findViewById(R.id.otp_service);
             holder.expected_date=(TextView)convertView.findViewById(R.id.expected_date);
             convertView.setTag(holder);
         }
@@ -66,8 +70,25 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
         }
         holder.Name_service.setTag(position);
         holder.remarks.setTag(position);
+        holder.otp_service.setTag(position);
         holder.Name_service.setText("You have requested to "+_pos.getShopname()+" for the service");
         holder.remarks.setText(_pos.getRemarks());
+        final String status=_pos.getStatus();
+
+        if(status.contentEquals("0")){
+            Resources ress = _context.getResources();
+            Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_white_24dp);
+            drawable1 = DrawableCompat.wrap(drawable1);
+            DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.deep_background));
+        }
+        else if(status.contentEquals("1")){
+            holder.otp_service.setVisibility(View.VISIBLE);
+            holder.otp_service.setText("Share OTP before service and get back your $ 5. OTP : "+_pos.getOtp());
+            Resources ress = _context.getResources();
+            Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
+            drawable1 = DrawableCompat.wrap(drawable1);
+            DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.deep_background));
+        }
         if(_pos.getExpected_date().contentEquals("")|| _pos.getExpected_date().contentEquals("null")){
             holder.expected_date.setText("No date defined");
 

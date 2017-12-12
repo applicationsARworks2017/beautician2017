@@ -6,7 +6,7 @@ package beautician.com.sapplication.Pojo;
 
 public class IndServiceRequest {
     String id,remarks,personId,personName,personemail,personmobile,
-            personphoto,status, no_of_user,shopname,expected_date;
+            personphoto,status, no_of_user,shopname,expected_date,otp;
 
     public String getId() {
         return id;
@@ -96,8 +96,16 @@ public class IndServiceRequest {
         this.expected_date = expected_date;
     }
 
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
     public IndServiceRequest(String id, String remarks, String personId, String personName, String personemail, String personmobile, String personphoto,
-                             String status, String no_of_user, String shopname, String ecpected_date) {
+                             String status, String no_of_user, String shopname, String ecpected_date, String otp) {
 
         this.id=id;
         this.remarks=remarks;
@@ -110,6 +118,7 @@ public class IndServiceRequest {
         this.no_of_user=no_of_user;
         this.shopname=shopname;
         this.expected_date=ecpected_date;
+        this.otp=otp;
 
 
 

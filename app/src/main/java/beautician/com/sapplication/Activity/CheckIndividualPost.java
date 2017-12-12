@@ -2,9 +2,9 @@ package beautician.com.sapplication.Activity;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -25,10 +25,7 @@ import java.util.ArrayList;
 
 import beautician.com.sapplication.Adapter.IndServiceRequestAdapter;
 import beautician.com.sapplication.Adapter.IndServiceRequestAdapterUser;
-import beautician.com.sapplication.Adapter.ServiceReqAdapter;
-import beautician.com.sapplication.Adapter.ServiceReqAdapterSP;
 import beautician.com.sapplication.Pojo.IndServiceRequest;
-import beautician.com.sapplication.Pojo.ServiceRequest;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
@@ -207,6 +204,7 @@ public class CheckIndividualPost extends AppCompatActivity {
                             String id = o_list_obj.getString("id");
                             String remarks=o_list_obj.getString("remarks");
                             String personId=new_obj.getString("id");
+                            String otp = o_list_obj.getString("otp");
                             String no_of_user=o_list_obj.getString("no_of_user");
                             String personName=new_obj.getString("name");
                             String personemail=new_obj.getString("email");
@@ -216,7 +214,7 @@ public class CheckIndividualPost extends AppCompatActivity {
                             String shopname=new_obj1.getString("shopname");
                             String expected_date=o_list_obj.getString("expected_date");
                             IndServiceRequest list1 = new IndServiceRequest(id,remarks,personId,personName,personemail,personmobile,
-                                    personphoto,status,no_of_user,shopname,expected_date);
+                                    personphoto,status,no_of_user,shopname,expected_date,otp);
                             isrList.add(list1);
                         }
                     }

@@ -22,8 +22,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
                 android:layout_below="@id/name_service"
+                android:layout_marginLeft="15dp"
+                android:text="OTP"
+                android:textColor="@color/black"
+                android:layout_marginRight="60dp"
+                android:id="@+id/otp_service"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_below="@id/otp_service"
                 android:id="@+id/servicedetails"
                 android:text="I am ready"
                 android:layout_marginLeft="15dp"
