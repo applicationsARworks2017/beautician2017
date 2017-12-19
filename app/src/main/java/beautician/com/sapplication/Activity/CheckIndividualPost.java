@@ -215,6 +215,7 @@ public class CheckIndividualPost extends AppCompatActivity {
                             String personId=new_obj.getString("id");
                             String otp = o_list_obj.getString("otp");
                             String no_of_user=o_list_obj.getString("no_of_user");
+                            String created=o_list_obj.getString("created");
                             String personName=new_obj.getString("name");
                             String personemail=new_obj.getString("email");
                             String personmobile=new_obj.getString("mobile");
@@ -224,7 +225,7 @@ public class CheckIndividualPost extends AppCompatActivity {
                             String shopid=new_obj1.getString("id");
                             String expected_date=o_list_obj.getString("expected_date");
                             IndServiceRequest list1 = new IndServiceRequest(id,remarks,personId,personName,personemail,personmobile,
-                                    personphoto,status,no_of_user,shopname,expected_date,otp,shopid);
+                                    personphoto,status,no_of_user,shopname,expected_date,otp,shopid,created);
                             isrList.add(list1);
                         }
                     }

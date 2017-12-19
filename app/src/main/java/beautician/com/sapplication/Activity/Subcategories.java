@@ -222,7 +222,7 @@ public class Subcategories extends AppCompatActivity {
                             String id = o_list_obj.getString("id");
                             String subcategory = o_list_obj.getString("title");
                             String category_id = o_list_obj.getString("category_id");
-                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id);
+                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"");
                             scList.add(list1);
                         }
                     }

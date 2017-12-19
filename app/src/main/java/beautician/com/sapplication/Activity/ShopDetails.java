@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -34,18 +36,22 @@ public class ShopDetails extends AppCompatActivity {
     TextView shop_name,shop_email,shop_address,shop_reviws;
     RatingBar rating;
     String id,shopname,address,latlong,photo1,photo2,photo3,email,mobile,reviews,ratings;
+    RelativeLayout rel_back;
+    Toolbar sp_toolbar;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setTheme(R.style.AppUserTheme);
         setContentView(R.layout.activity_shop_details);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             shop_id = extras.getString("SHOP_ID");
             // and get whatever type user account id is
         }
+        sp_toolbar=(Toolbar)findViewById(R.id.sp_toolbar);
+        rel_back=(RelativeLayout)sp_toolbar.findViewById(R.id.rel_back);
         img1=(ImageView)findViewById(R.id.img1);
         img2=(ImageView)findViewById(R.id.img2);
         img3=(ImageView)findViewById(R.id.img3);
@@ -56,6 +62,12 @@ public class ShopDetails extends AppCompatActivity {
         shop_reviws=(TextView)findViewById(R.id.shopreviews);
         rating=(RatingBar)findViewById(R.id.rating);
         getShopDetails();
+        rel_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getShopDetails() {

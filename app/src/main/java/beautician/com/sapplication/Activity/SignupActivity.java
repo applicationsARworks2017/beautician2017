@@ -57,7 +57,7 @@ public class SignupActivity extends AppCompatActivity implements android.locatio
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        fcm_id = SignupActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.FCM_ID, null);
+        fcm_id = SignupActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY_FCM, 0).getString(Constants.FCM_ID, null);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 

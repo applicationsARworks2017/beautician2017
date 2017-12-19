@@ -5,13 +5,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
 import android.widget.ImageView;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 import beautician.com.sapplication.Activity.HomeActivity;
@@ -51,17 +55,21 @@ public class Constants {
     public static String INDICISUAL_REQUEST_LIST="service-indivisual-requests/index.json";
     public static String PICURL="http://applicationworld.net/beautician/webroot/files/profile/";
     public static String SHOP_DETAILS="shops/view.json";
+    public static String USER_DETAILS="users/view.json";
     public static String USER_BALANCE="UserWallets/index.json";
     public static String SHOP_BALANCE="wallets/index.json";
     public static String USER_WALLLET_UPDATE="UserWallets/add.json";
     public static String SHOP_WALLLET_UPDATE="wallets/add.json";
+    public static String SHOP_EDIT="shops/edit.json";
+    public static String USER_EDIT="users/edit.json";
 
 
     public static final String SHAREDPREFERENCE_KEY = "beautician" ;
+    public static final String SHAREDPREFERENCE_KEY_FCM = "beauticianfcm" ;
     public static final String USER_NAME = "username" ;
     public static final String USER_ID = "userid" ;
     public static final String USER_TYPE = "user_type" ;
-    public static String FCM_ID="fcmid";
+    public static final String FCM_ID="fcmid";
 
 
 
@@ -134,4 +142,42 @@ public class Constants {
         //Store integer in a string
         return randomPIN;
     }
+    // for avoid rotation of image
+    public static Bitmap modifyOrientation(Bitmap bitmap, String image_absolute_path) throws IOException {
+        ExifInterface ei = new ExifInterface(image_absolute_path);
+        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                return rotate(bitmap, 90);
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                return rotate(bitmap, 180);
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                return rotate(bitmap, 270);
+
+            case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
+                return flip(bitmap, true, false);
+
+            case ExifInterface.ORIENTATION_FLIP_VERTICAL:
+                return flip(bitmap, false, true);
+
+            default:
+                return bitmap;
+        }
+    }
+
+    public static Bitmap rotate(Bitmap bitmap, float degrees) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degrees);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    public static Bitmap flip(Bitmap bitmap, boolean horizontal, boolean vertical) {
+        Matrix matrix = new Matrix();
+        matrix.preScale(horizontal ? -1 : 1, vertical ? -1 : 1);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
 }

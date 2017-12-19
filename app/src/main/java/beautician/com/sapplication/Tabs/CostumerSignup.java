@@ -45,6 +45,8 @@ import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
 
+import static beautician.com.sapplication.Utils.Constants.modifyOrientation;
+
 public class CostumerSignup extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -144,7 +146,7 @@ public class CostumerSignup extends Fragment {
                 // Continue only if the File was successfully created
                 if (photoFile != null) {
                     Uri photoURI = FileProvider.getUriForFile(getActivity(),
-                            "androidapp.com.sapplication",
+                            "beautician.com.sapplication",
                             photoFile);
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(cameraIntent, CAMERA_REQUEST);
@@ -184,8 +186,11 @@ public class CostumerSignup extends Fragment {
             // Bitmap photo = (Bitmap) data.getExtras().get("data");
             try {
                 Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), picUri);
+                Bitmap c_photo= Bitmap.createScaledBitmap(photo,300,300,true);
+                Bitmap perfectImage=modifyOrientation(c_photo,imPath);
+
                 picAvailable = true;
-                iv_avtar.setImageBitmap(photo);
+                iv_avtar.setImageBitmap(perfectImage);
                 iv_avtar.setRotation(90);
                 photo_status=1;
 

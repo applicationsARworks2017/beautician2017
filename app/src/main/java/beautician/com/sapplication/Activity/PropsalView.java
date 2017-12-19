@@ -28,11 +28,11 @@ import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
 public class PropsalView extends AppCompatActivity {
-    TextView prop_head,_remarks;
+    TextView prop_head,_remarks,noofpple;
     EditText _comments;
     Button _ok;
     ProgressBar loader_prop_details;
-    String sid,pid,propsal,p_status;
+    String sid,pid,propsal,p_status,no_of_user;
     String ser_req_id,post_details,sub_categorytitle,cat_title,userid,name,email,mobile,photo;
 
     @Override
@@ -41,6 +41,7 @@ public class PropsalView extends AppCompatActivity {
         setContentView(R.layout.activity_propsal_view);
         prop_head=(TextView) findViewById(R.id.prop_head);
         _remarks=(TextView) findViewById(R.id._remarks);
+        noofpple=(TextView) findViewById(R.id.noofpple);
         _comments=(EditText)findViewById(R.id._comments);
         loader_prop_details=(ProgressBar)findViewById(R.id.loader_prop_details);
         _comments.setEnabled(false);
@@ -184,6 +185,7 @@ public class PropsalView extends AppCompatActivity {
                     JSONObject j_user=j_obj.getJSONObject("user");
                     ser_req_id=j_obj.getString("id");
                     post_details=j_obj.getString("remarks");
+                    no_of_user=j_obj.getString("no_of_user");
                     sub_categorytitle=j_s_cat.getString("title");
                     cat_title=j_cat.getString("title");
                     userid=j_user.getString("id");
@@ -212,6 +214,7 @@ public class PropsalView extends AppCompatActivity {
         _remarks.setText(post_details);
         prop_head.setText(cat_title+":"+sub_categorytitle);
         _comments.setText(propsal);
+        noofpple.setText("Number of people : "+no_of_user);
         loader_prop_details.setVisibility(View.GONE);
     }
 }

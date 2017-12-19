@@ -47,6 +47,7 @@ import beautician.com.sapplication.Activity.PostActivity;
 import beautician.com.sapplication.Activity.PropsalView;
 import beautician.com.sapplication.Activity.ShopDetails;
 import beautician.com.sapplication.Activity.SpProposal;
+import beautician.com.sapplication.Activity.UserDetails;
 import beautician.com.sapplication.Activity.Wallet;
 import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.Pojo.Proposals;
@@ -135,7 +136,7 @@ public class PropsalAdapter extends BaseAdapter {
         holder.im_reply.setTag(holder);
         holder.im_agree.setTag(holder);
         holder.gv_feedback.setTag(holder);
-        holder.user_details.setTag(holder);
+        holder.user_details.setTag(position);
         holder.gv_feedback.setVisibility(View.GONE);
         holder.user_details.setVisibility(View.GONE);
 
@@ -258,6 +259,8 @@ public class PropsalAdapter extends BaseAdapter {
                 }
             }
         });
+
+
         holder.gv_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -428,7 +431,9 @@ public class PropsalAdapter extends BaseAdapter {
         holder.user_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(_context,UserDetails.class);
+                intent.putExtra("USER_ID",_pos.getUser_id());
+                _context.startActivity(intent);
             }
         });
         return convertView;

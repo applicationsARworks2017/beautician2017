@@ -32,7 +32,7 @@ import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
-public class MyserviceList extends AppCompatActivity {
+public class  MyserviceList extends AppCompatActivity {
     String user_id,page;
     ArrayList<CategoryList> cList;
     private ProgressBar loader_categoty;

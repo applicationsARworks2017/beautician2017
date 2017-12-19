@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -70,6 +71,7 @@ public class Login_Activity extends AppCompatActivity {
         login_rel=(RelativeLayout)findViewById(R.id.login_rel);
         userlist=new ArrayList<>();
         splist=new ArrayList<>();
+        fcm_id = Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY_FCM, 0).getString(Constants.FCM_ID, null);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // here it is checking whether the permission is granted previously or not
             if (!hasPermissions(this, PERMISSIONS)) {
@@ -105,13 +107,26 @@ public class Login_Activity extends AppCompatActivity {
                 }
             }
         });
-        /*tv_forgotpassword.setOnClickListener(new View.OnClickListener() {
+        tv_forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Login_Activity.this,SPHome.class);
-                startActivity(intent);
+                int selectedId = radio_user_type.getCheckedRadioButtonId();
+
+                // find the radiobutton by returned id
+                radioButton = (RadioButton) findViewById(selectedId);
+
+                if(radioButton.getText().toString().trim().contains("Costumer")){
+                    Intent intent=new Intent(Login_Activity.this,ForgotPassword.class);
+                    intent.putExtra("PAGE","Costumer");
+                    startActivity(intent);                }
+                else{
+                    Intent intent=new Intent(Login_Activity.this,ForgotPassword.class);
+                    intent.putExtra("PAGE","sp");
+                    startActivity(intent);
+                }
+
             }
-        });*/
+        });
     }
 
     private void Checklogin(String type) {
@@ -258,6 +273,9 @@ public class Login_Activity extends AppCompatActivity {
                 editor.putString(Constants.USER_ID, id);
                 editor.putString(Constants.USER_TYPE, "custumer");
                 editor.commit();
+
+                new AddFcm_id().execute(id,"custumer",fcm_id);
+
                 Intent i=new Intent(Login_Activity.this,HomeActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -405,8 +423,10 @@ public class Login_Activity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(Constants.USER_ID, id);
                 editor.putString(Constants.USER_TYPE, "service_provider");
-
                 editor.commit();
+
+                new AddFcm_id().execute(id,"service_provider",fcm_id);
+
 
                 Intent i=new Intent(Login_Activity.this,SPHome.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -420,6 +440,120 @@ public class Login_Activity extends AppCompatActivity {
             progressDialog.cancel();
         }
     }
+
+    private class AddFcm_id extends AsyncTask<String, Void, Void> {
+
+        private static final String TAG = "SynchMobnum";
+        String server_message;
+        int server_status;
+        String id, shop_name, address, latitudelongitude, photo1, photo2, photo3, email, mobile, created_dt, modified_dt;
+        ProgressDialog progressDialog = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+
+            // onPreExecuteTask();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+
+            try {
+                String id = params[0];
+                String type = params[1];
+                String fcm_id = params[2];
+                InputStream in = null;
+                int resCode = -1;
+
+                String link = null;
+                if (type.contentEquals("service_provider")) {
+                    link = Constants.ONLINEURL + Constants.SHOP_EDIT;
+                } else if (type.contentEquals("custumer")) {
+                    link = Constants.ONLINEURL + Constants.USER_EDIT;
+                }
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setAllowUserInteraction(false);
+                conn.setInstanceFollowRedirects(true);
+                conn.setRequestMethod("POST");
+
+                Uri.Builder builder = null;
+                if(fcm_id==null || fcm_id=="" || !fcm_id.isEmpty()){
+                    builder=new Uri.Builder()
+                            .appendQueryParameter("id", id);
+                }
+                else {
+                    builder = new Uri.Builder()
+                            .appendQueryParameter("id", id)
+                            .appendQueryParameter("fcm_id", fcm_id);
+                }
+
+                //.appendQueryParameter("deviceid", deviceid);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                conn.connect();
+                resCode = conn.getResponseCode();
+                if (resCode == HttpURLConnection.HTTP_OK) {
+                    in = conn.getInputStream();
+                }
+                if (in == null) {
+                    return null;
+                }
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String response = "", data = "";
+
+                while ((data = reader.readLine()) != null) {
+                    response += data + "\n";
+                }
+
+                Log.i(TAG, "Response : " + response);
+                if (response != null && response.length() > 0) {
+                    JSONObject res = new JSONObject(response.trim());
+                    JSONObject j_obj = res.getJSONObject("res");
+                    server_status = j_obj.getInt("status");
+                    if (server_status == 1) {
+                        server_message = "FCM Updated";
+                    } else {
+                        server_message = "FCM not found. So notification may not come";
+                    }
+                }
+                return null;
+
+            } catch (Exception exception) {
+                server_message = "Incorrect Username or Password";
+                Log.e(TAG, "SynchMobnum : doInBackground", exception);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void user) {
+            super.onPostExecute(user);
+            if (server_status == 1) {
+
+            }
+            else{
+                Toast.makeText(Login_Activity.this,server_message,Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     void showSnackBar(String message){
         Snackbar snackbar = Snackbar
                 .make(login_rel, message, Snackbar.LENGTH_LONG);

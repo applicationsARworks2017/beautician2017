@@ -50,7 +50,7 @@ public class ListSubcategoriesAdapter extends BaseAdapter {
         return position;
     }
     public class Holder{
-        TextView cat_name;
+        TextView cat_name,c_price;
         ImageView iv_letterView;
 
     }
@@ -63,6 +63,7 @@ public class ListSubcategoriesAdapter extends BaseAdapter {
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.mycatsub_list, parent, false);
             holder.cat_name=(TextView)convertView.findViewById(R.id.c_name);
+            holder.c_price=(TextView)convertView.findViewById(R.id.c_price);
             holder.iv_letterView=(ImageView)convertView.findViewById(R.id.iv_letterView);
             convertView.setTag(holder);
         }
@@ -70,8 +71,10 @@ public class ListSubcategoriesAdapter extends BaseAdapter {
             holder = (Holder)convertView.getTag();
         }
         holder.cat_name.setTag(position);
+        holder.c_price.setTag(position);
         holder.iv_letterView.setTag(position);
         holder.cat_name.setText(_pos.getSubcategory());
+        holder.c_price.setText("$ "+_pos.getPrice());
 
         String firstLetter = _pos.getSubcategory().substring(0, 1).toUpperCase();
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT

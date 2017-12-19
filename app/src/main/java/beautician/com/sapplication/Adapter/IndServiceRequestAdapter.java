@@ -77,7 +77,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         return position;
     }
     private class Holder{
-        TextView Name_service,remarks;
+        TextView Name_service,remarks,actualtime,tv_expected_date;
         ImageView im_reply;
 
     }
@@ -92,16 +92,23 @@ public class IndServiceRequestAdapter extends BaseAdapter {
             shop_id = _context.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
             holder.Name_service = (TextView) convertView.findViewById(R.id.name_service);
             holder.remarks = (TextView) convertView.findViewById(R.id.servicedetails);
+            holder.actualtime = (TextView) convertView.findViewById(R.id.actualtime);
+            holder.tv_expected_date = (TextView) convertView.findViewById(R.id.tv_expected_date);
             holder.im_reply = (ImageView) convertView.findViewById(R.id.im_reply);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
         }
         holder.Name_service.setTag(position);
+        holder.actualtime.setTag(position);
         holder.remarks.setTag(position);
+        holder.tv_expected_date.setTag(position);
         holder.im_reply.setTag(holder);
-        holder.Name_service.setText(_pos.getPersonName() + " has requseted you for the service");
+        holder.Name_service.setText(_pos.getPersonName() + " has requseted you for the service for "+
+                _pos.getNo_of_user()+"people");
+        holder.tv_expected_date.setText(_pos.getExpected_date());
         holder.remarks.setText(_pos.getRemarks());
+        holder.actualtime.setText(_pos.getCreated());
          user_id=_pos.getPersonId();
         if (_pos.getStatus().contentEquals("0")) {  // got the individual request and want to go ahead
             Resources ress = _context.getResources();

@@ -80,6 +80,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SPProfile"
+            android:label="Profile"
+            android:parentActivityName=".Activity.SPHome"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Manageservice"
@@ -89,8 +91,8 @@
         <activity
             android:name=".Activity.RequestSubcategories"
             android:label="Detail List"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".Activity.HomeActivity"/>
+            android:parentActivityName=".Activity.HomeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SearchShop"
             android:label="Search"
@@ -105,7 +107,7 @@
             android:name=".Activity.CategoriesRequest"
             android:label="Choose Service"
             android:parentActivityName=".Activity.HomeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CheckPost"
             android:label="Public Posts"
@@ -137,9 +139,10 @@
         <activity
             android:name=".Activity.MapActivity"
             android:label="Choose Address" />
-        <activity android:name=".Activity.SpRequestHome"
-            android:parentActivityName=".Activity.SPHome"
-            android:label="Select Type"/>
+        <activity
+            android:name=".Activity.SpRequestHome"
+            android:label="Select Type"
+            android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.CheckIndividualPost"
             android:label="Service Requests"
@@ -183,13 +186,20 @@
             android:label="Give Ratings" />
         <activity
             android:name=".Activity.ShopDetails"
-            android:label="Shop Details" />
+            android:label="Shop Details"
+            android:theme="@style/NoAction" />
         <activity
             android:name=".Activity.MyserviceList"
             android:label="Service"
             android:parentActivityName=".Activity.Manageservice"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.MySubcategories"></activity>
+        <activity android:name=".Activity.MySubcategories" />
+        <activity
+            android:name=".Activity.UserDetails"
+            android:theme="@style/NoActionUser" />
+        <activity android:name=".Activity.ForgotPassword"
+            android:label="Forgot Password"
+            android:parentActivityName=".Activity.Login_Activity"></activity>
     </application>
 
 </manifest>

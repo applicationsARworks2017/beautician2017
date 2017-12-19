@@ -46,6 +46,8 @@ import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
 
+import static beautician.com.sapplication.Utils.Constants.modifyOrientation;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -263,15 +265,18 @@ public class SPSignup extends Fragment {
             // Bitmap photo = (Bitmap) data.getExtras().get("data");
             try {
                 Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),picUri);
+                Bitmap c_photo= Bitmap.createScaledBitmap(photo,300,300,true);
+                Bitmap perfectImage=modifyOrientation(c_photo,imPath);
+
                 picAvailable=true;
                 if(imageclick==1) {
-                    iv_pic1.setImageBitmap(photo);
+                    iv_pic1.setImageBitmap(perfectImage);
                 }
                 else if(imageclick==2){
-                    iv_pic2.setImageBitmap(photo);
+                    iv_pic2.setImageBitmap(perfectImage);
                 }
                 else{
-                    iv_pic3.setImageBitmap(photo);
+                    iv_pic3.setImageBitmap(perfectImage);
                 }
                 //    profileImage=img1.toString();
 

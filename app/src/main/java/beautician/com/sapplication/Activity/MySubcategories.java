@@ -233,8 +233,8 @@ public class MySubcategories extends AppCompatActivity {
                             JSONObject o_list_obj = categoryListArray.getJSONObject(i);
                             String id = o_list_obj.getString("id");
                             String subcategory = o_list_obj.getString("title");
-                           // String category_id = o_list_obj.getString("category_id");
-                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id);
+                            String price = o_list_obj.getString("price");
+                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,price);
                             scList.add(list1);
                         }
                     }
