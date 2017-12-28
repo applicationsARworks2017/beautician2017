@@ -5,6 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="beautician.com.sapplication.Activity.PropsalView">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewpropsal_toolbar"
+        android:background="@color/colorPrimary">
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:id="@+id/rel_back">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/ic_arrow_back_white_24dp"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proposal Details"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,6 +40,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
+        android:layout_below="@+id/viewpropsal_toolbar"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"

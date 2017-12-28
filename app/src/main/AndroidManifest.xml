@@ -131,6 +131,7 @@
         <activity
             android:name=".Activity.PropsalView"
             android:label="Propsal Detail"
+            android:theme="@style/NoAction"
             android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.IndividualRequest"

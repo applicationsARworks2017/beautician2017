@@ -4,11 +4,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -31,6 +33,8 @@ public class PropsalView extends AppCompatActivity {
     TextView prop_head,_remarks,noofpple;
     EditText _comments;
     Button _ok;
+    RelativeLayout rel_back;
+    Toolbar propsalview_toolbar;
     ProgressBar loader_prop_details;
     String sid,pid,propsal,p_status,no_of_user;
     String ser_req_id,post_details,sub_categorytitle,cat_title,userid,name,email,mobile,photo;
@@ -45,8 +49,16 @@ public class PropsalView extends AppCompatActivity {
         _comments=(EditText)findViewById(R.id._comments);
         loader_prop_details=(ProgressBar)findViewById(R.id.loader_prop_details);
         _comments.setEnabled(false);
+        propsalview_toolbar=(Toolbar)findViewById(R.id.viewpropsal_toolbar);
+        rel_back=(RelativeLayout)propsalview_toolbar.findViewById(R.id.rel_back);
         _ok=(Button)findViewById(R.id._ok);
         _ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        rel_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
