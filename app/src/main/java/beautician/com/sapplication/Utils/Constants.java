@@ -54,6 +54,7 @@ public class Constants {
     public static String INDICISUAL_REQUEST="service-indivisual-requests/add.json";
     public static String INDICISUAL_REQUEST_LIST="service-indivisual-requests/index.json";
     public static String PICURL="http://applicationworld.net/beautician/webroot/files/profile/";
+    public static String SHOP_PICURL="http://applicationworld.net/beautician/webroot/files/shop/";
     public static String SHOP_DETAILS="shops/view.json";
     public static String USER_DETAILS="users/view.json";
     public static String USER_BALANCE="UserWallets/index.json";
@@ -62,6 +63,8 @@ public class Constants {
     public static String SHOP_WALLLET_UPDATE="wallets/add.json";
     public static String SHOP_EDIT="shops/edit.json";
     public static String USER_EDIT="users/edit.json";
+    public static String USER_TRASACTIONS="UserWallets/history.json";
+    public static String SHOP_TRASACTIONS="Wallets/history.json";
 
 
     public static final String SHAREDPREFERENCE_KEY = "beautician" ;

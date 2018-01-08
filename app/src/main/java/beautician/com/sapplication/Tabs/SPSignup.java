@@ -145,15 +145,20 @@ public class SPSignup extends Fragment {
 
         List<Address> addresses;
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
-        try {
-            addresses = geocoder.getFromLocation(Double.valueOf(sign_lat),Double.valueOf(sign_long), 1);
-            String address=addresses.get(0).getAddressLine(0);
-            String city=addresses.get(0).getLocality();
-            String state=addresses.get(0).getAdminArea();
-            et_sp_address.setText(address+","+city+","+state);
-            et_latlong.setText(sign_lat+","+sign_long);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(sign_lat==null || sign_long==null){
+
+        }
+        else {
+            try {
+                addresses = geocoder.getFromLocation(Double.valueOf(sign_lat), Double.valueOf(sign_long), 1);
+                String address = addresses.get(0).getAddressLine(0);
+                String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                et_sp_address.setText(address + "," + city + "," + state);
+                et_latlong.setText(sign_lat + "," + sign_long);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         bt_setails_submit.setOnClickListener(new View.OnClickListener() {

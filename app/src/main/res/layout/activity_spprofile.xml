@@ -30,7 +30,7 @@
                         android:layout_height="match_parent"
                         android:id="@+id/photo1"
                         android:scaleType="fitXY"
-                        android:background="@drawable/blanck"/>
+                        android:background="@drawable/addphoto"/>
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                         android:layout_height="match_parent"
                         android:id="@+id/photo2"
                         android:scaleType="fitXY"
-                        android:background="@drawable/blanck"
+                        android:background="@drawable/addphoto"
                         android:layout_marginLeft="10dp"/>
                         <ImageView
                             android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/photo3"
                     android:scaleType="fitXY"
-                    android:background="@drawable/blanck"
+                    android:background="@drawable/addphoto"
                     />
                     <ImageView
                         android:layout_width="wrap_content"
@@ -186,6 +186,7 @@
                             android:layout_marginTop="0dp"
                             android:visibility="visible"
                             android:layout_marginLeft="10dp"
+                            android:singleLine="true"
                             android:layout_marginBottom="10dp"
                             android:id="@+id/tv_phone_value"
                             android:layout_marginRight="40dp"

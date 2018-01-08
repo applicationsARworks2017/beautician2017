@@ -322,9 +322,9 @@ public class RequestSubcategories extends AppCompatActivity {
             else{
                 lv_subcategory.setVisibility(View.GONE);
                 blank_text_sc.setVisibility(View.VISIBLE);
-                Snackbar snackbar = Snackbar
+                /*Snackbar snackbar = Snackbar
                         .make(rel_subcategory, server_message, Snackbar.LENGTH_LONG);
-                snackbar.show();
+                snackbar.show();*/
             }
             loader_sub_category.setVisibility(View.GONE);
             swipe_subcategory.setVisibility(View.VISIBLE);

@@ -294,7 +294,7 @@ user_id:12
             if (server_status == 1) {
                 finish();
                 if(page_name.contentEquals("propsal")) {
-                    objadapter.calltoupdate(propsal_id, "5", "comment");
+                    objadapter.calltoupdate(propsal_id, "6", "comment");
                 }
                 else if(page_name.contentEquals("indrequest")){
                     reqadapter.statuschange(propsal_id,"4","1234");

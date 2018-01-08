@@ -65,6 +65,7 @@ public class PropsalAdapter extends BaseAdapter {
     private Context _context;
     Holder holder,holder1;
     Dialog dialog;
+    String OTP;
     int updated_status;
     String from_page,wpage="no page",shop_id,user_id,propsal_id;
     Double user_balance, shop_balance;
@@ -176,14 +177,24 @@ public class PropsalAdapter extends BaseAdapter {
             else if(status.contentEquals("4")){ // otp given and 5 $ reversed
                 holder.paidline.setVisibility(View.GONE);
                 holder.tv_otp.setVisibility(View.GONE);
-                holder.gv_feedback.setVisibility(View.VISIBLE);
+                holder.gv_feedback.setVisibility(View.GONE);
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_power_input_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
                 holder.im_agree.setImageDrawable(drawable1);
             }
-            else if(status.contentEquals("5")){ // completed
+            else if(status.contentEquals("5")){ // completed waiting for the feed back
+                holder.paidline.setVisibility(View.GONE);
+                holder.tv_otp.setVisibility(View.GONE);
+                Resources ress = _context.getResources();
+                Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
+                drawable1 = DrawableCompat.wrap(drawable1);
+                DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
+                holder.im_agree.setImageDrawable(drawable1);
+                holder.gv_feedback.setVisibility(View.VISIBLE);
+            }
+            else if(status.contentEquals("6")){ // completed feedback submitted
                 holder.paidline.setVisibility(View.GONE);
                 holder.tv_otp.setVisibility(View.GONE);
                 Resources ress = _context.getResources();
@@ -230,6 +241,14 @@ public class PropsalAdapter extends BaseAdapter {
                 holder.im_reply.setImageDrawable(drawable1);
             }
             else if(status.contentEquals("5")){ // completed
+                Resources ress = _context.getResources();
+                Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
+                drawable1 = DrawableCompat.wrap(drawable1);
+                DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
+                holder.im_reply.setImageDrawable(drawable1);
+
+            }
+            else if(status.contentEquals("6")){ // completed and got the feedbacks
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
@@ -352,22 +371,28 @@ public class PropsalAdapter extends BaseAdapter {
                     submit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            OTP = et_add_money.getText().toString().trim();
                             ConfirmToProp confirmToProp = new ConfirmToProp();
-                            confirmToProp.execute(_pos.getId(), finalCallTo,et_add_money.getText().toString().trim());
+                            confirmToProp.execute(_pos.getId(), finalCallTo);
                             dialog.cancel();
                         }
                     });
-                    /*AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setTitle("Service");
-                    builder.setMessage("Do you want to confirm that your service has completed ?");
+
+                }
+                else if(status.contentEquals("4")){
+                    callTo = "4";
+                    updated_status=5;
+                    user_id=_pos.getUser_id();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                   // builder.setTitle("Are you Comfortable with this proposal");
+                    builder.setMessage("Service Completed ?");
                     final String finalCallTo = callTo;
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //TODO
                             //   dialog.dismiss();
                             ConfirmToProp confirmToProp = new ConfirmToProp();
-                            confirmToProp.execute(_pos.getId(), finalCallTo);
-
+                            confirmToProp.execute(_pos.getId(), "5");
                         }
                     });
                     builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -377,7 +402,8 @@ public class PropsalAdapter extends BaseAdapter {
                         }
                     });
                     AlertDialog dialog = builder.create();
-                    dialog.show();*/
+                    dialog.show();
+
                 }
             }
         });
@@ -453,9 +479,9 @@ public class PropsalAdapter extends BaseAdapter {
         protected void onPreExecute() {
             super.onPreExecute();
             // onPreExecuteTask();
-            if(progressDialog == null) {
+           /* if(progressDialog == null) {
                 progressDialog = ProgressDialog.show(_context, "Updating", "Please wait...");
-            }
+            }*/
         }
 
         @Override
@@ -464,7 +490,7 @@ public class PropsalAdapter extends BaseAdapter {
             try {
                 String _id = params[0];
                 String _status = params[1];
-                String _otp = params[2];
+               // String _otp = params[2];
                 InputStream in = null;
                 int resCode = -1;
 
@@ -485,7 +511,7 @@ public class PropsalAdapter extends BaseAdapter {
                     builder=new Uri.Builder()
                             .appendQueryParameter("id", _id)
                             .appendQueryParameter("status", _status)
-                            .appendQueryParameter("otp", _otp);
+                            .appendQueryParameter("otp", OTP);
                 }
                 else {
                     builder = new Uri.Builder()
@@ -546,7 +572,7 @@ public class PropsalAdapter extends BaseAdapter {
         @Override
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
-            progressDialog.cancel();
+           // progressDialog.cancel();
             if(callPage.contentEquals("comment")){
 
             }
@@ -920,9 +946,9 @@ public class PropsalAdapter extends BaseAdapter {
 
                     }
                     else {
-                        String otp = String.valueOf(Constants.generatePIN());
+                         OTP = String.valueOf(Constants.generatePIN());
                         ConfirmToProp confirmToProp = new ConfirmToProp();
-                        confirmToProp.execute(propsal_id, "3", otp);
+                        confirmToProp.execute(propsal_id, "3");
                     }
                 }
                 else{

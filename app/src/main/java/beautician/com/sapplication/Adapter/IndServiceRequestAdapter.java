@@ -138,6 +138,13 @@ public class IndServiceRequestAdapter extends BaseAdapter {
             DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
             holder.im_reply.setImageDrawable(drawable1);
         }
+        else if (_pos.getStatus().contentEquals("4")) {  // completed and feed back submitted
+            Resources ress = _context.getResources();
+            Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
+            drawable1 = DrawableCompat.wrap(drawable1);
+            DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
+            holder.im_reply.setImageDrawable(drawable1);
+        }
         holder.im_reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -438,9 +445,9 @@ public class IndServiceRequestAdapter extends BaseAdapter {
             protected void onPreExecute() {
                 super.onPreExecute();
                 // onPreExecuteTask();
-                if (progressDialog == null) {
+                /*if (progressDialog == null) {
                     progressDialog = ProgressDialog.show(_context, "Updating", "Please wait...");
-                }
+                }*/
             }
 
             @Override
@@ -551,7 +558,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 else {
                     Constants.noInternetDialouge(_context,server_message);
                 }
-                progressDialog.cancel();
+             //   progressDialog.cancel();
             /*if (callPage.contentEquals("comment")) {
 
             }*/

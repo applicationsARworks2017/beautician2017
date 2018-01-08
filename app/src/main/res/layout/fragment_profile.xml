@@ -29,7 +29,7 @@
                         android:layout_centerHorizontal="true"
                         android:id="@+id/prifilimage"
                         android:backgroundTint="@color/colorPrimaryLight"
-                        android:background="@drawable/profile"
+                        android:background="@drawable/addphoto"
                         />
                     <ImageView
                         android:layout_width="wrap_content"

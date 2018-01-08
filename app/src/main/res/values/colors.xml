@@ -18,6 +18,7 @@
     <color name="deep_background">	#9c9c9c</color>
     <color name="white">#FFFFFF</color>
     <color name="duskyellow">#FFAB00</color>
+    <color name="red">#d00000</color>
     <color name="black">#000000</color>
     <color name="btn_orange">#f96e3a</color>
 </resources>

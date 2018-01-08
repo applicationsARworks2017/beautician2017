@@ -1,11 +1,14 @@
 package beautician.com.sapplication.Fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -50,6 +53,7 @@ import java.util.Date;
 import java.util.List;
 
 import beautician.com.sapplication.Activity.Login_Activity;
+import beautician.com.sapplication.Activity.SPProfile;
 import beautician.com.sapplication.Activity.UserDetails;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.SplashScreen;
@@ -58,6 +62,7 @@ import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
 
+import static android.app.Activity.RESULT_OK;
 import static beautician.com.sapplication.Utils.Constants.modifyOrientation;
 
 /**
@@ -86,10 +91,11 @@ public class Profile extends Fragment {
     int photo_status=0;
     CircularImageView prifilimage;
     RelativeLayout rel_profile;
-    int server_status;
+    int server_status,filechooser;
     String server_response;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     String Uname,id,photo,email,mobile;
+    private static int RESULT_LOAD_IMAGE = 1;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -138,9 +144,32 @@ public class Profile extends Fragment {
         prifilimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(editable==true) {
-                    captureImage();
+                    final Dialog dialog = new Dialog(getActivity());
+                    dialog.setContentView(R.layout.chooseaction);
+                    TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                    TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    dialog.show();
+                   // captureImage();
+                    choosecamera.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            filechooser=1;
+                            captureImage("camera");
+                        }
+                    });
+                    choosegeller.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            filechooser=2;
+                            captureImage("gallery");
+                        }
+                    });
                 }
+
             }
         });
         getUserDetails();
@@ -196,6 +225,12 @@ public class Profile extends Fragment {
         String name=name_value.getText().toString().trim();
         String phone=et_phone_value.getText().toString().trim();
         String email=et_email_value.getText().toString().trim();
+        if(filechooser==2){
+            if (prifilimage.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) prifilimage.getDrawable()).getBitmap();
+                imageFile = persistImage(bitmap, name);
+            }
+        }
         if(name.contains("") && name.length()<=0){
             showSnackBar("Enter Name ");
         }
@@ -231,31 +266,40 @@ public class Profile extends Fragment {
         }
         return imageFile;
     }
-    private void captureImage() {
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                // Create the File where the photo should go
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
+    private void captureImage(String action) {
+        if(action.contentEquals("camera")) {
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+                if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    // Create the File where the photo should go
+                    try {
+                        photoFile = createImageFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    // Continue only if the File was successfully created
+                    if (photoFile != null) {
+                        Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                                "beautician.com.sapplication",
+                                photoFile);
+                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                    }
                 }
-                // Continue only if the File was successfully created
-                if (photoFile != null) {
-                    Uri photoURI = FileProvider.getUriForFile(getActivity(),
-                            "beautician.com.sapplication",
-                            photoFile);
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                }
+            } else {
+                imPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+                imageFile = new File(imPath);
+                picUri = Uri.fromFile(imageFile); // convert path to Uri
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
-        } else {
-            imPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
-            imageFile = new File(imPath);
-            picUri = Uri.fromFile(imageFile); // convert path to Uri
-            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        }
+        else{
+            Intent intent = new Intent(
+                    Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+            startActivityForResult(intent, RESULT_LOAD_IMAGE);
         }
 
     }
@@ -277,18 +321,36 @@ public class Profile extends Fragment {
         return image;
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            // imPath=picUri.getPath();
-            // Bitmap photo = (Bitmap) data.getExtras().get("data");
-            try {
-                Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), picUri);
-                Bitmap c_photo= Bitmap.createScaledBitmap(photo,300,300,true);
-                Bitmap perfectImage=modifyOrientation(c_photo,imPath);
-                picAvailable = true;
-                prifilimage.setImageBitmap(perfectImage);
-                photo_status=1;
-            } catch (IOException e) {
-                e.printStackTrace();
+        if(filechooser==1) {
+            if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+                // imPath=picUri.getPath();
+                // Bitmap photo = (Bitmap) data.getExtras().get("data");
+                try {
+                    Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), picUri);
+                    Bitmap c_photo = Bitmap.createScaledBitmap(photo, 300, 300, true);
+                    Bitmap perfectImage = modifyOrientation(c_photo, imPath);
+                    picAvailable = true;
+                    prifilimage.setImageBitmap(perfectImage);
+                    photo_status = 1;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+        else{
+            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String picturePath = cursor.getString(columnIndex);
+                cursor.close();
+                prifilimage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             }
 
         }

@@ -2,6 +2,7 @@ package beautician.com.sapplication.Activity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -13,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -49,7 +51,21 @@ public class HomeActivity extends AppCompatActivity  implements android.location
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Define the criteria how to select the locatioin provider -> use
         // default
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
 
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            // Call your Alert message
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Please switch on your phone GPS")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
         Criteria criteria = new Criteria();
         provider = locationManager.getBestProvider(criteria, false);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)

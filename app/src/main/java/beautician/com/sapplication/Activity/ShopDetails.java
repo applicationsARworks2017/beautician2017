@@ -211,13 +211,13 @@ public class ShopDetails extends AppCompatActivity {
         rating.setRating(Float.parseFloat(ratings));
 
         if(!photo1.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.PICURL+photo1).into(img1);
+            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo1).into(img1);
         }
         if(!photo2.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.PICURL+photo2).into(img2);
+            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo2).into(img2);
         }
         if(!photo3.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.PICURL+photo3).into(img3);
+            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo3).into(img3);
         }
 
     }

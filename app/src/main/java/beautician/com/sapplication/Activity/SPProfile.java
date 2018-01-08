@@ -1,11 +1,15 @@
 package beautician.com.sapplication.Activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -31,6 +35,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -63,7 +68,8 @@ public class SPProfile extends AppCompatActivity {
     Boolean picAvailable=false;
     private static final int CAMERA_REQUEST = 1888;
     String imPath,server_message;
-    int server_status;
+    int server_status,filechooser;
+    private static int RESULT_LOAD_IMAGE = 1;
 
 
     @Override
@@ -128,8 +134,29 @@ public class SPProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(editable==true) {
-                    imageclick = 1;
-                    captureImage(1);
+                    final Dialog dialog = new Dialog(SPProfile.this);
+                    dialog.setContentView(R.layout.chooseaction);
+                    TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                    TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    dialog.show();
+                    choosecamera.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 1;
+                            filechooser=1;
+                            captureImage(1,"camera");
+                        }
+                    });
+                    choosegeller.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 1;
+                            filechooser=2;
+                            captureImage(1,"gallery");
+                        }
+                    });
                 }
             }
         });
@@ -137,8 +164,30 @@ public class SPProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(editable==true) {
-                    imageclick = 2;
-                    captureImage(2);
+                    final Dialog dialog = new Dialog(SPProfile.this);
+                    dialog.setContentView(R.layout.chooseaction);
+                    TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                    TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    dialog.show();
+                    choosecamera.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 2;
+                            filechooser=1;
+                            captureImage(2,"camera");
+                        }
+                    });
+                    choosegeller.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 2;
+                            filechooser=2;
+                            captureImage(2,"gallery");
+                        }
+                    });
+
                 }
             }
         });
@@ -146,39 +195,71 @@ public class SPProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(editable==true) {
-                    imageclick = 3;
-                    captureImage(3);
+                    final Dialog dialog = new Dialog(SPProfile.this);
+                    dialog.setContentView(R.layout.chooseaction);
+                    TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                    TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    dialog.show();
+                    choosecamera.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 3;
+                            filechooser=1;
+                            captureImage(3,"camera");
+                        }
+                    });
+                    choosegeller.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 3;
+                            filechooser=2;
+                            captureImage(3,"gallery");
+                        }
+                    });
+
+
+
                 }
             }
         });
     }
-    private void captureImage(int i) {
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            if (cameraIntent.resolveActivity(SPProfile.this.getPackageManager()) != null) {
-                // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile(i);
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
+    private void captureImage(int i, String action) {
+        if(action.contentEquals("camera")) {
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+                if (cameraIntent.resolveActivity(SPProfile.this.getPackageManager()) != null) {
+                    // Create the File where the photo should go
+                    File photoFile = null;
+                    try {
+                        photoFile = createImageFile(i);
+                    } catch (IOException ex) {
+                        // Error occurred while creating the File
+                    }
+                    // Continue only if the File was successfully created
+                    if (photoFile != null) {
+                        Uri photoURI = FileProvider.getUriForFile(SPProfile.this,
+                                "beautician.com.sapplication",
+                                photoFile);
+                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                    }
                 }
-                // Continue only if the File was successfully created
-                if (photoFile != null) {
-                    Uri photoURI = FileProvider.getUriForFile(SPProfile.this,
-                            "beautician.com.sapplication",
-                            photoFile);
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                }
+            } else {
+                imPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+                imageFile = new File(imPath);
+                picUri = Uri.fromFile(imageFile); // convert path to Uri
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         }
         else{
-            imPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
-            imageFile = new File(imPath);
-            picUri = Uri.fromFile(imageFile); // convert path to Uri
-            cameraIntent.putExtra( MediaStore.EXTRA_OUTPUT, picUri );
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            Intent intent = new Intent(
+                    Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+            startActivityForResult(intent, RESULT_LOAD_IMAGE);
         }
 
     }
@@ -210,38 +291,97 @@ public class SPProfile extends AppCompatActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            // imPath=picUri.getPath();
-            // Bitmap photo = (Bitmap) data.getExtras().get("data");
-            try {
-                Bitmap photo = MediaStore.Images.Media.getBitmap(SPProfile.this.getContentResolver(),picUri);
-                Bitmap c_photo= Bitmap.createScaledBitmap(photo,300,300,true);
-                Bitmap perfectImage=modifyOrientation(c_photo,imPath);
+        if(filechooser==1) {
+            if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+                // imPath=picUri.getPath();
+                // Bitmap photo = (Bitmap) data.getExtras().get("data");
+                try {
+                    Bitmap photo = MediaStore.Images.Media.getBitmap(SPProfile.this.getContentResolver(), picUri);
+                    Bitmap c_photo = Bitmap.createScaledBitmap(photo, 200, 200, true);
+                    Bitmap perfectImage = modifyOrientation(c_photo, imPath);
 
-                picAvailable=true;
-                if(imageclick==1) {
-                    pic1.setImageBitmap(perfectImage);
-                }
-                else if(imageclick==2){
-                    pic2.setImageBitmap(perfectImage);
-                }
-                else{
-                    pic3.setImageBitmap(perfectImage);
-                }
-                //    profileImage=img1.toString();
+                    picAvailable = true;
+                    if (imageclick == 1) {
+                        pic1.setImageBitmap(perfectImage);
+                    } else if (imageclick == 2) {
+                        pic2.setImageBitmap(perfectImage);
+                    } else {
+                        pic3.setImageBitmap(perfectImage);
+                    }
+                    //    profileImage=img1.toString();
 
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
-
         }
+        else{
+            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+                Cursor cursor = getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String picturePath = cursor.getString(columnIndex);
+                cursor.close();
+                if(imageclick==1) {
+                    pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                }
+                else if(imageclick==2) {
+                    pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                }
+                else if(imageclick==3) {
+                    pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                }
+
+
+            }
+        }
+    }
+    private  File persistImage(Bitmap bitmap, String name) {
+        File filesDir = SPProfile.this.getFilesDir();
+        File imageFile = new File(filesDir, name + ".jpg");
+
+        OutputStream os;
+        try {
+            os = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+        }
+        return imageFile;
     }
     private void savedata() {
         String shop_name=name_value.getText().toString().trim();
         String shop_number=tv_phone_value.getText().toString().trim();
         String shop_mail=tv_email_value.getText().toString().trim();
         String shop_address=tv_add_value.getText().toString().trim();
+        if(imageclick==1 && filechooser==2) {
+            if (pic1.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) pic1.getDrawable()).getBitmap();
+                imgfile1 = persistImage(bitmap, shop_name);
+            }
+        }
+        else if(imageclick==2 && filechooser==2) {
+            if (pic2.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) pic2.getDrawable()).getBitmap();
+                imgfile2 = persistImage(bitmap, shop_name);
+            }
+        }
+        else if(imageclick==3 && filechooser==2) {
+            if (pic3.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) pic3.getDrawable()).getBitmap();
+                imgfile3 = persistImage(bitmap, shop_name);
+            }
+        }
+
         if(shop_name.length()<=0){
             showSnackBar("Enter Name");
         }
@@ -391,11 +531,11 @@ public class SPProfile extends AppCompatActivity {
         tv_email_value.setText(email);
         tv_add_value.setText(address);
         if(!photo1.isEmpty()) {
-            Picasso.with(SPProfile.this).load(Constants.PICURL+photo1).into(pic1);
+            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo1).into(pic1);
         } if(!photo2.isEmpty()) {
-            Picasso.with(SPProfile.this).load(Constants.PICURL+photo2).into(pic2);
+            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo2).into(pic2);
         } if(!photo3.isEmpty()) {
-            Picasso.with(SPProfile.this).load(Constants.PICURL+photo3).into(pic3);
+            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo3).into(pic3);
         }
     }
     void showSnackBar(String message){
@@ -463,7 +603,7 @@ public class SPProfile extends AppCompatActivity {
 
                 /*
                     "status": 1,
-    "message": "Successfully inserted"(
+                    "message": "Successfully inserted"(
                 * */
 
                 if (res != null && res.length() > 0) {

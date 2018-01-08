@@ -485,7 +485,7 @@ public class Login_Activity extends AppCompatActivity {
                 conn.setRequestMethod("POST");
 
                 Uri.Builder builder = null;
-                if(fcm_id==null || fcm_id=="" || !fcm_id.isEmpty()){
+                if(fcm_id==null || fcm_id.length()<=0){
                     builder=new Uri.Builder()
                             .appendQueryParameter("id", id);
                 }
