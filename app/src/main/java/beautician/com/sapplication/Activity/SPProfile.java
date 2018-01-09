@@ -68,7 +68,7 @@ public class SPProfile extends AppCompatActivity {
     Boolean picAvailable=false;
     private static final int CAMERA_REQUEST = 1888;
     String imPath,server_message;
-    int server_status,filechooser;
+    int server_status,filechooser,gal1,gal2,gal3;
     private static int RESULT_LOAD_IMAGE = 1;
 
 
@@ -154,6 +154,7 @@ public class SPProfile extends AppCompatActivity {
                             dialog.dismiss();
                             imageclick = 1;
                             filechooser=2;
+                            gal1=1;
                             captureImage(1,"gallery");
                         }
                     });
@@ -184,6 +185,7 @@ public class SPProfile extends AppCompatActivity {
                             dialog.dismiss();
                             imageclick = 2;
                             filechooser=2;
+                            gal2=1;
                             captureImage(2,"gallery");
                         }
                     });
@@ -215,6 +217,7 @@ public class SPProfile extends AppCompatActivity {
                             dialog.dismiss();
                             imageclick = 3;
                             filechooser=2;
+                            gal3=1;
                             captureImage(3,"gallery");
                         }
                     });
@@ -333,10 +336,10 @@ public class SPProfile extends AppCompatActivity {
                     pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                 }
                 else if(imageclick==2) {
-                    pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                    pic2.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                 }
                 else if(imageclick==3) {
-                    pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                    pic3.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                 }
 
 
@@ -363,22 +366,22 @@ public class SPProfile extends AppCompatActivity {
         String shop_number=tv_phone_value.getText().toString().trim();
         String shop_mail=tv_email_value.getText().toString().trim();
         String shop_address=tv_add_value.getText().toString().trim();
-        if(imageclick==1 && filechooser==2) {
+        if(gal2==1) {
             if (pic1.getDrawable() != null) {
                 Bitmap bitmap = ((BitmapDrawable) pic1.getDrawable()).getBitmap();
-                imgfile1 = persistImage(bitmap, shop_name);
+                imgfile1 = persistImage(bitmap, shop_name+"1");
             }
         }
-        else if(imageclick==2 && filechooser==2) {
+        if(gal2==1) {
             if (pic2.getDrawable() != null) {
                 Bitmap bitmap = ((BitmapDrawable) pic2.getDrawable()).getBitmap();
-                imgfile2 = persistImage(bitmap, shop_name);
+                imgfile2 = persistImage(bitmap, shop_name+"2");
             }
         }
-        else if(imageclick==3 && filechooser==2) {
+        if(gal3==1) {
             if (pic3.getDrawable() != null) {
                 Bitmap bitmap = ((BitmapDrawable) pic3.getDrawable()).getBitmap();
-                imgfile3 = persistImage(bitmap, shop_name);
+                imgfile3 = persistImage(bitmap, shop_name+"3");
             }
         }
 

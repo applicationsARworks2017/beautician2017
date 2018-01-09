@@ -122,7 +122,12 @@ public class ShopListAdapter extends BaseAdapter {
 
         }
         else{
-            holder.ratingBar.setRating(Float.parseFloat(ratings));
+            if(ratings==null || ratings=="" || ratings.contentEquals("null")){
+
+            }
+            else {
+                holder.ratingBar.setRating(Float.parseFloat(ratings));
+            }
 
         }
 

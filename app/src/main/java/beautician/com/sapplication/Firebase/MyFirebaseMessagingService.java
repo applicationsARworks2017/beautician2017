@@ -16,6 +16,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import beautician.com.sapplication.Activity.HomeActivity;
+import beautician.com.sapplication.Activity.Login_Activity;
+import beautician.com.sapplication.Activity.SPHome;
+import beautician.com.sapplication.SplashScreen;
+import beautician.com.sapplication.Utils.Constants;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -96,6 +100,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.e(TAG, "imageUrl: " + imageUrl);
             Log.e(TAG, "timestamp: " + timestamp);
 
+            String user_type = MyFirebaseMessagingService.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_TYPE, null);
 
             if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
                 // app is in foreground, broadcast the push message
@@ -107,9 +112,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
                 notificationUtils.playNotificationSound();
             } else {
+                Intent resultIntent =null;
                 // app is in background, show the notification in notification tray
-                Intent resultIntent = new Intent(getApplicationContext(), HomeActivity.class);
-                resultIntent.putExtra("message", message);
+                if(user_type==null || user_type==""){
+                     resultIntent = new Intent(getApplicationContext(), Login_Activity.class);
+                    resultIntent.putExtra("message", message);
+                }
+                else if(user_type.contentEquals("custumer")) {
+                     resultIntent = new Intent(getApplicationContext(), HomeActivity.class);
+                    resultIntent.putExtra("message", message);
+                }
+                else{
+                     resultIntent = new Intent(getApplicationContext(), SPHome.class);
+                    resultIntent.putExtra("message", message);
+                }
 
                 // check for image attachment
                 if (TextUtils.isEmpty(imageUrl)) {
