@@ -135,8 +135,7 @@
             android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.IndividualRequest"
-            android:label="Request for service"
-            android:parentActivityName=".Activity.HomeActivity" />
+           android:theme="@style/NoActionUser" />
         <activity
             android:name=".Activity.MapActivity"
             android:label="Choose Address" />

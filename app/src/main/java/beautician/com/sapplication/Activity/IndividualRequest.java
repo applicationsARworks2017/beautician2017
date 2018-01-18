@@ -10,12 +10,14 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -50,11 +52,13 @@ public class IndividualRequest extends AppCompatActivity {
     EditText txtDate, txtTime;
     private int mYear, mMonth, mDay, mHour, mMinute;
     DatePickerDialog datePickerDialog;
+    Toolbar toolreq;
+    LinearLayout reqback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppUserTheme);
+      //  setTheme(R.style.AppUserTheme);
         setContentView(R.layout.activity_individual_request);
         user_id = IndividualRequest.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         Bundle extras = getIntent().getExtras();
@@ -63,6 +67,15 @@ public class IndividualRequest extends AppCompatActivity {
             shop_name = extras.getString("SHOP_NAME");
             // and get whatever type user account id is
         }
+        toolreq=(Toolbar)findViewById(R.id.toolreq);
+        reqback=(LinearLayout)toolreq.findViewById(R.id.reqback);
+        reqback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         txtDate=(EditText)findViewById(R.id.in_date);
         txtTime=(EditText)findViewById(R.id.in_time);
         shopName=(TextView)findViewById(R.id.postHeading);
