@@ -38,6 +38,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import beautician.com.sapplication.Activity.Login_Activity;
 import beautician.com.sapplication.R;
@@ -64,7 +65,7 @@ public class CostumerSignup extends Fragment {
     private String server_response;
     private RelativeLayout rel_user_signup;
     private File imageFile;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    //String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private static final int CAMERA_REQUEST = 1888;
     Uri picUri = null;
     String imPath;
@@ -218,7 +219,10 @@ public class CostumerSignup extends Fragment {
         else if(email.contains("") && email.length()<=0){
             showSnackBar("Enter email");
         }
-        else if(!email.matches(emailPattern)){
+       /* else if(!email.matches(emailPattern)){
+            showSnackBar("Enter Valid Email");
+        }*/
+       else if(Constants.validate(email)==false){
             showSnackBar("Enter Valid Email");
         }
 
@@ -349,8 +353,14 @@ public class CostumerSignup extends Fragment {
                     if (server_status == 1) {
                         server_response = "Registration Successful";
 
-                    } else {
+                    }
+                    else if(server_status==2)  {
+                        server_response = "Mobile Number Already Exist";
+
+                    }
+                    else{
                         server_response = "Sorry !! Entry failed";
+
                     }
                 }
             } catch (JSONException e) {

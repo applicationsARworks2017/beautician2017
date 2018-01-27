@@ -311,7 +311,7 @@ public class SPSignup extends Fragment {
         else if(shop_mail.length()<=0){
             showSnackBar("Enter Mail");
         }
-        else if(!shop_mail.matches(emailPattern)){
+        else if(Constants.validate(shop_mail)==false){
             showSnackBar("Enter Valid Email");
         }
         else if(shop_address.length()<=0){
@@ -435,7 +435,11 @@ public class SPSignup extends Fragment {
                     if (server_status == 1) {
                         server_message = "Registration Successful";
 
-                    } else {
+                    }
+                    else if(server_status==2)  {
+                        server_message = "Mobile Number Already Exist";
+
+                    }else {
                         server_message = "Sorry !! Entry failed";
                     }
                 }
