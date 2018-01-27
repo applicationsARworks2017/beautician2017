@@ -8,10 +8,10 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -44,7 +44,10 @@ import beautician.com.sapplication.Utils.Constants;
 import static beautician.com.sapplication.Utils.Constants.hasPermissions;
 
 public class Login_Activity extends AppCompatActivity {
-    TextView tv_signup,tv_forgotpassword;
+
+    private RadioGroup radioGroup;
+    RadioButton english,arabic,radio_consumer,radio_sp;
+    TextView tv_signup,tv_forgotpassword,tv_english,tv_arabic;
     RadioGroup radio_user_type;
     RadioGroup user_type;
     Button lin_signin;
@@ -54,6 +57,7 @@ public class Login_Activity extends AppCompatActivity {
     ArrayList<User> userlist;
     ArrayList<SpList> splist;
     String fcm_id;
+    String lang;
     RelativeLayout login_rel;
     String[] PERMISSIONS = {Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE};
 
@@ -62,8 +66,11 @@ public class Login_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        et_phone=(EditText)findViewById(R.id.et_phn);
-        et_password=(EditText)findViewById(R.id.et_password);
+        radioGroup=(RadioGroup)findViewById(R.id.radio);
+//        et_phone=(EditText)findViewById(R.id.et_phn);
+//        et_password=(EditText)findViewById(R.id.et_password);
+        tv_arabic=(TextView)findViewById(R.id.tv_arabic);
+        tv_english=(TextView)findViewById(R.id.tv_english);
         tv_signup=(TextView)findViewById(R.id.tv_signup);
         tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
         radio_user_type=(RadioGroup)findViewById(R.id.radio_user_type);
@@ -80,6 +87,87 @@ public class Login_Activity extends AppCompatActivity {
 
             }
         }
+//        if (english.isChecked()) {
+//           String eng_lng = english.getText().toString();
+//        } else if (arabic.isChecked()) {
+//           String ara_lang = arabic.getText().toString();
+//        }
+       tv_english.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+//               Intent intent = new Intent();
+//                   intent.setComponent( new ComponentName("com.android.settings","com.android.settings.Settings$InputMethodAndLanguageSettingsActivity" ));
+//                    startActivity(intent);
+               lang = tv_english.getText().toString();
+               SharedPreferences sharedPreferences = Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
+               SharedPreferences.Editor editor = sharedPreferences.edit();
+               editor.putString(Constants.LANG, lang);
+               editor.commit();
+               Toast.makeText(getBaseContext(), lang, Toast.LENGTH_SHORT).show();
+               lin_signin=(Button) findViewById(R.id.lin_signin);
+               et_phone=(EditText)findViewById(R.id.et_phn);
+               et_password=(EditText)findViewById(R.id.et_password);
+               radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
+               radio_sp=(RadioButton)findViewById(R.id.radio_sp);
+               et_phone.setHint("Phone Number");
+               et_password.setHint("Password");
+               radio_consumer.setText("Costumer");
+               radio_sp.setText("Service Provider");
+               tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
+               tv_forgotpassword.setText("Forgot Password");
+               tv_signup=(TextView)findViewById(R.id.tv_signup);
+               tv_signup.setText("Sign Up");
+               lin_signin.setText("Login");
+           }
+       });
+
+        tv_arabic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Intent i = new Intent(android.provider.Settings.ACTION_LOCALE_SETTINGS);
+//                    startActivity(i);
+//                    InputMethodManager imm = (InputMethodManager)getApplicationContext().getSystemService(Service.INPUT_METHOD_SERVICE);
+//                    imm.showInputMethodPicker();
+
+//                    lang = tv_arabic.getText().toString();
+                    lang = "Arabic";
+                    SharedPreferences sharedPreferences = Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(Constants.LANG, lang);
+                    editor.commit();
+                    lin_signin=(Button) findViewById(R.id.lin_signin);
+                    et_phone = (EditText) findViewById(R.id.et_phn);
+                    et_password = (EditText) findViewById(R.id.et_password);
+                    et_phone.setHint("رقم الهاتف");
+                    et_password.setHint("كلمه السر");
+                    radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
+                    radio_sp=(RadioButton)findViewById(R.id.radio_sp);
+                    radio_consumer.setText("مصمم الأزياء");
+                    radio_sp.setText("مقدم الخدمة");
+                    Toast.makeText(getBaseContext(), lang, Toast.LENGTH_SHORT).show();
+                    tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
+                    tv_forgotpassword.setText("هل نسيت كلمة المرور");
+                    tv_signup=(TextView)findViewById(R.id.tv_signup);
+                    tv_signup.setText("سجل");
+                    lin_signin.setText("تسجيل الدخول");
+
+
+                }
+            });
+
+//       if(lang=="English") {
+//           et_phone.setHint("Phone Number");
+//           et_password.setHint("Password");
+//       }
+//       else if(lang=="Arabic"){
+//           et_phone.setHint("رقم الهاتف");
+//           et_password.setHint("كلمه السر");
+//
+//       }
+//       else{
+//           et_phone.setHint("Phone Number");
+//           et_password.setHint("Password");
+//       }
         tv_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +232,7 @@ public class Login_Activity extends AppCompatActivity {
         }
         else{
             Constants.noInternetDialouge(Login_Activity.this,"No Intrnet Connection");
+            Constants.noInternetDialouge(Login_Activity.this,"No Intrnet Connection");
         }
     }
 
@@ -159,8 +248,14 @@ public class Login_Activity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(Login_Activity.this, "Loading", "Please wait...");
+                if (lang == "Arabic") {
+                    progressDialog = ProgressDialog.show(Login_Activity.this, "جار التحميل", "أرجو الإنتظار...");
+
+                } else {
+                    progressDialog = ProgressDialog.show(Login_Activity.this, "Loading", "Please wait...");
+                }
             }
             // onPreExecuteTask();
         }
@@ -257,7 +352,13 @@ public class Login_Activity extends AppCompatActivity {
                 }
                 return null;
             } catch (Exception exception) {
-                server_message = "Incorrect Username or Password";
+                if(lang=="Arabic"){
+                    server_message = "اسم المستخدم أو كلمة المرور غير صحيحة";
+
+                }
+                else{
+                    server_message = "Incorrect Username or Password";
+                }
                 Log.e(TAG, "SynchMobnum : doInBackground", exception);
             }
 
@@ -302,7 +403,12 @@ public class Login_Activity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(Login_Activity.this, "Loading", "Please wait...");
+                if (lang == "Arabic") {
+                    progressDialog = ProgressDialog.show(Login_Activity.this, "جار التحميل", "أرجو الإنتظار...");
+
+                } else {
+                    progressDialog = ProgressDialog.show(Login_Activity.this, "Loading", "Please wait...");
+                }
             }
 
             // onPreExecuteTask();
@@ -407,7 +513,13 @@ public class Login_Activity extends AppCompatActivity {
                 return null;
 
             } catch (Exception exception) {
-                server_message = "Incorrect Username or Password";
+                if(lang=="Arabic"){
+                    server_message = "اسم المستخدم أو كلمة المرور غير صحيحة";
+
+                }
+                else{
+                    server_message = "Incorrect Username or Password";
+                }
                 Log.e(TAG, "SynchMobnum : doInBackground", exception);
             }
 

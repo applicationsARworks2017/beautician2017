@@ -76,7 +76,8 @@ public class Constants {
     public static final String USER_TYPE = "user_type" ;
     public static final String FCM_ID="fcmid";
 
-
+    public static final String SHAREDPREFERENCE_LANGUAGE = "beauticianlanguage" ;
+    public static final String LANG="languange";
 
     public static void noInternetDialouge(Context _context,String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
