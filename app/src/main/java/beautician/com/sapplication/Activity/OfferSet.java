@@ -196,6 +196,7 @@ public class OfferSet extends AppCompatActivity {
                         server_status=1;
                         for (int i = 0; i < serviceListArray.length(); i++) {
                             JSONObject o_list_obj = serviceListArray.getJSONObject(i);
+                           // String  objectfile=o_list_obj.toString();
                             JSONObject jobj=o_list_obj.getJSONObject("shop");
                             String id = o_list_obj.getString("id");
                             String title = o_list_obj.getString("title");

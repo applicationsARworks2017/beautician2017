@@ -115,10 +115,10 @@ public class Constants {
     }
     public static double CalculationByDistance(Double latitude,Double longitude) {
         int Radius = 6371;// radius of earth in Km
-        double lat1 =latitude;
-        double lat2 =longitude;
-        double lon1 = Double.valueOf(HomeActivity.latitude);
-        double lon2 =Double.valueOf(HomeActivity.longitude);
+        double lat2 =latitude;
+        double lon2 =longitude;
+        double lat1 = Double.valueOf(HomeActivity.latitude);
+        double lon1 =Double.valueOf(HomeActivity.longitude);
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
         double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
@@ -127,6 +127,7 @@ public class Constants {
                 * Math.sin(dLon / 2);
         double c = 2 * Math.asin(Math.sqrt(a));
         double valueResult = Radius * c;
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
         double km = valueResult / 1;
         DecimalFormat newFormat = new DecimalFormat("####");
         int kmInDec = Integer.valueOf(newFormat.format(km));
@@ -136,7 +137,7 @@ public class Constants {
                 + " Meter   " + meterInDec);
 
         //return Radius * c;
-        return meterInDec;
+        return Double.parseDouble(numberFormat.format(valueResult));
     }
 
     public static int generatePIN()

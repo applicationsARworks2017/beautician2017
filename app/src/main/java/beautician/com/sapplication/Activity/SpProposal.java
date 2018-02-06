@@ -214,7 +214,7 @@ public class SpProposal extends AppCompatActivity {
                             String created = o_list_obj.getString("created");
                             String shop_id=new_obj.getString("id");
                             String shop_name=new_obj.getString("shopname");
-                            if(page.contentEquals("user_side") && status.contentEquals("4")){
+                            if(page.contentEquals("user_side") && status.contentEquals("6")){
 
                             }
                             else {
