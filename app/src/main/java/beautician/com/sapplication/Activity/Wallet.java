@@ -2,12 +2,11 @@ package beautician.com.sapplication.Activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +36,7 @@ import beautician.com.sapplication.Utils.Constants;
 
 public class Wallet extends AppCompatActivity {
     TextView tv_addMoney,tv_balance,tv_refresh;
-    String page,user_id;
+    String page,user_id,lang;
     Double balance;
     SwipeRefreshLayout thistory_rel;
     TextView no_transactions;
@@ -51,11 +50,15 @@ public class Wallet extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
+            lang=extras.getString("LANG");
+
             // and get whatever type user account id is
         }
         if(page.contentEquals("user_side")){
             super.setTheme(R.style.AppUserTheme);
         }
+
+
         setContentView(R.layout.activity_wallet);
         tv_addMoney=(TextView)findViewById(R.id.tv_addMoney);
         tv_balance=(TextView)findViewById(R.id.tv_balance);
@@ -63,6 +66,20 @@ public class Wallet extends AppCompatActivity {
         trans_listview=(ListView) findViewById(R.id.trans_listview);
         no_transactions=(TextView)findViewById(R.id.no_transactions);
         thistory_rel=(SwipeRefreshLayout) findViewById(R.id.thistory_rel);
+
+
+        if(lang.contentEquals("Arabic")){
+            tv_refresh.setText("تحديث");
+            tv_balance.setText("إجمالي الرصيد");
+            tv_addMoney.setText("إضافة المال");
+        }
+        else{
+            tv_refresh.setText("Refresh");
+            tv_balance.setText("Total Balance");
+            tv_addMoney.setText("Add Money");
+        }
+
+
         tv_addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

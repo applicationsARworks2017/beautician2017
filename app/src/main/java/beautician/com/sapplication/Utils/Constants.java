@@ -78,6 +78,7 @@ public class Constants {
 
     public static final String SHAREDPREFERENCE_LANGUAGE = "beauticianlanguage" ;
     public static final String LANG="languange";
+    public static final String LANG_TYPE="langtype";
 
     public static void noInternetDialouge(Context _context,String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(_context);

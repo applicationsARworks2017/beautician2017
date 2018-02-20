@@ -35,11 +35,12 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="50dp"/>
                     <TextView
+                        android:id="@+id/check_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
-                        android:text="Check Posts"
+                        android:text=""
                         android:textColor="@color/colorPrimary"/>
                     <RelativeLayout
                         android:layout_width="30dp"
@@ -70,11 +71,12 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="50dp"/>
                     <TextView
+                        android:id="@+id/my_proposal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
-                        android:text="My Proposals"
+                        android:text=""
                         android:textColor="@color/colorPrimary"/>
                     <RelativeLayout
                         android:layout_width="30dp"
@@ -111,11 +113,12 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="50dp"/>
                     <TextView
+                        android:id="@+id/manage_service"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
-                        android:text="Manage Services"
+                        android:text=""
                         android:textColor="@color/colorPrimary"/>
                     <RelativeLayout
                         android:layout_width="30dp"
@@ -146,11 +149,12 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="50dp"/>
                     <TextView
+                        android:id="@+id/my_wallet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
-                        android:text="My Wallet"
+                        android:text=""
                         android:textColor="@color/colorPrimary"/>
                     <RelativeLayout
                         android:layout_width="30dp"
@@ -187,11 +191,12 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="50dp"/>
                     <TextView
+                        android:id="@+id/manage_offers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
-                        android:text="Manage Offers"
+                        android:text=""
                         android:textColor="@color/colorPrimary"/>
                     <RelativeLayout
                         android:layout_width="30dp"
@@ -222,11 +227,12 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="50dp"/>
                     <TextView
+                        android:id="@+id/profilee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
-                        android:text="Profile"
+                        android:text=""
                         android:textColor="@color/colorPrimary"/>
                     <RelativeLayout
                         android:layout_width="30dp"

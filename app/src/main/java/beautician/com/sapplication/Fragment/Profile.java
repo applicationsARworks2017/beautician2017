@@ -1,6 +1,5 @@
 package beautician.com.sapplication.Fragment;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -28,14 +27,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -53,11 +50,7 @@ import java.util.Date;
 import java.util.List;
 
 import beautician.com.sapplication.Activity.Login_Activity;
-import beautician.com.sapplication.Activity.SPProfile;
-import beautician.com.sapplication.Activity.UserDetails;
 import beautician.com.sapplication.R;
-import beautician.com.sapplication.SplashScreen;
-import beautician.com.sapplication.Tabs.CostumerSignup;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
@@ -94,7 +87,8 @@ public class Profile extends Fragment {
     int server_status,filechooser;
     String server_response;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    String Uname,id,photo,email,mobile;
+    String Uname,id,photo,email,mobile,lang;
+    TextView hd_name,hd_phone,hd_email,lang_arabic,lang_english;
     private static int RESULT_LOAD_IMAGE = 1;
 
     // TODO: Rename and change types of parameters
@@ -130,6 +124,7 @@ public class Profile extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_profile, container, false);
         user_id = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
+        lang = getContext().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         name_value=(EditText) v.findViewById(R.id.name_value);
         et_phone_value=(EditText) v.findViewById(R.id.et_phone_value);
@@ -138,9 +133,56 @@ public class Profile extends Fragment {
         prifilimage=(CircularImageView)v.findViewById(R.id.prifilimage);
         rel_profile=(RelativeLayout) v.findViewById(R.id.rel_profile);
         editsave=(Button)v.findViewById(R.id.editsave);
+        hd_name=(TextView)v. findViewById(R.id.hd_name);
+        hd_phone=(TextView)v. findViewById(R.id.hd_phone);
+        hd_email=(TextView)v. findViewById(R.id.hd_email);
+        lang_english=(TextView)v. findViewById(R.id.tv_english);
+        lang_arabic=(TextView)v. findViewById(R.id.tv_arabic);
         name_value.setEnabled(false);
         et_phone_value.setEnabled(false);
         et_email_value.setEnabled(false);
+
+        if(lang.contentEquals("Arabic")){
+            hd_name.setText("اسم");
+            hd_phone.setText("هاتف");
+            hd_email.setText("البريد الإلكتروني");
+            button.setText("الخروج");
+            editsave.setText("تصحيح");
+        }
+        else{
+            hd_name.setText("Name");
+            hd_phone.setText("Phone");
+            hd_email.setText("Email");
+            button.setText("Logout");
+            editsave.setText("Edit");
+        }
+
+        lang_english.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lang="English";
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Constants.LANG_TYPE, lang);
+                editor.commit();
+
+
+
+
+            }
+        });
+         lang_arabic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lang="Arabic";
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.putString(Constants.LANG_TYPE, lang);
+                editor.commit();
+
+            }
+        });
         prifilimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -600,8 +642,11 @@ public class Profile extends Fragment {
         name_value.setText(Uname);
         et_email_value.setText(email);
         et_phone_value.setText(mobile);
-        if(!photo.isEmpty()) {
+        if(photo.isEmpty() || photo==null || photo.contentEquals("null") || photo.contentEquals("")) {
+        }
+        else{
             Picasso.with(getActivity()).load(Constants.PICURL+photo).into(prifilimage);
+
         }
 
     }

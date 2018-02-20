@@ -32,18 +32,19 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_appointment"
                     android:layout_marginLeft="20dp"
-                    android:text="Request for Service"
+                    android:text=""
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_serviceheading"
                     android:textColor="@color/black"/>
                 <TextView
+                    android:id="@+id/tv_choose_category"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_appointment"
                     android:layout_below="@id/tv_serviceheading"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="Choose Category, Enter the details, Get the service and more"/>
+                    android:text=""/>
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
@@ -79,18 +80,19 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_findSP"
                     android:layout_marginLeft="20dp"
-                    android:text="Find Service Providers"
+                    android:text=""
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_SPheading"
                     android:textColor="@color/black"/>
                 <TextView
+                    android:id="@+id/tv_serch_byname"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_findSP"
                     android:layout_below="@id/tv_SPheading"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="Search by name,distance,ask for service and more "/>
+                    android:text=" "/>
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
@@ -126,18 +128,19 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_propsals"
                     android:layout_marginLeft="20dp"
-                    android:text="See the Proposals"
+                    android:text=""
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_propsalheading"
                     android:textColor="@color/black"/>
                 <TextView
+                    android:id="@+id/chk_response"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_propsals"
                     android:layout_below="@id/tv_propsalheading"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="Check the responses, accept  one and enjoy "/>
+                    android:text=""/>
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
@@ -188,18 +191,19 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_offers"
                     android:layout_marginLeft="20dp"
-                    android:text="Amazing Offers"
+                    android:text=""
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_offerheading"
                     android:textColor="@color/black"/>
                 <TextView
+                    android:id="@+id/offer_check"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_offers"
                     android:layout_below="@id/tv_offerheading"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="Check the offer, Grab one and get discounted services"/>
+                    android:text=""/>
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
@@ -251,18 +255,19 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/iv_wallet"
                 android:layout_marginLeft="20dp"
-                android:text="Manage Wallet"
+                android:text=""
                 android:layout_marginTop="20dp"
                 android:id="@+id/tv_walletheading"
                 android:textColor="@color/black"/>
             <TextView
+                android:id="@+id/ad_mony"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/iv_wallet"
                 android:layout_below="@id/tv_walletheading"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="Add money, check the transactions."/>
+                android:text=""/>
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"

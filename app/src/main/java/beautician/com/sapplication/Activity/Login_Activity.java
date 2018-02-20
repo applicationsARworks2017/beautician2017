@@ -89,11 +89,6 @@ public class Login_Activity extends AppCompatActivity {
 
             }
         }
-//        if (english.isChecked()) {
-//           String eng_lng = english.getText().toString();
-//        } else if (arabic.isChecked()) {
-//           String ara_lang = arabic.getText().toString();
-//        }
        tv_english.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -155,7 +150,7 @@ public class Login_Activity extends AppCompatActivity {
                     lang = "Arabic";
                     SharedPreferences sharedPreferences = Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(Constants.LANG, lang);
+                    editor.putString(Constants.LANG_TYPE, lang);
                     editor.commit();
                     lin_signin=(Button) findViewById(R.id.lin_signin);
                     et_phone = (EditText) findViewById(R.id.et_phn);
@@ -177,19 +172,6 @@ public class Login_Activity extends AppCompatActivity {
                 }
             });
 
-//       if(lang=="English") {
-//           et_phone.setHint("Phone Number");
-//           et_password.setHint("Password");
-//       }
-//       else if(lang=="Arabic"){
-//           et_phone.setHint("رقم الهاتف");
-//           et_password.setHint("كلمه السر");
-//
-//       }
-//       else{
-//           et_phone.setHint("Phone Number");
-//           et_password.setHint("Password");
-//       }
         tv_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,7 +190,7 @@ public class Login_Activity extends AppCompatActivity {
                 // find the radiobutton by returned id
                 radioButton = (RadioButton) findViewById(selectedId);
 
-                if(radioButton.getText().toString().trim().contains("Costumer")){
+                if(radioButton.getText().toString().trim().contains("Costumer")|| radioButton.getText().toString().trim().contentEquals("مصمم الأزياء")){
                     Checklogin("user");
                 }
                 else{
@@ -272,7 +254,7 @@ public class Login_Activity extends AppCompatActivity {
             super.onPreExecute();
 
             if(progressDialog == null) {
-                if (lang == "Arabic") {
+                if (lang.contentEquals("Arabic")) {
                     progressDialog = ProgressDialog.show(Login_Activity.this, "جار التحميل", "أرجو الإنتظار...");
 
                 } else {
@@ -369,12 +351,18 @@ public class Login_Activity extends AppCompatActivity {
                     if (server_status == 1) {
                         server_message = j_obj.optString("message");
                     } else {
-                        server_message = "Incorrect Username or Password";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "اسم المستخدم أو كلمة المرور غير صحيحة";
+
+                        }
+                        else{
+                            server_message = "Incorrect Username or Password";
+                        }
                     }
                 }
                 return null;
             } catch (Exception exception) {
-                if(lang=="Arabic"){
+                if(lang.contentEquals("Arabic")){
                     server_message = "اسم المستخدم أو كلمة المرور غير صحيحة";
 
                 }
@@ -396,7 +384,10 @@ public class Login_Activity extends AppCompatActivity {
                 editor.putString(Constants.USER_ID, id);
                 editor.putString(Constants.USER_TYPE, "custumer");
                 editor.commit();
-
+                SharedPreferences sharedPreferences1 =Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
+                SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+                editor1.putString(Constants.LANG_TYPE, lang);
+                editor1.commit();
                 new AddFcm_id().execute(id,"custumer",fcm_id);
 
                 Intent i=new Intent(Login_Activity.this,HomeActivity.class);
@@ -425,7 +416,7 @@ public class Login_Activity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             if(progressDialog == null) {
-                if (lang == "Arabic") {
+                if (lang .contentEquals("Arabic")) {
                     progressDialog = ProgressDialog.show(Login_Activity.this, "جار التحميل", "أرجو الإنتظار...");
 
                 } else {
@@ -526,16 +517,29 @@ public class Login_Activity extends AppCompatActivity {
                             email,mobile,created_dt,modified_dt);
                     splist.add(sp_list);
                     if (server_status == 1) {
-                        server_message = "Successful";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "ناجح";
+                        }
+                        else{
+                            server_message = "Successful";
+
+                        }
 
                     } else {
-                        server_message = "Invalid Credentials";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "بيانات الاعتماد غير صالحة";
+
+                        }
+                        else{
+                            server_message = "Invalid Credentials";
+
+                        }
                     }
                 }
                 return null;
 
             } catch (Exception exception) {
-                if(lang=="Arabic"){
+                if(lang.contentEquals("Arabic")){
                     server_message = "اسم المستخدم أو كلمة المرور غير صحيحة";
 
                 }
@@ -558,7 +562,10 @@ public class Login_Activity extends AppCompatActivity {
                 editor.putString(Constants.USER_ID, id);
                 editor.putString(Constants.USER_TYPE, "service_provider");
                 editor.commit();
-
+                SharedPreferences sharedPreferences1 =Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
+                SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+                editor1.putString(Constants.LANG_TYPE, lang);
+                editor1.commit();
                 new AddFcm_id().execute(id,"service_provider",fcm_id);
 
 
@@ -661,15 +668,32 @@ public class Login_Activity extends AppCompatActivity {
                     JSONObject j_obj = res.getJSONObject("res");
                     server_status = j_obj.getInt("status");
                     if (server_status == 1) {
-                        server_message = "FCM Updated";
+                        if(lang=="Arabic"){
+                            server_message = "تم تحديث فم";
+                        }
+                        else{
+                            server_message = "FCM Updated";
+                        }
+
                     } else {
-                        server_message = "FCM not found. So notification may not come";
+                        if(lang=="Arabic"){
+                            server_message = "لم يتم العثور فم. لذلك قد لا يأتي الإخطار";
+                        }
+                        else{
+                            server_message = "FCM not found. So notification may not come";
+                        }
                     }
                 }
                 return null;
 
             } catch (Exception exception) {
-                server_message = "Incorrect Username or Password";
+                if(lang=="Arabic"){
+                    server_message = "اسم المستخدم أو كلمة المرور غير صحيحة";
+
+                }
+                else{
+                    server_message = "Incorrect Username or Password";
+                }
                 Log.e(TAG, "SynchMobnum : doInBackground", exception);
             }
 

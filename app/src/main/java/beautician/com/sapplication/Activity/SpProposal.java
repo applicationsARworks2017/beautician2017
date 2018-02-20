@@ -2,10 +2,9 @@ package beautician.com.sapplication.Activity;
 
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -25,9 +24,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import beautician.com.sapplication.Adapter.CategoryAdapter;
 import beautician.com.sapplication.Adapter.PropsalAdapter;
-import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.Pojo.Proposals;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -42,22 +39,25 @@ public class SpProposal extends AppCompatActivity {
     ListView lv_propsals;
     ArrayList<Proposals> pList;
     PropsalAdapter propsalAdapter;
-    String page;
+    String page,lang;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sp_proposal);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
+            lang=extras.getString("LANG");
+
             // and get whatever type user account id is
         }
         if(page.contentEquals("user_side")){
             super.setTheme(R.style.AppUserTheme);
         }
-        setContentView(R.layout.activity_sp_proposal);
+
         pList=new ArrayList<>();
         loader_propsals=(ProgressBar)findViewById(R.id.loader_propsals);
         swipe_propsal=(SwipeRefreshLayout)findViewById(R.id.swip_propsal);
@@ -83,7 +83,14 @@ public class SpProposal extends AppCompatActivity {
             checkpropsals.execute(user_id);
         }
         else{
-            Constants.noInternetDialouge(SpProposal.this,"No Internet");
+            if(lang.contentEquals("Arabic")){
+                Constants.noInternetDialouge(SpProposal.this,"لا انترنت");
+
+            }
+            else{
+                Constants.noInternetDialouge(SpProposal.this,"No Internet");
+
+            }
         }
     }
 //* GET PROPSAL LIST ASYNTASK
@@ -195,7 +202,14 @@ public class SpProposal extends AppCompatActivity {
                     // server_status=res.getInt("status");
                     JSONArray servicePurposalArray = res.getJSONArray("servicePurposal");
                     if(servicePurposalArray.length()<=0){
-                        server_message="No Category Found";
+                        if(lang=="Arabic"){
+                            server_message="لم يتم العثور على فئة";
+
+                        }
+                        else{
+                            server_message="No Category Found";
+
+                        }
                         server_status=0;
 
                     }
@@ -227,7 +241,13 @@ public class SpProposal extends AppCompatActivity {
                 return null;
             } catch (Exception exception) {
                 Log.e(TAG, "LoginAsync : doInBackground", exception);
-                server_message="Network Error";
+                if(lang=="Arabic"){
+                    server_message = "خطأ في الشبكة";
+
+                }
+                else{
+                    server_message = "Network Error";
+                }
             }
 
             return null;

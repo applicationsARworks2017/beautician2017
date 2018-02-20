@@ -19,12 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,19 +39,12 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.GiveCommentActivity;
-import beautician.com.sapplication.Activity.HomeActivity;
-import beautician.com.sapplication.Activity.PostActivity;
 import beautician.com.sapplication.Activity.PropsalView;
 import beautician.com.sapplication.Activity.ShopDetails;
 import beautician.com.sapplication.Activity.SpProposal;
 import beautician.com.sapplication.Activity.UserDetails;
-import beautician.com.sapplication.Activity.Wallet;
-import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.Pojo.Proposals;
-import beautician.com.sapplication.Pojo.RatingsPoints;
 import beautician.com.sapplication.R;
-import beautician.com.sapplication.SplashScreen;
-import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
 /**
@@ -70,6 +60,7 @@ public class PropsalAdapter extends BaseAdapter {
     String from_page,wpage="no page",shop_id,user_id,propsal_id;
     Double user_balance, shop_balance;
     String callPage="blanck";
+    String lang;
     private ArrayList<Proposals> new_list;
     public PropsalAdapter(SpProposal spProposal, ArrayList<Proposals> pList,String page) {
         this._context=spProposal;
@@ -86,6 +77,7 @@ public class PropsalAdapter extends BaseAdapter {
     public PropsalAdapter() {
 
     }
+
 
     @Override
     public int getCount() {
@@ -142,6 +134,10 @@ public class PropsalAdapter extends BaseAdapter {
         holder.user_details.setVisibility(View.GONE);
 
         final String status=_pos.getStatus();
+
+        if(lang=="Arabic"){
+
+        }
 
         holder.actualtime.setText(_pos.getCreated());
         if(from_page.contentEquals("user_side")){

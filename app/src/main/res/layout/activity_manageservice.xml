@@ -17,11 +17,12 @@
             android:id="@+id/lin_myservice"
             android:background="@drawable/custombutton">
             <TextView
+                android:id="@+id/my_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
-                android:text="My Services" />
+                android:text="" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="200dp"
@@ -31,11 +32,12 @@
             android:id="@+id/lin_addservices"
             android:background="@drawable/custombutton">
             <TextView
+                android:id="@+id/add_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
-                android:text="Add Services" />
+                android:text="" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

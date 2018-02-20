@@ -67,9 +67,10 @@ public class SPProfile extends AppCompatActivity {
     Uri picUri=null;
     Boolean picAvailable=false;
     private static final int CAMERA_REQUEST = 1888;
-    String imPath,server_message;
+    String imPath,server_message,lang;
     int server_status,filechooser,gal1,gal2,gal3;
     private static int RESULT_LOAD_IMAGE = 1;
+    TextView hd_name,hd_phone,hd_email,hd_address;
 
 
     @Override
@@ -82,6 +83,11 @@ public class SPProfile extends AppCompatActivity {
         tv_phone_value=(EditText) findViewById(R.id.tv_phone_value);
         tv_email_value=(EditText) findViewById(R.id.tv_email_value);
         tv_add_value=(EditText) findViewById(R.id.tv_add_value);
+        hd_name=(TextView) findViewById(R.id.hd_name);
+        hd_phone=(TextView) findViewById(R.id.hd_phone);
+        hd_email=(TextView) findViewById(R.id.hd_email);
+        hd_address=(TextView) findViewById(R.id.hd_address);
+
         sp_profile_rel=(RelativeLayout) findViewById(R.id.sp_profile_rel);
         pic1=(ImageView)findViewById(R.id.photo1);
         pic2=(ImageView)findViewById(R.id.photo2);
@@ -93,7 +99,27 @@ public class SPProfile extends AppCompatActivity {
 
 
         shop_id = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
+        Bundle extras=getIntent().getExtras();
+        if(extras!=null){
+            lang=extras.getString("LANG");
+        }
 
+        if(lang.contentEquals("Arabic")){
+            hd_name.setText("اسم");
+            hd_phone.setText("هاتف");
+            hd_email.setText("البريد الإلكتروني");
+            hd_address.setText("عنوان");
+            button.setText("الخروج");
+            editsave.setText("تصحيح");
+        }
+        else{
+            hd_name.setText("Name");
+            hd_phone.setText("Phone");
+            hd_email.setText("Email");
+            hd_address.setText("Address");
+            button.setText("Logout");
+            editsave.setText("Edit");
+        }
         getThedetails();
 
 

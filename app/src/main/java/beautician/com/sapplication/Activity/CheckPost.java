@@ -2,10 +2,9 @@ package beautician.com.sapplication.Activity;
 
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -24,17 +23,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import beautician.com.sapplication.Adapter.CategoryAdapter;
 import beautician.com.sapplication.Adapter.ServiceReqAdapter;
 import beautician.com.sapplication.Adapter.ServiceReqAdapterSP;
-import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.Pojo.ServiceRequest;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
 public class CheckPost extends AppCompatActivity {
-    String page;
+    String page,lang;
     String user_id,server_message;
     ProgressBar loader_chek_post;
     int server_status;
@@ -51,6 +48,7 @@ public class CheckPost extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
+            lang = extras.getString("LANG");
             // and get whatever type user account id is
         }
         if(page.contentEquals("sp_home")){
@@ -58,6 +56,10 @@ public class CheckPost extends AppCompatActivity {
         }
         else {
             super.setTheme(R.style.AppUserTheme);
+        }
+
+        if(lang=="Arabic"){
+
         }
         setContentView(R.layout.activity_check_post);
         srList=new ArrayList<>();

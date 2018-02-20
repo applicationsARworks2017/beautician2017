@@ -17,6 +17,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_english"
+                    android:padding="5dp"
+                    android:layout_gravity="left"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="عربى"
+                    android:layout_marginLeft="100dp"
+                    android:textStyle="bold"
+                    android:padding="5dp"
+                    android:layout_gravity="right"
+                    android:id="@+id/tv_arabic"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_marginRight="10dp"
@@ -72,7 +101,7 @@
                             android:textStyle="bold"
                             android:layout_marginRight="40dp"
                             android:layout_marginLeft="10dp"
-                            android:text="Name"/>
+                            android:text=""/>
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -137,7 +166,7 @@
                             android:textStyle="bold"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="40dp"
-                            android:text="Phone"/>
+                            android:text=""/>
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -195,7 +224,7 @@
                             android:textStyle="bold"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="40dp"
-                            android:text="Email"/>
+                            android:text=""/>
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -207,7 +236,7 @@
                             android:id="@+id/et_email_value"
                             android:textStyle="bold"
                             android:layout_marginRight="40dp"
-                            android:text="a@"/>
+                            android:text=""/>
 
                     </RelativeLayout>
 
@@ -220,7 +249,7 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:text="Logout"
+                        android:text=""
                         android:id="@+id/logout"
                         android:textColor="@color/white"
                         android:background="@color/colorPrimaryLight"
@@ -229,7 +258,7 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:text="Edit"
+                        android:text=""
                         android:id="@+id/editsave"
                         android:layout_marginLeft="40dp"
                         android:textColor="@color/white"
