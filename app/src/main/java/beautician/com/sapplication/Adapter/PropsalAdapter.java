@@ -62,16 +62,19 @@ public class PropsalAdapter extends BaseAdapter {
     String callPage="blanck";
     String lang;
     private ArrayList<Proposals> new_list;
-    public PropsalAdapter(SpProposal spProposal, ArrayList<Proposals> pList,String page) {
+    public PropsalAdapter(SpProposal spProposal, ArrayList<Proposals> pList,String page,String lang) {
         this._context=spProposal;
         this.new_list=pList;
         this.from_page=page;
+        this.lang=lang;
     }
 
-    public PropsalAdapter(FragmentActivity activity, ArrayList<Proposals> pList, String user_side) {
+    public PropsalAdapter(FragmentActivity activity, ArrayList<Proposals> pList, String user_side,String lang) {
         this._context=activity;
         this.new_list=pList;
         this.from_page=user_side;
+        this.lang=lang;
+
     }
 
     public PropsalAdapter() {
@@ -135,7 +138,11 @@ public class PropsalAdapter extends BaseAdapter {
 
         final String status=_pos.getStatus();
 
-        if(lang=="Arabic"){
+        if (lang.contentEquals("Arabic")) {
+            holder.vew_details.setText("تفاصيل الخدمة");
+
+        } else {
+            holder.vew_details.setText("Service Details");
 
         }
 
@@ -256,10 +263,15 @@ public class PropsalAdapter extends BaseAdapter {
                 holder.im_reply.setEnabled(false);
             }
         }
-        if(from_page.contentEquals("user_side")){
-            holder.propsal_hd.setText(_pos.getShop_name().toUpperCase()+" has replied : "+_pos.getRemarks());
-            holder.tv_otp.setText("Share OTP before service and get back your $ 5. OTP : "+_pos.getOtp());
+        if(from_page.contentEquals("user_side")) {
+            if (lang.contentEquals("Arabic")) {
+                holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + " وقد أجاب : " + _pos.getRemarks());
+                holder.tv_otp.setText("حصة مكتب المدعي العام قبل الخدمة والحصول على العودة الخاص بك $ 5. مكتب المدعي العام : " + _pos.getOtp());
+            } else {
+                holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + " has replied : " + _pos.getRemarks());
+                holder.tv_otp.setText("Share OTP before service and get back your $ 5. OTP : " + _pos.getOtp());
 
+            }
         }
         else {
             holder.propsal_hd.setText(_pos.getRemarks());
@@ -297,6 +309,7 @@ public class PropsalAdapter extends BaseAdapter {
                 intent.putExtra("PID",_pos.getId());
                 intent.putExtra("PSTATUS",_pos.getStatus());
                 intent.putExtra("PROPSAL",_pos.getRemarks());
+                intent.putExtra("LANG",lang);
                 _context.startActivity(intent);
 
             }

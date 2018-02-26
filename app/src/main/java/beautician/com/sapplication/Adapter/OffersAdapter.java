@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,11 +23,12 @@ public class OffersAdapter extends BaseAdapter {
     Context _context;
     ArrayList<Offers> new_list;
     Holder holder;
-    String user_id;
+    String user_id,lang;
 
-    public OffersAdapter(OfferSet offerSet, ArrayList<Offers> oList) {
+    public OffersAdapter(OfferSet offerSet, ArrayList<Offers> oList,String lang) {
         this._context=offerSet;
         this.new_list=oList;
+        this.lang=lang;
     }
 
     @Override
@@ -66,9 +66,15 @@ public class OffersAdapter extends BaseAdapter {
         }
         holder.offerHeading.setTag(position);
         holder.offer_details.setTag(position);
-
-        holder.offerHeading.setText(_pos.getTitle()+" at "+_pos.getShopname());
         holder.offer_details.setText(_pos.getOffer_detail());
+        if(lang.contentEquals("Arabic")){
+            holder.offerHeading.setText(_pos.getTitle()+" في "+_pos.getShopname());
+
+        }
+        else{
+            holder.offerHeading.setText(_pos.getTitle()+" at "+_pos.getShopname());
+
+        }
         return convertView;
     }
 }

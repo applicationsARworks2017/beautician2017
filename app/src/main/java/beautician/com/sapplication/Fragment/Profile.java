@@ -3,6 +3,7 @@ package beautician.com.sapplication.Fragment;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -19,6 +20,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -160,6 +162,18 @@ public class Profile extends Fragment {
         lang_english.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Change Keyboard");
+                builder.setMessage("For change the keyboard long press to space bar");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //check own balance
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
                 lang="English";
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -174,6 +188,17 @@ public class Profile extends Fragment {
          lang_arabic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Change Keyboard");
+                builder.setMessage("For change the keyboard long press to space bar");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //check own balance
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 lang="Arabic";
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -642,7 +667,7 @@ public class Profile extends Fragment {
         name_value.setText(Uname);
         et_email_value.setText(email);
         et_phone_value.setText(mobile);
-        if(photo.isEmpty() || photo==null || photo.contentEquals("null") || photo.contentEquals("")) {
+        if( photo==null || photo.contentEquals("null") || photo.contentEquals("")) {
         }
         else{
             Picasso.with(getActivity()).load(Constants.PICURL+photo).into(prifilimage);

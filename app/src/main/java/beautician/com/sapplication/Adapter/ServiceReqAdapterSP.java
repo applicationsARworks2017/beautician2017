@@ -6,18 +6,14 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,11 +32,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.CheckPost;
-import beautician.com.sapplication.Activity.Login_Activity;
-import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.Pojo.ServiceRequest;
 import beautician.com.sapplication.R;
-import beautician.com.sapplication.SplashScreen;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
@@ -53,13 +46,14 @@ public class ServiceReqAdapterSP extends BaseAdapter{
     ArrayList<ServiceRequest> new_list;
     Holder holder,holder1;
     Dialog dialog;
-    String user_id;
+    String user_id,lang;
     private ProgressDialog progressDialog = null;
 
     String serviceRequestid;
-    public ServiceReqAdapterSP(CheckPost checkPost, ArrayList<ServiceRequest> srList) {
+    public ServiceReqAdapterSP(CheckPost checkPost, ArrayList<ServiceRequest> srList,String lang) {
         this._context=checkPost;
         this.new_list=srList;
+        this.lang=lang;
 
     }
 
@@ -117,12 +111,34 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         holder.Name_service.setText(_pos.getName()+" has posted for " + _pos.getSub_category());
         holder.remarks.setText(_pos.getRemarks());
         holder.actualtime.setText(_pos.getCreated());
+        if (lang.contentEquals("Arabic")) {
+            holder.Name_service.setText(_pos.getName()+" تم نشره ل " + _pos.getSub_category());
+
+        } else {
+            holder.Name_service.setText(_pos.getName()+" has posted for " + _pos.getSub_category());
+
+
+        }
+
         if(_pos.getExpected_date().contentEquals("null")){
-            holder.tv_expected_date.setText(("No Expected defined"));
+            if(lang.contentEquals("Arabic")){
+                holder.tv_expected_date.setText(("لا متوقع محدد"));
+
+            }
+            else{
+                holder.tv_expected_date.setText(("No Expected defined"));
+
+            }
 
         }
         else{
-            holder.tv_expected_date.setText(("Expected Date: "+_pos.getExpected_date()));
+            if(lang.contentEquals("Arabic")){
+                holder.tv_expected_date.setText((_pos.getExpected_date()+":التاريخ المتوقع "));
+
+            }
+            else {
+                holder.tv_expected_date.setText(("Expected Date: " + _pos.getExpected_date()));
+            }
         }
 
         holder.reply.setOnClickListener(new View.OnClickListener() {

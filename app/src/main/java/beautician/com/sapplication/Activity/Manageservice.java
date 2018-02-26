@@ -20,15 +20,13 @@ public class Manageservice extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manageservice);
         user_id = Manageservice.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
+        lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         lin_myservice=(LinearLayout)findViewById(R.id.lin_myservice);
         add_services=(LinearLayout)findViewById(R.id.lin_addservices);
         my_service=(TextView) findViewById(R.id.my_service);
         add_service=(TextView)findViewById(R.id.add_service);
         Bundle extras=getIntent().getExtras();
-        if(extras!=null){
-            lang=extras.getString("LANG");
-        }
 
         if(lang.contentEquals("Arabic")){
             my_service.setText("خدماتي");

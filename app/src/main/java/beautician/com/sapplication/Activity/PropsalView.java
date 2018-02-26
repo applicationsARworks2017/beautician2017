@@ -2,8 +2,8 @@ package beautician.com.sapplication.Activity;
 
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +24,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import beautician.com.sapplication.Pojo.User;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
@@ -36,7 +35,7 @@ public class PropsalView extends AppCompatActivity {
     RelativeLayout rel_back;
     Toolbar propsalview_toolbar;
     ProgressBar loader_prop_details;
-    String sid,pid,propsal,p_status,no_of_user;
+    String sid,pid,propsal,p_status,no_of_user,lang;
     String ser_req_id,post_details,sub_categorytitle,cat_title,userid,name,email,mobile,photo;
 
     @Override
@@ -71,6 +70,7 @@ public class PropsalView extends AppCompatActivity {
             pid = extras.getString("PID");
             propsal = extras.getString("PROPSAL");
             p_status = extras.getString("PSTATUS");
+            lang = extras.getString("LANG");
             // and get whatever type user account id is
         }
 
@@ -223,10 +223,20 @@ public class PropsalView extends AppCompatActivity {
     }
 
     private void setValues() {
-        _remarks.setText(post_details);
-        prop_head.setText(cat_title+":"+sub_categorytitle);
-        _comments.setText(propsal);
-        noofpple.setText("Number of people : "+no_of_user);
-        loader_prop_details.setVisibility(View.GONE);
+        if(lang.contentEquals("Arabic")){
+            noofpple.setText(no_of_user+" :عدد الاشخاص ");
+            _remarks.setText(post_details);
+            prop_head.setText(cat_title + ":" + sub_categorytitle);
+            _comments.setText(propsal);
+            loader_prop_details.setVisibility(View.GONE);
+
+        }
+        else {
+            _remarks.setText(post_details);
+            prop_head.setText(cat_title + ":" + sub_categorytitle);
+            _comments.setText(propsal);
+            noofpple.setText("Number of people : " + no_of_user);
+            loader_prop_details.setVisibility(View.GONE);
+        }
     }
 }

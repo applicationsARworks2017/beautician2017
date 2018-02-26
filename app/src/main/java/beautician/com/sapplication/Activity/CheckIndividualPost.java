@@ -34,7 +34,7 @@ public class CheckIndividualPost extends AppCompatActivity {
     ProgressBar loader_chekInd_post;
     SwipeRefreshLayout swipe_Indcheckpost;
     ListView lv_Indcheckpost;
-    String user_id,page,server_message;
+    String user_id,page,server_message,lang;
     int server_status;
     ArrayList<IndServiceRequest> isrList;
     IndServiceRequestAdapter indAdapter;
@@ -46,6 +46,8 @@ public class CheckIndividualPost extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
+            lang = extras.getString("LANG");
+
             // and get whatever type user account id is
         }
         if(page.contentEquals("sp_home")){
@@ -244,12 +246,12 @@ public class CheckIndividualPost extends AppCompatActivity {
             super.onPostExecute(data);
             if(server_status==1) {
                 if(page.contentEquals("sp_home")) {
-                    indAdapter = new IndServiceRequestAdapter(CheckIndividualPost.this, isrList);
+                    indAdapter = new IndServiceRequestAdapter(CheckIndividualPost.this, isrList,lang);
                     lv_Indcheckpost.setAdapter(indAdapter);
                     indAdapter.notifyDataSetChanged();
                 }
                 else{
-                    indUAdapter = new IndServiceRequestAdapterUser(CheckIndividualPost.this, isrList);
+                    indUAdapter = new IndServiceRequestAdapterUser(CheckIndividualPost.this, isrList,lang);
                     lv_Indcheckpost.setAdapter(indUAdapter);
                     indUAdapter.notifyDataSetChanged();
                 }

@@ -19,7 +19,7 @@ public class SPHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphome);
-        lang = SPHome.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.LANG_TYPE, null);
+        lang = SPHome.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         card_manageservice=(CardView)findViewById(R.id.card_manageservice);
         card_profile=(CardView)findViewById(R.id.card_profile);

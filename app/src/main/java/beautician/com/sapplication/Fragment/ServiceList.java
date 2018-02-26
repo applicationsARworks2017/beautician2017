@@ -6,8 +6,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,7 +32,6 @@ import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.CheckIndividualPost;
 import beautician.com.sapplication.Activity.CheckPost;
-import beautician.com.sapplication.Activity.SpProposal;
 import beautician.com.sapplication.Adapter.PropsalAdapter;
 import beautician.com.sapplication.Pojo.Proposals;
 import beautician.com.sapplication.R;
@@ -60,6 +57,7 @@ public class ServiceList extends Fragment {
     ListView lv_propsals;
     ArrayList<Proposals> pList;
     PropsalAdapter propsalAdapter;
+    String lang;
 
     private OnFragmentInteractionListener mListener;
 
@@ -99,6 +97,8 @@ public class ServiceList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =inflater.inflate(R.layout.fragment_service_list, container, false);
+        lang = getContext().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         postList=(FloatingActionButton)v.findViewById(R.id.postList);
         reqList=(FloatingActionButton)v.findViewById(R.id.reqList);
         postList.setOnClickListener(new View.OnClickListener() {
@@ -294,7 +294,7 @@ public class ServiceList extends Fragment {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                propsalAdapter = new  PropsalAdapter (getActivity(),pList ,"user_side");
+                propsalAdapter = new  PropsalAdapter (getActivity(),pList ,"user_side",lang);
                 lv_propsals.setAdapter(propsalAdapter);
                 propsalAdapter.notifyDataSetChanged();
             }

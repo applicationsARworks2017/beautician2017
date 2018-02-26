@@ -3,15 +3,13 @@ package beautician.com.sapplication.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -52,6 +50,7 @@ public class RequestSubcategories extends AppCompatActivity {
     String shop_id;
     Button bt_ok,bt_cancel;
     public static String subcateryName,SubcateryId;
+    String lang;
 
 
     @Override
@@ -63,6 +62,7 @@ public class RequestSubcategories extends AppCompatActivity {
         categoryname=CategoriesRequest.value;
         scList=new ArrayList<>();
         shop_id = RequestSubcategories.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
         cattext=(TextView)findViewById(R.id.cattext);
         cattext.setText(categoryname);
         swipe_subcategory=(SwipeRefreshLayout)findViewById(R.id.swipe_subcategory);
@@ -237,7 +237,8 @@ public class RequestSubcategories extends AppCompatActivity {
                 conn.setRequestMethod("POST");
 
                 Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("category_id", CategoriesRequest.catid);
+                        .appendQueryParameter("category_id", CategoriesRequest.catid)
+                        .appendQueryParameter("lang",lang);
                         /*.appendQueryParameter("shop_id", shop_id)
                         .appendQueryParameter("page", "1");*/
                 String query = builder.build().getEncodedQuery();

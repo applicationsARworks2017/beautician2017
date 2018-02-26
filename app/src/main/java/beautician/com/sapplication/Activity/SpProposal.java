@@ -257,7 +257,7 @@ public class SpProposal extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                propsalAdapter = new  PropsalAdapter (SpProposal.this,pList ,page);
+                propsalAdapter = new  PropsalAdapter (SpProposal.this,pList ,page,lang);
                 lv_propsals.setAdapter(propsalAdapter);
                 propsalAdapter.notifyDataSetChanged();
             }

@@ -49,13 +49,14 @@ public class IndServiceRequestAdapter extends BaseAdapter {
     Context _context;
     ArrayList<IndServiceRequest> new_list;
     Holder holder,holder1;
-    String user_id,shop_id,wpage="no page";
+    String user_id,shop_id,lang,wpage="no page";
     Double shop_balance,user_balance;
     int updated_status;
     String id;
-    public IndServiceRequestAdapter(CheckIndividualPost checkIndividualPost, ArrayList<IndServiceRequest> isrList) {
+    public IndServiceRequestAdapter(CheckIndividualPost checkIndividualPost, ArrayList<IndServiceRequest> isrList,String lang) {
         this._context=checkIndividualPost;
         this.new_list=isrList;
+        this.lang=lang;
     }
 
     public IndServiceRequestAdapter() {
@@ -104,12 +105,20 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         holder.remarks.setTag(position);
         holder.tv_expected_date.setTag(position);
         holder.im_reply.setTag(holder);
-        holder.Name_service.setText(_pos.getPersonName() + " has requseted you for the service for "+
-                _pos.getNo_of_user()+"people");
         holder.tv_expected_date.setText(_pos.getExpected_date());
         holder.remarks.setText(_pos.getRemarks());
         holder.actualtime.setText(_pos.getCreated());
          user_id=_pos.getPersonId();
+
+         if(lang.contentEquals("Arabic")){
+             holder.Name_service.setText(_pos.getPersonName() + "وقد ريكوسيتد لك لخدمة ل "+ _pos.getNo_of_user()+"اشخاص");
+
+         }
+         else{
+             holder.Name_service.setText(_pos.getPersonName() + " has requseted you for the service for "+ _pos.getNo_of_user()+"people");
+
+         }
+
         if (_pos.getStatus().contentEquals("0")) {  // got the individual request and want to go ahead
             Resources ress = _context.getResources();
             Drawable drawable1 = ress.getDrawable(R.mipmap.ic_assignment_turned_in_white_24dp);

@@ -45,7 +45,7 @@ public class Subcategories extends AppCompatActivity {
     SubcategoriesAdapter scadapter;
     RelativeLayout rel_subcategory;
     SearchView searchView_sub_category;
-    String shop_id;
+    String shop_id,lang;
 
 
     @Override
@@ -55,6 +55,7 @@ public class Subcategories extends AppCompatActivity {
         category_id=Categories.category_id;
         scList=new ArrayList<>();
         shop_id = Subcategories.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         swipe_subcategory=(SwipeRefreshLayout)findViewById(R.id.swipe_subcategory);
         blank_text_sc=(TextView)findViewById(R.id.blank_text_sc);
@@ -163,7 +164,9 @@ public class Subcategories extends AppCompatActivity {
 
                 Uri.Builder builder = new Uri.Builder()
                         .appendQueryParameter("category_id", Categories.category_id)
-                        .appendQueryParameter("shop_id", shop_id);
+                        .appendQueryParameter("shop_id", shop_id)
+                        .appendQueryParameter("lang",lang);
+
                 String query = builder.build().getEncodedQuery();
 
                 OutputStream os = conn.getOutputStream();

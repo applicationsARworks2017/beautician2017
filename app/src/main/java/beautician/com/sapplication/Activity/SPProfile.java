@@ -3,6 +3,7 @@ package beautician.com.sapplication.Activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -70,13 +72,16 @@ public class SPProfile extends AppCompatActivity {
     String imPath,server_message,lang;
     int server_status,filechooser,gal1,gal2,gal3;
     private static int RESULT_LOAD_IMAGE = 1;
-    TextView hd_name,hd_phone,hd_email,hd_address;
+    TextView hd_name,hd_phone,hd_email,hd_address,lang_english,lang_arabic;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spprofile);
+
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         button=(Button)findViewById(R.id.logout_sp);
         editsave=(Button)findViewById(R.id.editsave);
         name_value=(EditText) findViewById(R.id.name_value);
@@ -87,7 +92,8 @@ public class SPProfile extends AppCompatActivity {
         hd_phone=(TextView) findViewById(R.id.hd_phone);
         hd_email=(TextView) findViewById(R.id.hd_email);
         hd_address=(TextView) findViewById(R.id.hd_address);
-
+        lang_english=(TextView) findViewById(R.id.tv_english);
+        lang_arabic=(TextView) findViewById(R.id.tv_arabic);
         sp_profile_rel=(RelativeLayout) findViewById(R.id.sp_profile_rel);
         pic1=(ImageView)findViewById(R.id.photo1);
         pic2=(ImageView)findViewById(R.id.photo2);
@@ -122,7 +128,55 @@ public class SPProfile extends AppCompatActivity {
         }
         getThedetails();
 
+        lang_english.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SPProfile.this);
+                builder.setTitle("Change Keyboard");
+                builder.setMessage("For change the keyboard long press to space bar");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //check own balance
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
+                lang="English";
+                SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Constants.LANG_TYPE, lang);
+                editor.commit();
+
+
+
+
+            }
+        });
+        lang_arabic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SPProfile.this);
+                builder.setTitle("Change Keyboard");
+                builder.setMessage("For change the keyboard long press to space bar");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //check own balance
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                lang="Arabic";
+                SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.putString(Constants.LANG_TYPE, lang);
+                editor.commit();
+
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

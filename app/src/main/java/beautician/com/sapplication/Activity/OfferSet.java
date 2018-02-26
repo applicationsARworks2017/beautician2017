@@ -3,10 +3,10 @@ package beautician.com.sapplication.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -27,10 +27,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Adapter.OffersAdapter;
-import beautician.com.sapplication.Adapter.ServiceReqAdapter;
-import beautician.com.sapplication.Adapter.ServiceReqAdapterSP;
 import beautician.com.sapplication.Pojo.Offers;
-import beautician.com.sapplication.Pojo.ServiceRequest;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
@@ -42,7 +39,7 @@ public class OfferSet extends AppCompatActivity {
     SwipeRefreshLayout swipe_set_offers;
     TextView off_blank_;
     ProgressBar loader_of_set;
-    String user_id,page,server_message;
+    String user_id,page,server_message,lang;
     int server_status;
     OffersAdapter oAdapter;
 
@@ -56,6 +53,7 @@ public class OfferSet extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
+            lang = extras.getString("LANG");
             // and get whatever type user account id is
         }
         user_id = OfferSet.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
@@ -222,7 +220,7 @@ public class OfferSet extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                oAdapter=new OffersAdapter(OfferSet.this,oList);
+                oAdapter=new OffersAdapter(OfferSet.this,oList,lang);
                 lv_setoffers.setAdapter(oAdapter);
             }
             else{

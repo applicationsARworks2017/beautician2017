@@ -29,10 +29,11 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
     Context _context;
     ArrayList<IndServiceRequest> new_list;
     Holder holder,holder1;
-    String user_id;
-    public IndServiceRequestAdapterUser(CheckIndividualPost checkIndividualPost, ArrayList<IndServiceRequest> isrList) {
+    String user_id,lang;
+    public IndServiceRequestAdapterUser(CheckIndividualPost checkIndividualPost, ArrayList<IndServiceRequest> isrList,String lang) {
         this._context=checkIndividualPost;
         this.new_list=isrList;
+        this.lang=lang;
     }
 
     @Override

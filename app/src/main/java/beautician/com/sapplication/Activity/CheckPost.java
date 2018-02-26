@@ -45,6 +45,7 @@ public class CheckPost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
@@ -227,7 +228,7 @@ public class CheckPost extends AppCompatActivity {
             super.onPostExecute(data);
             if(server_status==1) {
                 if(page.contentEquals("sp_home")) {
-                    serviceReqAdapterSP = new ServiceReqAdapterSP(CheckPost.this, srList);
+                    serviceReqAdapterSP = new ServiceReqAdapterSP(CheckPost.this, srList,lang);
                     lv_checkpost.setAdapter(serviceReqAdapterSP);
                     serviceReqAdapterSP.notifyDataSetChanged();
                 }

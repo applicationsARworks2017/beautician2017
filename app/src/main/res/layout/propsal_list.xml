@@ -57,7 +57,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_below="@id/datentime"
                 android:id="@+id/view_details"
-                android:text="Service Details"
+                android:text=""
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="italic"
                 android:layout_marginTop="10dp"
