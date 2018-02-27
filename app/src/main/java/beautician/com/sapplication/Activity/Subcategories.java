@@ -116,7 +116,7 @@ public class Subcategories extends AppCompatActivity {
             flatlist_search.addAll(scList);
         }
         // create an Object for Adapter
-        scadapter = new SubcategoriesAdapter(Subcategories.this,flatlist_search );
+        scadapter = new SubcategoriesAdapter(Subcategories.this,flatlist_search,lang );
         lv_subcategory.setAdapter(scadapter);
         //  mAdapter.notifyDataSetChanged();
 
@@ -164,8 +164,8 @@ public class Subcategories extends AppCompatActivity {
 
                 Uri.Builder builder = new Uri.Builder()
                         .appendQueryParameter("category_id", Categories.category_id)
-                        .appendQueryParameter("shop_id", shop_id)
-                        .appendQueryParameter("lang",lang);
+                        .appendQueryParameter("shop_id", shop_id);
+//                        .appendQueryParameter("lang","");
 
                 String query = builder.build().getEncodedQuery();
 
@@ -202,10 +202,11 @@ public class Subcategories extends AppCompatActivity {
         {
             "id": 1,
             "category_id": 1,
-            "title": "first sub category",
+            "title": null,
+            "arabic_title": "تدليك الجسم",
             "is_enable": "Y",
-            "created": "30-10-2017",
-            "modified": null
+            "created": "30-10-2017 07:17 PM",
+            "modified": "2018-02-23T02:24:18+00:00"
         },
                     },*/
 
@@ -225,7 +226,9 @@ public class Subcategories extends AppCompatActivity {
                             String id = o_list_obj.getString("id");
                             String subcategory = o_list_obj.getString("title");
                             String category_id = o_list_obj.getString("category_id");
-                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"");
+                            String arabic_title = o_list_obj.getString("arabic_title");
+
+                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"",arabic_title);
                             scList.add(list1);
                         }
                     }
@@ -243,7 +246,7 @@ public class Subcategories extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                scadapter = new SubcategoriesAdapter(Subcategories.this,scList );
+                scadapter = new SubcategoriesAdapter(Subcategories.this,scList,lang );
                 lv_subcategory.setAdapter(scadapter);
             }
             else{

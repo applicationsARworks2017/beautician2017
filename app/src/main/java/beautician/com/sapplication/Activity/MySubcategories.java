@@ -2,13 +2,12 @@ package beautician.com.sapplication.Activity;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -30,7 +29,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Adapter.ListSubcategoriesAdapter;
-import beautician.com.sapplication.Adapter.ReqSubcategoriesAdapter;
 import beautician.com.sapplication.Pojo.SubCategoryList;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -49,13 +47,15 @@ public class MySubcategories extends AppCompatActivity {
     ListSubcategoriesAdapter scadapter;
     RelativeLayout rel_subcategory;
     SearchView searchView_sub_category;
-    String shop_id;
+    String shop_id,lang;
     Button bt_ok,bt_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_subcategories);
+        lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             user_id = extras.getString("USERID");
@@ -125,7 +125,7 @@ public class MySubcategories extends AppCompatActivity {
             flatlist_search.addAll(scList);
         }
         // create an Object for Adapter
-        scadapter = new ListSubcategoriesAdapter(MySubcategories.this,flatlist_search );
+        scadapter = new ListSubcategoriesAdapter(MySubcategories.this,flatlist_search,lang );
         lv_subcategory.setAdapter(scadapter);
         //  mAdapter.notifyDataSetChanged();
 
@@ -234,7 +234,8 @@ public class MySubcategories extends AppCompatActivity {
                             String id = o_list_obj.getString("id");
                             String subcategory = o_list_obj.getString("title");
                             String price = o_list_obj.getString("price");
-                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,price);
+                            String arabic_title = o_list_obj.getString("arabic_title");
+                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,price,arabic_title);
                             scList.add(list1);
                         }
                     }
@@ -252,7 +253,7 @@ public class MySubcategories extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                scadapter = new ListSubcategoriesAdapter(MySubcategories.this,scList );
+                scadapter = new ListSubcategoriesAdapter(MySubcategories.this,scList,lang );
                 lv_subcategory.setAdapter(scadapter);
             }
             else{

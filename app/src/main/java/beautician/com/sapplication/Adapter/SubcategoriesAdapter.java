@@ -43,10 +43,11 @@ public class SubcategoriesAdapter extends BaseAdapter {
     ArrayList<SubCategoryList> new_list;
     Holder holder,holder1;
     Dialog dialog;
-    String user_id;
-    public SubcategoriesAdapter(Subcategories subcategories, ArrayList<SubCategoryList> scList) {
+    String user_id,lang;
+    public SubcategoriesAdapter(Subcategories subcategories, ArrayList<SubCategoryList> scList,String lang) {
         this._context=subcategories;
         this.new_list=scList;
+        this.lang=lang;
     }
 
 
@@ -99,7 +100,15 @@ public class SubcategoriesAdapter extends BaseAdapter {
         holder.im_edit.setTag(holder);
         holder.bt_add.setTag(holder);
 
-        holder.tv_subcategory.setText(_pos.getSubcategory());
+        if(lang.contentEquals("Arabic")){
+            holder.tv_subcategory.setText(_pos.getArabic_title());
+
+        }
+        else{
+            holder.tv_subcategory.setText(_pos.getSubcategory());
+
+        }
+
         holder.bt_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

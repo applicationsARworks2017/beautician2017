@@ -3,8 +3,8 @@ package beautician.com.sapplication.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,7 +26,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import beautician.com.sapplication.Adapter.CategoryRequestAdapter;
 import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -42,7 +41,7 @@ public class  MyserviceList extends AppCompatActivity {
     TextView blank_text,cattext;
     CategoryListAdapter cAdapter;
     SearchView searchView_category;
-    public static String catid,value;
+    public static String catid,value,lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +61,8 @@ public class  MyserviceList extends AppCompatActivity {
         blank_text=(TextView) findViewById(R.id.blank_text);
         cattext=(TextView) findViewById(R.id.cattext);
         searchView_category=(SearchView) findViewById(R.id.searchView_category);
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         if(CheckInternet.getNetworkConnectivityStatus(this)){
             new getcategoryList().execute();
         }

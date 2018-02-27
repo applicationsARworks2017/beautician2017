@@ -14,7 +14,6 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import java.util.ArrayList;
 
-import beautician.com.sapplication.Adapter.CategoryRequestAdapter;
 import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.R;
 
@@ -26,6 +25,7 @@ public class CategoryListAdapter extends BaseAdapter{
     Context _context;
     ArrayList<CategoryList> categoryLists;
     Holder holder;
+    String lang;
 
     public CategoryListAdapter(MyserviceList myserviceList, ArrayList<CategoryList> lists) {
         this._context=myserviceList;
@@ -68,6 +68,9 @@ public class CategoryListAdapter extends BaseAdapter{
         holder.iv_letterView.setTag(position);
         holder.cat_name.setTag(position);
         holder.cat_name.setText(_pos.getCategory());
+
+
+
         String firstLetter = _pos.getCategory().substring(0, 1).toUpperCase();
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
         //int color = generator.getColor(_pos.getCategory());

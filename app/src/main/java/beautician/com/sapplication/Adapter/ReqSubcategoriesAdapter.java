@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,10 +28,11 @@ public class ReqSubcategoriesAdapter extends BaseAdapter {
     ArrayList<SubCategoryList> new_list;
     Holder holder,holder1;
     Dialog dialog;
-    String user_id;
-    public ReqSubcategoriesAdapter(RequestSubcategories requestSubcategories, ArrayList<SubCategoryList> scList) {
+    String user_id,lang;
+    public ReqSubcategoriesAdapter(RequestSubcategories requestSubcategories, ArrayList<SubCategoryList> scList,String lang) {
         this._context=requestSubcategories;
         this.new_list=scList;
+        this.lang=lang;
     }
 
     @Override
@@ -74,8 +73,12 @@ public class ReqSubcategoriesAdapter extends BaseAdapter {
         }
         holder.cat_name.setTag(position);
         holder.iv_letterView.setTag(position);
-        holder.cat_name.setText(_pos.getSubcategory());
-
+        if(lang.contentEquals("Arabic")){
+            holder.cat_name.setText(_pos.getArabic_title());
+        }
+        else{
+            holder.cat_name.setText(_pos.getSubcategory());
+        }
         String firstLetter = _pos.getSubcategory().substring(0, 1).toUpperCase();
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
         int color = generator.getColor(_pos.getSubcategory());

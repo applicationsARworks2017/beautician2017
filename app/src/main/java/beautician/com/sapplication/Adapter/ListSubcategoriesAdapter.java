@@ -28,10 +28,11 @@ public class ListSubcategoriesAdapter extends BaseAdapter {
     ArrayList<SubCategoryList> new_list;
     Holder holder,holder1;
     Dialog dialog;
-    String user_id;
-    public ListSubcategoriesAdapter(MySubcategories mySubcategories, ArrayList<SubCategoryList> scList) {
+    String user_id,lang;
+    public ListSubcategoriesAdapter(MySubcategories mySubcategories, ArrayList<SubCategoryList> scList,String lang) {
         this._context=mySubcategories;
         this.new_list=scList;
+        this.lang=lang;
 
     }
 
@@ -73,9 +74,15 @@ public class ListSubcategoriesAdapter extends BaseAdapter {
         holder.cat_name.setTag(position);
         holder.c_price.setTag(position);
         holder.iv_letterView.setTag(position);
-        holder.cat_name.setText(_pos.getSubcategory());
         holder.c_price.setText("$ "+_pos.getPrice());
+       if(lang.contentEquals("Arabic")){
+           holder.cat_name.setText(_pos.getArabic_title());
 
+       }
+       else{
+           holder.cat_name.setText(_pos.getSubcategory());
+
+       }
         String firstLetter = _pos.getSubcategory().substring(0, 1).toUpperCase();
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
         int color = generator.getColor(_pos.getSubcategory());

@@ -190,7 +190,7 @@ public class RequestSubcategories extends AppCompatActivity {
             flatlist_search.addAll(scList);
         }
         // create an Object for Adapter
-        scadapter = new ReqSubcategoriesAdapter(RequestSubcategories.this,flatlist_search );
+        scadapter = new ReqSubcategoriesAdapter(RequestSubcategories.this,flatlist_search,lang );
         lv_subcategory.setAdapter(scadapter);
         //  mAdapter.notifyDataSetChanged();
 
@@ -237,8 +237,8 @@ public class RequestSubcategories extends AppCompatActivity {
                 conn.setRequestMethod("POST");
 
                 Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("category_id", CategoriesRequest.catid)
-                        .appendQueryParameter("lang",lang);
+                        .appendQueryParameter("category_id", CategoriesRequest.catid);
+//                        .appendQueryParameter("lang",lang);
                         /*.appendQueryParameter("shop_id", shop_id)
                         .appendQueryParameter("page", "1");*/
                 String query = builder.build().getEncodedQuery();
@@ -271,15 +271,16 @@ public class RequestSubcategories extends AppCompatActivity {
                 /*
                 *
                 * {
-   {
+  {
     "subCategories": [
         {
             "id": 1,
             "category_id": 1,
-            "title": "first sub category",
+            "title": null,
+            "arabic_title": "تدليك الجسم",
             "is_enable": "Y",
-            "created": "30-10-2017",
-            "modified": null
+            "created": "30-10-2017 07:17 PM",
+            "modified": "2018-02-23T02:24:18+00:00"
         },
                     },*/
 
@@ -299,7 +300,9 @@ public class RequestSubcategories extends AppCompatActivity {
                             String id = o_list_obj.getString("id");
                             String subcategory = o_list_obj.getString("title");
                             String category_id = o_list_obj.getString("category_id");
-                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"");
+                            String arabic_title = o_list_obj.getString("arabic_title");
+
+                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"",arabic_title);
                             scList.add(list1);
                         }
                     }
@@ -317,7 +320,7 @@ public class RequestSubcategories extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                scadapter = new ReqSubcategoriesAdapter(RequestSubcategories.this,scList );
+                scadapter = new ReqSubcategoriesAdapter(RequestSubcategories.this,scList,lang );
                 lv_subcategory.setAdapter(scadapter);
             }
             else{
