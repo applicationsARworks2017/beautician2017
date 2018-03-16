@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_filter_list_white_24dp"
                 fab:menu_colorNormal="@color/colorPrimary"
-                fab:fab_label="Post List"
+                fab:fab_label="Post_list"
                 fab:fab_size="mini" />
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/reqList"
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_filter_list_white_24dp"
                 fab:menu_colorNormal="@color/colorPrimary"
-                fab:fab_label="Request List"
+                fab:fab_label="Request_list"
                 fab:fab_size="mini" />
 
         </com.github.clans.fab.FloatingActionMenu>

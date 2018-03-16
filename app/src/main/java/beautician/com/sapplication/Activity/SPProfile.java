@@ -80,7 +80,6 @@ public class SPProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spprofile);
 
-        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         button=(Button)findViewById(R.id.logout_sp);
         editsave=(Button)findViewById(R.id.editsave);
@@ -105,10 +104,7 @@ public class SPProfile extends AppCompatActivity {
 
 
         shop_id = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
-        Bundle extras=getIntent().getExtras();
-        if(extras!=null){
-            lang=extras.getString("LANG");
-        }
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
             hd_name.setText("اسم");

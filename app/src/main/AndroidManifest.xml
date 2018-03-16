@@ -48,6 +48,10 @@
             android:value="AIzaSyAfTnMETsCDM_RlvvZTU2jH1qnObvGjPMA" />
 
         <activity
+            android:name=".Activity.ChooseLanguageActivity"
+            android:label="Choose Language"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Activity.Login_Activity"
             android:label="Login"
             android:screenOrientation="portrait" />

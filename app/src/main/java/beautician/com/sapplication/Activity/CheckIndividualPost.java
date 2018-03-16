@@ -43,10 +43,13 @@ public class CheckIndividualPost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
-            lang = extras.getString("LANG");
 
             // and get whatever type user account id is
         }

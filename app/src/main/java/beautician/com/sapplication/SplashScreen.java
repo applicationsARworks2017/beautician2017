@@ -1,12 +1,12 @@
 package beautician.com.sapplication;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
+import beautician.com.sapplication.Activity.ChooseLanguageActivity;
 import beautician.com.sapplication.Activity.HomeActivity;
-import beautician.com.sapplication.Activity.Login_Activity;
 import beautician.com.sapplication.Activity.SPHome;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
@@ -26,7 +26,7 @@ public class SplashScreen extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(SplashScreen.this, Login_Activity.class);
+                        Intent intent = new Intent(SplashScreen.this, ChooseLanguageActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

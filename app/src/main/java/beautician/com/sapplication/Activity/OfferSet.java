@@ -53,9 +53,10 @@ public class OfferSet extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
-            lang = extras.getString("LANG");
             // and get whatever type user account id is
         }
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         user_id = OfferSet.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
 
         oList=new ArrayList<>();

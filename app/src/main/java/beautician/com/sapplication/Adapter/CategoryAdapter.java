@@ -28,9 +28,11 @@ public class CategoryAdapter extends BaseAdapter {
     Context _context;
     ArrayList<CategoryList> categoryLists;
     Holder holder;
-    public CategoryAdapter(Categories categories, ArrayList<CategoryList> cList) {
+    String lang;
+    public CategoryAdapter(Categories categories, ArrayList<CategoryList> cList,String lang) {
         this._context=categories;
         this.categoryLists=cList;
+        this.lang=lang;
     }
 
 
@@ -73,7 +75,14 @@ public class CategoryAdapter extends BaseAdapter {
         holder.iv_letterView.setTag(position);
         holder.cat_name.setTag(position);
         holder.chkbox.setTag(position);
-        holder.cat_name.setText(_pos.getCategory());
+        if(lang.contentEquals("Arabic")){
+            holder.cat_name.setText(_pos.getArabic_title());
+
+        }
+        else{
+            holder.cat_name.setText(_pos.getCategory());
+
+        }
         String firstLetter = _pos.getCategory().substring(0, 1).toUpperCase();
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
         int color = generator.getColor(_pos.getCategory());

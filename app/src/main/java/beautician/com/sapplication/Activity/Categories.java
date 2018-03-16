@@ -47,7 +47,7 @@ public class Categories extends AppCompatActivity {
     CategoryAdapter cAdapter;
     Button bt_ok,bt_cancel;
     SearchView searchView_category;
-    String page;
+    String page,lang;
     public static String category_id,category_name;
 
 
@@ -66,7 +66,7 @@ public class Categories extends AppCompatActivity {
             // and get whatever type user account id is
         }
 
-
+        lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
         bt_ok=(Button)findViewById(R.id.bt_ok);
         bt_cancel=(Button)findViewById(R.id.bt_cancel);
         loader_categoty=(ProgressBar)findViewById(R.id.loader_category);
@@ -219,7 +219,7 @@ public class Categories extends AppCompatActivity {
             flatlist_search.addAll(cList);
         }
         // create an Object for Adapter
-        cAdapter = new CategoryAdapter(Categories.this, flatlist_search);
+        cAdapter = new CategoryAdapter(Categories.this, flatlist_search,lang);
         lv_category.setAdapter(cAdapter);
         //  mAdapter.notifyDataSetChanged();
 
@@ -332,7 +332,8 @@ public class Categories extends AppCompatActivity {
                             JSONObject o_list_obj = categoryListArray.getJSONObject(i);
                             String id = o_list_obj.getString("id");
                             String category = o_list_obj.getString("title");
-                            CategoryList list1 = new CategoryList(id,category);
+                            String arabic_title = o_list_obj.getString("arabic_title");
+                            CategoryList list1 = new CategoryList(id,category,arabic_title);
                             cList.add(list1);
                         }
                     }
@@ -350,7 +351,7 @@ public class Categories extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                cAdapter = new CategoryAdapter(Categories.this,cList );
+                cAdapter = new CategoryAdapter(Categories.this,cList,lang );
                 lv_category.setAdapter(cAdapter);
             }
             else{

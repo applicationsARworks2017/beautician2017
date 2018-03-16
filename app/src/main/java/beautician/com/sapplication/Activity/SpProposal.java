@@ -50,13 +50,13 @@ public class SpProposal extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
-            lang=extras.getString("LANG");
 
             // and get whatever type user account id is
         }
         if(page.contentEquals("user_side")){
             super.setTheme(R.style.AppUserTheme);
         }
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         pList=new ArrayList<>();
         loader_propsals=(ProgressBar)findViewById(R.id.loader_propsals);

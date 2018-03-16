@@ -138,7 +138,7 @@ public class PropsalAdapter extends BaseAdapter {
 
         final String status=_pos.getStatus();
 
-        if (lang.contentEquals("Arabic")) {
+             if (lang.contentEquals("Arabic")) {
             holder.vew_details.setText("تفاصيل الخدمة");
 
         } else {

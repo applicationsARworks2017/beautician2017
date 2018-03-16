@@ -46,10 +46,11 @@ public class CheckPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
-            lang = extras.getString("LANG");
             // and get whatever type user account id is
         }
         if(page.contentEquals("sp_home")){
@@ -59,9 +60,7 @@ public class CheckPost extends AppCompatActivity {
             super.setTheme(R.style.AppUserTheme);
         }
 
-        if(lang=="Arabic"){
 
-        }
         setContentView(R.layout.activity_check_post);
         srList=new ArrayList<>();
         user_id = CheckPost.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
@@ -71,7 +70,6 @@ public class CheckPost extends AppCompatActivity {
         lv_checkpost=(ListView)findViewById(R.id.lv_checkpost);
 
         loader_chek_post.setVisibility(View.GONE);
-
 
         getAllpost();
         swipe_checkpost.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -233,7 +231,7 @@ public class CheckPost extends AppCompatActivity {
                     serviceReqAdapterSP.notifyDataSetChanged();
                 }
                 else{
-                    serviceReqAdapter = new ServiceReqAdapter(CheckPost.this, srList);
+                    serviceReqAdapter = new ServiceReqAdapter(CheckPost.this, srList,lang);
                     lv_checkpost.setAdapter(serviceReqAdapter);
                     serviceReqAdapter.notifyDataSetChanged();
                 }

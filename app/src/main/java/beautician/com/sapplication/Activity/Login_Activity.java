@@ -2,7 +2,6 @@ package beautician.com.sapplication.Activity;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -49,7 +47,7 @@ public class Login_Activity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     RadioButton english,arabic,radio_consumer,radio_sp;
-    TextView tv_signup,tv_forgotpassword,tv_english,tv_arabic;
+    TextView tv_signup,tv_forgotpassword;
     RadioGroup radio_user_type;
     RadioGroup user_type;
     Button lin_signin;
@@ -71,8 +69,7 @@ public class Login_Activity extends AppCompatActivity {
         radioGroup=(RadioGroup)findViewById(R.id.radio);
         et_phone=(EditText)findViewById(R.id.et_phn);
         et_password=(EditText)findViewById(R.id.et_password);
-        tv_arabic=(TextView)findViewById(R.id.tv_arabic);
-        tv_english=(TextView)findViewById(R.id.tv_english);
+
         tv_signup=(TextView)findViewById(R.id.tv_signup);
         tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
         radio_user_type=(RadioGroup)findViewById(R.id.radio_user_type);
@@ -89,89 +86,42 @@ public class Login_Activity extends AppCompatActivity {
 
             }
         }
-       tv_english.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-//
+        lang = Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
-               AlertDialog.Builder builder = new AlertDialog.Builder(Login_Activity.this);
-               builder.setTitle("Change Keyboard");
-               builder.setMessage("For change the keyboard long press to space bar");
-               builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-                       //check own balance
-                       dialog.dismiss();
-                   }
-               });
-               AlertDialog dialog = builder.create();
-               dialog.show();
+        if(lang.contentEquals("Arabic")){
+            lin_signin=(Button) findViewById(R.id.lin_signin);
+            et_phone = (EditText) findViewById(R.id.et_phn);
+            et_password = (EditText) findViewById(R.id.et_password);
+            et_phone.setHint("رقم الهاتف");
+            et_password.setHint("كلمه السر");
+            radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
+            radio_sp=(RadioButton)findViewById(R.id.radio_sp);
+            radio_consumer.setText("مصمم الأزياء");
+            radio_sp.setText("مقدم الخدمة");
+            Toast.makeText(getBaseContext(), lang, Toast.LENGTH_SHORT).show();
+            tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
+            tv_forgotpassword.setText("هل نسيت كلمة المرور");
+            tv_signup=(TextView)findViewById(R.id.tv_signup);
+            tv_signup.setText("سجل");
+            lin_signin.setText("تسجيل الدخول");
 
-
-
-               lang = tv_english.getText().toString();
-               SharedPreferences sharedPreferences = Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
-               SharedPreferences.Editor editor = sharedPreferences.edit();
-               editor.putString(Constants.LANG, lang);
-               editor.commit();
-               Toast.makeText(getBaseContext(), lang, Toast.LENGTH_SHORT).show();
-               lin_signin=(Button) findViewById(R.id.lin_signin);
-               et_phone=(EditText)findViewById(R.id.et_phn);
-               et_password=(EditText)findViewById(R.id.et_password);
-               radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
-               radio_sp=(RadioButton)findViewById(R.id.radio_sp);
-               et_phone.setHint("Phone Number");
-               et_password.setHint("Password");
-               radio_consumer.setText("Costumer");
-               radio_sp.setText("Service Provider");
-               tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
-               tv_forgotpassword.setText("Forgot Password");
-               tv_signup=(TextView)findViewById(R.id.tv_signup);
-               tv_signup.setText("Sign Up");
-               lin_signin.setText("Login");
-           }
-       });
-
-        tv_arabic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Login_Activity.this);
-                    builder.setTitle("Change Keyboard");
-                    builder.setMessage("For change the keyboard long press to space bar");
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //check own balance
-                        dialog.dismiss();
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-
-                    lang = "Arabic";
-                    SharedPreferences sharedPreferences = Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(Constants.LANG_TYPE, lang);
-                    editor.commit();
-                    lin_signin=(Button) findViewById(R.id.lin_signin);
-                    et_phone = (EditText) findViewById(R.id.et_phn);
-                    et_password = (EditText) findViewById(R.id.et_password);
-                    et_phone.setHint("رقم الهاتف");
-                    et_password.setHint("كلمه السر");
-                    radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
-                    radio_sp=(RadioButton)findViewById(R.id.radio_sp);
-                    radio_consumer.setText("مصمم الأزياء");
-                    radio_sp.setText("مقدم الخدمة");
-                    Toast.makeText(getBaseContext(), lang, Toast.LENGTH_SHORT).show();
-                    tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
-                    tv_forgotpassword.setText("هل نسيت كلمة المرور");
-                    tv_signup=(TextView)findViewById(R.id.tv_signup);
-                    tv_signup.setText("سجل");
-                    lin_signin.setText("تسجيل الدخول");
-
-
-                }
-            });
-
+        }
+        else{
+            lin_signin=(Button) findViewById(R.id.lin_signin);
+            et_phone=(EditText)findViewById(R.id.et_phn);
+            et_password=(EditText)findViewById(R.id.et_password);
+            radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
+            radio_sp=(RadioButton)findViewById(R.id.radio_sp);
+            et_phone.setHint("Phone Number");
+            et_password.setHint("Password");
+            radio_consumer.setText("Costumer");
+            radio_sp.setText("Service Provider");
+            tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
+            tv_forgotpassword.setText("Forgot Password");
+            tv_signup=(TextView)findViewById(R.id.tv_signup);
+            tv_signup.setText("Sign Up");
+            lin_signin.setText("Login");
+        }
         tv_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,13 +160,15 @@ public class Login_Activity extends AppCompatActivity {
                 if(radioButton.getText().toString().trim().contains("Costumer")){
                     Intent intent=new Intent(Login_Activity.this,ForgotPassword.class);
                     intent.putExtra("PAGE","Costumer");
+                    intent.putExtra("LANG",lang);
                     startActivity(intent);                }
                 else{
                     Intent intent=new Intent(Login_Activity.this,ForgotPassword.class);
                     intent.putExtra("PAGE","sp");
+                    intent.putExtra("LANG",lang);
+
                     startActivity(intent);
                 }
-
             }
         });
     }

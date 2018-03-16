@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import beautician.com.sapplication.Activity.CheckPost;
 import beautician.com.sapplication.Pojo.ServiceRequest;
 import beautician.com.sapplication.R;
-import beautician.com.sapplication.Utils.Constants;
 
 /**
  * Created by Amaresh on 11/21/17.
@@ -24,9 +23,11 @@ public class ServiceReqAdapter extends BaseAdapter{
     Context _context;
     ArrayList<ServiceRequest> new_list;
     Holder holder;
-    public ServiceReqAdapter(CheckPost checkPost, ArrayList<ServiceRequest> srList) {
+    String lang;
+    public ServiceReqAdapter(CheckPost checkPost, ArrayList<ServiceRequest> srList,String lang) {
     this._context=checkPost;
         this.new_list=srList;
+        this.lang=lang;
     }
 
     @Override
@@ -69,16 +70,39 @@ public class ServiceReqAdapter extends BaseAdapter{
         holder.remarks.setTag(position);
 
         holder.actualtime.setText(_pos.getCreated());
-        if(_pos.getExpected_date().contentEquals("null")){
-            holder.tv_expected_date.setText(("No Expected defined"));
+        if(lang.contentEquals("Arabic")){
+            holder.Name_service.setText("لقد نشرت " + _pos.getSub_category());
 
         }
         else{
-            holder.tv_expected_date.setText(("Expected Date: "+_pos.getExpected_date()));
+            holder.Name_service.setText("You have posted for " + _pos.getSub_category());
+
+        }
+
+        if(lang.contentEquals("Arabic")){
+            if(_pos.getExpected_date().contentEquals("null")){
+                holder.tv_expected_date.setText(("لا متوقع محدد"));
+
+            }
+            else{
+                holder.tv_expected_date.setText((_pos.getExpected_date()+":التاريخ المتوقع"));
+            }
+
+        }
+        else{
+            if(_pos.getExpected_date().contentEquals("null")){
+                holder.tv_expected_date.setText(("No Expected defined"));
+
+            }
+            else{
+                holder.tv_expected_date.setText(("Expected Date: "+_pos.getExpected_date()));
+            }
         }
 
 
-        holder.Name_service.setText("You have posted for " + _pos.getSub_category());
+
+
+
         holder.remarks.setText(_pos.getRemarks());
         return convertView;
     }

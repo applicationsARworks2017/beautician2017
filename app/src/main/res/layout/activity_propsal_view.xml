@@ -88,7 +88,6 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/colorPrimary"
-            android:text="ok"
             android:textColor="@color/white"
             android:id="@+id/_ok"/>
 

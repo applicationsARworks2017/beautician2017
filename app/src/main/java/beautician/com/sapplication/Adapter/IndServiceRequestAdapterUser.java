@@ -80,9 +80,17 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
         holder.otp_service.setTag(position);
         holder.im_reply.setTag(holder);
         holder.gv_feedback.setTag(holder);
-        holder.Name_service.setText("You have requested to "+_pos.getShopname()+" for the service");
         holder.remarks.setText(_pos.getRemarks());
         final String status=_pos.getStatus();
+
+        if(lang.contentEquals("Arabic")){
+            holder.Name_service.setText("لقد طلبت ذلك "+_pos.getShopname()+" للخدمة");
+
+        }
+        else{
+            holder.Name_service.setText("You have requested to "+_pos.getShopname()+" for the service");
+
+        }
 
         if(status.contentEquals("0")){
             holder.gv_feedback.setTag(holder);
@@ -130,13 +138,26 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
             holder.gv_feedback.setVisibility(View.GONE);
 
         }
-        if(_pos.getExpected_date().contentEquals("")|| _pos.getExpected_date().contentEquals("null")){
-            holder.expected_date.setText("No date defined");
 
+        if(lang.contentEquals("Arabic")){
+            if(_pos.getExpected_date().contentEquals("")|| _pos.getExpected_date().contentEquals("null")){
+                holder.expected_date.setText("لم يتم تحديد تاريخ");
+
+            }
+            else {
+                holder.expected_date.setText(_pos.getExpected_date()+":التاريخ المتوقع");
+            }
         }
         else {
-            holder.expected_date.setText("Expected Date: " + _pos.getExpected_date());
+            if(_pos.getExpected_date().contentEquals("")|| _pos.getExpected_date().contentEquals("null")){
+                holder.expected_date.setText("No date defined");
+
+            }
+            else {
+                holder.expected_date.setText("Expected Date: " + _pos.getExpected_date());
+            }
         }
+
         holder.gv_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

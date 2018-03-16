@@ -3,16 +3,13 @@ package beautician.com.sapplication.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -29,7 +26,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import beautician.com.sapplication.Adapter.CategoryAdapter;
 import beautician.com.sapplication.Adapter.CategoryRequestAdapter;
 import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.R;
@@ -45,7 +41,7 @@ public class CategoriesRequest extends AppCompatActivity {
     TextView blank_text,cattext;
     CategoryRequestAdapter cAdapter;
     SearchView searchView_category;
-    public static String catid,value;
+    public static String catid,value,lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +49,8 @@ public class CategoriesRequest extends AppCompatActivity {
         super.setTheme(R.style.AppUserTheme);
         setContentView(R.layout.activity_categories_request);
         cList=new ArrayList<>();
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         loader_categoty=(ProgressBar)findViewById(R.id.loader_category);
         lv_category=(ListView)findViewById(R.id.lv_category);
         blank_text=(TextView) findViewById(R.id.blank_text);
@@ -119,7 +117,7 @@ public class CategoriesRequest extends AppCompatActivity {
             flatlist_search.addAll(cList);
         }
         // create an Object for Adapter
-        cAdapter = new CategoryRequestAdapter(CategoriesRequest.this, flatlist_search);
+        cAdapter = new CategoryRequestAdapter(CategoriesRequest.this, flatlist_search,lang);
         lv_category.setAdapter(cAdapter);
         //  mAdapter.notifyDataSetChanged();
 
@@ -232,7 +230,8 @@ public class CategoriesRequest extends AppCompatActivity {
                             JSONObject o_list_obj = categoryListArray.getJSONObject(i);
                             String id = o_list_obj.getString("id");
                             String category = o_list_obj.getString("title");
-                            CategoryList list1 = new CategoryList(id,category);
+                            String arabic_title = o_list_obj.getString("arabic_title");
+                            CategoryList list1 = new CategoryList(id,category,arabic_title);
                             cList.add(list1);
                         }
                     }
@@ -250,7 +249,7 @@ public class CategoriesRequest extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                cAdapter = new CategoryRequestAdapter(CategoriesRequest.this,cList );
+                cAdapter = new CategoryRequestAdapter(CategoriesRequest.this,cList,lang );
                 lv_category.setAdapter(cAdapter);
             }
             else{

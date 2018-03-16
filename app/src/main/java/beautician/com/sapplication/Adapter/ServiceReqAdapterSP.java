@@ -108,7 +108,6 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         holder.reply.setTag(position);
         holder.actualtime.setTag(position);
 
-        holder.Name_service.setText(_pos.getName()+" has posted for " + _pos.getSub_category());
         holder.remarks.setText(_pos.getRemarks());
         holder.actualtime.setText(_pos.getCreated());
         if (lang.contentEquals("Arabic")) {

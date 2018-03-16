@@ -27,9 +27,10 @@ public class CategoryListAdapter extends BaseAdapter{
     Holder holder;
     String lang;
 
-    public CategoryListAdapter(MyserviceList myserviceList, ArrayList<CategoryList> lists) {
+    public CategoryListAdapter(MyserviceList myserviceList, ArrayList<CategoryList> lists,String lang) {
         this._context=myserviceList;
         this.categoryLists=lists;
+        this.lang=lang;
     }
 
     @Override
@@ -67,8 +68,13 @@ public class CategoryListAdapter extends BaseAdapter{
         }
         holder.iv_letterView.setTag(position);
         holder.cat_name.setTag(position);
-        holder.cat_name.setText(_pos.getCategory());
+       if(lang.contentEquals("Arabic")){
+           holder.cat_name.setText(_pos.getArabic_title());
 
+       }
+       else{
+           holder.cat_name.setText(_pos.getCategory());
+       }
 
 
         String firstLetter = _pos.getCategory().substring(0, 1).toUpperCase();

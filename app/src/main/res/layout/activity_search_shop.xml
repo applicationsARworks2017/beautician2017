@@ -18,14 +18,12 @@
         android:singleLine="true"
         android:id="@+id/et_searchText"
         android:layout_marginTop="50dp"
-        android:hint="Search for shops,services"
         android:paddingLeft="20dp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
-            android:text="Search"
             android:id="@+id/bt_search"
             android:textColor="@color/white"
             android:layout_marginTop="20dp"

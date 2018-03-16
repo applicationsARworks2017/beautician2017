@@ -122,7 +122,7 @@ public class  MyserviceList extends AppCompatActivity {
             flatlist_search.addAll(cList);
         }
         // create an Object for Adapter
-        cAdapter = new CategoryListAdapter(MyserviceList.this, flatlist_search);
+        cAdapter = new CategoryListAdapter(MyserviceList.this, flatlist_search,lang);
         lv_category.setAdapter(cAdapter);
         //  mAdapter.notifyDataSetChanged();
 
@@ -241,7 +241,8 @@ public class  MyserviceList extends AppCompatActivity {
                                 }
                             }
                             String category = o_list_obj.getString("title");
-                            CategoryList list1 = new CategoryList(id,category);
+                            String arabic_title = o_list_obj.getString("arabic_title");
+                            CategoryList list1 = new CategoryList(id,category,arabic_title);
                             cList.add(list1);
                         }
                     }
@@ -259,7 +260,7 @@ public class  MyserviceList extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                cAdapter = new CategoryListAdapter(MyserviceList.this,cList );
+                cAdapter = new CategoryListAdapter(MyserviceList.this,cList,lang );
                 lv_category.setAdapter(cAdapter);
             }
             else{

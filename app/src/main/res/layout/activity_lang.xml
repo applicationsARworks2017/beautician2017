@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:id="@+id/login_rel"
+    tools:context="beautician.com.sapplication.Activity.Login_Activity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="You can change the language by selecting the options"
+        android:layout_marginLeft="20dp"/>
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                android:id="@+id/tv_english1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/tv_english"
+                    android:layout_width="wrap_content"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:hint="ENGLISH"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content">
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                android:id="@+id/tv_arabic1"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border"
+                android:layout_below="@id/tv_english1">
+
+                <TextView
+                    android:id="@+id/tv_arabic"
+                    android:layout_width="wrap_content"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:hint="عربى"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:inputType="text"/>
+            </LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="Continue.."
+        android:textColor="@color/white"
+        android:id="@+id/btn_contn"
+        android:background="@color/colorPrimary">
+    </Button>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_loader"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>

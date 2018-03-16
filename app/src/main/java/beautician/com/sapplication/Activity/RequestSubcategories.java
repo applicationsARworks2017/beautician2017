@@ -49,7 +49,7 @@ public class RequestSubcategories extends AppCompatActivity {
     SearchView searchView_sub_category;
     String shop_id;
     Button bt_ok,bt_cancel;
-    public static String subcateryName,SubcateryId;
+    public static String subcateryName,SubcateryId,subcatogoryarabic;
     String lang;
 
 
@@ -91,6 +91,7 @@ public class RequestSubcategories extends AppCompatActivity {
             public void onClick(View v) {
                     StringBuffer sb = new StringBuffer();
                     StringBuffer sb_id = new StringBuffer();
+                    StringBuffer sb_arbic = new StringBuffer();
 
                     for (SubCategoryList bean : scList) {
                         /*if (counter<5) {
@@ -107,6 +108,8 @@ public class RequestSubcategories extends AppCompatActivity {
                                 sb.append(",");
                                 sb_id.append(bean.getId());
                                 sb_id.append(",");
+                                sb_arbic.append(bean.getArabic_title());
+                                sb_arbic.append(",");
                             }
                         }
                         if (sb.length() <= 0) {
@@ -117,6 +120,7 @@ public class RequestSubcategories extends AppCompatActivity {
                             //SPSignup.selected_category_id=sb_id.toString().trim().substring(0,sb_id.length()-1);
                             subcateryName=sb.toString().trim().substring(0,sb.length()-1);
                             SubcateryId=sb_id.toString().trim().substring(0,sb_id.length()-1);
+                            subcatogoryarabic=sb_arbic.toString().trim().substring(0,sb_arbic.length()-1);
 
 
                         }
@@ -163,6 +167,7 @@ public class RequestSubcategories extends AppCompatActivity {
                 //  Toast.makeText(AdminUserList.this,users.getUser_name(),Toast.LENGTH_LONG).show();
                 SubcateryId = users.getId();
                 subcateryName = users.getSubcategory();
+                subcatogoryarabic = users.getArabic_title();
                 callSub();
             }
         });

@@ -5,12 +5,11 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,15 +26,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.ConnectException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.Calendar;
 
@@ -44,9 +39,9 @@ import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
 public class PostActivity extends AppCompatActivity {
-    TextView tv_services;
+    TextView tv_services,postHeading,adultt;
     Spinner adult;
-    String user_id,exp_date;
+    String user_id,exp_date,lang;
     EditText et_contentheading;
     Button submit_post;
     ImageView btnDatePicker, btnTimePicker;
@@ -63,9 +58,11 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
         user_id = PostActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        postHeading=(TextView)findViewById(R.id.postHeading);
+        adultt=(TextView)findViewById(R.id.adult);
         tv_services=(TextView)findViewById(R.id.tv_services);
-        tv_services.setText(RequestSubcategories.subcateryName);
         adult=(Spinner)findViewById(R.id.adult_spin);
         et_contentheading=(EditText)findViewById(R.id.et_contentheading);
         submit_post=(Button)findViewById(R.id.submit_post);
@@ -73,6 +70,23 @@ public class PostActivity extends AppCompatActivity {
         btnTimePicker=(ImageView) findViewById(R.id.btn_time);
         txtDate=(EditText)findViewById(R.id.in_date);
         txtTime=(EditText)findViewById(R.id.in_time);
+
+        if(lang.contentEquals("Arabic")){
+            postHeading.setText(":كنت مهتما ل");
+            adultt.setText("أي من الناس");
+            et_contentheading.setHint("أضف التفاصيل هنا");
+            tv_services.setText(RequestSubcategories.subcatogoryarabic);
+            submit_post.setText("بريد");
+
+        }
+        else{
+            postHeading.setText("You are Interested for:");
+            adultt.setText("No of People");
+            et_contentheading.setHint("Add Detail here");
+            tv_services.setText(RequestSubcategories.subcateryName);
+            submit_post.setText("Post");
+
+        }
         submit_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

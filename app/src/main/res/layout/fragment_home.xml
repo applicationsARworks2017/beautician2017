@@ -38,7 +38,8 @@
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/tv_choose_category"
-                    android:layout_width="220dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="40dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_appointment"
                     android:layout_below="@id/tv_serviceheading"
@@ -86,7 +87,8 @@
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/tv_serch_byname"
-                    android:layout_width="220dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="40dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_findSP"
                     android:layout_below="@id/tv_SPheading"
@@ -134,8 +136,9 @@
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/chk_response"
-                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="40dp"
                     android:layout_toRightOf="@id/iv_propsals"
                     android:layout_below="@id/tv_propsalheading"
                     android:layout_marginLeft="20dp"
@@ -197,8 +200,9 @@
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/offer_check"
-                    android:layout_width="220dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
                     android:layout_toRightOf="@id/iv_offers"
                     android:layout_below="@id/tv_offerheading"
                     android:layout_marginLeft="20dp"
@@ -261,7 +265,8 @@
                 android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/ad_mony"
-                android:layout_width="220dp"
+                android:layout_width="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/iv_wallet"
                 android:layout_below="@id/tv_walletheading"

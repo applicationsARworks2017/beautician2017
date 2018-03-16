@@ -101,6 +101,16 @@ public class ServiceList extends Fragment {
 
         postList=(FloatingActionButton)v.findViewById(R.id.postList);
         reqList=(FloatingActionButton)v.findViewById(R.id.reqList);
+        if(lang.contentEquals("Arabic")){
+
+            postList.setLabelText("قائمة المشاركات");
+            reqList.setLabelText("قائمة الطلبات");
+        }
+        else{
+
+            postList.setLabelText("Post List");
+            reqList.setLabelText("Request List");
+        }
         postList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

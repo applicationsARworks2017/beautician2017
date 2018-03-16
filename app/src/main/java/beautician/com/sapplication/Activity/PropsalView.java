@@ -36,7 +36,7 @@ public class PropsalView extends AppCompatActivity {
     Toolbar propsalview_toolbar;
     ProgressBar loader_prop_details;
     String sid,pid,propsal,p_status,no_of_user,lang;
-    String ser_req_id,post_details,sub_categorytitle,cat_title,userid,name,email,mobile,photo;
+    String ser_req_id,post_details,sub_categorytitle,cat_title,userid,name,email,mobile,photo,sub_categorytitle_arabic_title,cat_title_arabic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,15 @@ public class PropsalView extends AppCompatActivity {
                 finish();
             }
         });
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
+        if(lang.contentEquals("Arabic")){
+            _ok.setText("حسنا");
+        }
+        else{
+            _ok.setText("ok");
+
+        }
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -70,7 +79,6 @@ public class PropsalView extends AppCompatActivity {
             pid = extras.getString("PID");
             propsal = extras.getString("PROPSAL");
             p_status = extras.getString("PSTATUS");
-            lang = extras.getString("LANG");
             // and get whatever type user account id is
         }
 
@@ -199,7 +207,9 @@ public class PropsalView extends AppCompatActivity {
                     post_details=j_obj.getString("remarks");
                     no_of_user=j_obj.getString("no_of_user");
                     sub_categorytitle=j_s_cat.getString("title");
+                    sub_categorytitle_arabic_title=j_s_cat.getString("arabic_title");
                     cat_title=j_cat.getString("title");
+                    cat_title_arabic=j_cat.getString("arabic_title");
                     userid=j_user.getString("id");
                     name=j_user.getString("name");
                     email=j_user.getString("email");
@@ -226,9 +236,10 @@ public class PropsalView extends AppCompatActivity {
         if(lang.contentEquals("Arabic")){
             noofpple.setText(no_of_user+" :عدد الاشخاص ");
             _remarks.setText(post_details);
-            prop_head.setText(cat_title + ":" + sub_categorytitle);
+            prop_head.setText(cat_title_arabic + ":" + sub_categorytitle_arabic_title);
             _comments.setText(propsal);
             loader_prop_details.setVisibility(View.GONE);
+
 
         }
         else {

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.Constants;
 
 public class SpRequestHome extends AppCompatActivity {
     LinearLayout lin_public,lin_individual;
@@ -21,11 +22,7 @@ public class SpRequestHome extends AppCompatActivity {
         lin_individual=(LinearLayout)findViewById(R.id.lin_individual);
         public_post=(TextView)findViewById(R.id.public_post);
         invalid_requset=(TextView)findViewById(R.id.invalid_requset);
-
-        Bundle extras=getIntent().getExtras();
-        if(extras!=null){
-             lang=extras.getString("LANG");
-        }
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
             public_post.setText("المشاركة العامة");
