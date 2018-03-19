@@ -37,8 +37,8 @@ public class ForgotPassword extends AppCompatActivity {
         phone_nmbr=(EditText)findViewById(R.id.phn_nmbr);
         resetpassword=(Button)findViewById(R.id.resetpassword);
         if(lang.contentEquals("Arabic")){
-           email_id.setHint("عنوان الايميل");
-           phone_nmbr.setHint("رقم الهاتف");
+           email_id.setHint("البريد الإلكتروني");
+           phone_nmbr.setHint("رقم الجوال");
         }
         else{
             email_id.setHint("Email id");

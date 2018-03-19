@@ -71,7 +71,7 @@ public class ServiceReqAdapter extends BaseAdapter{
 
         holder.actualtime.setText(_pos.getCreated());
         if(lang.contentEquals("Arabic")){
-            holder.Name_service.setText("لقد نشرت " + _pos.getSub_category());
+            holder.Name_service.setText("تم نشر الخدمه" + _pos.getSub_category());
 
         }
         else{
@@ -81,7 +81,7 @@ public class ServiceReqAdapter extends BaseAdapter{
 
         if(lang.contentEquals("Arabic")){
             if(_pos.getExpected_date().contentEquals("null")){
-                holder.tv_expected_date.setText(("لا متوقع محدد"));
+                holder.tv_expected_date.setText(("لم يتم تحديد عدد الأشخاص"));
 
             }
             else{

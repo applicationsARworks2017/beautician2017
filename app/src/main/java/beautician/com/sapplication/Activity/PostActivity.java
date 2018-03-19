@@ -73,10 +73,10 @@ public class PostActivity extends AppCompatActivity {
 
         if(lang.contentEquals("Arabic")){
             postHeading.setText(":كنت مهتما ل");
-            adultt.setText("أي من الناس");
+            adultt.setText("عدد الاشخاص");
             et_contentheading.setHint("أضف التفاصيل هنا");
             tv_services.setText(RequestSubcategories.subcatogoryarabic);
-            submit_post.setText("بريد");
+            submit_post.setText("نشر");
 
         }
         else{

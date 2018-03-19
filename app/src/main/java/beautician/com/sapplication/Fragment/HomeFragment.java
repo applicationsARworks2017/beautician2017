@@ -108,12 +108,12 @@ public class HomeFragment extends Fragment {
             tv_choose_category.setText("اختر الفئة، أدخل التفاصيل، والحصول على الخدمة وأكثر من ذلك");
             tv_SPheading.setText("البحث عن مقدمي الخدمات");
             tv_serch_byname.setText("البحث عن طريق الاسم، وبعد المسافة، وطلب الخدمة وأكثر من ذلك");
-            tv_propsalheading.setText("انظر المقترحات");
-            chk_response.setText("تحقق من الردود، وقبول واحد والتمتع بها");
+            tv_propsalheading.setText(" الاطلاع على المقترحات");
+            chk_response.setText("تحقق من الردود واقبل احد العروض");
             tv_offerheading.setText("عروض مذهلة");
-            offer_check.setText("تحقق من العرض، والاستيلاء على واحد والحصول على خدمات مخفضة");
+            offer_check.setText("تحقق من العرض، والحصول على خدمات مخفضة");
             tv_walletheading.setText("إدارة المحفظة");
-            ad_mony.setText("إضافة المال، والتحقق من المعاملات.");
+            ad_mony.setText(" إضافة رصيد، والتحقق من المعاملات.");
         }
         else{
             tv_serviceheading.setText("Request for Service");

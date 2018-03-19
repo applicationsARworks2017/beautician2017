@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="عربى"
+                    android:text="عربي"
                     android:layout_marginLeft="100dp"
                     android:textStyle="bold"
                     android:padding="5dp"

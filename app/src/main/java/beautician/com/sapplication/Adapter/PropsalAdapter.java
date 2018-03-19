@@ -265,8 +265,8 @@ public class PropsalAdapter extends BaseAdapter {
         }
         if(from_page.contentEquals("user_side")) {
             if (lang.contentEquals("Arabic")) {
-                holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + " وقد أجاب : " + _pos.getRemarks());
-                holder.tv_otp.setText("حصة مكتب المدعي العام قبل الخدمة والحصول على العودة الخاص بك $ 5. مكتب المدعي العام : " + _pos.getOtp());
+                holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + "تم الرد" + _pos.getRemarks());
+                holder.tv_otp.setText(" شارك الكود عند الوصول  للمقدم الخدمة لسترجاع مبلغ تأكييد الحجز إلى المحفظة:" + _pos.getOtp());
             } else {
                 holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + " has replied : " + _pos.getRemarks());
                 holder.tv_otp.setText("Share OTP before service and get back your $ 5. OTP : " + _pos.getOtp());

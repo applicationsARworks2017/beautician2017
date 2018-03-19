@@ -145,11 +145,11 @@ public class Profile extends Fragment {
         et_email_value.setEnabled(false);
 
         if(lang.contentEquals("Arabic")){
-            hd_name.setText("اسم");
-            hd_phone.setText("هاتف");
+            hd_name.setText("الاسم");
+            hd_phone.setText("رقم الجوال");
             hd_email.setText("البريد الإلكتروني");
-            button.setText("الخروج");
-            editsave.setText("تصحيح");
+            button.setText("خروج");
+            editsave.setText("تعديل");
         }
         else{
             hd_name.setText("Name");

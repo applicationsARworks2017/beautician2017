@@ -92,17 +92,17 @@ public class Login_Activity extends AppCompatActivity {
             lin_signin=(Button) findViewById(R.id.lin_signin);
             et_phone = (EditText) findViewById(R.id.et_phn);
             et_password = (EditText) findViewById(R.id.et_password);
-            et_phone.setHint("رقم الهاتف");
+            et_phone.setHint("رقم الجوال");
             et_password.setHint("كلمه السر");
             radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
             radio_sp=(RadioButton)findViewById(R.id.radio_sp);
-            radio_consumer.setText("مصمم الأزياء");
+            radio_consumer.setText("العميل");
             radio_sp.setText("مقدم الخدمة");
             Toast.makeText(getBaseContext(), lang, Toast.LENGTH_SHORT).show();
             tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
             tv_forgotpassword.setText("هل نسيت كلمة المرور");
             tv_signup=(TextView)findViewById(R.id.tv_signup);
-            tv_signup.setText("سجل");
+            tv_signup.setText("للتسجيل");
             lin_signin.setText("تسجيل الدخول");
 
         }
@@ -207,7 +207,7 @@ public class Login_Activity extends AppCompatActivity {
 
             if(progressDialog == null) {
                 if (lang.contentEquals("Arabic")) {
-                    progressDialog = ProgressDialog.show(Login_Activity.this, "جار التحميل", "أرجو الإنتظار...");
+                    progressDialog = ProgressDialog.show(Login_Activity.this, "جار التحميل", "يرجى الإنتظار");
 
                 } else {
                     progressDialog = ProgressDialog.show(Login_Activity.this, "Loading", "Please wait...");
@@ -369,7 +369,7 @@ public class Login_Activity extends AppCompatActivity {
             super.onPreExecute();
             if(progressDialog == null) {
                 if (lang .contentEquals("Arabic")) {
-                    progressDialog = ProgressDialog.show(Login_Activity.this, "جار التحميل", "أرجو الإنتظار...");
+                    progressDialog = ProgressDialog.show(Login_Activity.this, "جار التحميل", "يرجى الإنتظار");
 
                 } else {
                     progressDialog = ProgressDialog.show(Login_Activity.this, "Loading", "Please wait...");
@@ -470,7 +470,7 @@ public class Login_Activity extends AppCompatActivity {
                     splist.add(sp_list);
                     if (server_status == 1) {
                         if(lang.contentEquals("Arabic")){
-                            server_message = "ناجح";
+                            server_message = "تم قبول الطلب بنجاح";
                         }
                         else{
                             server_message = "Successful";

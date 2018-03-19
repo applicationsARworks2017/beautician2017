@@ -107,12 +107,12 @@ public class SPProfile extends AppCompatActivity {
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
-            hd_name.setText("اسم");
-            hd_phone.setText("هاتف");
+            hd_name.setText("الاسم");
+            hd_phone.setText("رقم الجوال");
             hd_email.setText("البريد الإلكتروني");
-            hd_address.setText("عنوان");
-            button.setText("الخروج");
-            editsave.setText("تصحيح");
+            hd_address.setText("العنوان");
+            button.setText("خروج");
+            editsave.setText("تعديل");
         }
         else{
             hd_name.setText("Name");
