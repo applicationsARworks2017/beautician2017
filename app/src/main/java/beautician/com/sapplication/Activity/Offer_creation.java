@@ -30,17 +30,31 @@ import beautician.com.sapplication.Utils.Constants;
 public class Offer_creation extends AppCompatActivity {
     EditText title,et_details;
     Button submit;
-    String user_id;
+    String user_id,lang;
     ProgressBar offer_loader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_creation);
         user_id = Offer_creation.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
+        lang = Offer_creation.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         title=(EditText)findViewById(R.id.title);
         et_details=(EditText)findViewById(R.id.et_content);
         submit=(Button)findViewById(R.id.submit);
         offer_loader=(ProgressBar)findViewById(R.id.offer_loader);
+        if(lang.contentEquals("Arabic")){
+            title.setHint("عنوان");
+            et_details.setHint("أضف التفاصيل هنا");
+            submit.setText("خضع");
+        }
+        else{
+            title.setHint("Title");
+            et_details.setHint("Add Detail here");
+            submit.setText("submit");
+
+        }
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -111,7 +111,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
          user_id=_pos.getPersonId();
 
          if(lang.contentEquals("Arabic")){
-             holder.Name_service.setText(_pos.getPersonName() + "وقد ريكوسيتد لك لخدمة ل "+ _pos.getNo_of_user()+"اشخاص");
+             holder.Name_service.setText(_pos.getPersonName() + "لقد طلب الخدمات التاليه "+ _pos.getNo_of_user()+"اشخاص");
 
          }
          else{

@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:hint="Title"
+            android:hint=""
             android:paddingLeft="5dp"
             android:singleLine="true"
             android:layout_marginRight="40dp"
@@ -37,7 +37,7 @@
             android:paddingRight="2dp"
             android:gravity="top|left"
             android:maxLines="10"
-            android:hint="Add Detail here"
+            android:hint=""
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
@@ -48,7 +48,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="@color/colorPrimaryDark"
-            android:text="submit"
+            android:text=""
             android:id="@+id/submit"
             android:textColor="@color/white"/>
     </LinearLayout>

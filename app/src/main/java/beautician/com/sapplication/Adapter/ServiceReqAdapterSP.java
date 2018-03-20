@@ -121,7 +121,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
 
         if(_pos.getExpected_date().contentEquals("null")){
             if(lang.contentEquals("Arabic")){
-                holder.tv_expected_date.setText(("لم يتم التحديد"));
+                holder.tv_expected_date.setText(("لم يتم تحديد عدد الأشخاص"));
 
             }
             else{
