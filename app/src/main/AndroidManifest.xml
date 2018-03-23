@@ -18,7 +18,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         <provider
             android:name=".Utils.GenericFileProvider"
             android:authorities="beautician.com.sapplication"
@@ -136,11 +137,11 @@
         <activity
             android:name=".Activity.PropsalView"
             android:label="Propsal Detail"
-            android:theme="@style/NoAction"
-            android:parentActivityName=".Activity.SPHome" />
+            android:parentActivityName=".Activity.SPHome"
+            android:theme="@style/NoAction" />
         <activity
             android:name=".Activity.IndividualRequest"
-           android:theme="@style/NoActionUser" />
+            android:theme="@style/NoActionUser" />
         <activity
             android:name=".Activity.MapActivity"
             android:label="Choose Address" />
@@ -202,9 +203,12 @@
         <activity
             android:name=".Activity.UserDetails"
             android:theme="@style/NoActionUser" />
-        <activity android:name=".Activity.ForgotPassword"
+        <activity
+            android:name=".Activity.ForgotPassword"
             android:label="Forgot Password"
-            android:parentActivityName=".Activity.Login_Activity"></activity>
+            android:parentActivityName=".Activity.Login_Activity" />
+        <activity android:name=".Activity.PaymentConfirmation"
+            android:label="Payment Confirmation"></activity>
     </application>
 
 </manifest>

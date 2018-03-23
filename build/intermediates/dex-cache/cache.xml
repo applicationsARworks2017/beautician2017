@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/amaresh/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="7f8e9525bfbd2a0c1e1cf5a940ecf2bcc7523aad">
+        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c8496db39f83bc6b3f934e69c53e42d3738bdd2e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/amaresh/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/libs/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="dcb217664fa715d6529a1028977b28de939f29bc">
+        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_f435cf861994ce2be84acbd82cf03ec6a9b7e202/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/amaresh/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/libs/okhttp-3.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c9e15c5a26115572fd6c921dad11038408bfbfe1">
+        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.9.0_2a1624a9a3bffcdb12b307d894d10d602a3b44bd/classes.dex" />
+    </item>
+
+</items>

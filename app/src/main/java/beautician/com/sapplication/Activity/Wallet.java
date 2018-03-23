@@ -2,6 +2,7 @@ package beautician.com.sapplication.Activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,6 +31,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Adapter.TransactionAdapter;
+import beautician.com.sapplication.Fragment.Profile;
 import beautician.com.sapplication.Pojo.Transactions;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -36,7 +39,7 @@ import beautician.com.sapplication.Utils.Constants;
 
 public class Wallet extends AppCompatActivity {
     TextView tv_addMoney,tv_balance,tv_refresh;
-    String page,user_id,lang;
+    String page,user_id,lang,user_name,user_phone,user_mail;
     Double balance;
     SwipeRefreshLayout thistory_rel;
     TextView no_transactions;
@@ -57,8 +60,6 @@ public class Wallet extends AppCompatActivity {
             super.setTheme(R.style.AppUserTheme);
         }
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
-
-
         setContentView(R.layout.activity_wallet);
         tv_addMoney=(TextView)findViewById(R.id.tv_addMoney);
         tv_balance=(TextView)findViewById(R.id.tv_balance);
@@ -95,6 +96,19 @@ public class Wallet extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
+                add_money.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Intent intent=new Intent(Wallet.this,PaymentConfirmation.class);
+                        intent.putExtra("NAME",user_name);
+                        intent.putExtra("PHONE",user_phone);
+                        intent.putExtra("MAIL",user_mail);
+                        intent.putExtra("AMOUNT",et_add_money.getText().toString().trim());
+                        intent.putExtra("PAGE",page);
+                        startActivity(intent);
+                    }
+                });
 
 
             }
@@ -120,6 +134,12 @@ public class Wallet extends AppCompatActivity {
         });
         getWalletBalance();
         getTansactions();
+        getUserDetails();
+    }
+
+    private void getUserDetails() {
+        ViewUser viewUser=new ViewUser();
+        viewUser.execute(user_id);
     }
 
     private void getTansactions() {
@@ -447,6 +467,141 @@ public class Wallet extends AppCompatActivity {
             else{
                 thistory_rel.setVisibility(View.GONE);
                 no_transactions.setVisibility(View.VISIBLE);            }
+        }
+    }
+
+
+    /*
+    *
+    * GET THE DETAILS
+    * */
+    private class ViewUser extends AsyncTask<String, Void, Void> {
+
+        private static final String TAG = "Propsal details";
+        String server_message;
+        ProgressDialog progressDialog=null;
+
+        int server_status;
+
+        @Override
+        protected void onPreExecute() {
+            if(progressDialog == null) {
+                progressDialog = ProgressDialog.show(Wallet.this, "Loading", "Please wait...");
+            }            super.onPreExecute();
+
+            // onPreExecuteTask();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+
+            try {
+                String _SID = params[0];
+                InputStream in = null;
+                int resCode = -1;
+                String link=null;
+                if(page.contentEquals("user_side")) {
+                     link = Constants.ONLINEURL + Constants.USER_DETAILS;
+                }
+                else{
+                     link =Constants.ONLINEURL+ Constants.SHOP_DETAILS ;
+
+                }
+
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setAllowUserInteraction(false);
+                conn.setInstanceFollowRedirects(true);
+                conn.setRequestMethod("POST");
+
+                Uri.Builder builder =null;
+                if(page.contentEquals("user_side")) {
+                    builder = new Uri.Builder()
+                            .appendQueryParameter("user_id", _SID);
+                }
+                else{
+                    builder = new Uri.Builder()
+                            .appendQueryParameter("shop_id", _SID);
+                }
+
+                //.appendQueryParameter("deviceid", deviceid);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                conn.connect();
+                resCode = conn.getResponseCode();
+                if (resCode == HttpURLConnection.HTTP_OK) {
+                    in = conn.getInputStream();
+                }
+                if (in == null) {
+                    return null;
+                }
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String response = "", data = "";
+
+                while ((data = reader.readLine()) != null) {
+                    response += data + "\n";
+                }
+
+                Log.i(TAG, "Response : " + response);
+
+               /*
+               * {
+    "user": {
+        "id": 10,
+        "name": "avinash pathak",
+        "email": "avinasha@yahoo.com",
+        "mobile": "7205674061",
+        "photo": null,
+        "created": "1988-01-23T00:00:00+05:30",
+        "modified": "1988-01-23T00:00:00+05:30",
+        "usertype": "test"
+    }
+}
+               * */
+                if (response != null && response.length() > 0) {
+                    if(page.contentEquals("user_side")) {
+                        JSONObject res = new JSONObject(response.trim());
+                        JSONObject j_obj = res.getJSONObject("user");
+                        user_name = j_obj.getString("name");
+                        user_mail = j_obj.getString("email");
+                        user_phone = j_obj.getString("mobile");
+                    }
+                    else{
+                        JSONObject res = new JSONObject(response.trim());
+                        JSONObject j_obj=res.getJSONObject("shop");
+                        user_name=j_obj.getString("shopname");
+                        user_mail=j_obj.getString("email");
+                        user_phone=j_obj.getString("mobile");
+                    }
+
+                }
+                return null;
+            } catch (Exception exception) {
+                server_message = "Network Error";
+                Log.e(TAG, "SynchMobnum : doInBackground", exception);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void user) {
+            super.onPostExecute(user);
+            progressDialog.dismiss();
+           // Toast.makeText(Wallet.this,user_name+user_phone,Toast.LENGTH_SHORT).show();
         }
     }
 }

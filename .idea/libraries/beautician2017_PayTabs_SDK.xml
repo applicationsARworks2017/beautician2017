@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="beautician2017:PayTabs_SDK">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/libs/okhttp-3.9.0.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/libs/okio-1.13.0.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
