@@ -1,6 +1,7 @@
 package beautician.com.sapplication.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -17,7 +19,7 @@ import paytabs.project.PayTabActivity;
 
 public class PaymentConfirmation extends AppCompatActivity {
     String page,lang,u_name,u_phone,u_mail,amout;
-    EditText et_name,et_phone,et_email,et_amount,et_address,et_city,et_state,et_country,et_postal;
+    public static EditText et_name,et_phone,et_email,et_amount,et_address,et_city,et_state,et_country,et_postal;
     Button bt_ok,bt_cancel;
     RelativeLayout con_rel;
     String MERCHANT_EMAIL ="mansour.nz@outlook.com";
@@ -70,6 +72,13 @@ public class PaymentConfirmation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkValidation();
+            }
+        });
+        et_country.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(PaymentConfirmation.this,CountryList.class);
+                startActivity(intent);
             }
         });
     }
@@ -152,5 +161,12 @@ public class PaymentConfirmation extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
+        SharedPreferences shared_prefs = getSharedPreferences("myapp_shared", MODE_PRIVATE);
+        String pt_response_code = shared_prefs.getString("pt_response_code", "");
+        String pt_transaction_id = shared_prefs.getString("pt_transaction_id", "");
+        Toast.makeText(PaymentConfirmation.this, "PayTabs Response Code : " + pt_response_code,
+                Toast.LENGTH_LONG).show();
+        Toast.makeText(PaymentConfirmation.this, "Paytabs transaction ID after payment : " +
+                pt_transaction_id, Toast.LENGTH_LONG).show();
     }
 }

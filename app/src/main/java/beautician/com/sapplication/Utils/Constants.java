@@ -28,8 +28,10 @@ import beautician.com.sapplication.R;
  */
 
 public class Constants {
-    public static String ONLINEURL="http://applicationworld.net/beautician/";
+    //public static String ONLINEURL="http://applicationworld.net/beautician/";
+    public static String ONLINEURL="https://beautician.site/admin/";
     public static String CATEGORYLIST="categories/index.json";
+    public static String COUNTRYLIST="CountryCodes/index.json";
     public static String CATEGORYLIST_SHOPWISE="ShopDetails/shopListCat";
     public static String SUBCATEGORYLIST_SHOPWISE="ShopDetails/shopListSubCat";
     public static String SUB_CATEGORYLIST="sub-categories/index.json";

@@ -207,8 +207,11 @@
             android:name=".Activity.ForgotPassword"
             android:label="Forgot Password"
             android:parentActivityName=".Activity.Login_Activity" />
-        <activity android:name=".Activity.PaymentConfirmation"
-            android:label="Payment Confirmation"></activity>
+        <activity
+            android:name=".Activity.PaymentConfirmation"
+            android:label="Payment Confirmation" />
+        <activity android:name=".Activity.CountryList"
+            android:label="Country List"></activity>
     </application>
 
 </manifest>

@@ -146,6 +146,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:singleLine="true"
+            android:editable="false"
+            android:focusable="false"
             android:id="@+id/et_user_country"
             android:layout_marginRight="40dp"
             android:layout_marginTop="5dp"
@@ -155,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="Postal Code"
+            android:text="Postal / Country Phone Code"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
