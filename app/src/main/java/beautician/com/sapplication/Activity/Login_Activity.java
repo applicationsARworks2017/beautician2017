@@ -140,7 +140,7 @@ public class Login_Activity extends AppCompatActivity {
                 // find the radiobutton by returned id
                 radioButton = (RadioButton) findViewById(selectedId);
 
-                if(radioButton.getText().toString().trim().contains("Costumer")|| radioButton.getText().toString().trim().contentEquals("مصمم الأزياء")){
+                if(radioButton.getText().toString().trim().contains("Costumer")|| radioButton.getText().toString().trim().contentEquals("العميل")){
                     Checklogin("user");
                 }
                 else{

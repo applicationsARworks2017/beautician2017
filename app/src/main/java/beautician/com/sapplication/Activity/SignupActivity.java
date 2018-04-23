@@ -6,10 +6,8 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -19,13 +17,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +40,7 @@ public class SignupActivity extends AppCompatActivity implements android.locatio
     Boolean isGPSEnabled, isNetworkEnabled, canGetLocation;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
     LocationManager locationManager;
+    String lang;
 
 
     // The minimum time between updates in milliseconds
@@ -55,6 +50,8 @@ public class SignupActivity extends AppCompatActivity implements android.locatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -120,10 +117,18 @@ public class SignupActivity extends AppCompatActivity implements android.locatio
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new CostumerSignup(), "COSTUMER");
-        adapter.addFragment(new SPSignup(latitude,longitude), "SERVICE PROVIDER");
-        viewPager.setAdapter(adapter);
+        if(lang.contentEquals("Arabic")){
+            ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+            adapter.addFragment(new CostumerSignup(), "مصمم الأزياء");
+            adapter.addFragment(new SPSignup(latitude,longitude), "مقدم الخدمة");
+            viewPager.setAdapter(adapter);
+        }
+        else {
+            ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+            adapter.addFragment(new CostumerSignup(), "COSTUMER");
+            adapter.addFragment(new SPSignup(latitude, longitude), "SERVICE PROVIDER");
+            viewPager.setAdapter(adapter);
+        }
     }
 
     @Override

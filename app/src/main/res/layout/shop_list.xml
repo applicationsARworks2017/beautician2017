@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Check service details here"
+                android:text=""
                 android:textColor="@color/colorPrimary"
                 android:id="@+id/check_details"
                 android:textStyle="italic"
@@ -103,7 +103,7 @@
                 android:background="@color/colorPrimaryLight"
                 android:textColor="@color/white"
                 android:layout_marginBottom="2dp"
-                android:text="Request"/>
+                android:text=""/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

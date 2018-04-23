@@ -7,9 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -36,13 +36,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
 
-import beautician.com.sapplication.Pojo.IndServiceRequest;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
 public class IndividualRequest extends AppCompatActivity {
-    TextView shopName;
+    TextView shopName,adult;
     EditText et_details;
     Spinner sp_num;
     Button post;
@@ -54,12 +53,15 @@ public class IndividualRequest extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
     Toolbar toolreq;
     LinearLayout reqback;
+    String lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
       //  setTheme(R.style.AppUserTheme);
         setContentView(R.layout.activity_individual_request);
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         user_id = IndividualRequest.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -79,10 +81,25 @@ public class IndividualRequest extends AppCompatActivity {
         txtDate=(EditText)findViewById(R.id.in_date);
         txtTime=(EditText)findViewById(R.id.in_time);
         shopName=(TextView)findViewById(R.id.postHeading);
+        adult=(TextView)findViewById(R.id.adult);
         shopName.setText("You are Interested for :"+ shop_name);
         et_details=(EditText)findViewById(R.id.et_contentheading);
         sp_num=(Spinner)findViewById(R.id.adult_spin);
         post=(Button)findViewById(R.id.submit_post);
+        if(lang.contentEquals("Arabic")){
+            shopName.setText("أنت مهتم بـ:");
+            adult.setText("عدد الاشخاص");
+            et_details.setHint("أضف التفاصيل هنا");
+            post.setText("بريد");
+
+
+        }
+        else{
+            shopName.setText("You are Interested for :");
+            adult.setText("No of People");
+            et_details.setHint("Add Detail here");
+            post.setText("Post");
+        }
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,12 +109,39 @@ public class IndividualRequest extends AppCompatActivity {
                     Toast.makeText(IndividualRequest.this,"Please give Expected Date",Toast.LENGTH_LONG).show();
                 }
                 else {
+                    if(lang.contentEquals("Arabic")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(IndividualRequest.this);
+                        builder.setTitle("");
+                        builder.setMessage("سيتم خصم محفظتك بـ 1 دولار لهذا الطلب");
+                        builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {
+                                    getWdetails getWdetails=new getWdetails();
+                                    getWdetails.execute(user_id);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(IndividualRequest.this);
-                    builder.setTitle("");
-                    builder.setMessage("Your wallet will be deducted with $1 for this request");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+                                    /*Postservice postservice = new Postservice();
+                                    postservice.execute(user_id, numof, postDetails, shop_id,exp_date);*/
+                                } else {
+                                    Constants.noInternetDialouge(IndividualRequest.this, "لا انترنت");
+
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(IndividualRequest.this);
+                        builder.setTitle("");
+                        builder.setMessage("Your wallet will be deducted with $1 for this request");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
                                 if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {
                                     getWdetails getWdetails=new getWdetails();
                                     getWdetails.execute(user_id);
@@ -108,16 +152,18 @@ public class IndividualRequest extends AppCompatActivity {
                                     Constants.noInternetDialouge(IndividualRequest.this, "No Internet");
 
                                 }
-                        }
-                    });
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
 
                 }
 
@@ -193,7 +239,14 @@ public class IndividualRequest extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(IndividualRequest.this, "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(IndividualRequest.this, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(IndividualRequest.this, "Loading", "Please wait...");
+
+                }
             }
             // onPreExecuteTask();
         }
@@ -347,7 +400,13 @@ public class IndividualRequest extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(IndividualRequest.this, "Posting", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(IndividualRequest.this, "نشر", "أرجو الإنتظار...");
+
+                }else{
+                    progressDialog = ProgressDialog.show(IndividualRequest.this, "Posting", "Please wait...");
+
+                }
             }
             super.onPreExecute();
 
@@ -429,10 +488,23 @@ public class IndividualRequest extends AppCompatActivity {
                     JSONObject j_obj=res.getJSONObject("res");
                     server_status = j_obj.optInt("status");
                     if (server_status == 1) {
-                        server_message = "Posted";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "نشر";
+                        }
+                        else{
+                            server_message = "Posted";
+                        }
+
                     }
                     else{
-                        server_message = "Posting failed";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "فشل النشر";
+
+                        }
+                        else{
+                            server_message = "Posting failed";
+
+                        }
 
                     }
 
@@ -545,9 +617,23 @@ public class IndividualRequest extends AppCompatActivity {
                     JSONObject j_obj = res.getJSONObject("res");
                     wallet_status = j_obj.optInt("status");
                     if (wallet_status == 1) {
-                        server_message = "Wallet Updated";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "تم تحديث المحفظة";
+
+                        }
+                        else{
+                            server_message = "Wallet Updated";
+
+                        }
                     } else {
-                        server_message = "Wallet can't be Updated";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "لا يمكن تحديث المحفظة";
+
+                        }
+                        else{
+                            server_message = "Wallet can't be Updated";
+
+                        }
 
                     }
 

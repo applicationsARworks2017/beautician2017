@@ -21,7 +21,6 @@ import beautician.com.sapplication.Activity.IndividualRequest;
 import beautician.com.sapplication.Activity.MyserviceList;
 import beautician.com.sapplication.Activity.SearchShopList;
 import beautician.com.sapplication.Activity.ShopDetails;
-import beautician.com.sapplication.Pojo.Proposals;
 import beautician.com.sapplication.Pojo.Shops;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.Constants;
@@ -34,9 +33,11 @@ public class ShopListAdapter extends BaseAdapter {
     Context _context;
     ArrayList<Shops> new_list;
     Holder holder;
-    public ShopListAdapter(SearchShopList searchShopList, ArrayList<Shops> sList) {
+    String lang;
+    public ShopListAdapter(SearchShopList searchShopList, ArrayList<Shops> sList,String lang) {
         this._context=searchShopList;
         this.new_list=sList;
+        this.lang=lang;
     }
 
     @Override
@@ -99,6 +100,16 @@ public class ShopListAdapter extends BaseAdapter {
         holder.ratingBar.setTag(position);
         holder.reqButton.setTag(position);
         holder.img_lin.setTag(position);
+
+        if(lang.contentEquals("Arabic")){
+            holder.check_details.setText("تحقق من تفاصيل الخدمة هنا");
+            holder.reqButton.setText("طلب");
+        }
+        else{
+            holder.check_details.setText("Check service details here");
+            holder.reqButton.setText("Request");
+
+        }
 
         holder.Shopname.setText(_pos.getShopname());
         holder.shop_add.setText(_pos.getAddress());

@@ -165,10 +165,24 @@ public class Offer_creation extends AppCompatActivity {
                     JSONObject j_obj=res.getJSONObject("res");
                     server_status = j_obj.optInt("status");
                     if (server_status == 1 ) {
-                        server_message="Offer Created";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="إنشاء العرض";
+
+                        }
+                        else{
+                            server_message="Offer Created";
+
+                        }
                     }
                     else {
-                        server_message="Failed ";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="فشل ";
+
+                        }
+                        else{
+                            server_message="Failed ";
+
+                        }
                     }
 
                 }

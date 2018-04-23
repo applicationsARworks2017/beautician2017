@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -38,7 +37,6 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import beautician.com.sapplication.Activity.Login_Activity;
 import beautician.com.sapplication.R;
@@ -71,6 +69,7 @@ public class CostumerSignup extends Fragment {
     String imPath;
     Boolean picAvailable = false;
     int photo_status=0;
+    String lang;
 
     private OnFragmentInteractionListener mListener;
 
@@ -102,8 +101,10 @@ public class CostumerSignup extends Fragment {
         // Inflate the layout for this fragment
         final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.AppUserTheme);
         inflater = inflater.cloneInContext(contextThemeWrapper);
-
         View v=inflater.inflate(R.layout.fragment_costumer_signup, container, false);
+        lang = getContext().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
+
         iv_avtar=(CircularImageView) v.findViewById(R.id.iv_user_pic);
         et_name=(EditText)v.findViewById(R.id.et_user_name);
         et_phone=(EditText)v.findViewById(R.id.et_user_phone);
@@ -112,6 +113,26 @@ public class CostumerSignup extends Fragment {
         et_cpassword=(EditText)v.findViewById(R.id.et_user_c_pass);
         rel_user_signup=(RelativeLayout)v.findViewById(R.id.rel_user_signup);
         bt_submit=(Button)v.findViewById(R.id.bt_user_submit);
+
+        if(lang.contentEquals("Arabic")){
+            et_name.setHint("اسم");
+            et_phone.setHint("هاتف");
+            et_mail.setHint("البريد الإلكتروني");
+            et_password.setHint("كلمه السر");
+            et_cpassword.setHint("تؤكد");
+            bt_submit.setHint("خضع");
+        }
+        else{
+            et_name.setHint("Name");
+            et_phone.setHint("Phone");
+            et_mail.setHint("Email");
+            et_password.setHint("Password");
+            et_cpassword.setHint("Confirm");
+            bt_submit.setHint("Submit");
+
+        }
+
+
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -305,7 +326,14 @@ public class CostumerSignup extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(getActivity(), "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(getActivity(), "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(getActivity(), "Loading", "Please wait...");
+
+                }
             }
 
         }

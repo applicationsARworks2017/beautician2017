@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You are Interested for :"
+            android:text=""
             android:layout_margin="10dp"
             android:id="@+id/postHeading"
             android:textColor="@color/colorPrimaryDark"
@@ -55,7 +55,7 @@
                 android:id="@+id/adult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No of People"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"/>
             <Spinner
@@ -140,7 +140,7 @@
             android:paddingRight="2dp"
             android:gravity="top|left"
             android:maxLines="10"
-            android:hint="Add Detail here"
+            android:hint=""
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             />
@@ -151,7 +151,7 @@
             android:background="@color/colorPrimaryLight"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:text="Post"
+            android:text=""
             android:id="@+id/submit_post"
             android:textColor="@color/white"/>
     </LinearLayout>

@@ -36,6 +36,7 @@ public class UserDetails extends AppCompatActivity {
     String Uname,id,photo,email,mobile;
     RelativeLayout rel_back;
     Toolbar user_toolbar;
+    String lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class UserDetails extends AppCompatActivity {
                 finish();
             }
         });
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         getUserDetails();
 
@@ -87,7 +89,14 @@ public class UserDetails extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(UserDetails.this, "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(UserDetails.this, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(UserDetails.this, "Loading", "Please wait...");
+
+                }
             }            super.onPreExecute();
 
             // onPreExecuteTask();

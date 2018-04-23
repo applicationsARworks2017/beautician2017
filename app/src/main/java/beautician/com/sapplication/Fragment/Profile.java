@@ -477,7 +477,14 @@ public class Profile extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             if (progressDialog == null) {
-                progressDialog = ProgressDialog.show(getActivity(), "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(getActivity(), "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(getActivity(), "Loading", "Please wait...");
+
+                }
             }
 
         }

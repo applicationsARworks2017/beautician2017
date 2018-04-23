@@ -161,33 +161,62 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 holder1=(Holder)v.getTag();
                 id=_pos.getId();
                 if(status.contentEquals("0")) {
-                    updated_status=1;
-                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setMessage("Please pay $5 for getting the service.");
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Do nothing
-                            dialog.dismiss();
-                            //finish()   ;
-                        }
-                    });
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (CheckInternet.getNetworkConnectivityStatus(_context)) {
-                                wpage = "sp_home";
-                                getWdetails getUWdetails = new getWdetails();
-                                getUWdetails.execute(shop_id);
-                            } else {
-                                Constants.noInternetDialouge(_context, "No Internet");
+                    updated_status = 1;
+                    if (lang.contentEquals("Arabic")) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setMessage("يرجى دفع 5 دولارات مقابل الحصول على الخدمة.");
+                        builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do nothing
+                                dialog.dismiss();
+                                //finish()   ;
                             }
+                        });
+                        builder.setPositiveButton("نعم فعلا", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (CheckInternet.getNetworkConnectivityStatus(_context)) {
+                                    wpage = "sp_home";
+                                    getWdetails getUWdetails = new getWdetails();
+                                    getUWdetails.execute(shop_id);
+                                } else {
+                                    Constants.noInternetDialouge(_context, "No Internet");
+                                }
 
-                        }
-                    });
+                            }
+                        });
 
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setMessage("Please pay $5 for getting the service.");
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do nothing
+                                dialog.dismiss();
+                                //finish()   ;
+                            }
+                        });
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (CheckInternet.getNetworkConnectivityStatus(_context)) {
+                                    wpage = "sp_home";
+                                    getWdetails getUWdetails = new getWdetails();
+                                    getUWdetails.execute(shop_id);
+                                } else {
+                                    Constants.noInternetDialouge(_context, "No Internet");
+                                }
+
+                            }
+                        });
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
                 }
                 else if(status.contentEquals("1")){
                     updated_status=2;
@@ -213,29 +242,53 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         }
                     });
                 }
-                else if(status.contentEquals("2")){
-                    updated_status=3;
-                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setMessage("Are you sure, Service has finished ?");
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Do nothing
-                            dialog.dismiss();
-                            //finish()   ;
-                        }
-                    });
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ConfirmToReq creq = new ConfirmToReq();
-                            creq.execute(id, "3","1234");
+                else if(status.contentEquals("2")) {
+                    updated_status = 3;
+                    if (lang.contentEquals("Arabic")) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setMessage("هل أنت متأكد ، لقد انتهت الخدمة؟");
+                        builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do nothing
+                                dialog.dismiss();
+                                //finish()   ;
+                            }
+                        });
+                        builder.setPositiveButton("نعم فعلا", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ConfirmToReq creq = new ConfirmToReq();
+                                creq.execute(id, "3", "1234");
 
-                        }
-                    });
+                            }
+                        });
 
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setMessage("Are you sure, Service has finished ?");
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do nothing
+                                dialog.dismiss();
+                                //finish()   ;
+                            }
+                        });
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ConfirmToReq creq = new ConfirmToReq();
+                                creq.execute(id, "3", "1234");
+
+                            }
+                        });
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
                 }
             }
         });
@@ -412,7 +465,13 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         getWdetails getUWdetails = new getWdetails();
                         getUWdetails.execute(user_id);
                     } else {
-                        Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
+                        if(lang.contentEquals("Arabic")){
+                            Constants.noInternetDialouge(_context, "ليس لديك كمية كافية في المحفظة");
+                        }
+                        else{
+                            Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
+
+                        }
                     }
                 } else if (wpage.contentEquals("user_side")) {
                     if (user_balance > 5) {
@@ -421,8 +480,14 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         transactwallet.execute(shop_id, "0", String.valueOf(shop_balance - 5), "5");
                         //Toast.makeText(_context,"go aahead",Toast.LENGTH_LONG).show();
                     } else {
+                        if(lang.contentEquals("Arabic")){
+                            Constants.noInternetDialouge(_context, "المستخدم غير جاهز لأخذ الخدمة");
+                        }
+                        else{
+                            Constants.noInternetDialouge(_context, "User is not ready to take the service");
+
+                        }
                         // this is for insufficient balance in the user side
-                        Constants.noInternetDialouge(_context, "User is not ready to take the service");
 
                     }
 
@@ -679,10 +744,24 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                     JSONObject j_obj=res.getJSONObject("res");
                     wallet_status = j_obj.optInt("status");
                     if(wallet_status==1) {
-                        server_message="Wallet Updated";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="تم تحديث المحفظة";
+
+                        }
+                        else{
+                            server_message="Wallet Updated";
+
+                        }
                     }
                     else{
-                        server_message="Wallet can't be Updated";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="لا يمكن تحديث المحفظة";
+
+                        }
+                        else{
+                            server_message="Wallet can't be Updated";
+
+                        }
 
                     }
 
@@ -708,7 +787,14 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 }
                 //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
                 else if(wpage.contentEquals("user_side")){
-                    Toast.makeText(_context,"User's wallet updated",Toast.LENGTH_LONG).show();
+                    if(lang.contentEquals("Arabic")){
+                        Toast.makeText(_context,"محفظة المستخدم المحدثة",Toast.LENGTH_LONG).show();
+
+                    }
+                    else{
+                        Toast.makeText(_context,"User's wallet updated",Toast.LENGTH_LONG).show();
+
+                    }
                     String otp = String.valueOf(Constants.generatePIN());
                     ConfirmToReq creq = new ConfirmToReq();
                     creq.execute(id, "1", otp);

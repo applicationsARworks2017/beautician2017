@@ -53,7 +53,7 @@
                         android:layout_height="match_parent"
                         android:maxLength="30"
                         android:singleLine="true"
-                        android:hint="Name"
+                        android:hint=""
                         android:id="@+id/et_user_name"
                         android:paddingLeft="10dp"
                         android:background="@drawable/customedittextuser"/>
@@ -80,7 +80,7 @@
                         android:layout_height="match_parent"
                         android:inputType="phone"
                         android:singleLine="true"
-                        android:hint="Phone"
+                        android:hint=""
                         android:id="@+id/et_user_phone"
                         android:paddingLeft="10dp"
                         android:background="@drawable/customedittextuser"/>
@@ -108,7 +108,7 @@
                         android:maxLength="40"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
-                        android:hint="Email"
+                        android:hint=""
                         android:id="@+id/et_user_mail"
                         android:paddingLeft="10dp"
                         android:background="@drawable/customedittextuser"/>
@@ -136,7 +136,7 @@
                         android:id="@+id/et_user_pass"
                         android:inputType="textPassword"
                         android:singleLine="true"
-                        android:hint="Password"
+                        android:hint=""
                         android:paddingLeft="10dp"
                         android:background="@drawable/customedittextuser"/>
                 </LinearLayout>
@@ -173,7 +173,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="30dp"
                     android:background="@color/colorPrimaryLight"
-                    android:text="Submit"
+                    android:text=""
                     android:id="@+id/bt_user_submit"
                     android:layout_marginBottom="20dp"
                     android:textColor="@color/white"/>

@@ -164,9 +164,18 @@ public class PaymentConfirmation extends AppCompatActivity {
         SharedPreferences shared_prefs = getSharedPreferences("myapp_shared", MODE_PRIVATE);
         String pt_response_code = shared_prefs.getString("pt_response_code", "");
         String pt_transaction_id = shared_prefs.getString("pt_transaction_id", "");
-        Toast.makeText(PaymentConfirmation.this, "PayTabs Response Code : " + pt_response_code,
-                Toast.LENGTH_LONG).show();
-        Toast.makeText(PaymentConfirmation.this, "Paytabs transaction ID after payment : " +
-                pt_transaction_id, Toast.LENGTH_LONG).show();
+        if(lang.contentEquals("Arabic")){
+            Toast.makeText(PaymentConfirmation.this, "كود الاستجابة PayTabs : " + pt_response_code,
+                    Toast.LENGTH_LONG).show();
+            Toast.makeText(PaymentConfirmation.this, ": Paytabs معرف المعاملة بعد الدفع  " +
+                    pt_transaction_id, Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(PaymentConfirmation.this, "PayTabs Response Code : " + pt_response_code,
+                    Toast.LENGTH_LONG).show();
+            Toast.makeText(PaymentConfirmation.this, "Paytabs transaction ID after payment : " +
+                    pt_transaction_id, Toast.LENGTH_LONG).show();
+        }
+
     }
 }

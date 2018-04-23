@@ -497,7 +497,14 @@ public class SPProfile extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(SPProfile.this, "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(SPProfile.this, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(SPProfile.this, "Loading", "Please wait...");
+
+                }
             }            super.onPreExecute();
 
             // onPreExecuteTask();
@@ -639,7 +646,14 @@ public class SPProfile extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             if (progressDialog == null) {
-                progressDialog = ProgressDialog.show(SPProfile.this, "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(SPProfile.this, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(SPProfile.this, "Loading", "Please wait...");
+
+                }
             }
 
         }

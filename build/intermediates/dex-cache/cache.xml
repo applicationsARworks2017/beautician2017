@@ -3,30 +3,309 @@
 
     <item
         is-multidex="true"
-        jar="/Users/amaresh/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/classes.jar"
+        jar="/Users/mobileapplication/.android/build-cache/2d7399bf6785aae7cb80d26c33ccd75387b00691/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a8340f8c17337c864648c13abe1416d34c80ec14">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_48ccf72d9a835346fa2bcc65807e7774b83d6735/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/7c07e6f3a4dce56bc3b66afe0d4962c60d34953e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_86e3ac5c7685347e6429158921999a398b1e05e0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/e286a35d2d9bf4d4b341d984007b1553fe57fd45/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4435f72978251bd5936c7840e99a819731f9d2ae/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/b463e48145f0df59e1ff55b809c6644d60cac141/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2d31006e9000549764fa7fabdfd57ccab87ae219/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/7fdb8cd998ef5a3d2d9cdc7c8e815f8c6351ea2c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_701eaee58e6d28afeecef9305902a878b5ae52a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/22f2fb8616d2973a570de6e7c603fd4b877661d6/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d3659700301bc5804b324d1032f8d0f090b04554/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/6759dfd0e7bde58202702264ca0deb31de51af80/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_33ca84505f826d9762f7e9b93b2ed64ed3a75a8e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/b95c4590080083b79eb67007a435b118b5983af6/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c698d1b811c0ae6f60251570474ab23fffecf5f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/85cc66589720471b7c092d14b614f2aa8b90f2de/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2c0e15c38bc366e6ee355b2c20b14ceb1904afbc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/b17c457d82a89782369cb8fd259eccd1dd6d8511/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d237556caead5b93d97e18a071059a2c0045978e">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3c964aaf1304932b205c1fedd1ba2f2062590390/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/e86cf6a334141febfd479145e15b238d88d2c668/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b72324e81ed4b73efe00cedfa2836183c0660a4e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/17c17d32d1e9e051f0322b0e675c9ca23b12562b/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="7f8e9525bfbd2a0c1e1cf5a940ecf2bcc7523aad">
-        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c8496db39f83bc6b3f934e69c53e42d3738bdd2e/classes.dex" />
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_27e05b9cdde689dd5c8797ce83d9dde7e5f49af5/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/amaresh/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/libs/okio-1.13.0.jar"
+        jar="/Users/mobileapplication/.android/build-cache/9315b2b245b3a3c200d24c701689f20273dd12ad/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
-        sha1="dcb217664fa715d6529a1028977b28de939f29bc">
-        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_f435cf861994ce2be84acbd82cf03ec6a9b7e202/classes.dex" />
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_540979fb9d6c988ea9d3414b09774f934ec5fe98/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/amaresh/.android/build-cache/af2f2ebfeb49b98e195082663be6188808360fce/output/jars/libs/okhttp-3.9.0.jar"
+        jar="/Users/mobileapplication/.android/build-cache/200904039b20b167617d494f4c2c8046547a452b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_48fad1b26da924d2ebe1bf0c6880508767131af8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/17c17d32d1e9e051f0322b0e675c9ca23b12562b/output/jars/libs/okhttp-3.9.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="c9e15c5a26115572fd6c921dad11038408bfbfe1">
-        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.9.0_2a1624a9a3bffcdb12b307d894d10d602a3b44bd/classes.dex" />
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.9.0_96026d843d639d34245b71e74e4975363e52d85b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/5accc0ede45173c0e5eac39936ad7dd5c6a5d304/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a91bdc0f8065d024f214ed8b33f8b3a79e4031c2">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_07b8571ce046635770ec75f2defcc54aef41f037/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/7e8bc7cb70b5dcc443426e7f28c1ce89d929d21c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5d07ebd7d7537f92fa024d4a1eae33da46d952ee/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/1820ad82c7c9dab0974ee84930037462f6e1cec3/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c392e476391a659be5232915d211e290c70f2ba6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/5a913f66ae641b7c9c271b97f64442cb83b0cb94/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b162daed00cdbb181608f8eb68c0457199e40773/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_63e8454e754c7e156f00a34ce96ce5cbe57fad16/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/52f4046da62c490be9b556d989cb14f7c2c25e67/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7827e37607b3d141abf18a5137481eb211d9c50f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/f640b83bfd7d636add2f21255bab9b653c03e947/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c13986847c34afabbd476d4464a938b79459c90a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/81c9eda0d4bf0312beb1258e1b040dde723b3caf/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4849d5c0d51fae876a882075b2bf6e3c9f062244/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/bf9f8dd74ec3d3005c6b3b295f79c80ae4767f27/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2511f8777d9e2fd19e7aae1efbccf0bcf030aad5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/2754037ae48460b1ccdeb29ba5114a05ba83a1ce/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4b17463c814bdc562fb0392fa3494063623a0904">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5d30dcfddafad1da90dde15c965aa5ff5191d4dc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/cb58b704261216b3c018bb36a917fc4abe8be9ad/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_08c05f741c473e6379792942781104107b743d75/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/976651fbed2ba97a95ca131ded280673b5ef7579/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3556582e0bf48f35f72ce57e3eb4c92d6c1d32cf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/fb7e326b9655e0ba955abba28f99c6f68facb346/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_925f15b902290e6ceac8e332266f164d3e180352/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/17c17d32d1e9e051f0322b0e675c9ca23b12562b/output/jars/libs/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="dcb217664fa715d6529a1028977b28de939f29bc">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_bc17d76059b78d851c83e31c1a17c882b89f1138/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/0e2045c87c0142b1c1767a3f5cc51c32122949c1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f32c288feb266873aa3b92d38b824e678b7fa16a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_501219d6a8eeb5754fd0973a8812264bd3580653/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/9ae47008d8b0b3842f7521ddb126542cda11dfe0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="7e6a161b3796c15fe00755ce47e03067e568ecc4">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_78f1a17a6a182eaaa18aa48a87d490d26f1f7852/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_7ccb3fa2e76e9b9b303e1dc5b7a821f730c44649/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mobileapplication/.android/build-cache/469c700fba82cff31d0d934230684d9b887aa36f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/mobileapplication/Desktop/androidApps/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_665c47daf472e0d59ca117d9c73ca9e9f2a814b7/classes.dex" />
     </item>
 
 </items>

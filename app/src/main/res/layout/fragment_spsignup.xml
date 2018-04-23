@@ -48,7 +48,7 @@
                     android:layout_height="match_parent"
                     android:maxLength="40"
                     android:singleLine="true"
-                    android:hint="Shop Name"
+                    android:hint=""
                     android:id="@+id/et_shop_name"
                     android:paddingLeft="10dp"
                     android:background="@drawable/customedittext"/>
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
-                    android:hint="Phone Number"
+                    android:hint=""
                     android:paddingLeft="10dp"
                     android:id="@+id/et_sp_phone"
                     android:background="@drawable/customedittext"/>
@@ -106,7 +106,7 @@
                     android:layout_height="match_parent"
                     android:maxLength="40"
                     android:singleLine="true"
-                    android:hint="Email"
+                    android:hint=""
                     android:paddingLeft="10dp"
                     android:id="@+id/et_sp_email"
                     android:background="@drawable/customedittext"/>
@@ -137,7 +137,7 @@
                     android:maxLength="40"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:hint="Password"
+                    android:hint=""
                     android:id="@+id/et_sp_password"
                     android:paddingLeft="10dp"
                     android:background="@drawable/customedittext"/>
@@ -166,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
-                    android:hint="Shop Address"
+                    android:hint=""
                     android:id="@+id/et_sp_address"
                     android:paddingLeft="10dp"
                     android:background="@drawable/customedittext"/>
@@ -313,7 +313,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:background="@color/colorPrimary"
-                android:text="submit"
+                android:text=""
                 android:id="@+id/bt_sp_submit"
                 android:textColor="@color/white"/>
 

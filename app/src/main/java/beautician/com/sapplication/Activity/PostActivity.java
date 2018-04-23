@@ -90,40 +90,74 @@ public class PostActivity extends AppCompatActivity {
         submit_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
-                builder.setTitle("");
-                builder.setMessage("Your wallet will be deducted with $1 for this post");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //TODO
-                        //   dialog.dismiss();
-                        if(txtDate.getText().toString().trim().length()<=0){
-                            Toast.makeText(PostActivity.this,"Please give Expected Date",Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            if(CheckInternet.getNetworkConnectivityStatus(PostActivity.this)){
-                                getWdetails getWdetails=new getWdetails();
-                                getWdetails.execute(user_id);
+                if(lang.contentEquals("Arabic")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
+                    builder.setTitle("");
+                    builder.setMessage("سيتم خصم محفظتك باستخدام $ 1 لهذا المنشور");
+                    builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //TODO
+                            //   dialog.dismiss();
+                            if(txtDate.getText().toString().trim().length()<=0){
+                                Toast.makeText(PostActivity.this,"يرجى إعطاء التاريخ المتوقع",Toast.LENGTH_LONG).show();
                             }
-                            else{
-                                Constants.noInternetDialouge(PostActivity.this, "No Internet");
+                            else {
+                                if(CheckInternet.getNetworkConnectivityStatus(PostActivity.this)){
+                                    getWdetails getWdetails=new getWdetails();
+                                    getWdetails.execute(user_id);
+                                }
+                                else{
+                                    Constants.noInternetDialouge(PostActivity.this, "لا انترنت");
 
+                                }
                             }
+
+
                         }
+                    });
+                    builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
+                    builder.setTitle("");
+                    builder.setMessage("Your wallet will be deducted with $1 for this post");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //TODO
+                            //   dialog.dismiss();
+                            if (txtDate.getText().toString().trim().length() <= 0) {
+                                Toast.makeText(PostActivity.this, "Please give Expected Date", Toast.LENGTH_LONG).show();
+                            } else {
+                                if (CheckInternet.getNetworkConnectivityStatus(PostActivity.this)) {
+                                    getWdetails getWdetails = new getWdetails();
+                                    getWdetails.execute(user_id);
+                                } else {
+                                    Constants.noInternetDialouge(PostActivity.this, "No Internet");
+
+                                }
+                            }
 
 
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
 
-
+                }
 
             }
         });
@@ -200,7 +234,13 @@ remarks:jhgjhghjgjg"
         @Override
         protected void onPreExecute() {
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(PostActivity.this, "Posting", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(PostActivity.this, "نشر", "أرجو الإنتظار...");
+
+                }else{
+                    progressDialog = ProgressDialog.show(PostActivity.this, "Posting", "Please wait...");
+
+                }
             }
             super.onPreExecute();
 
@@ -325,7 +365,14 @@ remarks:jhgjhghjgjg"
         protected void onPreExecute() {
             super.onPreExecute();
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(PostActivity.this, "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(PostActivity.this, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(PostActivity.this, "Loading", "Please wait...");
+
+                }
             }
             // onPreExecuteTask();
         }
@@ -455,7 +502,14 @@ remarks:jhgjhghjgjg"
 
             }
             else{
-                Constants.noInternetDialouge(PostActivity.this,"Atleast $ 6 is required in your wallet for posting a service");
+                if(lang.contentEquals("Arabic")){
+                    Constants.noInternetDialouge(PostActivity.this,"مطلوب 6 دولارات على الأقل في محفظتك لنشر الخدمة");
+
+                }
+                else{
+                    Constants.noInternetDialouge(PostActivity.this,"Atleast $ 6 is required in your wallet for posting a service");
+
+                }
             }
 
         }
@@ -542,10 +596,24 @@ remarks:jhgjhghjgjg"
                     JSONObject j_obj=res.getJSONObject("res");
                     wallet_status = j_obj.optInt("status");
                     if(wallet_status==1) {
-                        server_message="Wallet Updated";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="تم تحديث المحفظة";
+
+                        }
+                        else{
+                            server_message="Wallet Updated";
+
+                        }
                     }
                     else{
-                        server_message="Wallet can't be Updated";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="لا يمكن تحديث المحفظة";
+
+                        }
+                        else{
+                            server_message="Wallet can't be Updated";
+
+                        }
 
                     }
 
@@ -565,8 +633,14 @@ remarks:jhgjhghjgjg"
             super.onPostExecute(user);
             progressDialog.dismiss();
             if(wallet_status==1){
-                //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
-                Toast.makeText(PostActivity.this,"Request Posted and Wallet debited with $ 1",Toast.LENGTH_LONG).show();
+                if(lang.contentEquals("Arabic")){
+                    Toast.makeText(PostActivity.this,"تم إرسال طلب المشاركة والمحفظة باستخدام $ 1",Toast.LENGTH_LONG).show();
+
+                }
+                else{
+                    Toast.makeText(PostActivity.this,"Request Posted and Wallet debited with $ 1",Toast.LENGTH_LONG).show();
+
+                }
                 Intent intent = new Intent(PostActivity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

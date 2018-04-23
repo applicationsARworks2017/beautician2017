@@ -320,45 +320,88 @@ public class PropsalAdapter extends BaseAdapter {
                 holder1=(Holder) v.getTag();
                 String callTo = null;
                 if(status.contentEquals("1")){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setTitle("Sorry");
-                    builder.setMessage("You can't do anything till user respond");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            //   dialog.dismiss();
+                    if(lang.contentEquals("Arabic")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setTitle("آسف");
+                        builder.setMessage("لا يمكنك فعل أي شيء حتى يرد المستخدم");
+                        builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
 
 
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setTitle("Sorry");
+                        builder.setMessage("You can't do anything till user respond");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
+
+
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
                 }
                 else if(status.contentEquals("2")){
                     callTo = "3";
                     user_id=_pos.getUser_id();
                     propsal_id=_pos.getId();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setTitle("User is ready to take the service");
-                    builder.setMessage("You have to pay $5 , Do you want to go ahead?");
-                    final String finalCallTo = callTo;
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //check own balance
-                            wpage="sp_home";
-                            getWdetails getWdetails=new getWdetails();
-                            getWdetails.execute(shop_id);
+                    if(lang.contentEquals("Arabic")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setTitle("المستخدم جاهز لأخذ الخدمة");
+                        builder.setMessage("عليك أن تدفع 5 دولارات ، هل تريد أن تمضي قدما؟");
+                        final String finalCallTo = callTo;
+                        builder.setPositiveButton("نعم فعلا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //check own balance
+                                wpage="sp_home";
+                                getWdetails getWdetails=new getWdetails();
+                                getWdetails.execute(shop_id);
 
-                        }
-                    });
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                            }
+                        });
+                        builder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setTitle("User is ready to take the service");
+                        builder.setMessage("You have to pay $5 , Do you want to go ahead?");
+                        final String finalCallTo = callTo;
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //check own balance
+                                wpage="sp_home";
+                                getWdetails getWdetails=new getWdetails();
+                                getWdetails.execute(shop_id);
+
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
                 }
                 else if(status.contentEquals("3")){
                     callTo = "4";
@@ -392,26 +435,51 @@ public class PropsalAdapter extends BaseAdapter {
                     callTo = "4";
                     updated_status=5;
                     user_id=_pos.getUser_id();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                   // builder.setTitle("Are you Comfortable with this proposal");
-                    builder.setMessage("Service Completed ?");
-                    final String finalCallTo = callTo;
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            //   dialog.dismiss();
-                            ConfirmToProp confirmToProp = new ConfirmToProp();
-                            confirmToProp.execute(_pos.getId(), "5");
-                        }
-                    });
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    if(lang.contentEquals("Arabic")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        // builder.setTitle("Are you Comfortable with this proposal");
+                        builder.setMessage("الخدمة منتهية؟");
+                        final String finalCallTo = callTo;
+                        builder.setPositiveButton("نعم فعلا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
+                                ConfirmToProp confirmToProp = new ConfirmToProp();
+                                confirmToProp.execute(_pos.getId(), "5");
+                            }
+                        });
+                        builder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        // builder.setTitle("Are you Comfortable with this proposal");
+                        builder.setMessage("Service Completed ?");
+                        final String finalCallTo = callTo;
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
+                                ConfirmToProp confirmToProp = new ConfirmToProp();
+                                confirmToProp.execute(_pos.getId(), "5");
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
 
                 }
             }
@@ -423,42 +491,86 @@ public class PropsalAdapter extends BaseAdapter {
                 String callTo = null;
                 if(status.contentEquals("1")) {
                     callTo = "2";
-                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setTitle("Are you Comfortable with this proposal");
-                    builder.setMessage("Do you want to go ahead ?");
-                    final String finalCallTo = callTo;
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            //   dialog.dismiss();
-                            ConfirmToProp confirmToProp = new ConfirmToProp();
-                            confirmToProp.execute(_pos.getId(), finalCallTo);
-                        }
-                    });
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    if(lang.contentEquals("Arabic")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setTitle("هل أنت مريح مع هذا الاقتراح");
+                        builder.setMessage("هل تريد المضي قدما؟");
+                        final String finalCallTo = callTo;
+                        builder.setPositiveButton("نعم فعلا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
+                                ConfirmToProp confirmToProp = new ConfirmToProp();
+                                confirmToProp.execute(_pos.getId(), finalCallTo);
+                            }
+                        });
+                        builder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setTitle("Are you Comfortable with this proposal");
+                        builder.setMessage("Do you want to go ahead ?");
+                        final String finalCallTo = callTo;
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
+                                ConfirmToProp confirmToProp = new ConfirmToProp();
+                                confirmToProp.execute(_pos.getId(), finalCallTo);
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
                 }
                 else if(status.contentEquals("2")){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setTitle("Allready Allowed");
-                    builder.setMessage("You have sent notification for service");
-                    final String finalCallTo = callTo;
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            //   dialog.dismiss();
+                    if(lang.contentEquals("Arabic")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setTitle("مسموح بالفعل");
+                        builder.setMessage("لقد أرسلت إخطارًا للخدمة");
+                        final String finalCallTo = callTo;
+                        builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
 
 
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                        builder.setTitle("Allready Allowed");
+                        builder.setMessage("You have sent notification for service");
+                        final String finalCallTo = callTo;
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
+
+
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
                 }
             }
         });
@@ -562,10 +674,24 @@ public class PropsalAdapter extends BaseAdapter {
                     JSONObject j_obj=res.getJSONObject("res");
                     server_status = j_obj.optInt("status");
                     if (server_status == 1 ) {
-                        server_message="Successful";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="ناجح";
+
+                        }
+                        else{
+                            server_message="Successful";
+
+                        }
                     }
                     else  {
-                        server_message = "Error";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "خطأ";
+
+                        }
+                        else{
+                            server_message = "Error";
+
+                        }
                     }
 
                 }
@@ -921,10 +1047,24 @@ public class PropsalAdapter extends BaseAdapter {
                         JSONObject j_obj=res.getJSONObject("res");
                         wallet_status = j_obj.optInt("status");
                         if(wallet_status==1) {
-                            server_message="Wallet Updated";
+                            if(lang.contentEquals("Arabic")){
+                                server_message="تم تحديث المحفظة";
+
+                            }
+                            else{
+                                server_message="Wallet Updated";
+
+                            }
                         }
                         else{
-                            server_message="Wallet can't be Updated";
+                            if(lang.contentEquals("Arabic")){
+                                server_message="لا يمكن تحديث المحفظة";
+
+                            }
+                            else{
+                                server_message="Wallet can't be Updated";
+
+                            }
 
                         }
 
@@ -951,7 +1091,13 @@ public class PropsalAdapter extends BaseAdapter {
                     }
                     //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
                     if(updated_status==4){
-                        Toast.makeText(_context,"User's wallet updated",Toast.LENGTH_LONG).show();
+                        if(lang.contentEquals("Arabic")){
+                            Toast.makeText(_context,"محفظة المستخدم المحدثة",Toast.LENGTH_LONG).show();
+
+                        }else{
+                            Toast.makeText(_context,"User's wallet updated",Toast.LENGTH_LONG).show();
+
+                        }
 
                     }
                     else {

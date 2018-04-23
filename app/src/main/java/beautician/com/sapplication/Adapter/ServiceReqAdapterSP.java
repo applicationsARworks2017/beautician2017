@@ -166,7 +166,14 @@ public class ServiceReqAdapterSP extends BaseAdapter{
                     @Override
                     public void onClick(View v) {
                         if(progressDialog == null) {
-                            progressDialog = ProgressDialog.show(_context, "Loading", "Please wait...");
+                            if(lang.contentEquals("Arabic")){
+                                progressDialog = ProgressDialog.show(_context, "جار التحميل", "يرجى الإنتظار...");
+
+                            }
+                            else{
+                                progressDialog = ProgressDialog.show(_context, "Loading", "Please wait...");
+
+                            }
                         }
                         String details=et_comments.getText().toString().trim();
                         serviceRequestid=_pos.getId();
@@ -309,22 +316,40 @@ public class ServiceReqAdapterSP extends BaseAdapter{
               //  Toast.makeText(_context,server_message,Toast.LENGTH_SHORT).show();
 
             }
-            else if(server_status==2){
-                AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                builder.setMessage("Already Proposal submitted.");
-                builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            else if(server_status==2) {
+                if (lang.contentEquals("Arabic")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                    builder.setMessage("بالفعل الاقتراح المقدم.");
+                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do nothing
-                        dialog.dismiss();
-                        //finish();
-                    }
-                });
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing
+                            dialog.dismiss();
+                            //finish();
+                        }
+                    });
 
-                AlertDialog alert = builder.create();
-                alert.show();
-                progressDialog.dismiss();
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    progressDialog.dismiss();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                    builder.setMessage("Already Proposal submitted.");
+                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing
+                            dialog.dismiss();
+                            //finish();
+                        }
+                    });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    progressDialog.dismiss();
+                }
             }
             else{
                 Toast.makeText(_context,server_message,Toast.LENGTH_SHORT).show();
@@ -415,10 +440,22 @@ public class ServiceReqAdapterSP extends BaseAdapter{
                     JSONObject j_obj=res.getJSONObject("res");
                     server_status = j_obj.optInt("status");
                     if (server_status == 1 ) {
-                        server_message="Proposal Sobmitted";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="اقتراح مقدم";
+
+                        }
+                        else {
+                            server_message = "Proposal Submitted";
+                        }
                     }
-                    else  {
-                        server_message = "Error";
+                    else {
+                        if (lang.contentEquals("Arabic")) {
+                            server_message = "خطأ";
+                        }
+                        else{
+                            server_message = "Error";
+
+                        }
                     }
 
                 }

@@ -25,6 +25,7 @@ import beautician.com.sapplication.Fragment.HomeFragment;
 import beautician.com.sapplication.Fragment.Profile;
 import beautician.com.sapplication.Fragment.ServiceList;
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.Constants;
 
 public class HomeActivity extends AppCompatActivity  implements android.location.LocationListener{
     private BottomNavigationView mBottomNav;
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity  implements android.location
     String provider;
     public  static String latitude, longitude;
     int server_status;
+    String lang;
     private TelephonyManager mTelephonyManager;
     Boolean isGPSEnabled, isNetworkEnabled, canGetLocation;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
@@ -125,25 +127,49 @@ public class HomeActivity extends AppCompatActivity  implements android.location
     }
     private void selectFragment(MenuItem item) {
         Fragment frag = null;
+        lang = HomeActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         switch (item.getItemId()) {
             case R.id.home:
                 // Visitors Exit
                 frag=new HomeFragment();
-                item.setCheckable(true);
+                if(lang.contentEquals("Arabic")){
+                    item.setTitle(R.string.home_arabic);
+                    item.setCheckable(true);
 
-//                toolbar.setTitle("Exit");
+                }
+                else{
+                    item.setTitle(R.string.home_title);
+                    item.setCheckable(true);
+                }
                 break;
+
             case R.id.mylist:
                 frag=new ServiceList();
-                item.setCheckable(true);
+                if(lang.contentEquals("Arabic")){
+                    item.setTitle(R.string.My_List_arabic);
+                    item.setCheckable(true);
+                }
+                else{
+                    item.setTitle(R.string.My_List);
+                    item.setCheckable(true);
 
+                }
                 break;
+
 
             case R.id.profile:
                 frag=new Profile();
-                item.setCheckable(true);
+                if(lang.contentEquals("Arabic")){
+                    item.setTitle(R.string.Profile_arabic);
+                    item.setCheckable(true);
+                }
+                else{
+                    item.setTitle(R.string.Profile);
+                    item.setCheckable(true);
+                }
                 break;
+
             default:
                 frag=new HomeFragment();
                 item.setCheckable(true);

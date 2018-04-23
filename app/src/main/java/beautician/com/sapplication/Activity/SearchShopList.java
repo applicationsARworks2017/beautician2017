@@ -40,6 +40,7 @@ public class SearchShopList extends AppCompatActivity {
     ArrayList<Shops> sList;
     ShopListAdapter sAdapter;
     ListView lv_searchshop;
+    String lang;
 
 
     @Override
@@ -47,6 +48,9 @@ public class SearchShopList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         super.setTheme(R.style.AppUserTheme);
         setContentView(R.layout.activity_search_shop_list);
+
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         blanck_search=(TextView)findViewById(R.id.blanck_search);
         swipe_searchshop=(SwipeRefreshLayout) findViewById(R.id.swipe_searchshop);
         loader_search=(ProgressBar)findViewById(R.id.loader_search);
@@ -200,7 +204,7 @@ public class SearchShopList extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                sAdapter = new ShopListAdapter (SearchShopList.this,sList);
+                sAdapter = new ShopListAdapter (SearchShopList.this,sList,lang);
                 lv_searchshop.setAdapter(sAdapter);
             }
             else{

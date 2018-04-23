@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,7 +30,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Adapter.TransactionAdapter;
-import beautician.com.sapplication.Fragment.Profile;
 import beautician.com.sapplication.Pojo.Transactions;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -86,9 +84,21 @@ public class Wallet extends AppCompatActivity {
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(Wallet.this);
                 dialog.setContentView(R.layout.dialog_add_money);
+                TextView tv_wallet=(TextView)dialog.findViewById(R.id.tv_wallet);
                 ImageView imageView=(ImageView)dialog.findViewById(R.id.close);
                 Button add_money=(Button)dialog.findViewById(R.id.add_money);
                 final EditText et_add_money=(EditText) dialog.findViewById(R.id.et_add_money);
+
+                if(lang.contentEquals("Arabic")){
+                    tv_wallet.setText("مبلغ الشحن (بالدولار)");
+                    add_money.setText("إضافة المال");
+
+                }
+                else{
+                    tv_wallet.setText("Recharge Amount  ( In $ )");
+                    add_money.setText("Add Money");
+
+                }
                 dialog.show();
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -179,7 +189,14 @@ public class Wallet extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(Wallet.this, "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(Wallet.this, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(Wallet.this, "Loading", "Please wait...");
+
+                }
             }
             // onPreExecuteTask();
         }
@@ -486,7 +503,14 @@ public class Wallet extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(Wallet.this, "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(Wallet.this, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(Wallet.this, "Loading", "Please wait...");
+
+                }
             }            super.onPreExecute();
 
             // onPreExecuteTask();

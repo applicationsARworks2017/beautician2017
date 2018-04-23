@@ -1,5 +1,6 @@
 package beautician.com.sapplication.Tabs;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -89,12 +90,14 @@ public class SPSignup extends Fragment {
     Boolean picAvailable=false;
     KeyListener variable;
     TextView tv_gomap;
+    String lang;
 
 
     public SPSignup() {
         // Required empty public constructor
     }
 
+    @SuppressLint("ValidFragment")
     public SPSignup(String lat, String lng) {
         this.sign_lat=lat;
         this.sign_long=lng;
@@ -126,6 +129,9 @@ public class SPSignup extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_spsignup, container, false);
+        lang = getContext().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
+
         loader_signup=(ProgressBar)v.findViewById(R.id.loader_signup);
         et_latlong=(EditText)v.findViewById(R.id.et_sp_latlong);
        // et_latlong.setText(latitude+","+longitude);
@@ -142,6 +148,24 @@ public class SPSignup extends Fragment {
         bt_setails_submit=(Button)v.findViewById(R.id.bt_sp_submit);
         tv_gomap=(TextView)v.findViewById(R.id.tv_gomap);
 
+        if(lang.contentEquals("Arabic")){
+            et_sp_name.setHint("اسم المحل");
+            et_sp_phone.setHint("رقم الهاتف");
+            et_sp_pass.setHint("كلمه السر");
+            et_sp_mail.setHint("البريد الإلكتروني");
+            et_sp_address.setHint("عنوان المحل");
+            bt_setails_submit.setHint("خضع");
+
+        }
+        else{
+            et_sp_name.setHint("Shop Name");
+            et_sp_phone.setHint("Phone Number");
+            et_sp_pass.setHint("Password");
+            et_sp_mail.setHint("Email");
+            et_sp_address.setHint("Shop Address");
+            bt_setails_submit.setHint("submit");
+
+        }
 
         List<Address> addresses;
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
@@ -379,7 +403,14 @@ public class SPSignup extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(getActivity(), "Loading", "Please wait...");
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(getActivity(), "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(getActivity(), "Loading", "Please wait...");
+
+                }
             }
 
         }

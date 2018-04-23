@@ -46,6 +46,7 @@ public class GiveCommentActivity extends AppCompatActivity {
     EditText et_comments_feedback;
     String improve,page_name;
     String shop_id,shop_name,user_id,propsal_id;
+    String lang;
     PropsalAdapter objadapter=new PropsalAdapter();
     IndServiceRequestAdapter reqadapter=new IndServiceRequestAdapter();
     @Override
@@ -53,6 +54,8 @@ public class GiveCommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         super.setTheme(R.style.AppUserTheme);
         setContentView(R.layout.activity_give_comment);
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             shop_id = extras.getString("SHOP_ID");
@@ -270,10 +273,24 @@ user_id:12
                     JSONObject j_obj=res.getJSONObject("res");
                     server_status = j_obj.optInt("status");
                     if (server_status == 1) {
-                        server_message = "Done";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "فعله";
+
+                        }
+                        else{
+                            server_message = "Done";
+
+                        }
                     }
                     else{
-                        server_message = "failed";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "فشل";
+
+                        }
+                        else{
+                            server_message = "failed";
+
+                        }
 
                     }
 

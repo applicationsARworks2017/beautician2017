@@ -11,5 +11,5 @@
     <item
         android:id="@+id/profile"
         android:icon="@mipmap/ic_account_circle_black_24dp"
-        android:title="Profile " />
+        android:title="Profile" />
 </menu>

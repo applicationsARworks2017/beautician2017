@@ -131,7 +131,14 @@ public class SubcategoriesAdapter extends BaseAdapter {
                     public void onClick(View v) {
                         String price=et_cost.getText().toString().trim();
                         if(price.length()<=0){
-                            Toast.makeText(_context,"Please enter the cost",Toast.LENGTH_SHORT).show();
+                            if(lang.contentEquals("Arabic")){
+                                Toast.makeText(_context,"يرجى إدخال التكلفة",Toast.LENGTH_SHORT).show();
+
+                            }
+                            else{
+                                Toast.makeText(_context,"Please enter the cost",Toast.LENGTH_SHORT).show();
+
+                            }
                         }
                         else{
                            // Toast.makeText(_context,"Done",Toast.LENGTH_SHORT).show();
@@ -240,9 +247,21 @@ public class SubcategoriesAdapter extends BaseAdapter {
                     JSONObject j_obj=res.getJSONObject("res");
                     server_status = j_obj.optInt("status");
                     if (server_status == 1) {
-                        server_message="Added";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="وأضاف";
+
+                        }else{
+                            server_message="Added";
+
+                        }
                     } else {
-                        server_message = "Error";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "خطأ";
+
+                        }else{
+                            server_message = "Error";
+
+                        }
                     }
                 }
                 return null;

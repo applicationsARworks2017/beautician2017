@@ -47,7 +47,14 @@ public class ForgotPassword extends AppCompatActivity {
         resetpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ForgotPassword.this,"Mail will be sent to mail id",Toast.LENGTH_SHORT);
+                if(lang.contentEquals("Arabic")){
+                    Toast.makeText(ForgotPassword.this,"سيتم إرسال البريد إلى معرف البريد",Toast.LENGTH_SHORT);
+
+                }
+                else{
+                    Toast.makeText(ForgotPassword.this,"Mail will be sent to mail id",Toast.LENGTH_SHORT);
+
+                }
                 finish();
             }
         });

@@ -105,7 +105,14 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
         else if(status.contentEquals("1")){
             holder.gv_feedback.setVisibility(View.GONE);
             holder.otp_service.setVisibility(View.VISIBLE);
-            holder.otp_service.setText("Share OTP before service and get back your $ 5. OTP : "+_pos.getOtp());
+            if(lang.contentEquals("Arabic")){
+                holder.otp_service.setText("مشاركة OTP قبل الخدمة واستعادة مبلغ $ 5 OTP الخاص بك : "+_pos.getOtp());
+
+            }
+            else{
+                holder.otp_service.setText("Share OTP before service and get back your $ 5. OTP : "+_pos.getOtp());
+
+            }
             Resources ress = _context.getResources();
             Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
             drawable1 = DrawableCompat.wrap(drawable1);

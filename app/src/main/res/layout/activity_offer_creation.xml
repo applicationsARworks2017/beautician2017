@@ -11,6 +11,7 @@
         android:layout_centerInParent="true"
         android:visibility="gone"
         android:id="@+id/offer_loader"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
