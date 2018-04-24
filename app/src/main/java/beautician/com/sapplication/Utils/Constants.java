@@ -69,6 +69,8 @@ public class Constants {
     public static String USER_EDIT="users/edit.json";
     public static String USER_TRASACTIONS="UserWallets/history.json";
     public static String SHOP_TRASACTIONS="Wallets/history.json";
+    public static String SHOP_FORGOTPASS="shops/forgotPassword.json";
+    public static String USER_FORGOTPASS="users/forgotPassword.json";
 
 
     public static final String SHAREDPREFERENCE_KEY = "beautician" ;
