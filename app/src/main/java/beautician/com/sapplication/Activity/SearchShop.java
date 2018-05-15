@@ -14,7 +14,7 @@ import beautician.com.sapplication.Utils.Constants;
 
 public class SearchShop extends AppCompatActivity {
     EditText et_searchText;
-    Button bt_search;
+    Button bt_search,bt_all;
     String lang;
 
     @Override
@@ -27,13 +27,16 @@ public class SearchShop extends AppCompatActivity {
 
         et_searchText=(EditText)findViewById(R.id.et_searchText);
         bt_search=(Button)findViewById(R.id.bt_search);
+        bt_all=(Button)findViewById(R.id.bt_all);
         if(lang.contentEquals("Arabic")){
-            et_searchText.setHint("البحث عن المحلات التجارية والخدمات");
+            et_searchText.setHint("البحث عن المحلات التجارية");
             bt_search.setText("بحث");
+            bt_all.setText("الكل");
         }
         else{
-            et_searchText.setHint("Search for shops,services");
+            et_searchText.setHint("Search for shops");
             bt_search.setText("Search");
+            bt_all.setText("All");
 
         }
         bt_search.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +80,24 @@ public class SearchShop extends AppCompatActivity {
                 }
 
 
+            }
+        });
+        bt_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(CheckInternet.getNetworkConnectivityStatus(SearchShop.this)){
+                    Intent intent=new Intent(SearchShop.this,SearchShopList.class);
+                    intent.putExtra("SEARCH"," ");
+                    startActivity(intent);
+                }
+                else{
+                    if(lang.contentEquals("Arabic")) {
+                        Constants.noInternetDialouge(SearchShop.this,"لا انترنت");
+                    }
+                    else{
+                        Constants.noInternetDialouge(SearchShop.this, "No Internet");
+                    }
+                }
             }
         });
     }

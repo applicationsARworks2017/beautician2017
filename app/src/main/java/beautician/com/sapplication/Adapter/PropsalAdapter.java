@@ -269,7 +269,7 @@ public class PropsalAdapter extends BaseAdapter {
                 holder.tv_otp.setText(" شارك الكود عند الوصول  للمقدم الخدمة لسترجاع مبلغ تأكييد الحجز إلى المحفظة:" + _pos.getOtp());
             } else {
                 holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + " has replied : " + _pos.getRemarks());
-                holder.tv_otp.setText("Share OTP before service and get back your $ 5. OTP : " + _pos.getOtp());
+                holder.tv_otp.setText("Share OTP before service and get back your SAR 5. OTP : " + _pos.getOtp());
 
             }
         }
@@ -381,7 +381,7 @@ public class PropsalAdapter extends BaseAdapter {
                     }else{
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
                         builder.setTitle("User is ready to take the service");
-                        builder.setMessage("You have to pay $5 , Do you want to go ahead?");
+                        builder.setMessage("You have to pay SAR 5 , Do you want to go ahead?");
                         final String finalCallTo = callTo;
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

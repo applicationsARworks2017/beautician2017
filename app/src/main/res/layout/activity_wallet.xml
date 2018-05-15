@@ -49,7 +49,7 @@
             android:layout_below="@id/textbalanceHeading"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="$"
+            android:text="SAR"
             android:id="@+id/tv_balance"
             android:textColor="@color/black"
             android:textSize="30dp"

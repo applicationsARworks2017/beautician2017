@@ -57,8 +57,8 @@ public class Constants {
     public static String EDIT_IND_REQUEST="service-indivisual-requests/edit.json";
     public static String INDICISUAL_REQUEST="service-indivisual-requests/add.json";
     public static String INDICISUAL_REQUEST_LIST="service-indivisual-requests/index.json";
-    public static String PICURL="http://applicationworld.net/beautician/webroot/files/profile/";
-    public static String SHOP_PICURL="http://applicationworld.net/beautician/webroot/files/shop/";
+    public static String PICURL="https://beautician.site/admin/webroot/files/profile/";
+    public static String SHOP_PICURL="https://beautician.site/admin/webroot/files/shop/";
     public static String SHOP_DETAILS="shops/view.json";
     public static String USER_DETAILS="users/view.json";
     public static String USER_BALANCE="UserWallets/index.json";

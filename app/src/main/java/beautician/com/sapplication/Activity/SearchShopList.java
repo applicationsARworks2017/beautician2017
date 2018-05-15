@@ -116,6 +116,8 @@ public class SearchShopList extends AppCompatActivity {
                 Uri.Builder builder=null;
                     builder = new Uri.Builder()
                             .appendQueryParameter("shopname", search_text)
+                            .appendQueryParameter("latitude", HomeActivity.latitude)
+                            .appendQueryParameter("longitude", HomeActivity.longitude)
                             .appendQueryParameter("page",page);
                 String query = builder.build().getEncodedQuery();
 
@@ -186,7 +188,8 @@ public class SearchShopList extends AppCompatActivity {
                             String created = o_list_obj.getString("created");
                             String shopname = o_list_obj.getString("shopname");
                             String address = o_list_obj.getString("address");
-                            Shops list1 = new Shops(id,latitudelongitude,photo1,photo2,photo3,no_of_reviews,avg_rating,created,shopname,address);
+                            String distance = o_list_obj.getString("distance");
+                            Shops list1 = new Shops(id,latitudelongitude,photo1,photo2,photo3,no_of_reviews,avg_rating,created,shopname,address,distance);
                             sList.add(list1);
                         }
                     }

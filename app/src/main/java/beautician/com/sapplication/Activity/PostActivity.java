@@ -93,7 +93,7 @@ public class PostActivity extends AppCompatActivity {
                 if(lang.contentEquals("Arabic")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
                     builder.setTitle("");
-                    builder.setMessage("سيتم خصم محفظتك باستخدام $ 1 لهذا المنشور");
+                    builder.setMessage("سيتم خصم محفظتك باستخدام SAR 1 لهذا المنشور");
                     builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //TODO
@@ -128,7 +128,7 @@ public class PostActivity extends AppCompatActivity {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
                     builder.setTitle("");
-                    builder.setMessage("Your wallet will be deducted with $1 for this post");
+                    builder.setMessage("Your wallet will be deducted with SAR 1 for this post");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //TODO
@@ -507,7 +507,7 @@ remarks:jhgjhghjgjg"
 
                 }
                 else{
-                    Constants.noInternetDialouge(PostActivity.this,"Atleast $ 6 is required in your wallet for posting a service");
+                    Constants.noInternetDialouge(PostActivity.this,"Atleast SAR 6 is required in your wallet for posting a service");
 
                 }
             }
@@ -634,11 +634,11 @@ remarks:jhgjhghjgjg"
             progressDialog.dismiss();
             if(wallet_status==1){
                 if(lang.contentEquals("Arabic")){
-                    Toast.makeText(PostActivity.this,"تم إرسال طلب المشاركة والمحفظة باستخدام $ 1",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostActivity.this,"تم إرسال طلب المشاركة والمحفظة باستخدام SAR 1",Toast.LENGTH_LONG).show();
 
                 }
                 else{
-                    Toast.makeText(PostActivity.this,"Request Posted and Wallet debited with $ 1",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostActivity.this,"Request Posted and Wallet debited with SAR 1",Toast.LENGTH_LONG).show();
 
                 }
                 Intent intent = new Intent(PostActivity.this, HomeActivity.class);

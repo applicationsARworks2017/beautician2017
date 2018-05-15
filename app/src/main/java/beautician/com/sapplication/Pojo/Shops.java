@@ -5,7 +5,7 @@ package beautician.com.sapplication.Pojo;
  */
 
 public class Shops {
-    String id,latitudelongitude,photo1,photo2,photo3,no_of_reviews,avg_rating,price,created,shopname,address;
+    String id,latitudelongitude,photo1,photo2,photo3,no_of_reviews,avg_rating,price,created,shopname,address,distance;
 
     public String getId() {
         return id;
@@ -95,8 +95,16 @@ public class Shops {
         this.address = address;
     }
 
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
     public Shops(String id, String latitudelongitude, String photo1, String photo2, String photo3, String no_of_reviews, String avg_rating, String created,
-                 String shopname, String address) {
+                 String shopname, String address, String distance) {
         this.id=id;
         this.latitudelongitude=latitudelongitude;
         this.photo1=photo1;
@@ -107,6 +115,7 @@ public class Shops {
         this.created=created;
         this.shopname=shopname;
         this.address=address;
+        this.distance=distance;
 
 
     }

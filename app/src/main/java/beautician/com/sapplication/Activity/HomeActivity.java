@@ -18,6 +18,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -28,14 +29,17 @@ import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.Constants;
 
 public class HomeActivity extends AppCompatActivity  implements android.location.LocationListener{
-    private BottomNavigationView mBottomNav;
-    private int mSelectedItem;
+    public BottomNavigationView mBottomNav;
+    public int mSelectedItem;
     private static final String SELECTED_ITEM = "arg_selected_item";
     LocationManager locationManager;
     String provider;
     public  static String latitude, longitude;
     int server_status;
     String lang;
+     Menu menu;
+     String homestring = "Home'";
+     String ar_homestring = "الصفحة الرئيسية'";
     private TelephonyManager mTelephonyManager;
     Boolean isGPSEnabled, isNetworkEnabled, canGetLocation;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
@@ -49,7 +53,7 @@ public class HomeActivity extends AppCompatActivity  implements android.location
         super.onCreate(savedInstanceState);
         super.setTheme(R.style.AppUserTheme);
         setContentView(R.layout.activity_home);
-
+        lang = HomeActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Define the criteria how to select the locatioin provider -> use
         // default
@@ -108,13 +112,17 @@ public class HomeActivity extends AppCompatActivity  implements android.location
 
 
         mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
+
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 selectFragment(item);
                 return true;
             }
         });
+        changelangmenue(lang);
+
         MenuItem selectedItem;
         if (savedInstanceState != null) {
             mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
@@ -125,49 +133,46 @@ public class HomeActivity extends AppCompatActivity  implements android.location
         selectFragment(selectedItem);
 
     }
+    public void changelangmenue(String lang){
+
+        if(lang.contentEquals("Arabic")) {
+            MenuItem item_home = mBottomNav.getMenu().findItem(R.id.home);
+            item_home.setTitle("الصفحة الرئيسية");
+            MenuItem item_mylist = mBottomNav.getMenu().findItem(R.id.mylist);
+            item_mylist.setTitle("قائمتي");
+            MenuItem item_profile = mBottomNav.getMenu().findItem(R.id.profile);
+            item_profile.setTitle("الملف الشخصي");
+        }
+        else{
+            MenuItem item_home = mBottomNav.getMenu().findItem(R.id.home);
+            item_home.setTitle("Home");
+            MenuItem item_mylist = mBottomNav.getMenu().findItem(R.id.mylist);
+            item_mylist.setTitle("My List");
+            MenuItem item_profile = mBottomNav.getMenu().findItem(R.id.profile);
+            item_profile.setTitle("Profile");
+        }
+    }
     private void selectFragment(MenuItem item) {
         Fragment frag = null;
-        lang = HomeActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         switch (item.getItemId()) {
             case R.id.home:
                 // Visitors Exit
                 frag=new HomeFragment();
-                if(lang.contentEquals("Arabic")){
-                    item.setTitle(R.string.home_arabic);
-                    item.setCheckable(true);
-
-                }
-                else{
-                    item.setTitle(R.string.home_title);
-                    item.setCheckable(true);
-                }
+                    //item.setTitle(R.string.home_arabic);
+                item.setCheckable(true);
                 break;
 
             case R.id.mylist:
                 frag=new ServiceList();
-                if(lang.contentEquals("Arabic")){
-                    item.setTitle(R.string.My_List_arabic);
-                    item.setCheckable(true);
-                }
-                else{
-                    item.setTitle(R.string.My_List);
                     item.setCheckable(true);
 
-                }
                 break;
 
 
             case R.id.profile:
                 frag=new Profile();
-                if(lang.contentEquals("Arabic")){
-                    item.setTitle(R.string.Profile_arabic);
                     item.setCheckable(true);
-                }
-                else{
-                    item.setTitle(R.string.Profile);
-                    item.setCheckable(true);
-                }
                 break;
 
             default:

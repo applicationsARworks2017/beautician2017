@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bangalore, India"
+                android:singleLine="true"
                 android:id="@+id/shop_add"
                 android:layout_marginTop="5dp"/>
             <LinearLayout

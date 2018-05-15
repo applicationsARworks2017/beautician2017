@@ -442,7 +442,7 @@ public class SPProfile extends AppCompatActivity {
         String shop_number=tv_phone_value.getText().toString().trim();
         String shop_mail=tv_email_value.getText().toString().trim();
         String shop_address=tv_add_value.getText().toString().trim();
-        if(gal2==1) {
+        if(gal1==1) {
             if (pic1.getDrawable() != null) {
                 Bitmap bitmap = ((BitmapDrawable) pic1.getDrawable()).getBitmap();
                 imgfile1 = persistImage(bitmap, shop_name+"1");

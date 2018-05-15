@@ -95,7 +95,7 @@ public class Wallet extends AppCompatActivity {
 
                 }
                 else{
-                    tv_wallet.setText("Recharge Amount  ( In $ )");
+                    tv_wallet.setText("Recharge Amount  ( In SAR )");
                     add_money.setText("Add Money");
 
                 }
@@ -116,6 +116,7 @@ public class Wallet extends AppCompatActivity {
                         intent.putExtra("MAIL",user_mail);
                         intent.putExtra("AMOUNT",et_add_money.getText().toString().trim());
                         intent.putExtra("PAGE",page);
+                        intent.putExtra("AVAIL_AMOUNT",balance);
                         startActivity(intent);
                     }
                 });
@@ -330,10 +331,10 @@ public class Wallet extends AppCompatActivity {
             super.onPostExecute(user);
             progressDialog.dismiss();
             if (server_status == 1) {
-                tv_balance.setText(String.valueOf("$ "+balance));
+                tv_balance.setText(String.valueOf("SAR "+balance));
             }
             else{
-                tv_balance.setText("$ 0");
+                tv_balance.setText("SAR 0");
             }
         }
     }

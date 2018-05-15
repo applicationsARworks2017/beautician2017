@@ -51,8 +51,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import beautician.com.sapplication.Activity.HomeActivity;
 import beautician.com.sapplication.Activity.Login_Activity;
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.SplashScreen;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
@@ -180,6 +182,11 @@ public class Profile extends Fragment {
                 editor.putString(Constants.LANG_TYPE, lang);
                 editor.commit();
 
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
 
 
 
@@ -205,6 +212,12 @@ public class Profile extends Fragment {
                 editor.clear();
                 editor.putString(Constants.LANG_TYPE, lang);
                 editor.commit();
+
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
 
             }
         });

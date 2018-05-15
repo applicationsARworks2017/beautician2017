@@ -208,7 +208,12 @@ public class ShopDetails extends AppCompatActivity {
         shop_email.setText(email);
         shop_address.setText(address);
         shop_reviws.setText(reviews+" Reviews");
-        rating.setRating(Float.parseFloat(ratings));
+        if(ratings==null || ratings.contentEquals("") || ratings.contentEquals("null")){
+
+        }
+        else {
+            rating.setRating(Float.parseFloat(ratings));
+        }
 
         if(!photo1.isEmpty()) {
             Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo1).into(img1);

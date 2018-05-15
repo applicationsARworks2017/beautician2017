@@ -74,7 +74,7 @@ public class ListSubcategoriesAdapter extends BaseAdapter {
         holder.cat_name.setTag(position);
         holder.c_price.setTag(position);
         holder.iv_letterView.setTag(position);
-        holder.c_price.setText("$ "+_pos.getPrice());
+        holder.c_price.setText("SAR "+_pos.getPrice());
        if(lang.contentEquals("Arabic")){
            holder.cat_name.setText(_pos.getArabic_title());
 

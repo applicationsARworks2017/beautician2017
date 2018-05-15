@@ -115,8 +115,9 @@ public class ShopListAdapter extends BaseAdapter {
         holder.shop_add.setText(_pos.getAddress());
         holder.price_min.setText("$ "+_pos.getPrice());
         holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" reviews");
+        holder.dis_shop.setText(". ~ "+_pos.getDistance()+" KM");
         String location=_pos.getLatitudelongitude();
-        if(location==null || location.contentEquals("")){
+        /*if(location==null || location.contentEquals("")){
 
         }
         else {
@@ -125,9 +126,9 @@ public class ShopListAdapter extends BaseAdapter {
             Double longitude = Double.valueOf(locList[1]);
             Double distance = Constants.CalculationByDistance(latitude, longitude);
 
-            holder.dis_shop.setText(String.valueOf(" . ~ " + distance + " KM"));
+        //    holder.dis_shop.setText(String.valueOf(" . ~ " + distance + " KM"));
         }
-
+*/
         String ratings=_pos.getAvg_rating();
         if((ratings==null) || ratings.contentEquals("")){
 
