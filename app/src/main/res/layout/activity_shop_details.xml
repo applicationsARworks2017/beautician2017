@@ -89,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
@@ -111,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
@@ -139,6 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     android:id="@+id/shop_address"/>
@@ -168,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style = "?android:attr/ratingBarStyleSmall"
-                    android:rating="4.5"
+                    android:rating="0"
                     android:layout_marginLeft="20dp"
                     android:id="@+id/rating"
                     android:progressTint="@color/duskyellow"></RatingBar>

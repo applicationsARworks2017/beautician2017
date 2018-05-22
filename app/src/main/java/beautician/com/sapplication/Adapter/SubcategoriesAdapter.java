@@ -2,6 +2,7 @@ package beautician.com.sapplication.Adapter;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -28,6 +29,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import beautician.com.sapplication.Activity.SPProfile;
 import beautician.com.sapplication.Activity.Subcategories;
 import beautician.com.sapplication.Pojo.SubCategoryList;
 import beautician.com.sapplication.R;
@@ -167,10 +169,21 @@ public class SubcategoriesAdapter extends BaseAdapter {
         String server_message;
         String id,username,email_address,contact_no;
         int server_status;
+        ProgressDialog progressDialog=null;
+
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
+            if(progressDialog == null) {
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(_context, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(_context, "Loading", "Please wait...");
+
+                }
+            }            super.onPreExecute();
             // onPreExecuteTask();
         }
 
