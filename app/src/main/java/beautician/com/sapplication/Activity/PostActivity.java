@@ -93,13 +93,13 @@ public class PostActivity extends AppCompatActivity {
                 if(lang.contentEquals("Arabic")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
                     builder.setTitle("");
-                    builder.setMessage("سيتم خصم محفظتك باستخدام SAR 1 لهذا المنشور");
+                    builder.setMessage("سيتم خصم ٣ ريال من المحفظة لهذا المنشور");
                     builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //TODO
                             //   dialog.dismiss();
                             if(txtDate.getText().toString().trim().length()<=0){
-                                Toast.makeText(PostActivity.this,"يرجى إعطاء التاريخ المتوقع",Toast.LENGTH_LONG).show();
+                                Toast.makeText(PostActivity.this,"يرجى إعطاء التاريخ المتوقع ",Toast.LENGTH_LONG).show();
                             }
                             else {
                                 if(CheckInternet.getNetworkConnectivityStatus(PostActivity.this)){
@@ -128,7 +128,7 @@ public class PostActivity extends AppCompatActivity {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
                     builder.setTitle("");
-                    builder.setMessage("Your wallet will be deducted with SAR 1 for this post");
+                    builder.setMessage("Your wallet will be deducted with SAR 3 for this post");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //TODO
@@ -634,11 +634,11 @@ remarks:jhgjhghjgjg"
             progressDialog.dismiss();
             if(wallet_status==1){
                 if(lang.contentEquals("Arabic")){
-                    Toast.makeText(PostActivity.this,"تم إرسال طلب المشاركة والمحفظة باستخدام SAR 1",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostActivity.this,"سيتم خصم ٣ ريال من المحفظة لهذا المنشور ",Toast.LENGTH_LONG).show();
 
                 }
                 else{
-                    Toast.makeText(PostActivity.this,"Request Posted and Wallet debited with SAR 1",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostActivity.this,"Request Posted and Wallet debited with SAR 3",Toast.LENGTH_LONG).show();
 
                 }
                 Intent intent = new Intent(PostActivity.this, HomeActivity.class);

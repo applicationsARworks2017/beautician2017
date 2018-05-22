@@ -112,7 +112,7 @@ public class IndividualRequest extends AppCompatActivity {
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(IndividualRequest.this);
                         builder.setTitle("");
-                        builder.setMessage("سيتم خصم محفظتك بـ 1 دولار لهذا الطلب");
+                        builder.setMessage("سيتم خصم ٣ ريال من المحفظة لهذا الطلب ");
                         builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {
@@ -139,7 +139,7 @@ public class IndividualRequest extends AppCompatActivity {
                     else{
                         AlertDialog.Builder builder = new AlertDialog.Builder(IndividualRequest.this);
                         builder.setTitle("");
-                        builder.setMessage("Your wallet will be deducted with $1 for this request");
+                        builder.setMessage("Your wallet will be deducted with SAR 3 for this request");
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {

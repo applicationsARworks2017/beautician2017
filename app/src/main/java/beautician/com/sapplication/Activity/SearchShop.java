@@ -44,7 +44,7 @@ public class SearchShop extends AppCompatActivity {
             public void onClick(View v) {
                 if(lang.contentEquals("Arabic")){
                     if (et_searchText.getText().toString().trim().length()<=0){
-                        Toast.makeText(SearchShop.this,"الرجاء إدخال نص للبحث",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchShop.this,"الرجاء إدخال النص للبحث ",Toast.LENGTH_SHORT).show();
                     }
                     else{
                         if(CheckInternet.getNetworkConnectivityStatus(SearchShop.this)){

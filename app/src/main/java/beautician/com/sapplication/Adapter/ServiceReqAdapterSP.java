@@ -319,7 +319,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
             else if(server_status==2) {
                 if (lang.contentEquals("Arabic")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                    builder.setMessage("بالفعل الاقتراح المقدم.");
+                    builder.setMessage("تم ارسال الطلب ");
                     builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
 
                         @Override

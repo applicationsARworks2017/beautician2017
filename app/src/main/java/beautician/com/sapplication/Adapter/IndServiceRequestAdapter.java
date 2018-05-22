@@ -788,7 +788,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
                 else if(wpage.contentEquals("user_side")){
                     if(lang.contentEquals("Arabic")){
-                        Toast.makeText(_context,"محفظة المستخدم المحدثة",Toast.LENGTH_LONG).show();
+                        Toast.makeText(_context,"تم تحديث المحفظه",Toast.LENGTH_LONG).show();
 
                     }
                     else{

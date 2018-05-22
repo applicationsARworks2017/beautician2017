@@ -196,9 +196,9 @@ public class PaymentConfirmation extends AppCompatActivity {
             responsecode=2;
         }
         if(lang.contentEquals("Arabic")){
-            Toast.makeText(PaymentConfirmation.this, "كود الاستجابة PayTabs : " + pt_response_code,
+            Toast.makeText(PaymentConfirmation.this, "رقم عملية الدفع : " + pt_response_code,
                     Toast.LENGTH_LONG).show();
-            Toast.makeText(PaymentConfirmation.this, ": Paytabs معرف المعاملة بعد الدفع  " +
+            Toast.makeText(PaymentConfirmation.this, ": رقم عملية الدفع " +
                     pt_transaction_id, Toast.LENGTH_LONG).show();
         }
         else{
