@@ -288,22 +288,29 @@
                 android:layout_marginTop="20dp">
                 <ImageView
                     android:id="@+id/img1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:scaleType="fitXY"
                     android:background="@drawable/custombutton"/>
                 <ImageView
                     android:id="@+id/img2"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginLeft="10dp"
                     android:scaleType="fitXY"
                     android:background="@drawable/custombutton"/>
                 <ImageView
                     android:id="@+id/img3"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/custombutton"/>
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginLeft="10dp"
                     android:scaleType="fitXY"
                     android:background="@drawable/custombutton"/>
             </LinearLayout>

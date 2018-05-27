@@ -66,6 +66,7 @@ public class Constants {
     public static String USER_WALLLET_UPDATE="UserWallets/add.json";
     public static String SHOP_WALLLET_UPDATE="wallets/add.json";
     public static String SHOP_EDIT="shops/edit.json";
+    public static String SUBCATEGORY_EDIT="ShopDetails/edit.json";
     public static String USER_EDIT="users/edit.json";
     public static String USER_TRASACTIONS="UserWallets/history.json";
     public static String SHOP_TRASACTIONS="Wallets/history.json";
@@ -79,7 +80,9 @@ public class Constants {
     public static final String USER_ID = "userid" ;
     public static final String USER_TYPE = "user_type" ;
     public static final String FCM_ID="fcmid";
+    public static final String BEAUTICIAN_TYPE="usertype";
 
+    public static final String SHAREDPREFERENCE_BEAUTICIAN = "beauticianusertype" ;
     public static final String SHAREDPREFERENCE_LANGUAGE = "beauticianlanguage" ;
     public static final String LANG="languange";
     public static final String LANG_TYPE="langtype";

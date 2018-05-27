@@ -58,6 +58,7 @@ public class Login_Activity extends AppCompatActivity {
     ArrayList<SpList> splist;
     String fcm_id;
     String lang;
+    public static String User_type;
     RelativeLayout login_rel;
     String[] PERMISSIONS = {Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE};
 
@@ -141,10 +142,21 @@ public class Login_Activity extends AppCompatActivity {
                 radioButton = (RadioButton) findViewById(selectedId);
 
                 if(radioButton.getText().toString().trim().contains("Costumer")|| radioButton.getText().toString().trim().contentEquals("العميل")){
+                    User_type="USER";
+                    SharedPreferences user_type_shred = getSharedPreferences(Constants.SHAREDPREFERENCE_BEAUTICIAN, 0); // 0 - for private mode
+                    SharedPreferences.Editor edituser = user_type_shred.edit();
+                    edituser.putString(Constants.BEAUTICIAN_TYPE, User_type);
+                    edituser.commit();
                     Checklogin("user");
                 }
                 else{
+                    User_type="SP";
+                    SharedPreferences user_type_shred = getSharedPreferences(Constants.SHAREDPREFERENCE_BEAUTICIAN, 0); // 0 - for private mode
+                    SharedPreferences.Editor edituser = user_type_shred.edit();
+                    edituser.putString(Constants.BEAUTICIAN_TYPE, User_type);
+                    edituser.commit();
                     Checklogin("sp");
+
 
                 }
             }
@@ -175,11 +187,14 @@ public class Login_Activity extends AppCompatActivity {
 
     private void Checklogin(String type) {
         if(CheckInternet.getNetworkConnectivityStatus(Login_Activity.this)) {
+//            User_type=type;
+
             if (type.contentEquals("user")) {
                 String login_user_phn_num = et_phone.getText().toString().trim();
                 String login_user_phn_pass = et_password.getText().toString().trim();
                 new LoginUserAsyntask().execute(login_user_phn_num, login_user_phn_pass);
             } else {
+
                 String login_sp_phn_num = et_phone.getText().toString().trim();
                 String login_sp_phn_pass = et_password.getText().toString().trim();
                 new LoginSPAsyntask().execute(login_sp_phn_num, login_sp_phn_pass);

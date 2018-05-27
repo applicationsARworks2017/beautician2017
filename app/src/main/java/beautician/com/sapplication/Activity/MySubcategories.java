@@ -3,7 +3,6 @@ package beautician.com.sapplication.Activity;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -47,7 +46,7 @@ public class MySubcategories extends AppCompatActivity {
     ListSubcategoriesAdapter scadapter;
     RelativeLayout rel_subcategory;
     SearchView searchView_sub_category;
-    String shop_id,lang;
+    String shop_id,lang,user_type,user_typee;
     Button bt_ok,bt_cancel;
 
     @Override
@@ -62,6 +61,8 @@ public class MySubcategories extends AppCompatActivity {
             page = extras.getString("PAGE");
         }
         category_id=MyserviceList.catid;
+        user_type=getSharedPreferences(Constants.SHAREDPREFERENCE_BEAUTICIAN, 0).getString(Constants.BEAUTICIAN_TYPE, null);
+
         categoryname=MyserviceList.value;
         scList=new ArrayList<>();
         cattext=(TextView)findViewById(R.id.cattext);
@@ -125,7 +126,7 @@ public class MySubcategories extends AppCompatActivity {
             flatlist_search.addAll(scList);
         }
         // create an Object for Adapter
-        scadapter = new ListSubcategoriesAdapter(MySubcategories.this,flatlist_search,lang );
+        scadapter = new ListSubcategoriesAdapter(MySubcategories.this,flatlist_search,lang,user_type );
         lv_subcategory.setAdapter(scadapter);
         //  mAdapter.notifyDataSetChanged();
 
@@ -209,12 +210,15 @@ public class MySubcategories extends AppCompatActivity {
    {
     "subCategories": [
         {
-            "id": 1,
-            "category_id": 1,
-            "title": "first sub category",
-            "is_enable": "Y",
-            "created": "30-10-2017",
-            "modified": null
+           "id": 3,
+            "title": "Hair Cut",
+            "price_id": 76,
+            "arabic_title": null,
+            "price": 50"id": 3,
+            "title": "Hair Cut",
+            "price_id": 76,
+            "arabic_title": null,
+            "price": 50
         },
                     },*/
 
@@ -235,7 +239,8 @@ public class MySubcategories extends AppCompatActivity {
                             String subcategory = o_list_obj.getString("title");
                             String price = o_list_obj.getString("price");
                             String arabic_title = o_list_obj.getString("arabic_title");
-                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,price,arabic_title);
+                            String price_id = o_list_obj.getString("price_id");
+                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,price,arabic_title,price_id);
                             scList.add(list1);
                         }
                     }
@@ -253,24 +258,24 @@ public class MySubcategories extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                scadapter = new ListSubcategoriesAdapter(MySubcategories.this,scList,lang );
+                scadapter = new ListSubcategoriesAdapter(MySubcategories.this,scList,lang,user_type );
                 lv_subcategory.setAdapter(scadapter);
             }
             else{
                 lv_subcategory.setVisibility(View.GONE);
                 blank_text_sc.setVisibility(View.VISIBLE);
-                Snackbar snackbar = Snackbar
+                /*Snackbar snackbar = Snackbar
                         .make(rel_subcategory, server_message, Snackbar.LENGTH_LONG);
-                snackbar.show();
+                snackbar.show();*/
             }
             loader_sub_category.setVisibility(View.GONE);
             swipe_subcategory.setVisibility(View.VISIBLE);
         }
     }
-    @Override
+   /* @Override
     public void onBackPressed()
     {
         finish();
-    }
+    }*/
 }
 

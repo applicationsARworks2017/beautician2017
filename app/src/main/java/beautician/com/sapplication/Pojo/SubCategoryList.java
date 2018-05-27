@@ -5,7 +5,7 @@ package beautician.com.sapplication.Pojo;
  */
 
 public class SubCategoryList {
-    String id,category,subcategory,category_id,price,arabic_title;
+    String id,category,subcategory,category_id,price,arabic_title,price_id;
     private boolean selected;
     public boolean isSelected() {
         return selected;
@@ -63,15 +63,24 @@ public class SubCategoryList {
         this.arabic_title = arabic_title;
     }
 
-    public SubCategoryList(String id, String subcategory, String category_id, String price, String arabic_title) {
+    public SubCategoryList(String id, String subcategory, String category_id, String price, String arabic_title,String price_id) {
         this.id=id;
         this.subcategory=subcategory;
         this.category_id=category_id;
         this.price=price;
         this.arabic_title=arabic_title;
+        this.price_id=price_id;
 
 
 
 
+    }
+
+    public String getPrice_id() {
+        return price_id;
+    }
+
+    public void setPrice_id(String price_id) {
+        this.price_id = price_id;
     }
 }

@@ -32,7 +32,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -41,7 +44,7 @@ import beautician.com.sapplication.Utils.Constants;
 public class PostActivity extends AppCompatActivity {
     TextView tv_services,postHeading,adultt;
     Spinner adult;
-    String user_id,exp_date,lang;
+    String user_id,exp_date,lang,dateto_send,curr_date;
     EditText et_contentheading;
     Button submit_post;
     ImageView btnDatePicker, btnTimePicker;
@@ -70,6 +73,12 @@ public class PostActivity extends AppCompatActivity {
         btnTimePicker=(ImageView) findViewById(R.id.btn_time);
         txtDate=(EditText)findViewById(R.id.in_date);
         txtTime=(EditText)findViewById(R.id.in_time);
+
+        DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        dateFormatter.setLenient(false);
+        Date today = new Date();
+        curr_date = dateFormatter.format(today);
+        dateto_send=curr_date.substring(0, Math.min(curr_date.length(), 10));
 
         if(lang.contentEquals("Arabic")){
             postHeading.setText(":كنت مهتما ل");
@@ -278,7 +287,8 @@ remarks:jhgjhghjgjg"
                         .appendQueryParameter("sub_category_id", _scat_id)
                         .appendQueryParameter("no_of_user", _no_of_user)
                         .appendQueryParameter("remarks", _remarks)
-                        .appendQueryParameter("expected_date", _exp_date);
+                        .appendQueryParameter("expected_date", _exp_date)
+                        .appendQueryParameter("current_date", params[6]);
 
                 //.appendQueryParameter("deviceid", deviceid);
                 String query = builder.build().getEncodedQuery();
@@ -492,7 +502,7 @@ remarks:jhgjhghjgjg"
                     exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
                     if (CheckInternet.getNetworkConnectivityStatus(PostActivity.this)) {
                         Postservice postservice = new Postservice();
-                        postservice.execute(user_id, CategoriesRequest.catid, RequestSubcategories.SubcateryId, numof, postDetails, exp_date);
+                        postservice.execute(user_id, CategoriesRequest.catid, RequestSubcategories.SubcateryId, numof, postDetails, exp_date,curr_date);
 
                     } else {
                         Constants.noInternetDialouge(PostActivity.this, "No Internet");

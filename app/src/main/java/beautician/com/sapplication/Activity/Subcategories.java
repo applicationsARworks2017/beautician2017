@@ -45,14 +45,16 @@ public class Subcategories extends AppCompatActivity {
     SubcategoriesAdapter scadapter;
     RelativeLayout rel_subcategory;
     SearchView searchView_sub_category;
-    String shop_id,lang;
+    String shop_id,lang,user_type;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subcategories);
+
         category_id=Categories.category_id;
+        user_type=Login_Activity.User_type;
         scList=new ArrayList<>();
         shop_id = Subcategories.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
@@ -228,7 +230,7 @@ public class Subcategories extends AppCompatActivity {
                             String category_id = o_list_obj.getString("category_id");
                             String arabic_title = o_list_obj.getString("arabic_title");
 
-                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"",arabic_title);
+                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"",arabic_title,null);
                             scList.add(list1);
                         }
                     }

@@ -153,6 +153,10 @@
             android:name=".Activity.CheckIndividualPost"
             android:label="Service Requests"
             android:parentActivityName=".Activity.HomeActivity" />
+        <activity
+            android:name=".Activity.SubCategoryEditActivity"
+            android:label="SubCategory Edit"
+            android:parentActivityName=".Activity.MySubcategories" />
 
         <!-- Firebase Notifications -->
         <service android:name=".Firebase.MyFirebaseMessagingService">

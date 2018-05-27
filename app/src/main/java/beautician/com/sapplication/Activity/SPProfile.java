@@ -1,26 +1,36 @@
 package beautician.com.sapplication.Activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -55,12 +65,22 @@ import beautician.com.sapplication.Utils.MultipartUtility;
 
 import static beautician.com.sapplication.Utils.Constants.modifyOrientation;
 
-public class SPProfile extends AppCompatActivity {
+public class SPProfile extends AppCompatActivity implements android.location.LocationListener {
     Button button,editsave;
     String shop_id;
-    String id,shopname,address,latlong,photo1,photo2,photo3,email,mobile,reviews,ratings;
+   public static String id;
+    public static String shopname;
+    public static String address;
+    public static String latlong;
+    public static String photo1;
+    public static String photo2;
+    public static String photo3;
+    public static String email;
+    public static String mobile;
+    public static String reviews;
+    public static String ratings;
     ImageView pic1,pic2,pic3;
-    EditText name_value,tv_phone_value,tv_email_value,tv_add_value;
+   public static EditText name_value,tv_phone_value,tv_email_value,tv_add_value,tv_latlng;
     Boolean editable=false;
     RelativeLayout sp_profile_rel;
     int imageclick;
@@ -69,10 +89,20 @@ public class SPProfile extends AppCompatActivity {
     Uri picUri=null;
     Boolean picAvailable=false;
     private static final int CAMERA_REQUEST = 1888;
-    String imPath,server_message,lang;
+    String imPath,server_message,lang,user_type;
     int server_status,filechooser,gal1,gal2,gal3;
     private static int RESULT_LOAD_IMAGE = 1;
-    TextView hd_name,hd_phone,hd_email,hd_address,lang_english,lang_arabic;
+    TextView hd_name,hd_phone,hd_email,hd_address,lang_english,lang_arabic,tv_showmap,tvlatlng;
+    Geocoder geocoder;
+    String sign_lat,sign_long;
+    public static String spprofile="profile";
+    public  static String latitude, longitude;
+    LocationManager locationManager;
+    Boolean isGPSEnabled, isNetworkEnabled, canGetLocation;
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+    private String provider,fcm_id;
+
 
 
     @Override
@@ -87,12 +117,15 @@ public class SPProfile extends AppCompatActivity {
         tv_phone_value=(EditText) findViewById(R.id.tv_phone_value);
         tv_email_value=(EditText) findViewById(R.id.tv_email_value);
         tv_add_value=(EditText) findViewById(R.id.tv_add_value);
+        tv_latlng=(EditText) findViewById(R.id.tv_latlng);
         hd_name=(TextView) findViewById(R.id.hd_name);
         hd_phone=(TextView) findViewById(R.id.hd_phone);
         hd_email=(TextView) findViewById(R.id.hd_email);
         hd_address=(TextView) findViewById(R.id.hd_address);
         lang_english=(TextView) findViewById(R.id.tv_english);
         lang_arabic=(TextView) findViewById(R.id.tv_arabic);
+        tv_showmap=(TextView) findViewById(R.id.tv_showmap);
+        tvlatlng=(TextView) findViewById(R.id.tvlatlng);
         sp_profile_rel=(RelativeLayout) findViewById(R.id.sp_profile_rel);
         pic1=(ImageView)findViewById(R.id.photo1);
         pic2=(ImageView)findViewById(R.id.photo2);
@@ -101,10 +134,12 @@ public class SPProfile extends AppCompatActivity {
         tv_phone_value.setEnabled(false);
         tv_email_value.setEnabled(false);
         tv_add_value.setEnabled(false);
+        tv_latlng.setEnabled(false);
 
 
         shop_id = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+        user_type=getSharedPreferences(Constants.SHAREDPREFERENCE_BEAUTICIAN, 0).getString(Constants.BEAUTICIAN_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
             hd_name.setText("الاسم");
@@ -113,6 +148,10 @@ public class SPProfile extends AppCompatActivity {
             hd_address.setText("العنوان");
             button.setText("خروج");
             editsave.setText("تعديل");
+            tvlatlng.setText("خطوط الطول طويلة");
+            tv_showmap.setText("عرض الخريطة");
+            tv_showmap.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
         }
         else{
             hd_name.setText("Name");
@@ -121,9 +160,71 @@ public class SPProfile extends AppCompatActivity {
             hd_address.setText("Address");
             button.setText("Logout");
             editsave.setText("Edit");
+            tvlatlng.setText("LatLong");
+            tv_showmap.setText("ShowMap");
+            tv_showmap.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         }
-        getThedetails();
+        if(user_type.contentEquals("SP")){
+            tv_latlng.setVisibility(View.VISIBLE);
+            tv_showmap.setVisibility(View.VISIBLE);
+            tvlatlng.setVisibility(View.VISIBLE);
+        }
 
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            // Call your Alert message
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Please switch on your phone GPS")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            Location location = locationManager.getLastKnownLocation(provider);
+
+            // Initialize the location fields
+            if (location != null) {
+                System.out.println("Provider " + provider + " has been selected.");
+                onLocationChanged(location);
+            } else {
+                /*Latitude.setText("Device can't founf the loc");
+                Longitude.setText("Device can't founf the loc");*/
+            }
+
+        } else {
+            // Toast.makeText(HomeActivity.this, "Allow to GPS", Toast.LENGTH_LONG).show();
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            Location location = locationManager.getLastKnownLocation(provider);
+
+            // Initialize the location fields
+            if (location != null) {
+                System.out.println("Provider " + provider + " has been selected.");
+                onLocationChanged(location);
+            } else {
+                /*Latitude.setText("Device can't founf the loc");
+                Longitude.setText("Device can't founf the loc");*/
+            }
+
+        } else {
+            // Toast.makeText(HomeActivity.this, "Allow to GPS", Toast.LENGTH_LONG).show();
+        }
+
+
+        getThedetails();
+        getgpsloc();
         lang_english.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,7 +274,15 @@ public class SPProfile extends AppCompatActivity {
 
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
+        tv_showmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SPProfile.this, MapActivity.class);
+                startActivity(intent);
+            }
+            });
+
+                button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0); // 0 - for private mode
@@ -198,6 +307,7 @@ public class SPProfile extends AppCompatActivity {
                     tv_phone_value.setEnabled(true);
                     tv_email_value.setEnabled(true);
                     tv_add_value.setEnabled(true);
+                    tv_latlng.setEnabled(true);
                 }
                 else{
 
@@ -304,6 +414,83 @@ public class SPProfile extends AppCompatActivity {
             }
         });
     }
+
+    private void getgpsloc() {
+        ///gps code start
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+
+            locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+
+            // getting GPS status
+            isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+            // getting network status
+            isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+            if (!isGPSEnabled && !isNetworkEnabled) {
+                // no GPS Provider and no network provider is enabled
+            } else {   // Either GPS provider or network provider is enabled
+
+                // First get location from Network Provider
+                if (isNetworkEnabled) {
+
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                    if (locationManager != null) {
+                        Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null) {
+                            double lat = location.getLatitude();
+                            double lon = location.getLongitude();
+                            latitude = String.valueOf(lat);
+                            longitude = String.valueOf(lon);
+                            this.canGetLocation = true;
+                            //   Toast.makeText(HomeActivity.this,latitude+longitude,Toast.LENGTH_LONG).show();
+
+
+                        }
+                    }
+                }
+            }// End of IF network enabled
+
+            // if GPS Enabled get lat/long using GPS Services
+            if (isGPSEnabled) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES,
+                        MIN_DISTANCE_CHANGE_FOR_UPDATES,  this);
+                if (locationManager != null)
+                {
+                    Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    if (location != null)
+                    {
+                        double lat = location.getLatitude();
+                        double lon = location.getLongitude();
+                        latitude=String.valueOf(lat);
+                        longitude=String.valueOf(lon);
+                        this.canGetLocation = true;
+                        //    Toast.makeText(HomeActivity.this,latitude+longitude,Toast.LENGTH_LONG).show();
+
+
+                    }
+                }
+
+            }// End of if GPS Enabled
+        }// End of Either GPS provider or network provider is enabled
+
+
+
+        //gps code end
+    }
+
     private void captureImage(int i, String action) {
         if(action.contentEquals("camera")) {
             Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -442,6 +629,7 @@ public class SPProfile extends AppCompatActivity {
         String shop_number=tv_phone_value.getText().toString().trim();
         String shop_mail=tv_email_value.getText().toString().trim();
         String shop_address=tv_add_value.getText().toString().trim();
+        String shop_latlng=tv_latlng.getText().toString().trim();
         if(gal1==1) {
             if (pic1.getDrawable() != null) {
                 Bitmap bitmap = ((BitmapDrawable) pic1.getDrawable()).getBitmap();
@@ -478,7 +666,7 @@ public class SPProfile extends AppCompatActivity {
         }
         else{
             EditSP asyntask=new EditSP();
-            asyntask.execute(shop_name,shop_number,shop_mail,shop_address,shop_id);
+            asyntask.execute(shop_name,shop_number,shop_mail,shop_address,shop_id,shop_latlng);
         }
     }
 
@@ -486,6 +674,27 @@ public class SPProfile extends AppCompatActivity {
         ViewShops viewShops=new ViewShops();
         viewShops.execute(shop_id);
     }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
     private class ViewShops extends AsyncTask<String, Void, Void> {
 
         private static final String TAG = "Propsal details";
@@ -605,6 +814,7 @@ public class SPProfile extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
+
             setValues();
             progressDialog.dismiss();
         }
@@ -616,9 +826,11 @@ public class SPProfile extends AppCompatActivity {
         tv_phone_value.setText(mobile);
         tv_email_value.setText(email);
         tv_add_value.setText(address);
+        tv_latlng.setText(latlong);
         if(!photo1.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo1).into(pic1);
-        } if(!photo2.isEmpty()) {
+        }
+        if(!photo2.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo2).into(pic2);
         } if(!photo3.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo3).into(pic3);
@@ -676,6 +888,7 @@ public class SPProfile extends AppCompatActivity {
                 multipart.addFormField("email", _email);
                 multipart.addFormField("address", _address);
                 multipart.addFormField("id", _shop_id);
+                multipart.addFormField("latitudelongitude", params[5]);
                 if (imgfile1 != null) {
                     multipart.addFilePart("photo1", imgfile1);
                 }

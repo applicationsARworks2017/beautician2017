@@ -14,6 +14,7 @@ public class SPHome extends AppCompatActivity {
     CardView card_manageservice,card_profile,card_checkPost,card_proposal,card_mywallet,card_offer;
     String lang;
     TextView check_post,profilee,manage_offers,my_wallet,manage_service,my_proposal;
+    public static String user_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

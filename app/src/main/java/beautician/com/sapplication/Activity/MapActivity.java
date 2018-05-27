@@ -2,10 +2,10 @@ package beautician.com.sapplication.Activity;
 
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -24,8 +24,6 @@ import java.util.Locale;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Tabs.SPSignup;
 
-import static beautician.com.sapplication.R.drawable.map;
-
 public class MapActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,OnMapReadyCallback {
     GoogleMap googleMap;
     SupportMapFragment fm;
@@ -33,7 +31,8 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
     Geocoder geocoder;
     MarkerOptions markerOptions;
     String address,city,state;
-    String latitude,longitude;
+    String latitude,longitude,classname;
+    LatLng latLng;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +54,27 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
     @Override
     public void onMapReady(GoogleMap Map) {
         this.googleMap=Map;
-        LatLng latLng = new LatLng(Double.valueOf(SignupActivity.latitude),Double.valueOf(SignupActivity.longitude));
+        classname=SPProfile.spprofile;
+        if(classname.contentEquals("profile")){
+            latLng = new LatLng(Double.valueOf(SPProfile.latitude), Double.valueOf(SPProfile.longitude));
 
-        googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(Double.valueOf(SignupActivity.latitude),Double.valueOf(SignupActivity.longitude)) , 14.0f) );
-        googleMap.addMarker(new MarkerOptions().position(latLng));
-        markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        googleMap.addMarker(markerOptions);
-        googleMap.addMarker(markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+            googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(Double.valueOf(SPProfile.latitude),Double.valueOf(SPProfile.longitude)) , 14.0f) );
+            googleMap.addMarker(new MarkerOptions().position(latLng));
+            markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            googleMap.addMarker(markerOptions);
+            googleMap.addMarker(markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        }
+        else {
+            latLng = new LatLng(Double.valueOf(SignupActivity.latitude), Double.valueOf(SignupActivity.longitude));
 
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.valueOf(SignupActivity.latitude), Double.valueOf(SignupActivity.longitude)), 14.0f));
+            googleMap.addMarker(new MarkerOptions().position(latLng));
+            markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            googleMap.addMarker(markerOptions);
+            googleMap.addMarker(markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        }
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -71,7 +82,13 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
                 googleMap.addMarker(new MarkerOptions().position(latLng).title("Custom location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                 //SPSignup.latitude=latLng.latitude;
                 //SPSignup.longitude=latLng.longitude;
-                SPSignup.et_latlong.setText(latLng.latitude+","+latLng.longitude);
+                if(classname.contentEquals("profile")){
+                    SPProfile.tv_latlng.setText(latLng.latitude+","+latLng.longitude);
+
+                }else{
+                    SPSignup.et_latlong.setText(latLng.latitude+","+latLng.longitude);
+
+                }
                 List<Address> addresses;
                 geocoder = new Geocoder(MapActivity.this, Locale.getDefault());
                 try {
@@ -79,7 +96,13 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
                     address=addresses.get(0).getAddressLine(0);
                     city=addresses.get(0).getLocality();
                     state=addresses.get(0).getAdminArea();
-                    SPSignup.et_sp_address.setText(address+","+city+","+state);
+                    if(classname.contentEquals("profile")){
+//                        SPProfile.tv_latlng.setText(address+","+city+","+state);
+
+                    }else{
+                        SPSignup.et_sp_address.setText(address+","+city+","+state);
+
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

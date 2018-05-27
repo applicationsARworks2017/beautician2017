@@ -306,8 +306,7 @@ public class RequestSubcategories extends AppCompatActivity {
                             String subcategory = o_list_obj.getString("title");
                             String category_id = o_list_obj.getString("category_id");
                             String arabic_title = o_list_obj.getString("arabic_title");
-
-                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"",arabic_title);
+                            SubCategoryList list1 = new SubCategoryList(id,subcategory,category_id,"",arabic_title,null);
                             scList.add(list1);
                         }
                     }

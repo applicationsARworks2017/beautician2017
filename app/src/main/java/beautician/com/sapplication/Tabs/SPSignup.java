@@ -75,7 +75,7 @@ public class SPSignup extends Fragment {
     private EditText et_sp_name,et_sp_phone,et_sp_mail,et_sp_pass;
     public static EditText et_latlong;
     public static EditText et_sp_address;
-    private ImageView iv_pic1,iv_pic2,iv_pic3;
+    private ImageView iv_pic1,iv_pic2,iv_pic3,iv_pic4;
     Button bt_setails_submit;
     ProgressBar loader_signup;
     private int server_status;
@@ -85,7 +85,7 @@ public class SPSignup extends Fragment {
     private static final int CAMERA_REQUEST = 1888;
     String imPath;
     Geocoder geocoder;
-    File imageFile,imgfile1,imgfile2,imgfile3;
+    File imageFile,imgfile1,imgfile2,imgfile3,imgfile4;
     Uri picUri=null;
     Boolean picAvailable=false;
     KeyListener variable;
@@ -144,6 +144,7 @@ public class SPSignup extends Fragment {
         iv_pic1=(ImageView)v.findViewById(R.id.img1);
         iv_pic2=(ImageView)v.findViewById(R.id.img2);
         iv_pic3=(ImageView)v.findViewById(R.id.img3);
+        iv_pic4=(ImageView)v.findViewById(R.id.img4);
         sp_signup=(RelativeLayout)v.findViewById(R.id.sp_signup);
         bt_setails_submit=(Button)v.findViewById(R.id.bt_sp_submit);
         tv_gomap=(TextView)v.findViewById(R.id.tv_gomap);
@@ -226,6 +227,13 @@ public class SPSignup extends Fragment {
                 captureImage(3);
             }
         });
+        iv_pic4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    imageclick=4;
+                    captureImage(4);
+                }
+        });
 
 
         return v;
@@ -281,8 +289,11 @@ public class SPSignup extends Fragment {
         else if(i==2) {
             imgfile2=imageFile;
         }
-        else{
+        else if(i==3) {
             imgfile3=imageFile;
+        }
+        else{
+            imgfile4=imageFile;
         }
         picUri = Uri.fromFile(image); // convert path to Uri
         return image;
@@ -304,8 +315,11 @@ public class SPSignup extends Fragment {
                 else if(imageclick==2){
                     iv_pic2.setImageBitmap(perfectImage);
                 }
-                else{
+                else if(imageclick==3){
                     iv_pic3.setImageBitmap(perfectImage);
+                }
+                else{
+                    iv_pic4.setImageBitmap(perfectImage);
                 }
                 //    profileImage=img1.toString();
 
@@ -444,6 +458,10 @@ public class SPSignup extends Fragment {
                 }
                 if(imgfile3!=null){
                     multipart.addFilePart("photo3",imgfile3 );
+
+                }
+                if(imgfile4!=null){
+                    multipart.addFilePart("photo4",imgfile4 );
 
                 }
                 List<String> response = multipart.finish();

@@ -80,7 +80,7 @@ public class OfferSet extends AppCompatActivity {
     private void checkOfferList() {
         if(CheckInternet.getNetworkConnectivityStatus(OfferSet.this)){
             GetOfferList getPost=new GetOfferList();
-            getPost.execute(user_id);
+            getPost.execute(user_id,HomeActivity.latitude,HomeActivity.longitude);
         }
         else{
             Constants.noInternetDialouge(OfferSet.this,"No Internet");
@@ -119,11 +119,14 @@ public class OfferSet extends AppCompatActivity {
                 Uri.Builder builder = null;
                 if(page.contentEquals("sp_home")) {
                     builder = new Uri.Builder()
-                            .appendQueryParameter("shop_id", _user_id);
+                            .appendQueryParameter("shop_id", _user_id)
+                            ;
                 }
                 else{
                     builder = new Uri.Builder()
-                            .appendQueryParameter("user_id", _user_id);
+                            .appendQueryParameter("user_id", _user_id)
+                            .appendQueryParameter("latitude", params[1])
+                            .appendQueryParameter("longitude", params[2]);
                 }
                 String query = builder.build().getEncodedQuery();
 
