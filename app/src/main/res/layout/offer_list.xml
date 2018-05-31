@@ -36,9 +36,9 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:padding="10dp"
-                android:visibility="gone"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:background="@mipmap/ic_reply_black_24dp"
+                android:background="@mipmap/baseline_play_arrow_black_24"
                 android:id="@+id/im_reply"
                 />
             <LinearLayout

@@ -224,7 +224,7 @@ public class OfferSet extends AppCompatActivity {
         protected void onPostExecute(Void data) {
             super.onPostExecute(data);
             if(server_status==1) {
-                oAdapter=new OffersAdapter(OfferSet.this,oList,lang);
+                oAdapter=new OffersAdapter(OfferSet.this,oList,lang,page);
                 lv_setoffers.setAdapter(oAdapter);
             }
             else{

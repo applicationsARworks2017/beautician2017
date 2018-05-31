@@ -75,22 +75,23 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
     public static String photo1;
     public static String photo2;
     public static String photo3;
+    public static String photo4;
     public static String email;
     public static String mobile;
     public static String reviews;
     public static String ratings;
-    ImageView pic1,pic2,pic3;
+    ImageView pic1,pic2,pic3,pic4;
    public static EditText name_value,tv_phone_value,tv_email_value,tv_add_value,tv_latlng;
     Boolean editable=false;
     RelativeLayout sp_profile_rel;
     int imageclick;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    File imageFile,imgfile1,imgfile2,imgfile3;
+    File imageFile,imgfile1,imgfile2,imgfile3,imgfile4;
     Uri picUri=null;
     Boolean picAvailable=false;
     private static final int CAMERA_REQUEST = 1888;
     String imPath,server_message,lang,user_type;
-    int server_status,filechooser,gal1,gal2,gal3;
+    int server_status,filechooser,gal1,gal2,gal3,gal4;
     private static int RESULT_LOAD_IMAGE = 1;
     TextView hd_name,hd_phone,hd_email,hd_address,lang_english,lang_arabic,tv_showmap,tvlatlng;
     Geocoder geocoder;
@@ -130,6 +131,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         pic1=(ImageView)findViewById(R.id.photo1);
         pic2=(ImageView)findViewById(R.id.photo2);
         pic3=(ImageView)findViewById(R.id.photo3);
+        pic4=(ImageView)findViewById(R.id.photo4);
         name_value.setEnabled(false);
         tv_phone_value.setEnabled(false);
         tv_email_value.setEnabled(false);
@@ -278,6 +280,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SPProfile.this, MapActivity.class);
+                intent.putExtra("page","profile");
                 startActivity(intent);
             }
             });
@@ -405,6 +408,40 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                             filechooser=2;
                             gal3=1;
                             captureImage(3,"gallery");
+                        }
+                    });
+
+
+
+                }
+            }
+        });
+        pic4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(editable==true) {
+                    final Dialog dialog = new Dialog(SPProfile.this);
+                    dialog.setContentView(R.layout.chooseaction);
+                    TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                    TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    dialog.show();
+                    choosecamera.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 4;
+                            filechooser=1;
+                            captureImage(4,"camera");
+                        }
+                    });
+                    choosegeller.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 4;
+                            filechooser=2;
+                            gal4=1;
+                            captureImage(4,"gallery");
                         }
                     });
 
@@ -548,9 +585,11 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         }
         else if(i==2) {
             imgfile2=imageFile;
+        }else if(i==3) {
+            imgfile3=imageFile;
         }
         else{
-            imgfile3=imageFile;
+            imgfile4=imageFile;
         }
         picUri = Uri.fromFile(image); // convert path to Uri
         return image;
@@ -571,8 +610,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                         pic1.setImageBitmap(perfectImage);
                     } else if (imageclick == 2) {
                         pic2.setImageBitmap(perfectImage);
-                    } else {
+                    } else if (imageclick == 3) {
                         pic3.setImageBitmap(perfectImage);
+                    } else {
+                        pic4.setImageBitmap(perfectImage);
                     }
                     //    profileImage=img1.toString();
 
@@ -603,6 +644,8 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                 }
                 else if(imageclick==3) {
                     pic3.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                }else if(imageclick==4) {
+                    pic4.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                 }
 
 
@@ -646,6 +689,12 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             if (pic3.getDrawable() != null) {
                 Bitmap bitmap = ((BitmapDrawable) pic3.getDrawable()).getBitmap();
                 imgfile3 = persistImage(bitmap, shop_name+"3");
+            }
+        }
+        if(gal4==1) {
+            if (pic4.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) pic4.getDrawable()).getBitmap();
+                imgfile4 = persistImage(bitmap, shop_name+"4");
             }
         }
 
@@ -796,6 +845,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                     photo1=j_obj.getString("photo1");
                     photo2=j_obj.getString("photo2");
                     photo3=j_obj.getString("photo3");
+                    photo4=j_obj.getString("photo4");
                     email=j_obj.getString("email");
                     mobile=j_obj.getString("mobile");
                     reviews=j_obj.getString("no_of_reviews");
@@ -834,6 +884,8 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo2).into(pic2);
         } if(!photo3.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo3).into(pic3);
+        }if(!photo4.isEmpty()) {
+            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo4).into(pic4);
         }
     }
     void showSnackBar(String message){
@@ -897,6 +949,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                 }
                 if (imgfile3 != null) {
                     multipart.addFilePart("photo3", imgfile3);
+
+                }
+                if (imgfile4 != null) {
+                    multipart.addFilePart("photo4", imgfile4);
 
                 }
                 List<String> response = multipart.finish();

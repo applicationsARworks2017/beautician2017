@@ -33,10 +33,16 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
     String address,city,state;
     String latitude,longitude,classname;
     LatLng latLng;
+    String page;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            page = extras.getString("page");
+            // and get whatever type user account id is
+        }
         fm = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.self_map);
         fm.getMapAsync(this);
     }
@@ -54,8 +60,7 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
     @Override
     public void onMapReady(GoogleMap Map) {
         this.googleMap=Map;
-        classname=SPProfile.spprofile;
-        if(classname.contentEquals("profile")){
+        if(page.contentEquals("profile")){
             latLng = new LatLng(Double.valueOf(SPProfile.latitude), Double.valueOf(SPProfile.longitude));
 
             googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(Double.valueOf(SPProfile.latitude),Double.valueOf(SPProfile.longitude)) , 14.0f) );
@@ -82,7 +87,7 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
                 googleMap.addMarker(new MarkerOptions().position(latLng).title("Custom location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                 //SPSignup.latitude=latLng.latitude;
                 //SPSignup.longitude=latLng.longitude;
-                if(classname.contentEquals("profile")){
+                if(page.contentEquals("profile")){
                     SPProfile.tv_latlng.setText(latLng.latitude+","+latLng.longitude);
 
                 }else{
@@ -96,7 +101,7 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
                     address=addresses.get(0).getAddressLine(0);
                     city=addresses.get(0).getLocality();
                     state=addresses.get(0).getAdminArea();
-                    if(classname.contentEquals("profile")){
+                    if(page.contentEquals("profile")){
 //                        SPProfile.tv_latlng.setText(address+","+city+","+state);
 
                     }else{

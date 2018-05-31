@@ -202,7 +202,9 @@ public class SPSignup extends Fragment {
             @Override
             public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), MapActivity.class);
-                    startActivity(intent);
+                intent.putExtra("page","signup");
+
+                startActivity(intent);
 
             }
         });
