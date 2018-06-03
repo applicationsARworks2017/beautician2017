@@ -59,6 +59,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import beautician.com.sapplication.Pojo.Shops;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
@@ -225,7 +226,8 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         }
 
 
-        getThedetails();
+       // getThedetails();
+        setValues();
         getgpsloc();
         lang_english.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -279,9 +281,11 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         tv_showmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SPProfile.this, MapActivity.class);
-                intent.putExtra("page","profile");
-                startActivity(intent);
+                if(editable==true) {
+                    Intent intent = new Intent(SPProfile.this, MapActivity.class);
+                    intent.putExtra("page", "profile");
+                    startActivity(intent);
+                }
             }
             });
 
@@ -311,6 +315,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                     tv_email_value.setEnabled(true);
                     tv_add_value.setEnabled(true);
                     tv_latlng.setEnabled(true);
+                    tvlatlng.setEnabled(true);
                 }
                 else{
 
@@ -865,14 +870,64 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
 
+
+            SharedPreferences sharedPreferences = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0); // 0 - for private mode
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(Constants.USER_ID, id);
+            editor.putString(Constants.SHOP_NAME, shopname);
+            editor.putString(Constants.SHOP_ADD, address);
+            editor.putString(Constants.SHOP_latlong, latlong);
+            editor.putString(Constants.SHOP_PIC_ONE, photo1);
+            editor.putString(Constants.SHOP_PIC_TWO, photo2);
+            editor.putString(Constants.SHOP_PIC_THREE, photo3);
+            editor.putString(Constants.SHOP_PIC_FOUR, photo4);
+            editor.putString(Constants.SHOP_EMAIL, email);
+            editor.putString(Constants.SHOP_MOBILE, mobile);
+            editor.putString(Constants.USER_TYPE, "service_provider");
+            editor.commit();
+
             setValues();
             progressDialog.dismiss();
         }
     }
 
     private void setValues() {
-     //   name_value,tv_phone_value,tv_email_value,tv_add_value
-        name_value.setText(shopname);
+        String shop_name = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_NAME, null);
+        String shop_phone = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_MOBILE, null);
+        String shop_email = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_EMAIL, null);
+        String shop_address = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_ADD, null);
+        String shop_latlong = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_latlong, null);
+        String shop_pic1 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_ONE, null);
+        String shop_pic2 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_TWO, null);
+        String shop_pic3 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_THREE, null);
+        String shop_pic4 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_FOUR, null);
+        name_value.setText(shop_name);
+        tv_phone_value.setText(shop_phone);
+        tv_email_value.setText(shop_email);
+        tv_add_value.setText(shop_address);
+        tv_latlng.setText(shop_latlong);
+        if(!shop_pic1.isEmpty()) {
+            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic1)
+                    .resize(300, 300)
+                    .into(pic1);
+        }
+        if(!shop_pic2.isEmpty()) {
+            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic2)
+                    .resize(300, 300)
+                    .into(pic2);
+        } if(!shop_pic3.isEmpty()) {
+            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic3)
+                    .resize(300, 300)
+                    .into(pic3);
+        }if(!shop_pic4.isEmpty()) {
+            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic4)
+                    .resize(300, 300)
+                    .into(pic4);
+        }
+
+        //   name_value,tv_phone_value,tv_email_value,tv_add_value
+
+        /*name_value.setText(shopname);
         tv_phone_value.setText(mobile);
         tv_email_value.setText(email);
         tv_add_value.setText(address);
@@ -886,7 +941,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo3).into(pic3);
         }if(!photo4.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+photo4).into(pic4);
-        }
+        }*/
     }
     void showSnackBar(String message){
         Snackbar snackbar = Snackbar
@@ -1001,6 +1056,11 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                 tv_add_value.setEnabled(false);
                 tv_email_value.setEnabled(false);
                 tv_phone_value.setEnabled(false);
+                tv_latlng.setEnabled(false);
+                getThedetails();
+            }
+            else{
+                showSnackBar(server_message);
             }
         }
     }

@@ -7,6 +7,10 @@ package beautician.com.sapplication.Pojo;
 public class Shops {
     String id,latitudelongitude,photo1,photo2,photo3,no_of_reviews,avg_rating,price,created,shopname,address,distance;
 
+    public Shops() {
+
+    }
+
     public String getId() {
         return id;
     }

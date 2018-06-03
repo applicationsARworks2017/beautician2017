@@ -2,11 +2,15 @@ package beautician.com.sapplication.Tabs;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -34,7 +38,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -42,11 +48,13 @@ import java.util.Locale;
 
 import beautician.com.sapplication.Activity.Login_Activity;
 import beautician.com.sapplication.Activity.MapActivity;
+import beautician.com.sapplication.Activity.SPProfile;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
 
+import static android.app.Activity.RESULT_OK;
 import static beautician.com.sapplication.Utils.Constants.modifyOrientation;
 
 /**
@@ -81,7 +89,7 @@ public class SPSignup extends Fragment {
     private int server_status;
     private String server_message;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    int imageclick;
+    int imageclick,filechooser,gal1,gal2,gal3,gal4;
     private static final int CAMERA_REQUEST = 1888;
     String imPath;
     Geocoder geocoder;
@@ -91,6 +99,7 @@ public class SPSignup extends Fragment {
     KeyListener variable;
     TextView tv_gomap;
     String lang;
+    int RESULT_LOAD_IMAGE=1;
 
 
     public SPSignup() {
@@ -211,29 +220,126 @@ public class SPSignup extends Fragment {
         iv_pic1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageclick=1;
-                captureImage(1);
+                /*imageclick=1;
+                captureImage(1);*/
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.chooseaction);
+                TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                dialog.show();
+                choosecamera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        imageclick = 1;
+                        filechooser=1;
+                        captureImage(1,"camera");
+                    }
+                });
+                choosegeller.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        imageclick = 1;
+                        filechooser=2;
+                        gal1=1;
+                        captureImage(1,"gallery");
+                    }
+                });
             }
         });
         iv_pic2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageclick=2;
-                captureImage(2);
+                /*imageclick=2;
+                captureImage(2);*/
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.chooseaction);
+                TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                dialog.show();
+                choosecamera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        imageclick = 2;
+                        filechooser=1;
+                        captureImage(2,"camera");
+                    }
+                });
+                choosegeller.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        imageclick = 2;
+                        filechooser=2;
+                        gal2=1;
+                        captureImage(2,"gallery");
+                    }
+                });
             }
         });
         iv_pic3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageclick=3;
-                captureImage(3);
+               /* imageclick=3;
+                captureImage(3);*/
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.chooseaction);
+                TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                dialog.show();
+                choosecamera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        imageclick = 3;
+                        filechooser=1;
+                        captureImage(3,"camera");
+                    }
+                });
+                choosegeller.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        imageclick = 3;
+                        filechooser=2;
+                        gal3=1;
+                        captureImage(3,"gallery");
+                    }
+                });
             }
         });
         iv_pic4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    imageclick=4;
-                    captureImage(4);
+                    /*imageclick=4;
+                    captureImage(4);*/
+                    final Dialog dialog = new Dialog(getActivity());
+                    dialog.setContentView(R.layout.chooseaction);
+                    TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                    TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    dialog.show();
+                    choosecamera.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 4;
+                            filechooser=1;
+                            captureImage(4,"camera");
+                        }
+                    });
+                    choosegeller.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            imageclick = 4;
+                            filechooser=2;
+                            gal4=1;
+                            captureImage(4,"gallery");
+                        }
+                    });
+
                 }
         });
 
@@ -241,33 +347,42 @@ public class SPSignup extends Fragment {
         return v;
     }
 
-    private void captureImage(int i) {
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile(i);
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
+    private void captureImage(int i, String action) {
+        if(action.contentEquals("camera")) {
+
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+                if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    // Create the File where the photo should go
+                    File photoFile = null;
+                    try {
+                        photoFile = createImageFile(i);
+                    } catch (IOException ex) {
+                        // Error occurred while creating the File
+                    }
+                    // Continue only if the File was successfully created
+                    if (photoFile != null) {
+                        Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                                "beautician.com.sapplication",
+                                photoFile);
+                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                    }
                 }
-                // Continue only if the File was successfully created
-                if (photoFile != null) {
-                    Uri photoURI = FileProvider.getUriForFile(getActivity(),
-                            "beautician.com.sapplication",
-                            photoFile);
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                }
+            } else {
+                imPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+                imageFile = new File(imPath);
+                picUri = Uri.fromFile(imageFile); // convert path to Uri
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         }
         else{
-            imPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
-            imageFile = new File(imPath);
-            picUri = Uri.fromFile(imageFile); // convert path to Uri
-            cameraIntent.putExtra( MediaStore.EXTRA_OUTPUT, picUri );
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            Intent intent = new Intent(
+                    Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+            startActivityForResult(intent, RESULT_LOAD_IMAGE);
         }
 
     }
@@ -302,37 +417,76 @@ public class SPSignup extends Fragment {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            // imPath=picUri.getPath();
-            // Bitmap photo = (Bitmap) data.getExtras().get("data");
-            try {
-                Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),picUri);
-                Bitmap c_photo= Bitmap.createScaledBitmap(photo,300,300,true);
-                Bitmap perfectImage=modifyOrientation(c_photo,imPath);
+        if(filechooser==1) {
 
-                picAvailable=true;
-                if(imageclick==1) {
-                    iv_pic1.setImageBitmap(perfectImage);
-                }
-                else if(imageclick==2){
-                    iv_pic2.setImageBitmap(perfectImage);
-                }
-                else if(imageclick==3){
-                    iv_pic3.setImageBitmap(perfectImage);
-                }
-                else{
-                    iv_pic4.setImageBitmap(perfectImage);
-                }
-                //    profileImage=img1.toString();
+            if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+                // imPath=picUri.getPath();
+                // Bitmap photo = (Bitmap) data.getExtras().get("data");
+                try {
+                    Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), picUri);
+                    Bitmap c_photo = Bitmap.createScaledBitmap(photo, 300, 300, true);
+                    Bitmap perfectImage = modifyOrientation(c_photo, imPath);
+
+                    picAvailable = true;
+                    if (imageclick == 1) {
+                        iv_pic1.setImageBitmap(perfectImage);
+                    } else if (imageclick == 2) {
+                        iv_pic2.setImageBitmap(perfectImage);
+                    } else if (imageclick == 3) {
+                        iv_pic3.setImageBitmap(perfectImage);
+                    } else {
+                        iv_pic4.setImageBitmap(perfectImage);
+                    }
+                    //    profileImage=img1.toString();
 
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
+        }
+        else {
+            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
+                Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String picturePath = cursor.getString(columnIndex);
+                cursor.close();
+                if (imageclick == 1) {
+                    iv_pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                } else if (imageclick == 2) {
+                    iv_pic2.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                } else if (imageclick == 3) {
+                    iv_pic3.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                } else if (imageclick == 4) {
+                    iv_pic4.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                }
+
+
+            }
         }
     }
+    private  File persistImage(Bitmap bitmap, String name) {
+        File filesDir = getActivity().getFilesDir();
+        File imageFile = new File(filesDir, name + ".jpg");
 
+        OutputStream os;
+        try {
+            os = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+        }
+        return imageFile;
+    }
 
     private void validate_fields() {
         String shop_name=et_sp_name.getText().toString().trim();
@@ -341,6 +495,31 @@ public class SPSignup extends Fragment {
         String shop_address=et_sp_address.getText().toString().trim();
         String shop_lat_long=et_latlong.getText().toString().trim();
         String shop_password=et_sp_pass.getText().toString().trim();
+
+        if(gal1==1) {
+            if (iv_pic1.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) iv_pic1.getDrawable()).getBitmap();
+                imgfile1 = persistImage(bitmap, shop_name+"1");
+            }
+        }
+        if(gal2==1) {
+            if (iv_pic2.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) iv_pic2.getDrawable()).getBitmap();
+                imgfile2 = persistImage(bitmap, shop_name+"2");
+            }
+        }
+        if(gal3==1) {
+            if (iv_pic3.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) iv_pic3.getDrawable()).getBitmap();
+                imgfile3 = persistImage(bitmap, shop_name+"3");
+            }
+        }
+        if(gal4==1) {
+            if (iv_pic4.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) iv_pic4.getDrawable()).getBitmap();
+                imgfile4 = persistImage(bitmap, shop_name+"4");
+            }
+        }
 
         if(shop_name.length()<=0){
             showSnackBar("Enter Name");

@@ -252,7 +252,9 @@ public class Profile extends Fragment {
 
             }
         });
-        getUserDetails();
+       // getUserDetails();
+        setValues();
+
 
 
         editsave.setOnClickListener(new View.OnClickListener() {
@@ -569,6 +571,8 @@ public class Profile extends Fragment {
                 name_value.setEnabled(false);
                 et_phone_value.setEnabled(false);
                 et_email_value.setEnabled(false);
+                getUserDetails();
+
             }
         }
     }
@@ -676,6 +680,17 @@ public class Profile extends Fragment {
         @Override
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
+
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0); // 0 - for private mode
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(Constants.USER_ID, id);
+            editor.putString(Constants.USER_TYPE, "custumer");
+            editor.putString(Constants.USER_NAME, Uname);
+            editor.putString(Constants.USER_EMAIL, email);
+            editor.putString(Constants.USER_MOBILE, mobile);
+            editor.putString(Constants.USER_PHOTO, photo);
+            //name,email,mobile,photo
+            editor.commit();
             setValues();
             progressDialog.dismiss();
         }
@@ -683,14 +698,20 @@ public class Profile extends Fragment {
 
     private void setValues() {
         //TextView shop_name,shop_email,shop_address,shop_reviws;
+        String user_name = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_NAME, null);
+        String user_email = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_EMAIL, null);
+        String user_mobile = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_MOBILE, null);
+        String user_photo = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_PHOTO, null);
 
-        name_value.setText(Uname);
-        et_email_value.setText(email);
-        et_phone_value.setText(mobile);
-        if( photo==null || photo.contentEquals("null") || photo.contentEquals("")) {
+
+        name_value.setText(user_name);
+        et_email_value.setText(user_email);
+        et_phone_value.setText(user_mobile);
+        if( user_photo==null || user_photo.contentEquals("null") || user_photo.contentEquals("")) {
         }
         else{
-            Picasso.with(getActivity()).load(Constants.PICURL+photo).into(prifilimage);
+            Picasso.with(getActivity()).load(Constants.PICURL+user_photo)
+                    .resize(300,300).into(prifilimage);
 
         }
 

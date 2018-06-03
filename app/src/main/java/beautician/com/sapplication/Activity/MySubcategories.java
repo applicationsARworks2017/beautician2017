@@ -1,5 +1,6 @@
 package beautician.com.sapplication.Activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -28,6 +30,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Adapter.ListSubcategoriesAdapter;
+import beautician.com.sapplication.Adapter.ShopListAdapter;
+import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.Pojo.SubCategoryList;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -81,6 +85,29 @@ public class MySubcategories extends AppCompatActivity {
         else{
             Constants.noInternetDialouge(this,"Kindly Check Your Internet Connection");
         }
+
+        lv_subcategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(page.contentEquals("user")) {
+                    String detail;
+                    SubCategoryList users = (SubCategoryList) parent.getItemAtPosition(position);
+                    //  Toast.makeText(AdminUserList.this,users.getUser_name(),Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(MySubcategories.this,IndividualRequest.class);
+                    intent.putExtra("SHOP_ID", ShopListAdapter.selected_shopid);
+                    intent.putExtra("SHOP_NAME",ShopListAdapter.selected_shop_name);
+                    if(lang.contentEquals("Arabic")){
+                        intent.putExtra("DETAILS",users.getArabic_title());
+
+                    }
+                    else{
+                        intent.putExtra("DETAILS",users.getSubcategory());
+                    }
+                    startActivity(intent);
+                }
+            }
+        });
+
         swipe_subcategory.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

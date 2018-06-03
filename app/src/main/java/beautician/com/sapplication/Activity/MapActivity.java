@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,10 +36,18 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
     String latitude,longitude,classname;
     LatLng latLng;
     String page;
+    LinearLayout selectionok;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        selectionok=(LinearLayout)findViewById(R.id.selectionok);
+        selectionok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("page");

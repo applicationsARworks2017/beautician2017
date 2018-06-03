@@ -53,7 +53,7 @@ public class IndividualRequest extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
     Toolbar toolreq;
     LinearLayout reqback;
-    String lang;
+    String lang,details;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,7 @@ public class IndividualRequest extends AppCompatActivity {
         if (extras != null) {
             shop_id = extras.getString("SHOP_ID");
             shop_name = extras.getString("SHOP_NAME");
+            details = extras.getString("DETAILS");
             // and get whatever type user account id is
         }
         toolreq=(Toolbar)findViewById(R.id.toolreq);
@@ -84,6 +85,7 @@ public class IndividualRequest extends AppCompatActivity {
         adult=(TextView)findViewById(R.id.adult);
         shopName.setText("You are Interested for :"+ shop_name);
         et_details=(EditText)findViewById(R.id.et_contentheading);
+        et_details.setText(details.trim());
         sp_num=(Spinner)findViewById(R.id.adult_spin);
         post=(Button)findViewById(R.id.submit_post);
         if(lang.contentEquals("Arabic")){

@@ -1,10 +1,13 @@
 package beautician.com.sapplication.Tabs;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -24,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
@@ -44,6 +48,7 @@ import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
 
+import static android.app.Activity.RESULT_OK;
 import static beautician.com.sapplication.Utils.Constants.modifyOrientation;
 
 public class CostumerSignup extends Fragment {
@@ -70,6 +75,8 @@ public class CostumerSignup extends Fragment {
     Boolean picAvailable = false;
     int photo_status=0;
     String lang;
+    int filechooser;
+    int RESULT_LOAD_IMAGE=1;
 
     private OnFragmentInteractionListener mListener;
 
@@ -147,39 +154,71 @@ public class CostumerSignup extends Fragment {
         iv_avtar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureImage();
+              //  captureImage();
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.chooseaction);
+                TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
+                TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                dialog.show();
+                // captureImage();
+                choosecamera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        filechooser=1;
+                        captureImage("camera");
+                    }
+                });
+                choosegeller.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        filechooser=2;
+                        captureImage("gallery");
+                    }
+                });
             }
         });
 
         return v;
     }
 
-    private void captureImage() {
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
+    private void captureImage(String action) {
+        if(action.contentEquals("camera")) {
+
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+                if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    // Create the File where the photo should go
+                    File photoFile = null;
+                    try {
+                        photoFile = createImageFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    // Continue only if the File was successfully created
+                    if (photoFile != null) {
+                        Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                                "beautician.com.sapplication",
+                                photoFile);
+                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                    }
                 }
-                // Continue only if the File was successfully created
-                if (photoFile != null) {
-                    Uri photoURI = FileProvider.getUriForFile(getActivity(),
-                            "beautician.com.sapplication",
-                            photoFile);
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                }
+            } else {
+                imPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+                imageFile = new File(imPath);
+                picUri = Uri.fromFile(imageFile); // convert path to Uri
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
-        } else {
-            imPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
-            imageFile = new File(imPath);
-            picUri = Uri.fromFile(imageFile); // convert path to Uri
-            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        }
+        else{
+            Intent intent = new Intent(
+                    Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+            startActivityForResult(intent, RESULT_LOAD_IMAGE);
         }
 
     }
@@ -203,22 +242,41 @@ public class CostumerSignup extends Fragment {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            // imPath=picUri.getPath();
-            // Bitmap photo = (Bitmap) data.getExtras().get("data");
-            try {
-                Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), picUri);
-                Bitmap c_photo= Bitmap.createScaledBitmap(photo,300,300,true);
-                Bitmap perfectImage=modifyOrientation(c_photo,imPath);
+        if(filechooser==1) {
 
-                picAvailable = true;
-                iv_avtar.setImageBitmap(perfectImage);
-                iv_avtar.setRotation(90);
-                photo_status=1;
+            if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+                // imPath=picUri.getPath();
+                // Bitmap photo = (Bitmap) data.getExtras().get("data");
+                try {
+                    Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), picUri);
+                    Bitmap c_photo = Bitmap.createScaledBitmap(photo, 300, 300, true);
+                    Bitmap perfectImage = modifyOrientation(c_photo, imPath);
+
+                    picAvailable = true;
+                    iv_avtar.setImageBitmap(perfectImage);
+                    iv_avtar.setRotation(90);
+                    photo_status = 1;
 
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+        else{
+            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String picturePath = cursor.getString(columnIndex);
+                cursor.close();
+                iv_avtar.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             }
 
         }

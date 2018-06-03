@@ -350,6 +350,11 @@ public class Login_Activity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(Constants.USER_ID, id);
                 editor.putString(Constants.USER_TYPE, "custumer");
+                editor.putString(Constants.USER_NAME, name);
+                editor.putString(Constants.USER_EMAIL, email);
+                editor.putString(Constants.USER_MOBILE, mobile);
+                editor.putString(Constants.USER_PHOTO, photo);
+                //name,email,mobile,photo
                 editor.commit();
                 SharedPreferences sharedPreferences1 =Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode
                 SharedPreferences.Editor editor1 = sharedPreferences1.edit();
@@ -376,7 +381,7 @@ public class Login_Activity extends AppCompatActivity {
         private static final String TAG = "SynchMobnum";
         String server_message;
         int server_status;
-        String id,shop_name,address,latitudelongitude,photo1,photo2,photo3,email,mobile,created_dt,modified_dt;
+        String id,shop_name,address,latitudelongitude,photo1,photo2,photo3,photo4,email,mobile,created_dt,modified_dt;
         ProgressDialog progressDialog=null;
 
         @Override
@@ -475,6 +480,7 @@ public class Login_Activity extends AppCompatActivity {
                         photo1=j_obj.getString("photo1");
                         photo2=j_obj.getString("photo2");
                         photo3=j_obj.getString("photo3");
+                        photo4=j_obj.getString("photo4");
                         email=j_obj.getString("email");
                         mobile=j_obj.getString("mobile");
                         created_dt=j_obj.getString("created");
@@ -527,6 +533,15 @@ public class Login_Activity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0); // 0 - for private mode
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(Constants.USER_ID, id);
+                editor.putString(Constants.SHOP_NAME, shop_name);
+                editor.putString(Constants.SHOP_ADD, address);
+                editor.putString(Constants.SHOP_latlong, latitudelongitude);
+                editor.putString(Constants.SHOP_PIC_ONE, photo1);
+                editor.putString(Constants.SHOP_PIC_TWO, photo2);
+                editor.putString(Constants.SHOP_PIC_THREE, photo3);
+                editor.putString(Constants.SHOP_PIC_FOUR, photo4);
+                editor.putString(Constants.SHOP_EMAIL, email);
+                editor.putString(Constants.SHOP_MOBILE, mobile);
                 editor.putString(Constants.USER_TYPE, "service_provider");
                 editor.commit();
                 SharedPreferences sharedPreferences1 =Login_Activity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0); // 0 - for private mode

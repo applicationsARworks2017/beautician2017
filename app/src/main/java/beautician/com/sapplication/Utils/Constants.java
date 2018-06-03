@@ -73,10 +73,22 @@ public class Constants {
     public static String SHOP_FORGOTPASS="shops/forgotPassword.json";
     public static String USER_FORGOTPASS="users/forgotPassword.json";
 
-
+//shop_name,address,latitudelongitude,photo1,photo2,photo3,email,mobile
     public static final String SHAREDPREFERENCE_KEY = "beautician" ;
     public static final String SHAREDPREFERENCE_KEY_FCM = "beauticianfcm" ;
     public static final String USER_NAME = "username" ;
+    public static final String USER_EMAIL = "useremail" ;
+    public static final String USER_MOBILE = "usermobile" ;
+    public static final String USER_PHOTO = "userphoto" ;
+    public static final String SHOP_NAME = "shopname" ;
+    public static final String SHOP_ADD = "shopapp" ;
+    public static final String SHOP_latlong = "shoplatlong" ;
+    public static final String SHOP_PIC_ONE = "picone" ;
+    public static final String SHOP_PIC_TWO = "pictwo" ;
+    public static final String SHOP_PIC_THREE = "picthree" ;
+    public static final String SHOP_PIC_FOUR = "picfour" ;
+    public static final String SHOP_EMAIL = "shopemail" ;
+    public static final String SHOP_MOBILE = "shopmobile" ;
     public static final String USER_ID = "userid" ;
     public static final String USER_TYPE = "user_type" ;
     public static final String FCM_ID="fcmid";

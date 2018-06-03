@@ -34,6 +34,7 @@ public class ShopListAdapter extends BaseAdapter {
     ArrayList<Shops> new_list;
     Holder holder;
     String lang;
+    public static String selected_shopid,selected_shop_name;
     public ShopListAdapter(SearchShopList searchShopList, ArrayList<Shops> sList,String lang) {
         this._context=searchShopList;
         this.new_list=sList;
@@ -158,6 +159,7 @@ public class ShopListAdapter extends BaseAdapter {
                 Intent intent=new Intent(_context,IndividualRequest.class);
                 intent.putExtra("SHOP_ID",_pos.getId());
                 intent.putExtra("SHOP_NAME",_pos.getShopname());
+                intent.putExtra("DETAILS","");
                 _context.startActivity(intent);
             }
         });
@@ -182,6 +184,8 @@ public class ShopListAdapter extends BaseAdapter {
         holder.check_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selected_shop_name=_pos.getShopname();
+                selected_shopid=_pos.getId();
             Intent intent=new Intent(_context, MyserviceList.class);
                 intent.putExtra("USERID",_pos.getId());
                 intent.putExtra("PAGE","user");
