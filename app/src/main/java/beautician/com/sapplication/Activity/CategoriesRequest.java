@@ -51,6 +51,12 @@ public class CategoriesRequest extends AppCompatActivity {
         cList=new ArrayList<>();
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("اختر الخدمة");
+        }
+        else{
+            setTitle("Choose Service");
+        }
         loader_categoty=(ProgressBar)findViewById(R.id.loader_category);
         lv_category=(ListView)findViewById(R.id.lv_category);
         blank_text=(TextView) findViewById(R.id.blank_text);

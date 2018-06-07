@@ -115,6 +115,7 @@ public class SubcategoriesAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 holder1=(Holder)v.getTag();
+                holder1.bt_add.setVisibility(View.INVISIBLE);
                 dialog=new Dialog((_context));
                 dialog.setContentView(R.layout.dialog_price);
                 ImageView im_close=(ImageView)dialog.findViewById(R.id.im_close);
@@ -289,6 +290,7 @@ public class SubcategoriesAdapter extends BaseAdapter {
         @Override
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
+            progressDialog.dismiss();
             Toast.makeText(_context,server_message,Toast.LENGTH_SHORT).show();
             if(server_status==1){
                 dialog.dismiss();

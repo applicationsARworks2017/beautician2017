@@ -15,13 +15,21 @@ public class SPHome extends AppCompatActivity {
     String lang;
     TextView check_post,profilee,manage_offers,my_wallet,manage_service,my_proposal;
     public static String user_type;
+    public static double  min_sp_balance = 20.0;
+    public static double  min_service_charge = 5.0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphome);
         lang = SPHome.this.getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
-
+        if(lang.contentEquals("Arabic")){
+            setTitle("لوحة القيادة");
+        }
+        else{
+            setTitle("Dashboard");
+        }
         card_manageservice=(CardView)findViewById(R.id.card_manageservice);
         card_profile=(CardView)findViewById(R.id.card_profile);
         card_checkPost=(CardView)findViewById(R.id.checkPost);

@@ -51,6 +51,12 @@ public class SearchShopList extends AppCompatActivity {
 
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("قائمة البحث");
+        }
+        else{
+            setTitle("Search List");
+        }
         blanck_search=(TextView)findViewById(R.id.blanck_search);
         swipe_searchshop=(SwipeRefreshLayout) findViewById(R.id.swipe_searchshop);
         loader_search=(ProgressBar)findViewById(R.id.loader_search);
@@ -117,8 +123,7 @@ public class SearchShopList extends AppCompatActivity {
                     builder = new Uri.Builder()
                             .appendQueryParameter("shopname", search_text)
                             .appendQueryParameter("latitude", HomeActivity.latitude)
-                            .appendQueryParameter("longitude", HomeActivity.longitude)
-                            .appendQueryParameter("page",page);
+                            .appendQueryParameter("longitude", HomeActivity.longitude);
                 String query = builder.build().getEncodedQuery();
 
                 OutputStream os = conn.getOutputStream();
@@ -183,13 +188,14 @@ public class SearchShopList extends AppCompatActivity {
                             String photo1 = o_list_obj.getString("photo1");
                             String photo2 = o_list_obj.getString("photo2");
                             String photo3 = o_list_obj.getString("photo3");
+                            String photo4 = o_list_obj.getString("photo4");
                             String no_of_reviews = o_list_obj.getString("no_of_reviews");
                             String avg_rating = o_list_obj.getString("avg_rating");
                             String created = o_list_obj.getString("created");
                             String shopname = o_list_obj.getString("shopname");
                             String address = o_list_obj.getString("address");
                             String distance = o_list_obj.getString("distance");
-                            Shops list1 = new Shops(id,latitudelongitude,photo1,photo2,photo3,no_of_reviews,avg_rating,created,shopname,address,distance);
+                            Shops list1 = new Shops(id,latitudelongitude,photo1,photo2,photo3,photo4,no_of_reviews,avg_rating,created,shopname,address,distance);
                             sList.add(list1);
                         }
                     }

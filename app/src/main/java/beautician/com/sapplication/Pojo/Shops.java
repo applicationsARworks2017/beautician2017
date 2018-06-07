@@ -5,7 +5,28 @@ package beautician.com.sapplication.Pojo;
  */
 
 public class Shops {
-    String id,latitudelongitude,photo1,photo2,photo3,no_of_reviews,avg_rating,price,created,shopname,address,distance;
+    String id;
+    String latitudelongitude;
+    String photo1;
+    String photo2;
+    String photo3;
+    String photo4;
+
+    public String getPhoto4() {
+        return photo4;
+    }
+
+    public void setPhoto4(String photo4) {
+        this.photo4 = photo4;
+    }
+
+    String no_of_reviews;
+    String avg_rating;
+    String price;
+    String created;
+    String shopname;
+    String address;
+    String distance;
 
     public Shops() {
 
@@ -107,13 +128,14 @@ public class Shops {
         this.distance = distance;
     }
 
-    public Shops(String id, String latitudelongitude, String photo1, String photo2, String photo3, String no_of_reviews, String avg_rating, String created,
+    public Shops(String id, String latitudelongitude, String photo1, String photo2, String photo3,String photo4, String no_of_reviews, String avg_rating, String created,
                  String shopname, String address, String distance) {
         this.id=id;
         this.latitudelongitude=latitudelongitude;
         this.photo1=photo1;
         this.photo2=photo2;
         this.photo3=photo3;
+        this.photo4=photo4;
         this.no_of_reviews=no_of_reviews;
         this.avg_rating=avg_rating;
         this.created=created;

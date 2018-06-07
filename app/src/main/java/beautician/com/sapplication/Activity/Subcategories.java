@@ -59,6 +59,12 @@ public class Subcategories extends AppCompatActivity {
         shop_id = Subcategories.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("تفاصيل الخدمة");
+        }
+        else{
+            setTitle("Service Details");
+        }
         swipe_subcategory=(SwipeRefreshLayout)findViewById(R.id.swipe_subcategory);
         blank_text_sc=(TextView)findViewById(R.id.blank_text_sc);
         lv_subcategory=(ListView)findViewById(R.id.lv_sub_category);

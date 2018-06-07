@@ -64,6 +64,12 @@ public class GiveCommentActivity extends AppCompatActivity {
             page_name = extras.getString("PAGE");
             // and get whatever type user account id is
         }
+        if(lang.contentEquals("Arabic")){
+            setTitle("منح التقييمات");
+        }
+        else{
+            setTitle("Give Ratings");
+        }
         user_id = GiveCommentActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         customer_ratings=(RatingBar)findViewById(R.id.customer_ratings);
         rel_ratingpoints=(RelativeLayout)findViewById(R.id.rel_ratingpoints);

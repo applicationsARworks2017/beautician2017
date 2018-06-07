@@ -57,6 +57,12 @@ public class OfferSet extends AppCompatActivity {
         }
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("عروض");
+        }
+        else{
+            setTitle("Offers");
+        }
         user_id = OfferSet.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
 
         oList=new ArrayList<>();
@@ -75,6 +81,13 @@ public class OfferSet extends AppCompatActivity {
             }
         });
         checkOfferList();
+        swipe_set_offers.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipe_set_offers.setRefreshing(false);
+                checkOfferList();
+            }
+        });
     }
 
     private void checkOfferList() {

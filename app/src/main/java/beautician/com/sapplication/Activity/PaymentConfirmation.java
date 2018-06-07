@@ -48,6 +48,7 @@ public class PaymentConfirmation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
             page = extras.getString("PAGE");
             u_name = extras.getString("NAME");
@@ -67,6 +68,13 @@ public class PaymentConfirmation extends AppCompatActivity {
 
 
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
+        if(lang.contentEquals("Arabic")){
+            setTitle("تأكيد الدفعة");
+        }
+        else{
+            setTitle("Payment Confirmation");
+        }
         setContentView(R.layout.activity_payment_confirmation);
 
         con_rel=(RelativeLayout)findViewById(R.id.con_rel);

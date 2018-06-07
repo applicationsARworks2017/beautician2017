@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import beautician.com.sapplication.Activity.CheckPost;
 import beautician.com.sapplication.Pojo.ServiceRequest;
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.Constants;
 
 /**
  * Created by Amaresh on 11/21/17.
@@ -69,7 +70,7 @@ public class ServiceReqAdapter extends BaseAdapter{
         holder.Name_service.setTag(position);
         holder.remarks.setTag(position);
 
-        holder.actualtime.setText(_pos.getCreated());
+        holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
         if(lang.contentEquals("Arabic")){
             holder.Name_service.setText("تم نشر الخدمه" + _pos.getSub_category());
 

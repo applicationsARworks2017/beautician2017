@@ -32,11 +32,13 @@ public class SearchShop extends AppCompatActivity {
             et_searchText.setHint("البحث عن المحلات التجارية");
             bt_search.setText("بحث");
             bt_all.setText("الكل");
+            setTitle("بحث");
         }
         else{
             et_searchText.setHint("Search for shops");
             bt_search.setText("Search");
             bt_all.setText("All");
+            setTitle("Search");
 
         }
         bt_search.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +89,7 @@ public class SearchShop extends AppCompatActivity {
             public void onClick(View v) {
                 if(CheckInternet.getNetworkConnectivityStatus(SearchShop.this)){
                     Intent intent=new Intent(SearchShop.this,SearchShopList.class);
-                    intent.putExtra("SEARCH"," ");
+                    intent.putExtra("SEARCH","");
                     startActivity(intent);
                 }
                 else{

@@ -39,7 +39,7 @@ public class CountryList extends AppCompatActivity {
     SearchView search_country;
     ArrayList<Countries> cList;
     CountriesAdapter cAdapter;
-
+    String lang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +48,14 @@ public class CountryList extends AppCompatActivity {
         countryList=(ListView)findViewById(R.id.countryList);
         cList=new ArrayList<>();
         getCountryList();
+        lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+        if(lang.contentEquals("Arabic")){
+            setTitle("قائمة الدول");
+        }
+        else{
+            setTitle("Country List");
+        }
+
         countryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

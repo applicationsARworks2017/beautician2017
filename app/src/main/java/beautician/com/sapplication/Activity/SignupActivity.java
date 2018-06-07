@@ -54,6 +54,12 @@ public class SignupActivity extends AppCompatActivity implements android.locatio
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(lang.contentEquals("Arabic")){
+            setTitle("سجل");
+        }
+        else{
+            setTitle("Sign Up");
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         fcm_id = SignupActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY_FCM, 0).getString(Constants.FCM_ID, null);

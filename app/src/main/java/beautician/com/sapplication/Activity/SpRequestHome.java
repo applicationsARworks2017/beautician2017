@@ -25,10 +25,12 @@ public class SpRequestHome extends AppCompatActivity {
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
+            setTitle("اختر صنف");
             public_post.setText("المشاركة العامة");
             invalid_requset.setText("طلب فردي");
         }
         else{
+            setTitle("Select Type");
             public_post.setText("Public Post");
             invalid_requset.setText("Individual Request");
         }

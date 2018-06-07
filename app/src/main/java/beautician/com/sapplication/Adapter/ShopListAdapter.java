@@ -57,7 +57,7 @@ public class ShopListAdapter extends BaseAdapter {
     }
     private class Holder {
         TextView Shopname,check_details,shop_add,price_min,rev_shop,dis_shop;
-        ImageView pic1,pic2,pic3;
+        ImageView pic1,pic2,pic3,pic4;
         RatingBar ratingBar;
         Button reqButton;
         LinearLayout img_lin;
@@ -80,6 +80,7 @@ public class ShopListAdapter extends BaseAdapter {
             holder.pic1=(ImageView)convertView.findViewById(R.id.pic1);
             holder.pic2=(ImageView)convertView.findViewById(R.id.pic2);
             holder.pic3=(ImageView)convertView.findViewById(R.id.pic3);
+            holder.pic4=(ImageView)convertView.findViewById(R.id.pic4);
             holder.ratingBar=(RatingBar)convertView.findViewById(R.id.rating);
             holder.reqButton=(Button)convertView.findViewById(R.id.reqButton);
             holder.img_lin=(LinearLayout)convertView.findViewById(R.id.img_lin);
@@ -98,6 +99,7 @@ public class ShopListAdapter extends BaseAdapter {
         holder.pic1.setTag(position);
         holder.pic2.setTag(position);
         holder.pic3.setTag(position);
+        holder.pic4.setTag(position);
         holder.ratingBar.setTag(position);
         holder.reqButton.setTag(position);
         holder.img_lin.setTag(position);
@@ -145,13 +147,16 @@ public class ShopListAdapter extends BaseAdapter {
         }
 
          if(!_pos.getPhoto1().isEmpty()) {
-            Picasso.with(_context).load(_pos.getPhoto1()).into(holder.pic1);
+            Picasso.with(_context).load(_pos.getPhoto1()).resize(300,300).into(holder.pic1);
         }
         if(!_pos.getPhoto2().isEmpty()) {
-            Picasso.with(_context).load(_pos.getPhoto2()).into(holder.pic2);
+            Picasso.with(_context).load(_pos.getPhoto2())
+                    .resize(300,300).into(holder.pic2);
         }
         if(!_pos.getPhoto3().isEmpty()) {
-            Picasso.with(_context).load(_pos.getPhoto3()).into(holder.pic3);
+            Picasso.with(_context).load(_pos.getPhoto3()).resize(300,300).into(holder.pic3);
+        }if(!_pos.getPhoto4().isEmpty()) {
+            Picasso.with(_context).load(_pos.getPhoto3()).resize(300,300).into(holder.pic4);
         }
         holder.reqButton.setOnClickListener(new View.OnClickListener() {
             @Override

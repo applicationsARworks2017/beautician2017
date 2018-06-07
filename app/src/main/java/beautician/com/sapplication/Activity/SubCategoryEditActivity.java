@@ -48,6 +48,12 @@ public class SubCategoryEditActivity extends AppCompatActivity{
         }
         lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("SubCategory تحرير");
+        }
+        else{
+            setTitle("SubCategory Edit");
+        }
         sub_name=(EditText)findViewById(R.id.sub_name_edit);
         sub_price=(EditText)findViewById(R.id.sub_pri_edit);
         save=(Button)findViewById(R.id.save);

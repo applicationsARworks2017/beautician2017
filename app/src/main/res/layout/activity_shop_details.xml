@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details"
+            android:textSize="15dp"
             android:textColor="@color/white"
             android:textStyle="bold" />
     </android.support.v7.widget.Toolbar>
@@ -35,43 +36,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:fillViewport="true"
-        android:measureAllChildren="false"
-        android:scrollbars="none">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:layout_margin="5dp"
-                android:background="@drawable/blanck"
-                android:id="@+id/img1"/>
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:layout_margin="5dp"
-                android:background="@drawable/blanck"
-                android:id="@+id/img2"/>
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:background="@drawable/blanck"
-                android:layout_margin="5dp"
-                android:id="@+id/img3"/>
-        </LinearLayout>
-    </HorizontalScrollView>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/blanck"
+                    android:id="@+id/img1"/>
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/blanck"
+                    android:id="@+id/img2"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/blanck"
+                    android:id="@+id/img3"/>
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/blanck"
+                    android:id="@+id/img4"/>
+            </LinearLayout>
 
        <TextView
            android:layout_width="wrap_content"
@@ -149,6 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:visibility="gone"
                     android:background="@mipmap/ic_location_on_white_24dp"
                     android:padding="5dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>

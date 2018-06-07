@@ -58,6 +58,12 @@ public class SpProposal extends AppCompatActivity {
         }
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("اقتراح");
+        }
+        else{
+            setTitle("Proposal");
+        }
         pList=new ArrayList<>();
         loader_propsals=(ProgressBar)findViewById(R.id.loader_propsals);
         swipe_propsal=(SwipeRefreshLayout)findViewById(R.id.swip_propsal);

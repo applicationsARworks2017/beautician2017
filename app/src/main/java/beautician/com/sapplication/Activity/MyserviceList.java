@@ -63,6 +63,12 @@ public class  MyserviceList extends AppCompatActivity {
         searchView_category=(SearchView) findViewById(R.id.searchView_category);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("الخدمات");
+        }
+        else{
+                setTitle("Service");
+        }
         if(CheckInternet.getNetworkConnectivityStatus(this)){
             new getcategoryList().execute();
         }

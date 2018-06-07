@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.CheckIndividualPost;
 import beautician.com.sapplication.Activity.GiveCommentActivity;
+import beautician.com.sapplication.Activity.HomeActivity;
 import beautician.com.sapplication.Pojo.IndServiceRequest;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.Constants;
@@ -110,7 +111,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
 
             }
             else{
-                holder.otp_service.setText("Share OTP before service and get back your $ 5. OTP : "+_pos.getOtp());
+                holder.otp_service.setText("Share OTP before service and get back your"+ HomeActivity.min_post_charge+" OTP : "+_pos.getOtp());
 
             }
             Resources ress = _context.getResources();

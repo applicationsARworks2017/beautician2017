@@ -47,11 +47,13 @@ public class Offer_creation extends AppCompatActivity {
             title.setHint("عنوان");
             et_details.setHint("أضف التفاصيل هنا");
             submit.setText("خضع");
+            setTitle("تأليف العرض");
         }
         else{
             title.setHint("Title");
             et_details.setHint("Add Detail here");
             submit.setText("submit");
+            setTitle("Compose Offer");
 
         }
 

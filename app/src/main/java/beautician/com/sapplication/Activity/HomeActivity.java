@@ -40,6 +40,8 @@ public class HomeActivity extends AppCompatActivity  implements android.location
      Menu menu;
      String homestring = "Home'";
      String ar_homestring = "الصفحة الرئيسية'";
+    public static double  min_user_balance = 20.0;
+    public static double  min_post_charge = 5.0;
     private TelephonyManager mTelephonyManager;
     Boolean isGPSEnabled, isNetworkEnabled, canGetLocation;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters

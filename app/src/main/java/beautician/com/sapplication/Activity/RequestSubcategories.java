@@ -63,6 +63,14 @@ public class RequestSubcategories extends AppCompatActivity {
         scList=new ArrayList<>();
         shop_id = RequestSubcategories.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
+        if(lang.contentEquals("Arabic")){
+            setTitle("قائمة التفاصيل");
+        }
+        else{
+            setTitle("Detail List");
+        }
+
         cattext=(TextView)findViewById(R.id.cattext);
         cattext.setText(categoryname);
         swipe_subcategory=(SwipeRefreshLayout)findViewById(R.id.swipe_subcategory);

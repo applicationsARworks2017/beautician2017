@@ -67,9 +67,11 @@ public class PropsalView extends AppCompatActivity {
 
         if(lang.contentEquals("Arabic")){
             _ok.setText("حسنا");
+            setTitle("تفاصيل الاقتراح");
         }
         else{
             _ok.setText("ok");
+            setTitle("Proposal Detail");
 
         }
 

@@ -75,6 +75,13 @@ public class Categories extends AppCompatActivity {
         categorylist_rel=(RelativeLayout)findViewById(R.id.categorylist_rel);
         searchView_category=(SearchView) findViewById(R.id.searchView_category);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("قائمة الخدمات");
+        }
+        else{
+            setTitle("Service List");
+        }
+
         if(CheckInternet.getNetworkConnectivityStatus(this)){
             new getcategoryList().execute();
         }

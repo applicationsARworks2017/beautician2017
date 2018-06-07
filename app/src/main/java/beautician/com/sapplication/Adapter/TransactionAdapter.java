@@ -14,6 +14,7 @@ import beautician.com.sapplication.Activity.Wallet;
 import beautician.com.sapplication.Pojo.CategoryList;
 import beautician.com.sapplication.Pojo.Transactions;
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.Constants;
 
 /**
  * Created by Amaresh on 1/1/18.
@@ -70,7 +71,9 @@ public class TransactionAdapter extends BaseAdapter {
         holder.debit.setTag(position);
 
         holder.remarks.setText(_pos.getRemarks());
-        holder.datetimr.setText(_pos.getCreated());
+        //holder.datetimr.setText(_pos.getCreated());
+        holder.datetimr.setText(Constants.getOurDate(_pos.getCreated()));
+
         holder.credit.setText("+" +_pos.getCredit());
         holder.debit.setText("-"+ _pos.getDebit());
         return convertView;

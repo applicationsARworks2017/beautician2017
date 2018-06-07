@@ -109,7 +109,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         holder.actualtime.setTag(position);
 
         holder.remarks.setText(_pos.getRemarks());
-        holder.actualtime.setText(_pos.getCreated());
+        holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
         if (lang.contentEquals("Arabic")) {
             holder.Name_service.setText(_pos.getName()+" تم نشره ل " + _pos.getSub_category());
 

@@ -56,10 +56,12 @@ public class ForgotPassword extends AppCompatActivity {
         if(lang.contentEquals("Arabic")){
            email_id.setHint("البريد الإلكتروني");
            phone_nmbr.setHint("رقم الجوال");
+           setTitle("هل نسيت كلمة المرور");
         }
         else{
             email_id.setHint("Email id");
             phone_nmbr.setHint("Phone Number");
+            setTitle("Forgot Password");
         }
         resetpassword.setOnClickListener(new View.OnClickListener() {
             @Override

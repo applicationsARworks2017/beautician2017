@@ -95,6 +95,7 @@ public class Login_Activity extends AppCompatActivity {
             et_password = (EditText) findViewById(R.id.et_password);
             et_phone.setHint("رقم الجوال");
             et_password.setHint("كلمه السر");
+            setTitle("تسجيل الدخول");
             radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
             radio_sp=(RadioButton)findViewById(R.id.radio_sp);
             radio_consumer.setText("العميل");
@@ -113,6 +114,7 @@ public class Login_Activity extends AppCompatActivity {
             et_password=(EditText)findViewById(R.id.et_password);
             radio_consumer=(RadioButton)findViewById(R.id.radio_consumer);
             radio_sp=(RadioButton)findViewById(R.id.radio_sp);
+            setTitle("Login");
             et_phone.setHint("Phone Number");
             et_password.setHint("Password");
             radio_consumer.setText("Costumer");

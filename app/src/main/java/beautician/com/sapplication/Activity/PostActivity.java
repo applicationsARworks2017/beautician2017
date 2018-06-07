@@ -63,6 +63,13 @@ public class PostActivity extends AppCompatActivity {
         user_id = PostActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("وظيفة للخدمة");
+        }
+        else{
+            setTitle("Post for service");
+        }
+
         postHeading=(TextView)findViewById(R.id.postHeading);
         adultt=(TextView)findViewById(R.id.adult);
         tv_services=(TextView)findViewById(R.id.tv_services);
@@ -137,7 +144,7 @@ public class PostActivity extends AppCompatActivity {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
                     builder.setTitle("");
-                    builder.setMessage("Your wallet will be deducted with SAR 3 for this post");
+                    builder.setMessage("Your wallet will be deducted with SAR "+HomeActivity.min_post_charge+" for this post");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //TODO
@@ -288,6 +295,8 @@ remarks:jhgjhghjgjg"
                         .appendQueryParameter("no_of_user", _no_of_user)
                         .appendQueryParameter("remarks", _remarks)
                         .appendQueryParameter("expected_date", _exp_date)
+                        .appendQueryParameter("latitude", HomeActivity.latitude)
+                        .appendQueryParameter("longitude", HomeActivity.longitude)
                         .appendQueryParameter("current_date", params[6]);
 
                 //.appendQueryParameter("deviceid", deviceid);
@@ -357,7 +366,7 @@ remarks:jhgjhghjgjg"
               //  Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
 
                 Transactwallet transactwallet=new Transactwallet();
-                transactwallet.execute(user_id,"0",String.valueOf(balance-1),"1");
+                transactwallet.execute(user_id,"0",String.valueOf(balance-HomeActivity.min_post_charge),String.valueOf(HomeActivity.min_post_charge));
             }
         }
     }
@@ -496,7 +505,7 @@ remarks:jhgjhghjgjg"
             super.onPostExecute(user);
             progressDialog.dismiss();
             if(server_status==1){
-                if(balance>6.0){
+                if(balance>HomeActivity.min_user_balance){
                     String postDetails = et_contentheading.getText().toString().trim();
                     String numof = adult.getSelectedItem().toString();
                     exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
@@ -509,15 +518,26 @@ remarks:jhgjhghjgjg"
 
                     }
                 }
+                else {
+                    if(lang.contentEquals("Arabic")){
+                        Constants.noInternetDialouge(PostActivity.this,"مطلو20  دولارات على الأقل في محفظتك لنشر الخدمة");
+
+                    }
+                    else{
+                        Constants.noInternetDialouge(PostActivity.this,"Atleast SAR "+HomeActivity.min_user_balance+" is required in your wallet for posting a service");
+
+                    }
+
+                }
 
             }
             else{
                 if(lang.contentEquals("Arabic")){
-                    Constants.noInternetDialouge(PostActivity.this,"مطلوب 6 دولارات على الأقل في محفظتك لنشر الخدمة");
+                    Constants.noInternetDialouge(PostActivity.this,server_message);
 
                 }
                 else{
-                    Constants.noInternetDialouge(PostActivity.this,"Atleast SAR 6 is required in your wallet for posting a service");
+                    Constants.noInternetDialouge(PostActivity.this,server_message);
 
                 }
             }
@@ -563,7 +583,7 @@ remarks:jhgjhghjgjg"
                         .appendQueryParameter("user_id", _userid)
                         .appendQueryParameter("debit", _debit_amount)
                         .appendQueryParameter("credit", _recharge_amount)
-                        .appendQueryParameter("remarks", "Posting a request")
+                        .appendQueryParameter("remarks", "Public Post")
                         .appendQueryParameter("balance", _balance_amount);
 
                 //.appendQueryParameter("deviceid", deviceid);
@@ -648,7 +668,7 @@ remarks:jhgjhghjgjg"
 
                 }
                 else{
-                    Toast.makeText(PostActivity.this,"Request Posted and Wallet debited with SAR 3",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostActivity.this,"Request Posted and Wallet debited with SAR "+HomeActivity.min_post_charge,Toast.LENGTH_LONG).show();
 
                 }
                 Intent intent = new Intent(PostActivity.this, HomeActivity.class);

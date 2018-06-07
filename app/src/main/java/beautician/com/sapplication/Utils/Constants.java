@@ -1,6 +1,7 @@
 package beautician.com.sapplication.Utils;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -13,10 +14,17 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -212,6 +220,48 @@ public class Constants {
     public static boolean validate(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
         return matcher.find();
+    }
+
+
+
+    public static String getOurDate(String ourDate)
+    {
+        try
+        {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date value = formatter.parse(ourDate);
+            SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy hh:mm aa"); //this format changeable
+            dateFormatter.setTimeZone(TimeZone.getDefault());
+            ourDate = dateFormatter.format(value);
+
+            //Log.d("ourDate", ourDate);
+        }
+        catch (Exception e)
+        {
+            ourDate = "00-00-0000 00:00";
+        }
+        return ourDate;
+    }
+    public static void showImagedialoug(String uri, Context context) {
+        final Dialog dialog=new Dialog(context);
+        dialog.setContentView(R.layout.visitor_image);
+        ImageView im_visitor=(ImageView)dialog.findViewById(R.id.im_visitor);
+        TextView tv_details=(TextView)dialog.findViewById(R.id.tv_details);
+        TextView ok=(TextView)dialog.findViewById(R.id.ok);
+        if(uri!=null) {
+            Picasso.with(context).load(uri).resize(400,400).into(im_visitor);
+        }
+        else {
+            im_visitor.setImageResource(R.drawable.no_image);
+        }
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
 }

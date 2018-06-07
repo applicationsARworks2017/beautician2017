@@ -154,6 +154,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             tvlatlng.setText("خطوط الطول طويلة");
             tv_showmap.setText("عرض الخريطة");
             tv_showmap.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+            setTitle("الملف الشخصي");
 
         }
         else{
@@ -165,6 +166,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             editsave.setText("Edit");
             tvlatlng.setText("LatLong");
             tv_showmap.setText("ShowMap");
+            setTitle("Profile");
             tv_showmap.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         }
         if(user_type.contentEquals("SP")){
@@ -353,6 +355,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                         }
                     });
                 }
+                else{
+                    String shop_pic1 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_ONE, null);
+                    Constants.showImagedialoug(Constants.SHOP_PICURL+shop_pic1,SPProfile.this);
+                }
             }
         });
         pic2.setOnClickListener(new View.OnClickListener() {
@@ -385,6 +391,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                     });
 
                 }
+                else{
+                    String shop_pic2 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_TWO, null);
+                    Constants.showImagedialoug(Constants.SHOP_PICURL+shop_pic2,SPProfile.this);
+                }
             }
         });
         pic3.setOnClickListener(new View.OnClickListener() {
@@ -416,8 +426,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                         }
                     });
 
-
-
+                }
+                else {
+                    String shop_pic3 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_THREE, null);
+                    Constants.showImagedialoug(Constants.SHOP_PICURL+shop_pic3,SPProfile.this);
                 }
             }
         });
@@ -451,7 +463,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                     });
 
 
-
+                }
+                else {
+                    String shop_pic4 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_FOUR, null);
+                    Constants.showImagedialoug(Constants.SHOP_PICURL+shop_pic4,SPProfile.this);
                 }
             }
         });

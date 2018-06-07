@@ -25,6 +25,7 @@ import java.util.Locale;
 
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Tabs.SPSignup;
+import beautician.com.sapplication.Utils.Constants;
 
 public class MapActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,OnMapReadyCallback {
     GoogleMap googleMap;
@@ -35,12 +36,21 @@ public class MapActivity extends AppCompatActivity implements NavigationView.OnN
     String address,city,state;
     String latitude,longitude,classname;
     LatLng latLng;
-    String page;
+    String page,lang;
     LinearLayout selectionok;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+
+        if(lang.contentEquals("Arabic")){
+            setTitle("اختر العنوان");
+        }
+        else{
+            setTitle("Choose Address");
+        }
         selectionok=(LinearLayout)findViewById(R.id.selectionok);
         selectionok.setOnClickListener(new View.OnClickListener() {
             @Override

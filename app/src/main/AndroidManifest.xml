@@ -54,11 +54,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Login_Activity"
-            android:label="Login"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SignupActivity"
-            android:label="Sign Up"
             android:parentActivityName=".Activity.Login_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/MyMaterialTheme.Base" />
@@ -67,76 +65,60 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SPHome"
-            android:label="Dashboard"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Categories"
-            android:label="Service List"
             android:parentActivityName=".Activity.SPHome"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PostActivity"
-            android:label="Post for service"
             android:parentActivityName=".Activity.SpRequestHome"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Subcategories"
-            android:label="Service Details"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SPProfile"
-            android:label="Profile"
             android:parentActivityName=".Activity.SPHome"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Manageservice"
-            android:label="Service"
             android:parentActivityName=".Activity.SPHome"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.RequestSubcategories"
-            android:label="Detail List"
             android:parentActivityName=".Activity.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SearchShop"
-            android:label="Search"
             android:parentActivityName=".Activity.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SearchShopList"
-            android:label="Search List"
             android:parentActivityName=".Activity.SearchShop"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CategoriesRequest"
-            android:label="Choose Service"
             android:parentActivityName=".Activity.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CheckPost"
-            android:label="Public Posts"
             android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.SpProposal"
-            android:label="Proposals"
             android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.Wallet"
-            android:label="Wallet"
             android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.Offer_creation"
-            android:label="Compose Offer"
             android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.OfferSet"
-            android:label="Offers"
             android:parentActivityName=".Activity.HomeActivity" />
         <activity
             android:name=".Activity.PropsalView"
-            android:label="Propsal Detail"
             android:parentActivityName=".Activity.SPHome"
             android:theme="@style/NoAction" />
         <activity
@@ -144,18 +126,15 @@
             android:theme="@style/NoActionUser" />
         <activity
             android:name=".Activity.MapActivity"
-            android:label="Choose Address" />
+             />
         <activity
             android:name=".Activity.SpRequestHome"
-            android:label="Select Type"
             android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.CheckIndividualPost"
-            android:label="Service Requests"
             android:parentActivityName=".Activity.HomeActivity" />
         <activity
             android:name=".Activity.SubCategoryEditActivity"
-            android:label="SubCategory Edit"
             android:parentActivityName=".Activity.MySubcategories" />
 
         <!-- Firebase Notifications -->
@@ -193,14 +172,12 @@
 
         <activity
             android:name=".Activity.GiveCommentActivity"
-            android:label="Give Ratings" />
+            />
         <activity
             android:name=".Activity.ShopDetails"
-            android:label="Shop Details"
             android:theme="@style/NoAction" />
         <activity
             android:name=".Activity.MyserviceList"
-            android:label="Service"
             android:parentActivityName=".Activity.Manageservice"
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.MySubcategories" />
@@ -209,13 +186,11 @@
             android:theme="@style/NoActionUser" />
         <activity
             android:name=".Activity.ForgotPassword"
-            android:label="Forgot Password"
             android:parentActivityName=".Activity.Login_Activity" />
         <activity
             android:name=".Activity.PaymentConfirmation"
-            android:label="Payment Confirmation" />
-        <activity android:name=".Activity.CountryList"
-            android:label="Country List"></activity>
+            />
+        <activity android:name=".Activity.CountryList"></activity>
     </application>
 
 </manifest>

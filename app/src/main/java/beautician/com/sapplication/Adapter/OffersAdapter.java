@@ -74,13 +74,7 @@ public class OffersAdapter extends BaseAdapter {
         holder.im_reply.setTag(position);
         holder.offer_details.setTag(position);
         holder.offer_details.setText(_pos.getOffer_detail());
-        if(page.contentEquals("user_side")){
-            holder.im_reply.setVisibility(View.VISIBLE);
-        }
-        else{
-            holder.im_reply.setVisibility(View.GONE);
-
-        }
+        holder.im_reply.setVisibility(View.GONE);
         if(lang.contentEquals("Arabic")){
             holder.offerHeading.setText(_pos.getTitle()+" في "+_pos.getShopname());
 
@@ -89,15 +83,20 @@ public class OffersAdapter extends BaseAdapter {
             holder.offerHeading.setText(_pos.getTitle()+" at "+_pos.getShopname());
 
         }
-        holder.im_reply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(_context,IndividualRequest.class);
-                intent.putExtra("SHOP_ID",_pos.getShop_id());
-                intent.putExtra("SHOP_NAME",_pos.getShopname());
-                _context.startActivity(intent);
-            }
-        });
+        if(page.contentEquals("user_side")){
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(_context,IndividualRequest.class);
+                    intent.putExtra("SHOP_ID",_pos.getShop_id());
+                    intent.putExtra("SHOP_NAME",_pos.getShopname());
+                    intent.putExtra("DETAILS","");
+                    _context.startActivity(intent);
+                }
+            });
+        }
+
+
         return convertView;
     }
 }

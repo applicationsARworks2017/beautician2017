@@ -39,7 +39,9 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.GiveCommentActivity;
+import beautician.com.sapplication.Activity.HomeActivity;
 import beautician.com.sapplication.Activity.PropsalView;
+import beautician.com.sapplication.Activity.SPHome;
 import beautician.com.sapplication.Activity.ShopDetails;
 import beautician.com.sapplication.Activity.SpProposal;
 import beautician.com.sapplication.Activity.UserDetails;
@@ -146,7 +148,7 @@ public class PropsalAdapter extends BaseAdapter {
 
         }
 
-        holder.actualtime.setText(_pos.getCreated());
+        holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
         if(from_page.contentEquals("user_side")){
             holder.im_reply.setVisibility(View.GONE);
             holder.tv_otp.setVisibility(View.GONE);
@@ -269,7 +271,7 @@ public class PropsalAdapter extends BaseAdapter {
                 holder.tv_otp.setText(" شارك الكود عند الوصول  للمقدم الخدمة لسترجاع مبلغ تأكييد الحجز إلى المحفظة:" + _pos.getOtp());
             } else {
                 holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + " has replied : " + _pos.getRemarks());
-                holder.tv_otp.setText("Share OTP before service and get back your SAR 5. OTP : " + _pos.getOtp());
+                holder.tv_otp.setText("Share OTP before service and get back your SAR"+HomeActivity.min_post_charge+". OTP : " + _pos.getOtp());
 
             }
         }
@@ -381,7 +383,7 @@ public class PropsalAdapter extends BaseAdapter {
                     }else{
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
                         builder.setTitle("User is ready to take the service");
-                        builder.setMessage("You have to pay SAR 5 , Do you want to go ahead?");
+                        builder.setMessage("You have to pay SAR " + SPHome.min_service_charge+", Do you want to go ahead?");
                         final String finalCallTo = callTo;
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -910,11 +912,11 @@ public class PropsalAdapter extends BaseAdapter {
                     Toast.makeText(_context, "Service started", Toast.LENGTH_SHORT).show();
                     wpage = "user_side";
                     Transactwallet transactwallet = new Transactwallet();
-                    transactwallet.execute(user_id, "5", String.valueOf(user_balance+5), "0");
+                    transactwallet.execute(user_id, String.valueOf(HomeActivity.min_post_charge), String.valueOf(user_balance+HomeActivity.min_post_charge), "0");
                 }
                 else {
                     if (wpage.contentEquals("sp_home")) {
-                        if (shop_balance > 5) {
+                        if (shop_balance > SPHome.min_sp_balance) {
                             wpage = "user_side";
                             Log.i("userid", user_id);
                             getWdetails getUWdetails = new getWdetails();
@@ -923,10 +925,10 @@ public class PropsalAdapter extends BaseAdapter {
                             Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
                         }
                     } else if (wpage.contentEquals("user_side")) {
-                        if (user_balance > 5) {
+                        if (user_balance > HomeActivity.min_user_balance) {
                             wpage = "sp_home";
                             Transactwallet transactwallet = new Transactwallet();
-                            transactwallet.execute(shop_id, "0", String.valueOf(shop_balance - 5), "5");
+                            transactwallet.execute(shop_id, "0", String.valueOf(shop_balance -SPHome.min_service_charge ), String.valueOf(SPHome.min_service_charge));
                             //Toast.makeText(_context,"go aahead",Toast.LENGTH_LONG).show();
                         } else {
                             // this is for insufficient balance in the user side
@@ -939,6 +941,18 @@ public class PropsalAdapter extends BaseAdapter {
 
 
               //  Toast.makeText(_context,shop_balance+"/"+user_balance,Toast.LENGTH_LONG).show();
+            }
+            else {
+                if(lang.contentEquals("Arabic")){
+                    Toast.makeText(_context, "يرجى إعادة شحن محفظتك", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    Toast.makeText(_context, "Please recharge your wallet", Toast.LENGTH_SHORT).show();
+
+                }
+
+
             }
 
         }
@@ -995,7 +1009,7 @@ public class PropsalAdapter extends BaseAdapter {
                                 .appendQueryParameter("shop_id", _userid)
                                 .appendQueryParameter("debit", _debit_amount)
                                 .appendQueryParameter("credit", _recharge_amount)
-                                .appendQueryParameter("remarks", "Service started")
+                                .appendQueryParameter("remarks", "Service Action")
                                 .appendQueryParameter("balance", _balance_amount);
                     }
                     else if(wpage.contentEquals("user_side")){
@@ -1003,7 +1017,7 @@ public class PropsalAdapter extends BaseAdapter {
                                 .appendQueryParameter("user_id", _userid)
                                 .appendQueryParameter("debit", _debit_amount)
                                 .appendQueryParameter("credit", _recharge_amount)
-                                .appendQueryParameter("remarks", "Service started")
+                                .appendQueryParameter("remarks", "Service Action")
                                 .appendQueryParameter("balance", _balance_amount);
                     }
 
@@ -1087,7 +1101,7 @@ public class PropsalAdapter extends BaseAdapter {
                     if(wpage.contentEquals("sp_home")) {
                         wpage = "user_side";
                         Transactwallet transactwallet = new Transactwallet();
-                        transactwallet.execute(user_id, "0", String.valueOf(user_balance - 5), "5");
+                        transactwallet.execute(user_id, "0", String.valueOf(user_balance - HomeActivity.min_post_charge), String.valueOf(HomeActivity.min_post_charge));
                     }
                     //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
                     if(updated_status==4){

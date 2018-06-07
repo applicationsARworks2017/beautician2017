@@ -36,6 +36,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.CheckIndividualPost;
+import beautician.com.sapplication.Activity.HomeActivity;
+import beautician.com.sapplication.Activity.SPHome;
 import beautician.com.sapplication.Pojo.IndServiceRequest;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -107,7 +109,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         holder.im_reply.setTag(holder);
         holder.tv_expected_date.setText(_pos.getExpected_date());
         holder.remarks.setText(_pos.getRemarks());
-        holder.actualtime.setText(_pos.getCreated());
+        holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
          user_id=_pos.getPersonId();
 
          if(lang.contentEquals("Arabic")){
@@ -191,7 +193,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         alert.show();
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                        builder.setMessage("Please pay $5 for getting the service.");
+                        builder.setMessage("Please pay SAR"+ SPHome.min_service_charge+"for getting the service.");
                         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -459,7 +461,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
             progressDialog.dismiss();
             if (server_status == 1) {
                 if (wpage.contentEquals("sp_home")) {
-                    if (shop_balance > 5) {
+                    if (shop_balance > SPHome.min_sp_balance) {
                         wpage = "user_side";
                         Log.i("userid", user_id);
                         getWdetails getUWdetails = new getWdetails();
@@ -474,10 +476,10 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         }
                     }
                 } else if (wpage.contentEquals("user_side")) {
-                    if (user_balance > 5) {
+                    if (user_balance > HomeActivity.min_user_balance) {
                         wpage = "sp_home";
                         Transactwallet transactwallet = new Transactwallet();
-                        transactwallet.execute(shop_id, "0", String.valueOf(shop_balance - 5), "5");
+                        transactwallet.execute(shop_id, "0", String.valueOf(shop_balance - SPHome.min_service_charge), String.valueOf(SPHome.min_service_charge));
                         //Toast.makeText(_context,"go aahead",Toast.LENGTH_LONG).show();
                     } else {
                         if(lang.contentEquals("Arabic")){
@@ -783,7 +785,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 if(wpage.contentEquals("sp_home")) {
                     wpage = "user_side";
                     Transactwallet transactwallet = new Transactwallet();
-                    transactwallet.execute(user_id, "0", String.valueOf(user_balance - 5), "5");
+                    transactwallet.execute(user_id, "0", String.valueOf(user_balance - HomeActivity.min_post_charge),String.valueOf( HomeActivity.min_post_charge));
                 }
                 //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
                 else if(wpage.contentEquals("user_side")){

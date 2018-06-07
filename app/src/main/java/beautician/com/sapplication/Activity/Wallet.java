@@ -71,11 +71,13 @@ public class Wallet extends AppCompatActivity {
             tv_refresh.setText("تحديث");
             tv_balance.setText("إجمالي الرصيد");
             tv_addMoney.setText("إضافة المال");
+            setTitle("محفظة نقود");
         }
         else{
             tv_refresh.setText("Refresh");
             tv_balance.setText("Total Balance");
             tv_addMoney.setText("Add Money");
+            setTitle("Wallet");
         }
 
 

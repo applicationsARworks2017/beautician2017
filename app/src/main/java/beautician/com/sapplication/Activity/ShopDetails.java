@@ -32,10 +32,10 @@ import beautician.com.sapplication.Utils.Constants;
 
 public class ShopDetails extends AppCompatActivity {
     String shop_id;
-    ImageView img1,img2,img3;
+    ImageView img1,img2,img3,img4;
     TextView shop_name,shop_email,shop_address,shop_reviws;
     RatingBar rating;
-    String id,shopname,address,latlong,photo1,photo2,photo3,email,mobile,reviews,ratings;
+    String lang,id,shopname,address,latlong,photo1,photo2,photo3,photo4,email,mobile,reviews,ratings;
     RelativeLayout rel_back;
     Toolbar sp_toolbar;
 
@@ -46,6 +46,13 @@ public class ShopDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_details);
         Bundle extras = getIntent().getExtras();
+        lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+        if(lang.contentEquals("Arabic")){
+            setTitle("تفاصيل المتجر");
+        }
+        else{
+            setTitle("Shop Details");
+        }
         if (extras != null) {
             shop_id = extras.getString("SHOP_ID");
             // and get whatever type user account id is
@@ -55,6 +62,7 @@ public class ShopDetails extends AppCompatActivity {
         img1=(ImageView)findViewById(R.id.img1);
         img2=(ImageView)findViewById(R.id.img2);
         img3=(ImageView)findViewById(R.id.img3);
+        img4=(ImageView)findViewById(R.id.img4);
 
         shop_name=(TextView)findViewById(R.id.shop_name);
         shop_email=(TextView)findViewById(R.id.shop_email);
@@ -178,6 +186,7 @@ public class ShopDetails extends AppCompatActivity {
                     photo1=j_obj.getString("photo1");
                     photo2=j_obj.getString("photo2");
                     photo3=j_obj.getString("photo3");
+                    photo4=j_obj.getString("photo4");
                     email=j_obj.getString("email");
                     mobile=j_obj.getString("mobile");
                     reviews=j_obj.getString("no_of_reviews");
@@ -216,13 +225,20 @@ public class ShopDetails extends AppCompatActivity {
         }
 
         if(!photo1.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo1).into(img1);
+            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo1)
+                    .resize(300,300)
+                    .into(img1);
         }
         if(!photo2.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo2).into(img2);
+            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo2).resize(300,300)
+                    .into(img2);
         }
         if(!photo3.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo3).into(img3);
+            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo3)
+                    .resize(300,300).into(img3);
+        }if(!photo4.isEmpty()) {
+            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo4)
+                    .resize(300,300).into(img4);
         }
 
     }

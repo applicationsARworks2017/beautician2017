@@ -54,6 +54,7 @@ public class IndividualRequest extends AppCompatActivity {
     Toolbar toolreq;
     LinearLayout reqback;
     String lang,details;
+    TextView pageheading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class IndividualRequest extends AppCompatActivity {
         }
         toolreq=(Toolbar)findViewById(R.id.toolreq);
         reqback=(LinearLayout)toolreq.findViewById(R.id.reqback);
+        pageheading=(TextView) toolreq.findViewById(R.id.pageheading);
         reqback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +87,7 @@ public class IndividualRequest extends AppCompatActivity {
         adult=(TextView)findViewById(R.id.adult);
         shopName.setText("You are Interested for :"+ shop_name);
         et_details=(EditText)findViewById(R.id.et_contentheading);
-        et_details.setText(details.trim());
+        et_details.setText(details);
         sp_num=(Spinner)findViewById(R.id.adult_spin);
         post=(Button)findViewById(R.id.submit_post);
         if(lang.contentEquals("Arabic")){
@@ -93,6 +95,7 @@ public class IndividualRequest extends AppCompatActivity {
             adult.setText("عدد الاشخاص");
             et_details.setHint("أضف التفاصيل هنا");
             post.setText("بريد");
+            setTitle("طلب للحصول على الخدمة");
 
 
         }
@@ -101,6 +104,7 @@ public class IndividualRequest extends AppCompatActivity {
             adult.setText("No of People");
             et_details.setHint("Add Detail here");
             post.setText("Post");
+            setTitle("Request For Service");
         }
         post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +145,7 @@ public class IndividualRequest extends AppCompatActivity {
                     else{
                         AlertDialog.Builder builder = new AlertDialog.Builder(IndividualRequest.this);
                         builder.setTitle("");
-                        builder.setMessage("Your wallet will be deducted with SAR 3 for this request");
+                        builder.setMessage("Your wallet will be deducted with SAR "+HomeActivity.min_post_charge+" for this request");
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {
@@ -362,7 +366,7 @@ public class IndividualRequest extends AppCompatActivity {
             super.onPostExecute(user);
             progressDialog.dismiss();
             if(server_status==1){
-                if(balance>6.0){
+                if(balance>HomeActivity.min_user_balance){
                     final String postDetails=et_details.getText().toString().trim();
                     final String numof=sp_num.getSelectedItem().toString();
                     exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
@@ -374,11 +378,27 @@ public class IndividualRequest extends AppCompatActivity {
 
                     }
                 }
+                else{
+                    if(lang.contentEquals("Arabic")){
+                        Constants.noInternetDialouge(IndividualRequest.this,"مطلو20  دولارات على الأقل في محفظتك لنشر الخدمة");
+
+                    }
+                    else{
+                        Constants.noInternetDialouge(IndividualRequest.this,"Atleast SAR "+HomeActivity.min_user_balance+" is required in your wallet for posting a service");
+
+                    }
+                }
 
             }
             else{
-                Constants.noInternetDialouge(IndividualRequest.this,"Atleast $ 6 is required in your wallet for posting a service");
-            }
+                if(lang.contentEquals("Arabic")){
+                    Constants.noInternetDialouge(IndividualRequest.this,server_message);
+
+                }
+                else{
+                    Constants.noInternetDialouge(IndividualRequest.this,server_message);
+
+                }            }
 
         }
     }
@@ -525,7 +545,7 @@ public class IndividualRequest extends AppCompatActivity {
             super.onPostExecute(user);
             if (server_status == 1) {
                 Transactwallet transactwallet=new Transactwallet();
-                transactwallet.execute(user_id,"0",String.valueOf(balance-1),"1");
+                transactwallet.execute(user_id,"0",String.valueOf(balance-HomeActivity.min_post_charge),String.valueOf(HomeActivity.min_post_charge));
 
             }
             Toast.makeText(IndividualRequest.this,server_message,Toast.LENGTH_SHORT).show();

@@ -22,6 +22,7 @@ public class Manageservice extends AppCompatActivity {
         user_id = Manageservice.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
+
         lin_myservice=(LinearLayout)findViewById(R.id.lin_myservice);
         add_services=(LinearLayout)findViewById(R.id.lin_addservices);
         my_service=(TextView) findViewById(R.id.my_service);
@@ -31,10 +32,14 @@ public class Manageservice extends AppCompatActivity {
         if(lang.contentEquals("Arabic")){
             my_service.setText("خدماتي");
             add_service.setText("إضافة خدمات");
+            setTitle("الخدمات");
+
         }
         else{
             my_service.setText("My Services");
             add_service.setText("Add Services");
+            setTitle("Service");
+
         }
         add_services.setOnClickListener(new View.OnClickListener() {
             @Override
