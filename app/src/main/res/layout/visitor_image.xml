@@ -4,7 +4,7 @@
     <ImageView
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:scaleType="fitXY"
+        android:layout_margin="40dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/im_visitor"/>
@@ -24,9 +24,8 @@
         android:text="OK"
         android:id="@+id/ok"
         android:textColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv_details"
-        android:layout_marginTop="10dp"
         android:padding="10dp"
         android:layout_marginBottom="10dp"/>
 </RelativeLayout>

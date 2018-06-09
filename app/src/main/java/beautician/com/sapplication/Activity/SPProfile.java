@@ -622,8 +622,8 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                 // Bitmap photo = (Bitmap) data.getExtras().get("data");
                 try {
                     Bitmap photo = MediaStore.Images.Media.getBitmap(SPProfile.this.getContentResolver(), picUri);
-                    Bitmap c_photo = Bitmap.createScaledBitmap(photo, 200, 200, true);
-                    Bitmap perfectImage = modifyOrientation(c_photo, imPath);
+                   // Bitmap c_photo = Bitmap.createScaledBitmap(photo, 200, 200, true);
+                    Bitmap perfectImage = modifyOrientation(photo, imPath);
 
                     picAvailable = true;
                     if (imageclick == 1) {
