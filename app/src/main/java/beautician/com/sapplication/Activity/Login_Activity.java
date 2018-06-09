@@ -661,7 +661,7 @@ public class Login_Activity extends AppCompatActivity {
 
                     } else {
                         if(lang=="Arabic"){
-                            server_message = "لم يتم العثور فم. لذلك قد لا يأتي الإخطار";
+                            server_message = "FCMقد لا تأتي الاشعارات لعدم الحصول على ";
                         }
                         else{
                             server_message = "FCM not found. So notification may not come";

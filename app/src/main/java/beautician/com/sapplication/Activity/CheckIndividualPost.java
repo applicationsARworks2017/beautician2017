@@ -48,7 +48,7 @@ public class CheckIndividualPost extends AppCompatActivity {
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
-            setTitle("طلب خدمة");
+            setTitle("طلب الخدمة");
         }
         else{
             setTitle("Service Requests");

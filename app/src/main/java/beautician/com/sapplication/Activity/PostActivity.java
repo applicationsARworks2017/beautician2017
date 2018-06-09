@@ -64,7 +64,7 @@ public class PostActivity extends AppCompatActivity {
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
-            setTitle("وظيفة للخدمة");
+            setTitle("تقديم العرض ");
         }
         else{
             setTitle("Post for service");
@@ -109,7 +109,7 @@ public class PostActivity extends AppCompatActivity {
                 if(lang.contentEquals("Arabic")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
                     builder.setTitle("");
-                    builder.setMessage("سيتم خصم ٣ ريال من المحفظة لهذا المنشور");
+                    builder.setMessage("سيتم خصم 5  ريال من المحفظة لهذا المنشور");
                     builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //TODO
@@ -520,7 +520,7 @@ remarks:jhgjhghjgjg"
                 }
                 else {
                     if(lang.contentEquals("Arabic")){
-                        Constants.noInternetDialouge(PostActivity.this,"مطلو20  دولارات على الأقل في محفظتك لنشر الخدمة");
+                        Constants.noInternetDialouge(PostActivity.this,"مطلوب 10  ريالات على الأقل في محفظتك لنشر الخدمة");
 
                     }
                     else{

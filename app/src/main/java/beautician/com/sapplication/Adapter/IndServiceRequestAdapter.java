@@ -166,7 +166,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                     updated_status = 1;
                     if (lang.contentEquals("Arabic")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                        builder.setMessage("يرجى دفع 5 دولارات مقابل الحصول على الخدمة.");
+                        builder.setMessage(" يرجى دفع 5 ريالات مقابل الحصول على الخدمة.");
                         builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -248,7 +248,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                     updated_status = 3;
                     if (lang.contentEquals("Arabic")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                        builder.setMessage("هل أنت متأكد ، لقد انتهت الخدمة؟");
+                        builder.setMessage("؟ هل أنت متأكد ، لقد انتهت الخدمة");
                         builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -468,7 +468,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         getUWdetails.execute(user_id);
                     } else {
                         if(lang.contentEquals("Arabic")){
-                            Constants.noInternetDialouge(_context, "ليس لديك كمية كافية في المحفظة");
+                            Constants.noInternetDialouge(_context, "ليس لديك مبلغ كافي في المحفظة");
                         }
                         else{
                             Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
@@ -483,7 +483,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         //Toast.makeText(_context,"go aahead",Toast.LENGTH_LONG).show();
                     } else {
                         if(lang.contentEquals("Arabic")){
-                            Constants.noInternetDialouge(_context, "المستخدم غير جاهز لأخذ الخدمة");
+                            Constants.noInternetDialouge(_context, "العميل لايرغب بالحصول على الخدمة");
                         }
                         else{
                             Constants.noInternetDialouge(_context, "User is not ready to take the service");

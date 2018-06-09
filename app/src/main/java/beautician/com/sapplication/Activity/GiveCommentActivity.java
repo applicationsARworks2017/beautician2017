@@ -65,7 +65,7 @@ public class GiveCommentActivity extends AppCompatActivity {
             // and get whatever type user account id is
         }
         if(lang.contentEquals("Arabic")){
-            setTitle("منح التقييمات");
+            setTitle("تقييم الخدمة ");
         }
         else{
             setTitle("Give Ratings");

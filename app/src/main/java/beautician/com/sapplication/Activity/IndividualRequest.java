@@ -118,7 +118,7 @@ public class IndividualRequest extends AppCompatActivity {
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(IndividualRequest.this);
                         builder.setTitle("");
-                        builder.setMessage("سيتم خصم ٣ ريال من المحفظة لهذا الطلب ");
+                        builder.setMessage("سيتم خصم 5 يال من المحفظة لهذا الطلب ");
                         builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 if (CheckInternet.getNetworkConnectivityStatus(IndividualRequest.this)) {
@@ -380,7 +380,7 @@ public class IndividualRequest extends AppCompatActivity {
                 }
                 else{
                     if(lang.contentEquals("Arabic")){
-                        Constants.noInternetDialouge(IndividualRequest.this,"مطلو20  دولارات على الأقل في محفظتك لنشر الخدمة");
+                        Constants.noInternetDialouge(IndividualRequest.this,"مطلوب 10  ريالات على الأقل في محفظتك لنشر الخدمة");
 
                     }
                     else{

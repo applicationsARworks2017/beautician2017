@@ -437,15 +437,34 @@ public class CostumerSignup extends Fragment {
                     JSONObject newObj=new JSONObject(String.valueOf(res_server.getJSONObject("res")));
                     server_status = newObj.optInt("status");
                     if (server_status == 1) {
-                        server_response = "Registration Successful";
+                        if(lang.contentEquals("Arabic")){
+                            server_response = "تم التسجيل بنجاح";
+
+                        }else{
+                            server_response = "Registration Successful";
+
+                        }
 
                     }
                     else if(server_status==2)  {
-                        server_response = "Mobile Number Already Exist";
+                        if(lang.contentEquals("Arabic")){
+                            server_response = "رقم الجوال مضاف مسبقا";
+
+                        }
+                        else{
+                            server_response = "Mobile Number Already Exist";
+
+                        }
 
                     }
                     else{
-                        server_response = "Sorry !! Entry failed";
+                        if(lang.contentEquals("Arabic")){
+                            server_response = "آسف!! فشل الدخول";
+
+                        }else{
+                            server_response = "Sorry !! Entry failed";
+
+                        }
 
                     }
                 }

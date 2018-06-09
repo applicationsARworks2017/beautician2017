@@ -1,7 +1,6 @@
 package beautician.com.sapplication.Tabs;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -48,7 +47,6 @@ import java.util.Locale;
 
 import beautician.com.sapplication.Activity.Login_Activity;
 import beautician.com.sapplication.Activity.MapActivity;
-import beautician.com.sapplication.Activity.SPProfile;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
@@ -663,14 +661,33 @@ public class SPSignup extends Fragment {
                     JSONObject newObj=new JSONObject(String.valueOf(res_server.getJSONObject("res")));
                     server_status = newObj.optInt("status");
                     if (server_status == 1) {
-                        server_message = "Registration Successful";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "تم التسجيل بنجاح";
+
+                        }else{
+                            server_message = "Registration Successful";
+
+                        }
 
                     }
                     else if(server_status==2)  {
-                        server_message = "Mobile Number Already Exist";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "رقم الجوال مضاف مسبقا";
+
+                        }
+                        else{
+                            server_message = "Mobile Number Already Exist";
+
+                        }
 
                     }else {
-                        server_message = "Sorry !! Entry failed";
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "آسف!! فشل الدخول";
+
+                        }else{
+                            server_message = "Sorry !! Entry failed";
+
+                        }
                     }
                 }
             } catch (JSONException e) {

@@ -361,7 +361,7 @@ public class PropsalAdapter extends BaseAdapter {
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
                         builder.setTitle("المستخدم جاهز لأخذ الخدمة");
-                        builder.setMessage("عليك أن تدفع 5 دولارات ، هل تريد أن تمضي قدما؟");
+                        builder.setMessage("عليك أن تدفع 5 ريالات ، هل انت متاكد؟");
                         final String finalCallTo = callTo;
                         builder.setPositiveButton("نعم فعلا", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -440,7 +440,7 @@ public class PropsalAdapter extends BaseAdapter {
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
                         // builder.setTitle("Are you Comfortable with this proposal");
-                        builder.setMessage("الخدمة منتهية؟");
+                        builder.setMessage("تم اكتمال الخدمه ؟");
                         final String finalCallTo = callTo;
                         builder.setPositiveButton("نعم فعلا", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -495,8 +495,8 @@ public class PropsalAdapter extends BaseAdapter {
                     callTo = "2";
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                        builder.setTitle("هل أنت مريح مع هذا الاقتراح");
-                        builder.setMessage("هل تريد المضي قدما؟");
+                        builder.setTitle("هل أنت راضا مع هذا الاقتراح");
+                        builder.setMessage("هل تود الاستمرار ؟ ");
                         final String finalCallTo = callTo;
                         builder.setPositiveButton("نعم فعلا", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -542,8 +542,8 @@ public class PropsalAdapter extends BaseAdapter {
                 else if(status.contentEquals("2")){
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                        builder.setTitle("مسموح بالفعل");
-                        builder.setMessage("لقد أرسلت إخطارًا للخدمة");
+                        builder.setTitle("تم الموافقه مسبقا ");
+                        builder.setMessage("لقد أرسلت اشعارا للخدمة");
                         final String finalCallTo = callTo;
                         builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
