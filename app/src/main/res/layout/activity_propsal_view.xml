@@ -37,8 +37,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/viewpropsal_toolbar"
         android:orientation="vertical">
@@ -46,20 +46,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/prop_head"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:textColor="@color/colorPrimary" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/noofpple"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:id="@+id/_remarks"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,19 +67,19 @@
             android:background="@color/deep_background"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"></LinearLayout>
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"></LinearLayout>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:inputType="textMultiLine"
             android:lines="8"
             android:id="@+id/_comments"
             android:minLines="4"
-            android:paddingLeft="5dp"
-            android:paddingRight="2dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="2dp"
             android:maxLines="10"
             />
         <Button

@@ -33,8 +33,8 @@
         android:id="@+id/hr_line"
         android:layout_below="@id/tv_services"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/deep_background"></LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,14 +48,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginStart="10dp"/>
     <Spinner
         android:id="@+id/adult_spin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-20dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:layout_gravity="center_horizontal"
         android:drawSelectorOnTop="true"
         android:entries="@array/array_name"/>
@@ -82,7 +82,7 @@
             android:text="DATE"
             android:background="@mipmap/ic_date_range_white_24dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:backgroundTint="@color/colorPrimaryLight"
             android:id="@+id/btn_date"
             android:layout_alignBottom="@+id/in_date"
@@ -113,7 +113,7 @@
             android:textColor="@color/white"
             android:background="@mipmap/ic_access_time_white_24dp"
             android:backgroundTint="@color/colorPrimaryLight"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:id="@+id/btn_time"
             android:layout_below="@+id/btn_date"
             android:layout_alignLeft="@+id/btn_date"
@@ -122,17 +122,17 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:inputType="textMultiLine"
         android:lines="8"
         android:id="@+id/et_contentheading"
         android:minLines="4"
-        android:paddingLeft="5dp"
-        android:paddingRight="2dp"
-        android:gravity="top|left"
+        android:paddingStart="5dp"
+        android:paddingEnd="2dp"
+        android:gravity="top|start"
         android:maxLines="10"
         android:hint=""
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="20dp"
         />
     <Button
@@ -140,8 +140,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/colorPrimaryLight"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="40dp"
         android:id="@+id/submit_post"
         android:textColor="@color/white"/>

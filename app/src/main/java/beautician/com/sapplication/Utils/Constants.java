@@ -39,6 +39,7 @@ public class Constants {
     //public static String ONLINEURL="http://applicationworld.net/beautician/";
     public static String ONLINEURL="https://beautician.site/admin/";
     public static String CATEGORYLIST="categories/index.json";
+    public static String OFFER_DELETE="offers/delete.json";
     public static String COUNTRYLIST="CountryCodes/index.json";
     public static String CATEGORYLIST_SHOPWISE="ShopDetails/shopListCat";
     public static String SUBCATEGORYLIST_SHOPWISE="ShopDetails/shopListSubCat";
@@ -250,7 +251,7 @@ public class Constants {
         TextView tv_details=(TextView)dialog.findViewById(R.id.tv_details);
         TextView ok=(TextView)dialog.findViewById(R.id.ok);
         if(uri!=null) {
-            Picasso.with(context).load(uri).resize(400,400).into(im_visitor);
+            Picasso.with(context).load(uri).into(im_visitor);
         }
         else {
             im_visitor.setImageResource(R.drawable.no_image);

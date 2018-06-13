@@ -29,27 +29,27 @@
                     android:textStyle="bold"
                     android:id="@+id/tv_english"
                     android:padding="5dp"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:textColor="@color/black"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginStart="20dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:text="عربي"
-                    android:layout_marginLeft="100dp"
+                    android:layout_marginStart="100dp"
                     android:textStyle="bold"
                     android:padding="5dp"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:id="@+id/tv_arabic"
                     android:textColor="@color/black"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginEnd="20dp"/>
             </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_height="200dp">
                     <com.mikhaellopez.circularimageview.CircularImageView
@@ -64,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:visibility="gone"
                         android:background="@mipmap/ic_mode_edit_white_24dp"
                         android:backgroundTint="@color/colorPrimaryDark"/>
@@ -75,22 +75,22 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/card1"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="0dp">
+                    android:layout_marginEnd="0dp">
                     <LinearLayout
                         android:layout_width="2dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:background="@color/LoginButtoncolor"
                         android:layout_height="match_parent">
                     </LinearLayout>
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="10dp"
-                        android:layout_marginLeft="6dp"
+                        android:layout_marginStart="6dp"
                         android:layout_marginTop="7dp"
                         android:background="@drawable/stepper"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_height="wrap_content">
                         <TextView
                             android:layout_width="wrap_content"
@@ -99,8 +99,8 @@
                             android:layout_marginTop="5dp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:layout_marginRight="40dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginEnd="40dp"
+                            android:layout_marginStart="10dp"
                             android:text=""/>
                         <EditText
                             android:layout_width="match_parent"
@@ -108,17 +108,17 @@
                             android:layout_below="@id/hd_name"
                             android:layout_marginTop="0dp"
                             android:visibility="visible"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginBottom="10dp"
                             android:id="@+id/name_value"
                             android:textStyle="bold"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginEnd="40dp"
                             android:text="Amaresh"/>
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="10dp"
                             android:visibility="gone"
                             android:layout_centerVertical="true"
                             android:backgroundTint="@color/deep_background"
@@ -131,28 +131,28 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/card2"
                     android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp">
+                    android:layout_marginEnd="0dp">
                     <LinearLayout
                         android:layout_width="2dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:background="@color/LoginButtoncolor"
                         android:layout_height="match_parent">
                     </LinearLayout>
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="10dp"
-                        android:layout_marginLeft="6dp"
+                        android:layout_marginStart="6dp"
                         android:layout_marginTop="7dp"
                         android:background="@drawable/stepper"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_height="wrap_content">
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="10dp"
                             android:visibility="gone"
                             android:layout_centerVertical="true"
                             android:backgroundTint="@color/deep_background"
@@ -164,8 +164,8 @@
                             android:layout_marginTop="5dp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="40dp"
                             android:text=""/>
                         <EditText
                             android:layout_width="match_parent"
@@ -173,10 +173,10 @@
                             android:layout_below="@id/hd_phone"
                             android:layout_marginTop="0dp"
                             android:visibility="visible"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginBottom="10dp"
                             android:id="@+id/et_phone_value"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginEnd="40dp"
                             android:textStyle="bold"
                             android:text="9090"/>
 
@@ -189,28 +189,28 @@
                     android:id="@+id/card3"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp">
+                    android:layout_marginEnd="0dp">
                     <LinearLayout
                         android:layout_width="2dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:background="@color/LoginButtoncolor"
                         android:layout_height="match_parent">
                     </LinearLayout>
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="10dp"
-                        android:layout_marginLeft="6dp"
+                        android:layout_marginStart="6dp"
                         android:layout_marginTop="7dp"
                         android:background="@drawable/stepper"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_height="wrap_content">
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="10dp"
                             android:visibility="gone"
                             android:layout_centerVertical="true"
                             android:backgroundTint="@color/deep_background"
@@ -222,8 +222,8 @@
                             android:layout_marginTop="5dp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="40dp"
                             android:text=""/>
                         <EditText
                             android:layout_width="match_parent"
@@ -231,11 +231,11 @@
                             android:layout_below="@id/hd_email"
                             android:layout_marginTop="0dp"
                             android:visibility="visible"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginBottom="10dp"
                             android:id="@+id/et_email_value"
                             android:textStyle="bold"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginEnd="40dp"
                             android:text=""/>
 
                     </RelativeLayout>
@@ -260,7 +260,7 @@
                         android:layout_height="40dp"
                         android:text=""
                         android:id="@+id/editsave"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginStart="40dp"
                         android:textColor="@color/white"
                         android:background="@color/colorPrimaryLight"
                         android:layout_gravity="center_horizontal"

@@ -15,8 +15,8 @@
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
                 android:id="@+id/rel_requsetservice"
                 android:layout_height="100dp">
@@ -30,8 +30,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/iv_appointment"
-                    android:layout_marginLeft="20dp"
+                    android:layout_toEndOf="@id/iv_appointment"
+                    android:layout_marginStart="20dp"
                     android:text=""
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_serviceheading"
@@ -39,18 +39,18 @@
                 <TextView
                     android:id="@+id/tv_choose_category"
                     android:layout_width="match_parent"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginEnd="40dp"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/iv_appointment"
+                    android:layout_toEndOf="@id/iv_appointment"
                     android:layout_below="@id/tv_serviceheading"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:text=""/>
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
                     android:background="@mipmap/ic_keyboard_arrow_right_white_24dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -58,14 +58,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:background="@color/deep_background">
                 </LinearLayout>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:id="@+id/rel_searchfrmhome"
                 android:layout_marginTop="20dp"
                 android:layout_height="100dp">
@@ -79,8 +79,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/iv_findSP"
-                    android:layout_marginLeft="20dp"
+                    android:layout_toEndOf="@id/iv_findSP"
+                    android:layout_marginStart="20dp"
                     android:text=""
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_SPheading"
@@ -88,18 +88,18 @@
                 <TextView
                     android:id="@+id/tv_serch_byname"
                     android:layout_width="match_parent"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginEnd="40dp"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/iv_findSP"
+                    android:layout_toEndOf="@id/iv_findSP"
                     android:layout_below="@id/tv_SPheading"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:text=" "/>
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
                     android:background="@mipmap/ic_keyboard_arrow_right_white_24dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -107,14 +107,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:background="@color/deep_background">
                 </LinearLayout>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
                 android:id="@+id/user_propsal"
                 android:layout_height="100dp">
@@ -128,8 +128,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/iv_propsals"
-                    android:layout_marginLeft="20dp"
+                    android:layout_toEndOf="@id/iv_propsals"
+                    android:layout_marginStart="20dp"
                     android:text=""
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_propsalheading"
@@ -138,17 +138,17 @@
                     android:id="@+id/chk_response"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:layout_marginRight="40dp"
-                    android:layout_toRightOf="@id/iv_propsals"
+                    android:layout_marginEnd="40dp"
+                    android:layout_toEndOf="@id/iv_propsals"
                     android:layout_below="@id/tv_propsalheading"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:text=""/>
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
                     android:background="@mipmap/ic_keyboard_arrow_right_white_24dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -156,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:background="@color/deep_background">
                 </LinearLayout>
                 <RelativeLayout
@@ -164,10 +164,10 @@
                     android:layout_height="30dp"
                     android:visibility="gone"
                     android:background="@drawable/cerclelayout"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:id="@+id/proposal_notification"
                     android:gravity="center"
-                    android:layout_marginRight="30dp">
+                    android:layout_marginEnd="30dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -177,8 +177,8 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
                 android:id="@+id/amazing_offers"
                 android:layout_height="100dp">
@@ -192,8 +192,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/iv_offers"
-                    android:layout_marginLeft="20dp"
+                    android:layout_toEndOf="@id/iv_offers"
+                    android:layout_marginStart="20dp"
                     android:text=""
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_offerheading"
@@ -202,17 +202,17 @@
                     android:id="@+id/offer_check"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_toRightOf="@id/iv_offers"
+                    android:layout_marginEnd="40dp"
+                    android:layout_toEndOf="@id/iv_offers"
                     android:layout_below="@id/tv_offerheading"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:text=""/>
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
                     android:background="@mipmap/ic_keyboard_arrow_right_white_24dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -220,7 +220,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:background="@color/deep_background">
                 </LinearLayout>
                 <RelativeLayout
@@ -228,10 +228,10 @@
                     android:layout_height="30dp"
                     android:visibility="gone"
                     android:background="@drawable/cerclelayout"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:id="@+id/offer_notification"
                     android:gravity="center"
-                    android:layout_marginRight="30dp">
+                    android:layout_marginEnd="30dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -241,8 +241,8 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
                 android:id="@+id/user_wallet"
                 android:layout_marginBottom="20dp"
@@ -257,8 +257,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/iv_wallet"
-                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/iv_wallet"
+                android:layout_marginStart="20dp"
                 android:text=""
                 android:layout_marginTop="20dp"
                 android:id="@+id/tv_walletheading"
@@ -266,18 +266,18 @@
             <TextView
                 android:id="@+id/ad_mony"
                 android:layout_width="match_parent"
-                android:layout_marginRight="40dp"
+                android:layout_marginEnd="40dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/iv_wallet"
+                android:layout_toEndOf="@id/iv_wallet"
                 android:layout_below="@id/tv_walletheading"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text=""/>
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
                 android:background="@mipmap/ic_keyboard_arrow_right_white_24dp"
                 android:backgroundTint="@color/colorPrimaryLight"/>
@@ -285,7 +285,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:background="@color/deep_background">
                 </LinearLayout>
             </RelativeLayout>

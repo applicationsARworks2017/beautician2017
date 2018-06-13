@@ -423,7 +423,8 @@ public class SPSignup extends Fragment {
                 try {
                     Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), picUri);
                   //  Bitmap c_photo = Bitmap.createScaledBitmap(photo, 300, 300, true);
-                    Bitmap perfectImage = modifyOrientation(photo, imPath);
+                    //Bitmap perfectImage = modifyOrientation(photo, imPath);
+                    Bitmap perfectImage = photo;
 
                     picAvailable = true;
                     if (imageclick == 1) {

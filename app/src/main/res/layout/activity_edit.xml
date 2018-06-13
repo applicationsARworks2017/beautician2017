@@ -23,7 +23,7 @@
         android:id="@+id/sub_name_edit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
         android:focusable="false"
         android:layout_alignParentTop="true"
         android:background="@drawable/button_selecto" />
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
                 android:inputType="number"
                 android:background="@drawable/button_selecto"
                 android:layout_below="@+id/sub_name_edit"
@@ -45,7 +45,7 @@
         android:id="@+id/delete"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_selector_qa"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:text="DELETE"
         />
     <Button
@@ -53,7 +53,7 @@
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_below="@+id/sub_pri_edit"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:text="SAVE"
         android:background="@drawable/button_selector_qa"
         android:layout_marginTop="20dp"

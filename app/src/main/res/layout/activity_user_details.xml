@@ -73,7 +73,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@mipmap/ic_phone_black_24dp"
                     android:padding="5dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -95,7 +95,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@mipmap/ic_email_white_24dp"
                     android:padding="5dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -118,7 +118,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@mipmap/ic_location_on_white_24dp"
                     android:padding="5dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -143,7 +143,7 @@
                     android:layout_height="wrap_content"
                     style = "?android:attr/ratingBarStyleSmall"
                     android:rating="4.5"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:id="@+id/rating"
                     android:progressTint="@color/duskyellow"></RatingBar>
             </LinearLayout>

@@ -106,73 +106,98 @@ public class PostActivity extends AppCompatActivity {
         submit_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String nodate,notime,nocontent;
+
                 if(lang.contentEquals("Arabic")){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
-                    builder.setTitle("");
-                    builder.setMessage("سيتم خصم 5  ريال من المحفظة لهذا المنشور");
-                    builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            //   dialog.dismiss();
-                            if(txtDate.getText().toString().trim().length()<=0){
-                                Toast.makeText(PostActivity.this,"يرجى إعطاء التاريخ المتوقع ",Toast.LENGTH_LONG).show();
-                            }
-                            else {
-                                if(CheckInternet.getNetworkConnectivityStatus(PostActivity.this)){
-                                    getWdetails getWdetails=new getWdetails();
-                                    getWdetails.execute(user_id);
-                                }
-                                else{
-                                    Constants.noInternetDialouge(PostActivity.this, "لا انترنت");
+                    nodate="حدد تاريخ" ;
+                    notime= "اختر الوقت";
+                    nocontent= "أدخل التفاصيل";
 
-                                }
-                            }
+                }
+                else{
+                    nodate= "Select Date";
+                    notime= "Select Time";
+                    nocontent= "Enter Details";
+                }
 
+                if(txtDate.getText().toString().trim().length()<=0){
+                    Toast.makeText(PostActivity.this,nodate,Toast.LENGTH_LONG).show();
+                }
+                else if(txtTime.getText().toString().trim().length()<=0){
+                    Toast.makeText(PostActivity.this,notime,Toast.LENGTH_LONG).show();
 
-                        }
-                    });
-                    builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                }
+                else if(et_contentheading.getText().toString().trim().length()<=0){
+                    Toast.makeText(PostActivity.this,nocontent,Toast.LENGTH_LONG).show();
+
                 }
                 else {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
-                    builder.setTitle("");
-                    builder.setMessage("Your wallet will be deducted with SAR "+HomeActivity.min_post_charge+" for this post");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //TODO
-                            //   dialog.dismiss();
-                            if (txtDate.getText().toString().trim().length() <= 0) {
-                                Toast.makeText(PostActivity.this, "Please give Expected Date", Toast.LENGTH_LONG).show();
-                            } else {
-                                if (CheckInternet.getNetworkConnectivityStatus(PostActivity.this)) {
-                                    getWdetails getWdetails = new getWdetails();
-                                    getWdetails.execute(user_id);
+                    if (lang.contentEquals("Arabic")) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
+                        builder.setTitle("");
+                        builder.setMessage("سيتم خصم 5  ريال من المحفظة لهذا المنشور");
+                        builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
+                                if (txtDate.getText().toString().trim().length() <= 0) {
+                                    Toast.makeText(PostActivity.this, "يرجى إعطاء التاريخ المتوقع ", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Constants.noInternetDialouge(PostActivity.this, "No Internet");
+                                    if (CheckInternet.getNetworkConnectivityStatus(PostActivity.this)) {
+                                        getWdetails getWdetails = new getWdetails();
+                                        getWdetails.execute(user_id);
+                                    } else {
+                                        Constants.noInternetDialouge(PostActivity.this, "لا انترنت");
 
+                                    }
                                 }
+
+
                             }
+                        });
+                        builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    } else {
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
+                        builder.setTitle("");
+                        builder.setMessage("Your wallet will be deducted with SAR " + HomeActivity.min_post_charge + " for this post");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //TODO
+                                //   dialog.dismiss();
+                                if (txtDate.getText().toString().trim().length() <= 0) {
+                                    Toast.makeText(PostActivity.this, "Please give Expected Date", Toast.LENGTH_LONG).show();
+                                } else {
+                                    if (CheckInternet.getNetworkConnectivityStatus(PostActivity.this)) {
+                                        getWdetails getWdetails = new getWdetails();
+                                        getWdetails.execute(user_id);
+                                    } else {
+                                        Constants.noInternetDialouge(PostActivity.this, "No Internet");
+
+                                    }
+                                }
 
 
-                        }
-                    });
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
 
+                    }
                 }
 
             }

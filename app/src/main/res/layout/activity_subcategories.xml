@@ -16,7 +16,7 @@
         android:id="@+id/searchView_sub_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"/>
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:layout_height="50dp"
             android:text="ok"
             android:background="@drawable/button_selector_qa"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:id="@+id/bt_ok"/>
     </LinearLayout>
 </RelativeLayout>

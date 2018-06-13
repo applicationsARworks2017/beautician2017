@@ -623,7 +623,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                 try {
                     Bitmap photo = MediaStore.Images.Media.getBitmap(SPProfile.this.getContentResolver(), picUri);
                    // Bitmap c_photo = Bitmap.createScaledBitmap(photo, 200, 200, true);
-                    Bitmap perfectImage = modifyOrientation(photo, imPath);
+                    Bitmap perfectImage = photo;
 
                     picAvailable = true;
                     if (imageclick == 1) {
@@ -923,20 +923,20 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         tv_latlng.setText(shop_latlong);
         if(!shop_pic1.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic1)
-                    .resize(300, 300)
+                    //.resize(300, 300)
                     .into(pic1);
         }
         if(!shop_pic2.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic2)
-                    .resize(300, 300)
+                   // .resize(300, 300)
                     .into(pic2);
         } if(!shop_pic3.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic3)
-                    .resize(300, 300)
+                    //.resize(300, 300)
                     .into(pic3);
         }if(!shop_pic4.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic4)
-                    .resize(300, 300)
+                    //.resize(300, 300)
                     .into(pic4);
         }
 
@@ -1050,10 +1050,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                     }
                 }
             } catch (JSONException e) {
-                server_message = "Network Error";
+                server_message = e.toString();
                 e.printStackTrace();
             } catch (IOException e) {
-                server_message = "Network Error";
+                server_message = e.toString();
                 e.printStackTrace();
             }
             return null;

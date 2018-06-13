@@ -52,7 +52,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:scaleType="fitXY"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@drawable/blanck"
                     android:id="@+id/img2"/>
             </LinearLayout>
@@ -72,7 +72,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:scaleType="fitXY"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@drawable/blanck"
                     android:id="@+id/img4"/>
             </LinearLayout>
@@ -106,7 +106,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@mipmap/ic_phone_black_24dp"
                     android:padding="5dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -129,7 +129,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@mipmap/ic_email_white_24dp"
                     android:padding="5dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -152,7 +152,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:visibility="gone"
                     android:background="@mipmap/ic_location_on_white_24dp"
                     android:padding="5dp"
@@ -177,7 +177,7 @@
                     android:layout_height="wrap_content"
                     style = "?android:attr/ratingBarStyleSmall"
                     android:rating="0"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:id="@+id/rating"
                     android:progressTint="@color/duskyellow"></RatingBar>
             </LinearLayout>

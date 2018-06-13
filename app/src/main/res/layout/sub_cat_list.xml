@@ -5,9 +5,9 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginEnd="10dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,15 +37,15 @@
         android:visibility="gone"
         android:background="@mipmap/ic_mode_edit_white_24dp"
         android:backgroundTint="@color/black"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="80dp"
+        android:layout_marginEnd="80dp"
         android:id="@+id/iv_edit"
         android:padding="5dp"/>
     <Button
         android:layout_width="60dp"
         android:layout_height="40dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:background="@color/green"
         android:textColor="@color/white"
         android:layout_centerVertical="true"

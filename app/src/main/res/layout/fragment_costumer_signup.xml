@@ -55,7 +55,7 @@
                         android:singleLine="true"
                         android:hint=""
                         android:id="@+id/et_user_name"
-                        android:paddingLeft="10dp"
+                        android:paddingStart="10dp"
                         android:background="@drawable/customedittextuser"/>
                 </LinearLayout>
                 <LinearLayout
@@ -82,7 +82,7 @@
                         android:singleLine="true"
                         android:hint=""
                         android:id="@+id/et_user_phone"
-                        android:paddingLeft="10dp"
+                        android:paddingStart="10dp"
                         android:background="@drawable/customedittextuser"/>
                 </LinearLayout>
                 <LinearLayout
@@ -110,7 +110,7 @@
                         android:singleLine="true"
                         android:hint=""
                         android:id="@+id/et_user_mail"
-                        android:paddingLeft="10dp"
+                        android:paddingStart="10dp"
                         android:background="@drawable/customedittextuser"/>
                 </LinearLayout>
                 <LinearLayout
@@ -137,7 +137,7 @@
                         android:inputType="textPassword"
                         android:singleLine="true"
                         android:hint=""
-                        android:paddingLeft="10dp"
+                        android:paddingStart="10dp"
                         android:background="@drawable/customedittextuser"/>
                 </LinearLayout>
                 <LinearLayout
@@ -164,7 +164,7 @@
                         android:singleLine="true"
                         android:hint="Confirm"
                         android:id="@+id/et_user_c_pass"
-                        android:paddingLeft="10dp"
+                        android:paddingStart="10dp"
                         android:background="@drawable/customedittextuser"/>
                 </LinearLayout>
 

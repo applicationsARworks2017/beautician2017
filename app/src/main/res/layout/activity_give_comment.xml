@@ -22,7 +22,7 @@
                 android:text="Enter your Ratings"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_below="@+id/customer_designation"/>
             <RatingBar
                 android:id="@+id/customer_ratings"
@@ -47,15 +47,15 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:text="Tell us what to improve"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"/>
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:id="@+id/ratings_value"
                     android:layout_marginTop="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"></ListView>
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"></ListView>
             </RelativeLayout>
             <EditText
                 android:layout_width="match_parent"
@@ -68,8 +68,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
                 android:background="@color/colorPrimaryLight"
                 android:text="submit"
                 android:textColor="@color/white"

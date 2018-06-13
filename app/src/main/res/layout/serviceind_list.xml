@@ -18,12 +18,12 @@
                 android:text="Amaresh"
                 android:textColor="@color/black"
                 android:id="@+id/name_service"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:layout_below="@id/name_service"
                 android:id="@+id/datentime"
@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="2017-11"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:textSize="10dp"
                     android:id="@+id/actualtime"
                     android:layout_height="wrap_content" />
@@ -45,17 +45,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
+                android:layout_marginEnd="40dp"
                 android:layout_below="@id/datentime"
                 android:id="@+id/servicedetails"
                 android:text="I am ready"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginBottom="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/servicedetails"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="5dp"
                 android:id="@+id/tv_expected_date"
@@ -66,8 +66,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:padding="10dp"
                 android:id="@+id/im_reply"
@@ -79,8 +79,8 @@
                 android:visibility="gone"
                 android:layout_below="@id/im_reply"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@color/background"></LinearLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

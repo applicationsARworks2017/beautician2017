@@ -65,7 +65,6 @@ public class OfferSet extends AppCompatActivity {
         }
         user_id = OfferSet.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
 
-        oList=new ArrayList<>();
         if(page.contentEquals("user_side")){
             comp_gift.setVisibility(View.GONE);
         }
@@ -91,6 +90,7 @@ public class OfferSet extends AppCompatActivity {
     }
 
     private void checkOfferList() {
+        oList=new ArrayList<>();
         if(CheckInternet.getNetworkConnectivityStatus(OfferSet.this)){
             GetOfferList getPost=new GetOfferList();
             getPost.execute(user_id,HomeActivity.latitude,HomeActivity.longitude);

@@ -21,8 +21,8 @@
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:id="@+id/dialougehead"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textColor="@color/black"
             android:text="Please enter your service cost befor adding."/>
         <TextView
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SAR"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp"/>

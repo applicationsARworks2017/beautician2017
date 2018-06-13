@@ -110,9 +110,31 @@ public class IndividualRequest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
+
+                String nodate,notime,nocontent;
+
+                if(lang.contentEquals("Arabic")){
+                    nodate="حدد تاريخ" ;
+                    notime= "اختر الوقت";
+                    nocontent= "أدخل التفاصيل";
+
+                }
+                else{
+                    nodate= "Select Date";
+                    notime= "Select Time";
+                    nocontent= "Enter Details";
+                }
+
                 if(txtDate.getText().toString().trim().length()<=0){
-                    Toast.makeText(IndividualRequest.this,"Please give Expected Date",Toast.LENGTH_LONG).show();
+                    Toast.makeText(IndividualRequest.this,nodate,Toast.LENGTH_LONG).show();
+                }
+                else if(txtTime.getText().toString().trim().length()<=0){
+                    Toast.makeText(IndividualRequest.this,notime,Toast.LENGTH_LONG).show();
+
+                }
+                else if(et_details.getText().toString().trim().length()<=0){
+                    Toast.makeText(IndividualRequest.this,nocontent,Toast.LENGTH_LONG).show();
+
                 }
                 else {
                     if(lang.contentEquals("Arabic")){

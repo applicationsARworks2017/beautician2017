@@ -1,21 +1,40 @@
 package beautician.com.sapplication.Adapter;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.IndividualRequest;
 import beautician.com.sapplication.Activity.OfferSet;
 import beautician.com.sapplication.Pojo.Offers;
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
 /**
@@ -25,7 +44,7 @@ import beautician.com.sapplication.Utils.Constants;
 public class OffersAdapter extends BaseAdapter {
     Context _context;
     ArrayList<Offers> new_list;
-    Holder holder;
+    Holder holder,vholder;
     String user_id,lang,page;
 
     public OffersAdapter(OfferSet offerSet, ArrayList<Offers> oList,String lang, String page) {
@@ -71,10 +90,9 @@ public class OffersAdapter extends BaseAdapter {
             holder = (Holder) convertView.getTag();
         }
         holder.offerHeading.setTag(position);
-        holder.im_reply.setTag(position);
+        holder.im_reply.setTag(holder);
         holder.offer_details.setTag(position);
         holder.offer_details.setText(_pos.getOffer_detail());
-        holder.im_reply.setVisibility(View.GONE);
         if(lang.contentEquals("Arabic")){
             holder.offerHeading.setText(_pos.getTitle()+" في "+_pos.getShopname());
 
@@ -84,6 +102,8 @@ public class OffersAdapter extends BaseAdapter {
 
         }
         if(page.contentEquals("user_side")){
+            holder.im_reply.setVisibility(View.GONE);
+
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -95,8 +115,167 @@ public class OffersAdapter extends BaseAdapter {
                 }
             });
         }
+        else{
+            holder.im_reply.setVisibility(View.VISIBLE);
+
+        }
+        holder.im_reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vholder=(Holder)v.getTag();
+                if(lang.contentEquals("Arabic")) {
+                    String message="هل تريد حذف هذا العرض ؟";
+                    String yes="نعم فعلا";
+                    String no="لا";
+                }
+                else{
+                    String message="Do you want to delete the offer ?";
+                    String yes="Yes";
+                    String no="No";
+
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                builder.setMessage("Do you want to delete the offer ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO
+                        //   dialog.dismiss();
+                        if(CheckInternet.getNetworkConnectivityStatus(_context)){
+                            DeleteOffers deleteOffers=new DeleteOffers();
+                            deleteOffers.execute(_pos.getId());
+                        }
+                        else{
+                            Toast.makeText(_context,"No Internet",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //TODO
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+
+
+
+        });
 
 
         return convertView;
+    }
+
+
+    /**
+     * Async task to get wallet balance from  camp table from server
+     * */
+    private class DeleteOffers extends AsyncTask<String, Void, Void> {
+
+        private static final String TAG = "Delete Offer";
+        private ProgressDialog progressDialog = null;
+        int server_status;
+        String server_message;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if(progressDialog == null) {
+                progressDialog = ProgressDialog.show(_context, "Deleteing", "Please wait...");
+            }
+            // onPreExecuteTask();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+
+            try {
+
+                String _id = params[0];
+                InputStream in = null;
+                int resCode = -1;
+                String link=null;
+                    link = Constants.ONLINEURL + Constants.OFFER_DELETE;
+
+
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setAllowUserInteraction(false);
+                conn.setInstanceFollowRedirects(true);
+                conn.setRequestMethod("POST");
+
+                Uri.Builder builder = null;
+
+                    builder = new Uri.Builder()
+                            .appendQueryParameter("id", _id);
+
+
+                //.appendQueryParameter("deviceid", deviceid);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                conn.connect();
+                resCode = conn.getResponseCode();
+                if (resCode == HttpURLConnection.HTTP_OK) {
+                    in = conn.getInputStream();
+                }
+                if(in == null){
+                    return null;
+                }
+                BufferedReader reader =new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String response = "",data="";
+
+                while ((data = reader.readLine()) != null){
+                    response += data + "\n";
+                }
+
+                Log.i(TAG, "Response : "+response);
+
+                /**
+                 * {
+                 "res": {
+                 "message": "The offers has been deleted.",
+                 "status": 1
+                 }
+                 }
+                 * */
+
+                if(response != null && response.length() > 0) {
+                    JSONObject res = new JSONObject(response.trim());
+                    JSONObject Obj=res.getJSONObject("res");
+                    server_status=Obj.getInt("status");
+
+                }
+
+                return null;
+            } catch(Exception exception){
+                Log.e(TAG, "SynchMobnum : doInBackground", exception);
+                server_message="Network Error";
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void user) {
+            super.onPostExecute(user);
+            progressDialog.dismiss();
+            if (server_status == 1) {
+                vholder.im_reply.setVisibility(View.GONE);
+            }
+        }
     }
 }

@@ -203,7 +203,7 @@ public class PaymentConfirmation extends AppCompatActivity {
         else{
             responsecode=2;
         }
-        if(lang.contentEquals("Arabic")){
+        /*if(lang.contentEquals("Arabic")){
             Toast.makeText(PaymentConfirmation.this, "رقم عملية الدفع : " + pt_response_code,
                     Toast.LENGTH_LONG).show();
             Toast.makeText(PaymentConfirmation.this, ": رقم عملية الدفع " +
@@ -214,7 +214,7 @@ public class PaymentConfirmation extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             Toast.makeText(PaymentConfirmation.this, "Paytabs transaction ID after payment : " +
                     pt_transaction_id, Toast.LENGTH_LONG).show();
-        }
+        }*/
         if(responsecode==100){
             updateBalance();
         }
