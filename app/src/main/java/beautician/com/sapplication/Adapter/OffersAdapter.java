@@ -123,20 +123,21 @@ public class OffersAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 vholder=(Holder)v.getTag();
+                String message,yes,no;
                 if(lang.contentEquals("Arabic")) {
-                    String message="هل تريد حذف هذا العرض ؟";
-                    String yes="نعم فعلا";
-                    String no="لا";
+                     message="هل تريد حذف هذا العرض ؟";
+                     yes="نعم فعلا";
+                     no="لا";
                 }
                 else{
-                    String message="Do you want to delete the offer ?";
-                    String yes="Yes";
-                    String no="No";
+                     message="Do you want to delete the offer ?";
+                     yes="Yes";
+                     no="No";
 
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                builder.setMessage("Do you want to delete the offer ?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setMessage(message);
+                builder.setPositiveButton(yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //TODO
                         //   dialog.dismiss();
@@ -149,7 +150,7 @@ public class OffersAdapter extends BaseAdapter {
                         }
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //TODO
                         dialog.dismiss();

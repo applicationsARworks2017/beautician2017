@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import beautician.com.sapplication.R;
@@ -14,6 +15,7 @@ import beautician.com.sapplication.Utils.Constants;
 
 public class SearchShop extends AppCompatActivity {
     EditText et_searchText;
+    TextView note;
     Button bt_search,bt_all;
     String lang;
 
@@ -28,6 +30,7 @@ public class SearchShop extends AppCompatActivity {
         et_searchText=(EditText)findViewById(R.id.et_searchText);
         bt_search=(Button)findViewById(R.id.bt_search);
         bt_all=(Button)findViewById(R.id.bt_all);
+        note=(TextView) findViewById(R.id.note);
         if(lang.contentEquals("Arabic")){
             et_searchText.setHint("البحث عن المحلات التجارية");
             bt_search.setText("بحث");
@@ -38,6 +41,7 @@ public class SearchShop extends AppCompatActivity {
             et_searchText.setHint("Search for shops");
             bt_search.setText("Search");
             bt_all.setText("All");
+            note.setText("Search can be possible for the shops who are within 100 KM radius");
             setTitle("Search");
 
         }

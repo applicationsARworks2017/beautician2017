@@ -461,7 +461,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
             progressDialog.dismiss();
             if (server_status == 1) {
                 if (wpage.contentEquals("sp_home")) {
-                    if (shop_balance > SPHome.min_sp_balance) {
+                    if (shop_balance >= SPHome.min_sp_balance) {
                         wpage = "user_side";
                         Log.i("userid", user_id);
                         getWdetails getUWdetails = new getWdetails();
@@ -476,7 +476,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         }
                     }
                 } else if (wpage.contentEquals("user_side")) {
-                    if (user_balance > HomeActivity.min_user_balance) {
+                    if (user_balance >= HomeActivity.min_user_balance) {
                         wpage = "sp_home";
                         Transactwallet transactwallet = new Transactwallet();
                         transactwallet.execute(shop_id, "0", String.valueOf(shop_balance - SPHome.min_service_charge), String.valueOf(SPHome.min_service_charge));

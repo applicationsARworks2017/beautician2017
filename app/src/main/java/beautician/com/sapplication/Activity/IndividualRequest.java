@@ -388,7 +388,7 @@ public class IndividualRequest extends AppCompatActivity {
             super.onPostExecute(user);
             progressDialog.dismiss();
             if(server_status==1){
-                if(balance>HomeActivity.min_user_balance){
+                if(balance>=HomeActivity.min_user_balance){
                     final String postDetails=et_details.getText().toString().trim();
                     final String numof=sp_num.getSelectedItem().toString();
                     exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();

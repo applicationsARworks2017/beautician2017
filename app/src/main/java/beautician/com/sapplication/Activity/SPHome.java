@@ -15,7 +15,7 @@ public class SPHome extends AppCompatActivity {
     String lang;
     TextView check_post,profilee,manage_offers,my_wallet,manage_service,my_proposal;
     public static String user_type;
-    public static double  min_sp_balance = 20.0;
+    public static double  min_sp_balance = 10.0;
     public static double  min_service_charge = 5.0;
 
 

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import beautician.com.sapplication.Activity.CheckIndividualPost;
 import beautician.com.sapplication.Activity.GiveCommentActivity;
 import beautician.com.sapplication.Activity.HomeActivity;
+import beautician.com.sapplication.Activity.ShopDetails;
 import beautician.com.sapplication.Pojo.IndServiceRequest;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.Constants;
@@ -176,6 +177,20 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
                 intent.putExtra("SHOP_NAME",_pos.getShopname());
                 intent.putExtra("SHOP_ID",_pos.getShopid());
                 intent.putExtra("PROPSAL_ID",_pos.getId());
+                _context.startActivity(intent);
+            }
+        });
+
+        holder.Name_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String viewmap="false";
+                if(_pos.getStatus().contentEquals("1")){
+                    viewmap="true";
+                }
+                Intent intent = new Intent(_context, ShopDetails.class);
+                intent.putExtra("SHOP_ID", _pos.getShopid());
+                intent.putExtra("MAP", viewmap);
                 _context.startActivity(intent);
             }
         });

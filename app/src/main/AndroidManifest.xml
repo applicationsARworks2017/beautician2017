@@ -191,6 +191,7 @@
             android:name=".Activity.PaymentConfirmation"
             />
         <activity android:name=".Activity.CountryList"></activity>
+        <activity android:name=".Activity.MapLocation"></activity>
     </application>
 
 </manifest>

@@ -530,7 +530,7 @@ remarks:jhgjhghjgjg"
             super.onPostExecute(user);
             progressDialog.dismiss();
             if(server_status==1){
-                if(balance>HomeActivity.min_user_balance){
+                if(balance>=HomeActivity.min_user_balance){
                     String postDetails = et_contentheading.getText().toString().trim();
                     String numof = adult.getSelectedItem().toString();
                     exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();

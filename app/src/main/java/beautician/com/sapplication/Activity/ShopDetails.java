@@ -1,6 +1,7 @@
 package beautician.com.sapplication.Activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,11 +35,15 @@ import beautician.com.sapplication.Utils.Constants;
 public class ShopDetails extends AppCompatActivity {
     String shop_id;
     ImageView img1,img2,img3,img4;
-    TextView shop_name,shop_email,shop_address,shop_reviws;
+    TextView shop_name,shop_email,shop_address,shop_reviws,allservice;
     RatingBar rating;
     String lang,id,shopname,address,latlong,photo1,photo2,photo3,photo4,email,mobile,reviews,ratings;
     RelativeLayout rel_back;
     Toolbar sp_toolbar;
+    String MAP;
+    LinearLayout mapview;
+    String[] latlonglist ;
+
 
 
 
@@ -55,6 +61,7 @@ public class ShopDetails extends AppCompatActivity {
         }
         if (extras != null) {
             shop_id = extras.getString("SHOP_ID");
+            MAP = extras.getString("MAP");
             // and get whatever type user account id is
         }
         sp_toolbar=(Toolbar)findViewById(R.id.sp_toolbar);
@@ -68,12 +75,38 @@ public class ShopDetails extends AppCompatActivity {
         shop_email=(TextView)findViewById(R.id.shop_email);
         shop_address=(TextView)findViewById(R.id.shop_address);
         shop_reviws=(TextView)findViewById(R.id.shopreviews);
+        allservice=(TextView)findViewById(R.id.allservice);
         rating=(RatingBar)findViewById(R.id.rating);
+        mapview=(LinearLayout)findViewById(R.id.mapview);
         getShopDetails();
+        if(MAP.contentEquals("true")){
+            mapview.setVisibility(View.VISIBLE);
+        }
+        else{
+            mapview.setVisibility(View.GONE);
+        }
         rel_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        allservice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ShopDetails.this,MyserviceList.class);
+                intent.putExtra("PAGE","service_home");
+                intent.putExtra("USERID",shop_id);
+                startActivity(intent);
+            }
+        });
+        mapview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ShopDetails.this,MapLocation.class);
+                intent.putExtra("LATITUDE",latlonglist[0]);
+                intent.putExtra("LONGITUDE",latlonglist[1]);
+                startActivity(intent);
             }
         });
     }
@@ -212,7 +245,7 @@ public class ShopDetails extends AppCompatActivity {
 
     private void setValues() {
         //TextView shop_name,shop_email,shop_address,shop_reviws;
-
+        latlonglist=latlong.split(",");
         shop_name.setText(shopname);
         shop_email.setText(email);
         shop_address.setText(address);

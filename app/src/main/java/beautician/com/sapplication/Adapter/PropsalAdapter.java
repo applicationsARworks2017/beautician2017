@@ -155,6 +155,7 @@ public class PropsalAdapter extends BaseAdapter {
             holder.im_agree.setVisibility(View.VISIBLE);
             if(status.contentEquals("1")) {
                 holder.paidline.setVisibility(View.GONE);
+
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
@@ -282,8 +283,13 @@ public class PropsalAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if(from_page.contentEquals("user_side")) {
+                    String viewmap="false";
+                    if(Integer.valueOf(_pos.getStatus())>=3){
+                        viewmap="true";
+                    }
                     Intent intent = new Intent(_context, ShopDetails.class);
                     intent.putExtra("SHOP_ID", _pos.getShop_id());
+                    intent.putExtra("MAP", viewmap);
                     _context.startActivity(intent);
                 }
             }
@@ -916,7 +922,7 @@ public class PropsalAdapter extends BaseAdapter {
                 }
                 else {
                     if (wpage.contentEquals("sp_home")) {
-                        if (shop_balance > SPHome.min_sp_balance) {
+                        if (shop_balance >= SPHome.min_sp_balance) {
                             wpage = "user_side";
                             Log.i("userid", user_id);
                             getWdetails getUWdetails = new getWdetails();
@@ -925,7 +931,7 @@ public class PropsalAdapter extends BaseAdapter {
                             Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
                         }
                     } else if (wpage.contentEquals("user_side")) {
-                        if (user_balance > HomeActivity.min_user_balance) {
+                        if (user_balance >= HomeActivity.min_user_balance) {
                             wpage = "sp_home";
                             Transactwallet transactwallet = new Transactwallet();
                             transactwallet.execute(shop_id, "0", String.valueOf(shop_balance -SPHome.min_service_charge ), String.valueOf(SPHome.min_service_charge));
@@ -1009,7 +1015,7 @@ public class PropsalAdapter extends BaseAdapter {
                                 .appendQueryParameter("shop_id", _userid)
                                 .appendQueryParameter("debit", _debit_amount)
                                 .appendQueryParameter("credit", _recharge_amount)
-                                .appendQueryParameter("remarks", "Service Action")
+                                .appendQueryParameter("remarks", "Service Insurance")
                                 .appendQueryParameter("balance", _balance_amount);
                     }
                     else if(wpage.contentEquals("user_side")){
@@ -1017,7 +1023,7 @@ public class PropsalAdapter extends BaseAdapter {
                                 .appendQueryParameter("user_id", _userid)
                                 .appendQueryParameter("debit", _debit_amount)
                                 .appendQueryParameter("credit", _recharge_amount)
-                                .appendQueryParameter("remarks", "Service Action")
+                                .appendQueryParameter("remarks", "Service Insurance")
                                 .appendQueryParameter("balance", _balance_amount);
                     }
 

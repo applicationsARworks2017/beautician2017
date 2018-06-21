@@ -173,6 +173,7 @@ public class ShopListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent=new Intent(_context,ShopDetails.class);
                 intent.putExtra("SHOP_ID",_pos.getId());
+                intent.putExtra("MAP","false");
                 _context.startActivity(intent);
             }
         });
@@ -181,6 +182,7 @@ public class ShopListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent=new Intent(_context,ShopDetails.class);
                 intent.putExtra("SHOP_ID",_pos.getId());
+                intent.putExtra("MAP","false");
                 _context.startActivity(intent);
             }
         });

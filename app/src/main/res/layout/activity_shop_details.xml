@@ -139,13 +139,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:id="@+id/mapview"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address"
-                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     android:id="@+id/shop_address"/>
@@ -153,7 +153,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:visibility="gone"
                     android:background="@mipmap/ic_location_on_white_24dp"
                     android:padding="5dp"
                     android:backgroundTint="@color/colorPrimaryLight"/>
@@ -181,6 +180,22 @@
                     android:id="@+id/rating"
                     android:progressTint="@color/duskyellow"></RatingBar>
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check All Services List"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:id="@+id/allservice"
+                android:textStyle="bold"/>
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
