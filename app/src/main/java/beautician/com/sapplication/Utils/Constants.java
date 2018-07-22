@@ -81,6 +81,8 @@ public class Constants {
     public static String SHOP_TRASACTIONS="Wallets/history.json";
     public static String SHOP_FORGOTPASS="shops/forgotPassword.json";
     public static String USER_FORGOTPASS="users/forgotPassword.json";
+    public static String SHOP_NOTIFICATION_COUNT="Shops/notificationCount.json";
+    public static String UPDATE_COUNT="Shops/notificationUpdate.json";
 
 //shop_name,address,latitudelongitude,photo1,photo2,photo3,email,mobile
     public static final String SHAREDPREFERENCE_KEY = "beautician" ;

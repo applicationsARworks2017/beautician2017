@@ -279,7 +279,7 @@ public class PropsalAdapter extends BaseAdapter {
         else {
             holder.propsal_hd.setText(_pos.getRemarks());
         }
-        holder.propsal_hd.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(from_page.contentEquals("user_side")) {

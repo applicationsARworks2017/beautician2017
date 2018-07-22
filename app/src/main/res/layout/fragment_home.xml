@@ -162,7 +162,6 @@
                 <RelativeLayout
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:visibility="gone"
                     android:background="@drawable/cerclelayout"
                     android:layout_alignParentEnd="true"
                     android:id="@+id/proposal_notification"
@@ -171,7 +170,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="25"
+                        android:text=""
+                        android:id="@+id/propsaltext"
                         android:textColor="@color/white"/>
                 </RelativeLayout>
             </RelativeLayout>
@@ -247,6 +247,21 @@
                 android:id="@+id/user_wallet"
                 android:layout_marginBottom="20dp"
                 android:layout_height="100dp">
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/cerclelayout"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/wallet_notification"
+                    android:gravity="center"
+                    android:layout_marginEnd="30dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wallettext"
+                        android:text=""
+                        android:textColor="@color/white"/>
+                </RelativeLayout>
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"

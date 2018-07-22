@@ -35,6 +35,7 @@ public class SearchShop extends AppCompatActivity {
             et_searchText.setHint("البحث عن المحلات التجارية");
             bt_search.setText("بحث");
             bt_all.setText("الكل");
+            note.setText("البحث عن مقدمي الخدمة سوف يكون على نطاق 100 كم من موقعك الحالي");
             setTitle("بحث");
         }
         else{

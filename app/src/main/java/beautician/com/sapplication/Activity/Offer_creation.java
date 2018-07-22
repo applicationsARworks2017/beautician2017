@@ -46,13 +46,13 @@ public class Offer_creation extends AppCompatActivity {
         if(lang.contentEquals("Arabic")){
             title.setHint("عنوان");
             et_details.setHint("أضف التفاصيل هنا");
-            submit.setText("خضع");
+            submit.setText("نشر");
             setTitle("تأليف العرض");
         }
         else{
             title.setHint("Title");
             et_details.setHint("Add Detail here");
-            submit.setText("submit");
+            submit.setText("Post");
             setTitle("Compose Offer");
 
         }

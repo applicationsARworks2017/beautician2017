@@ -122,16 +122,16 @@ public class CostumerSignup extends Fragment {
         bt_submit=(Button)v.findViewById(R.id.bt_user_submit);
 
         if(lang.contentEquals("Arabic")){
-            et_name.setHint("اسم");
-            et_phone.setHint("هاتف");
-            et_mail.setHint("البريد الإلكتروني");
-            et_password.setHint("كلمه السر");
-            et_cpassword.setHint("تؤكد");
-            bt_submit.setHint("خضع");
+            et_name.setHint("الاسم");
+            et_phone.setHint("رقم الجوال");
+            et_mail.setHint("البريد الاكتروني");
+            et_password.setHint("الرقم السري");
+            et_cpassword.setHint("تأكيد الرقم السري");
+            bt_submit.setHint("موافق");
         }
         else{
             et_name.setHint("Name");
-            et_phone.setHint("Phone");
+            et_phone.setHint("Phone Number");
             et_mail.setHint("Email");
             et_password.setHint("Password");
             et_cpassword.setHint("Confirm");

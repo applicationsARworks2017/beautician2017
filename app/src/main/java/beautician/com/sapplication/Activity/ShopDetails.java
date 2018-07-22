@@ -15,6 +15,9 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -43,6 +46,8 @@ public class ShopDetails extends AppCompatActivity {
     String MAP;
     LinearLayout mapview;
     String[] latlonglist ;
+    private ImageLoader imageLoader;
+    private DisplayImageOptions options;
 
 
 
@@ -51,6 +56,10 @@ public class ShopDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_details);
+
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(this));
+
         Bundle extras = getIntent().getExtras();
         lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
         if(lang.contentEquals("Arabic")){
@@ -249,7 +258,13 @@ public class ShopDetails extends AppCompatActivity {
         shop_name.setText(shopname);
         shop_email.setText(email);
         shop_address.setText(address);
-        shop_reviws.setText(reviews+" Reviews");
+        if(reviews=="" || reviews==null ||reviews.contentEquals("null")){
+            shop_reviws.setText("No "+ "Reviews");
+        }
+        else {
+            shop_reviws.setText(reviews+" Reviews");
+
+        }
         if(ratings==null || ratings.contentEquals("") || ratings.contentEquals("null")){
 
         }
@@ -258,20 +273,27 @@ public class ShopDetails extends AppCompatActivity {
         }
 
         if(!photo1.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo1)
+            imageLoader.displayImage(Constants.SHOP_PICURL+photo1,img1,options);
+            /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo1)
                     .resize(300,300)
-                    .into(img1);
+                    .into(img1);*/
         }
         if(!photo2.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo2).resize(300,300)
-                    .into(img2);
+            /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo2).resize(300,300)
+                    .into(img2);*/
+            imageLoader.displayImage(Constants.SHOP_PICURL+photo2,img2,options);
+
         }
         if(!photo3.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo3)
-                    .resize(300,300).into(img3);
+            /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo3)
+                    .resize(300,300).into(img3);*/
+            imageLoader.displayImage(Constants.SHOP_PICURL+photo3,img3,options);
+
         }if(!photo4.isEmpty()) {
-            Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo4)
-                    .resize(300,300).into(img4);
+            /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo4)
+                    .resize(300,300).into(img4);*/
+            imageLoader.displayImage(Constants.SHOP_PICURL+photo4,img4,options);
+
         }
 
     }

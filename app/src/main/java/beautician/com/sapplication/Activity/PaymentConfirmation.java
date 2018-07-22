@@ -41,6 +41,7 @@ public class PaymentConfirmation extends AppCompatActivity {
     String MERCHANT_EMAIL ="mansour.nz@outlook.com";
     //Merchant Secret Key
     String own_id;
+    String lang_to_send="en";
     int responsecode=0;
     String MERCHANT_SECRET_KEY="yVvwlwTrcV8LEVrGSBTwU9X8X4e1JHMiCiOYOIq0EyMiudZmPTTJ3RS0V61FOOXr7LpWuPW8oJrSXqfMk9wn0pnWvpBkezLmlbiP";
 
@@ -70,10 +71,12 @@ public class PaymentConfirmation extends AppCompatActivity {
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
-            setTitle("تأكيد الدفعة");
+            setTitle("تأكيد الدفع");
+            lang_to_send="ar";
         }
         else{
             setTitle("Payment Confirmation");
+            lang_to_send="en";
         }
         setContentView(R.layout.activity_payment_confirmation);
 
@@ -153,6 +156,7 @@ public class PaymentConfirmation extends AppCompatActivity {
                 Intent in=new Intent(PaymentConfirmation.this, PayTabActivity.class);
                 in.putExtra("pt_merchant_email", MERCHANT_EMAIL);
                 in.putExtra("pt_secret_key", MERCHANT_SECRET_KEY);//Add your Secret Key Here
+                in.putExtra("pt_lang", lang_to_send);//For language change
                 in.putExtra("pt_transaction_title", "Payment towards Beautician");
                 in.putExtra("pt_amount", amount);
                 in.putExtra("pt_currency_code", "SAR"); //Use Standard 3 character ISO

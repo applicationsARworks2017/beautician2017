@@ -181,7 +181,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
             }
         });
 
-        holder.Name_service.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String viewmap="false";

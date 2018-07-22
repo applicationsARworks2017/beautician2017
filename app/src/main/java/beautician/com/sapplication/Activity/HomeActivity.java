@@ -63,8 +63,15 @@ public class HomeActivity extends AppCompatActivity  implements android.location
 
         if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
             // Call your Alert message
+            String message;
+            if(lang.contentEquals("Arabic")){
+                message="يرجى تشغيل GPS من الاعدادات";
+            }
+            else{
+                message="Please switch on your phone GPS";
+            }
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Please switch on your phone GPS")
+            builder.setMessage(message)
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

@@ -3,16 +3,30 @@ package beautician.com.sapplication.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import beautician.com.sapplication.Activity.CategoriesRequest;
 import beautician.com.sapplication.Activity.OfferSet;
+import beautician.com.sapplication.Activity.SPHome;
 import beautician.com.sapplication.Activity.SearchShop;
 import beautician.com.sapplication.Activity.SpProposal;
 import beautician.com.sapplication.Activity.Wallet;
@@ -35,6 +49,11 @@ public class HomeFragment extends Fragment {
     private RelativeLayout rel_requsetservice,rel_searchfrmhome,amazing_offers,user_propsal,user_wallet;
     TextView tv_serviceheading,tv_choose_category,tv_SPheading,tv_serch_byname,tv_propsalheading,chk_response,
             tv_offerheading,offer_check,tv_walletheading,ad_mony;
+    RelativeLayout proposal_notification,wallet_notification;
+    TextView wallettext,propsaltext;
+    String user_id;
+    private int propsal_req,wallet_req;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -81,6 +100,7 @@ public class HomeFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_home, container, false);
 
         lang = getContext().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+        user_id = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
 
         rel_requsetservice=(RelativeLayout)v.findViewById(R.id.rel_requsetservice);
         rel_searchfrmhome=(RelativeLayout)v.findViewById(R.id.rel_searchfrmhome);
@@ -100,6 +120,14 @@ public class HomeFragment extends Fragment {
         user_wallet=(RelativeLayout)v.findViewById(R.id.user_wallet);
         user_wallet=(RelativeLayout)v.findViewById(R.id.user_wallet);
 
+        proposal_notification=(RelativeLayout)v.findViewById(R.id.proposal_notification);
+        wallet_notification=(RelativeLayout)v.findViewById(R.id.wallet_notification);
+
+        proposal_notification.setVisibility(View.GONE);
+        wallet_notification.setVisibility(View.GONE);
+        propsaltext=(TextView)v.findViewById(R.id.propsaltext);
+        wallettext=(TextView)v.findViewById(R.id.wallettext);
+        getAllNotification();
 
 
 
@@ -163,6 +191,7 @@ public class HomeFragment extends Fragment {
         user_wallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //update
                 Intent intent=new Intent(getActivity(),Wallet.class);
                 intent.putExtra("PAGE","user_side");
                 startActivity(intent);
@@ -170,7 +199,13 @@ public class HomeFragment extends Fragment {
         });
         return v;
     }
+    private void getAllNotification() {
+        String reference_id= user_id;
+        String reference_type= "User";
+        String is_read= "0";
 
+        new ShowSPNotification().execute(reference_id,reference_type,is_read);
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -203,5 +238,121 @@ public class HomeFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    private class ShowSPNotification extends AsyncTask<String, Void, Void> {
+
+        private static final String TAG = "Propsal details";
+        String server_message;
+
+        int server_status;
+
+        @Override
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+
+            // onPreExecuteTask();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+
+            try {
+                String _reference_id = params[0];
+                String _reference_type = params[1];
+                String _is_read = params[2];
+                InputStream in = null;
+                int resCode = -1;
+
+                String link = Constants.ONLINEURL + Constants.SHOP_NOTIFICATION_COUNT;
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setAllowUserInteraction(false);
+                conn.setInstanceFollowRedirects(true);
+                conn.setRequestMethod("POST");
+
+                Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("reference_id", _reference_id)
+                        .appendQueryParameter("reference_type", _reference_type)
+                        .appendQueryParameter("is_read", _is_read);
+
+                //.appendQueryParameter("deviceid", deviceid);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                conn.connect();
+                resCode = conn.getResponseCode();
+                if (resCode == HttpURLConnection.HTTP_OK) {
+                    in = conn.getInputStream();
+                }
+                if (in == null) {
+                    return null;
+                }
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String response = "", data = "";
+
+                while ((data = reader.readLine()) != null) {
+                    response += data + "\n";
+                }
+
+                Log.i(TAG, "Response : " + response);
+
+                /*
+                * "notificationType": {
+        "Wallet": 0,
+        "ServiceIndivisualRequest": 0,
+        "ServicePurposal": "1",
+        "ServiceRequest": 0,
+        "UserWallet": "4"
+    },
+    "res": {
+        "message": "available",
+        "status": 1
+    }
+                * */
+
+
+                if (response != null && response.length() > 0) {
+                    JSONObject res = new JSONObject(response.trim());
+                    JSONObject j_obj = res.getJSONObject("res");
+                    server_status=j_obj.getInt("status");
+                    if(server_status==1) {
+                        JSONObject j_obj1 = res.getJSONObject("notificationType");
+                        wallet_req=j_obj1.getInt("UserWallet");
+                        propsal_req=j_obj1.getInt("ServicePurposal");
+
+                    }
+
+                }
+                return null;
+            } catch (Exception exception) {
+                server_message = "Network Error";
+                Log.e(TAG, "SynchMobnum : doInBackground", exception);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void user) {
+            super.onPostExecute(user);
+            if(wallet_req>0){
+                wallet_notification.setVisibility(View.VISIBLE);
+                wallettext.setText(String.valueOf(wallet_req));
+            }
+
+        }
     }
 }

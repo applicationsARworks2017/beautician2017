@@ -39,6 +39,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -81,6 +84,8 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
     public static String mobile;
     public static String reviews;
     public static String ratings;
+    private ImageLoader imageLoader;
+    private DisplayImageOptions options;
     ImageView pic1,pic2,pic3,pic4;
    public static EditText name_value,tv_phone_value,tv_email_value,tv_add_value,tv_latlng;
     Boolean editable=false;
@@ -111,7 +116,8 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spprofile);
-
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(this));
 
         button=(Button)findViewById(R.id.logout_sp);
         editsave=(Button)findViewById(R.id.editsave);
@@ -180,8 +186,15 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
 
         if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
             // Call your Alert message
+            String message;
+            if(lang.contentEquals("Arabic")){
+                message="يرجى تشغيل GPS من الاعدادات";
+            }
+            else{
+                message="Please switch on your phone GPS";
+            }
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Please switch on your phone GPS")
+            builder.setMessage(message)
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -311,7 +324,12 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             public void onClick(View v) {
                 if(editsave.getText().toString().toLowerCase().contentEquals("edit")) {
                     editable = true;
-                    editsave.setText("Save");
+                    if(lang.contentEquals("Arabic")){
+                        editsave.setText("حفظ");
+                    }
+                    else {
+                        editsave.setText("Save");
+                    }
                     name_value.setEnabled(true);
                     tv_phone_value.setEnabled(true);
                     tv_email_value.setEnabled(true);
@@ -922,9 +940,11 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         tv_add_value.setText(shop_address);
         tv_latlng.setText(shop_latlong);
         if(!shop_pic1.isEmpty()) {
-            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic1)
+           // Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic1)
                     //.resize(300, 300)
-                    .into(pic1);
+            // .into(pic1);
+            imageLoader.displayImage(Constants.SHOP_PICURL+shop_pic1,pic1,options);
+
         }
         if(!shop_pic2.isEmpty()) {
             Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic2)
@@ -1043,7 +1063,12 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                     JSONObject newObj = new JSONObject(String.valueOf(res_server.getJSONObject("res")));
                     server_status = newObj.optInt("status");
                     if (server_status == 1) {
-                        server_message = "Edit Successful";
+                        if(lang.contentEquals("Arabic")){
+                            server_message="تحرير ناجحة" ;
+                        }
+                        else {
+                            server_message = "Edit Successful";
+                        }
 
                     } else {
                         server_message = "Sorry !! Entry failed";
@@ -1066,7 +1091,12 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             progressDialog.dismiss();
             if(server_status==1){
                 editable = false;
-                editsave.setText("Edit");
+                if(lang.contentEquals("Arabic")){
+                    editsave.setText("تصحيح");
+                }
+                else{
+                    editsave.setText("Edit");
+                }
                 name_value.setEnabled(false);
                 tv_add_value.setEnabled(false);
                 tv_email_value.setEnabled(false);

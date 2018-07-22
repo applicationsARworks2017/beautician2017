@@ -158,11 +158,11 @@ public class SPSignup extends Fragment {
 
         if(lang.contentEquals("Arabic")){
             et_sp_name.setHint("اسم المحل");
-            et_sp_phone.setHint("رقم الهاتف");
-            et_sp_pass.setHint("كلمه السر");
-            et_sp_mail.setHint("البريد الإلكتروني");
+            et_sp_phone.setHint("رقم الجوال");
+            et_sp_pass.setHint("الرقم السري");
+            et_sp_mail.setHint("البريد الاكتروني");
             et_sp_address.setHint("عنوان المحل");
-            bt_setails_submit.setHint("خضع");
+            bt_setails_submit.setHint("موافق");
 
         }
         else{

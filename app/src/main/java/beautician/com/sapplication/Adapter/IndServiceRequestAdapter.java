@@ -51,7 +51,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
     Context _context;
     ArrayList<IndServiceRequest> new_list;
     Holder holder,holder1;
-    String user_id,shop_id,lang,wpage="no page";
+    String user_id, shop_id, lang, wpage="no page";
     Double shop_balance,user_balance;
     int updated_status;
     String id;
@@ -110,7 +110,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         holder.tv_expected_date.setText(_pos.getExpected_date());
         holder.remarks.setText(_pos.getRemarks());
         holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
-         user_id=_pos.getPersonId();
+       //  user_id=_pos.getPersonId();
 
          if(lang.contentEquals("Arabic")){
              holder.Name_service.setText(_pos.getPersonName() + "لقد طلب الخدمات التاليه "+ _pos.getNo_of_user()+"اشخاص");
@@ -162,6 +162,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 String status = _pos.getStatus();
                 holder1=(Holder)v.getTag();
                 id=_pos.getId();
+                user_id=_pos.getPersonId();
                 if(status.contentEquals("0")) {
                     updated_status = 1;
                     if (lang.contentEquals("Arabic")) {
@@ -222,12 +223,11 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 }
                 else if(status.contentEquals("1")){
                     updated_status=2;
-                    user_id=_pos.getPersonId();
                     final Dialog dialog = new Dialog(_context);
                     dialog.setContentView(R.layout.otpscreen);
                     ImageView imageView=(ImageView)dialog.findViewById(R.id.close);
                     Button submit=(Button)dialog.findViewById(R.id.add_money);
-                    final EditText et_add_money=(EditText) dialog.findViewById(R.id.et_add_money);
+                    final EditText et_otp=(EditText) dialog.findViewById(R.id.et_add_money);
                     dialog.show();
                     imageView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -240,7 +240,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         public void onClick(View v) {
                             dialog.dismiss();
                             ConfirmToReq creq = new ConfirmToReq();
-                            creq.execute(id, "2", et_add_money.getText().toString().trim());
+                            creq.execute(id, "2", et_otp.getText().toString().trim());
                         }
                     });
                 }
@@ -460,42 +460,48 @@ public class IndServiceRequestAdapter extends BaseAdapter {
             super.onPostExecute(user);
             progressDialog.dismiss();
             if (server_status == 1) {
-                if (wpage.contentEquals("sp_home")) {
-                    if (shop_balance >= SPHome.min_sp_balance) {
-                        wpage = "user_side";
-                        Log.i("userid", user_id);
-                        getWdetails getUWdetails = new getWdetails();
-                        getUWdetails.execute(user_id);
+
+                if(updated_status ==1) {
+                    if (wpage.contentEquals("sp_home")) {
+                        if (shop_balance >= SPHome.min_sp_balance) {
+                            wpage = "user_side";
+                            Log.i("userid", user_id);
+                            getWdetails getUWdetails = new getWdetails();
+                            getUWdetails.execute(user_id);
+                        } else {
+                            if (lang.contentEquals("Arabic")) {
+                                Constants.noInternetDialouge(_context, "ليس لديك مبلغ كافي في المحفظة");
+                            } else {
+                                Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
+
+                            }
+                        }
+                    } else if (wpage.contentEquals("user_side")) {
+                        if (user_balance >= HomeActivity.min_user_balance) {
+                            wpage = "sp_home";
+                            Transactwallet transactwallet = new Transactwallet();
+                            transactwallet.execute(shop_id, "0", String.valueOf(shop_balance - SPHome.min_service_charge), String.valueOf(SPHome.min_service_charge));
+                            //Toast.makeText(_context,"go aahead",Toast.LENGTH_LONG).show();
+                        } else {
+                            if (lang.contentEquals("Arabic")) {
+                                Constants.noInternetDialouge(_context, "العميل لايرغب بالحصول على الخدمة");
+                            } else {
+                                Constants.noInternetDialouge(_context, "User is not ready to take the service");
+
+                            }
+                            // this is for insufficient balance in the user side
+
+                        }
+
                     } else {
-                        if(lang.contentEquals("Arabic")){
-                            Constants.noInternetDialouge(_context, "ليس لديك مبلغ كافي في المحفظة");
-                        }
-                        else{
-                            Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
-
-                        }
-                    }
-                } else if (wpage.contentEquals("user_side")) {
-                    if (user_balance >= HomeActivity.min_user_balance) {
-                        wpage = "sp_home";
-                        Transactwallet transactwallet = new Transactwallet();
-                        transactwallet.execute(shop_id, "0", String.valueOf(shop_balance - SPHome.min_service_charge), String.valueOf(SPHome.min_service_charge));
-                        //Toast.makeText(_context,"go aahead",Toast.LENGTH_LONG).show();
-                    } else {
-                        if(lang.contentEquals("Arabic")){
-                            Constants.noInternetDialouge(_context, "العميل لايرغب بالحصول على الخدمة");
-                        }
-                        else{
-                            Constants.noInternetDialouge(_context, "User is not ready to take the service");
-
-                        }
-                        // this is for insufficient balance in the user side
+                        Constants.noInternetDialouge(_context, "Undefined");
 
                     }
-
                 }
-                else{
-                    Constants.noInternetDialouge(_context, "Undefined");
+                else if(updated_status == 2){
+                    wpage = "user_side";
+                    Transactwallet transactwallet = new Transactwallet();
+                    transactwallet.execute(user_id, String.valueOf(HomeActivity.min_post_charge),String.valueOf(user_balance + HomeActivity.min_post_charge),"0");
 
                 }
             }
@@ -621,11 +627,17 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         holder1.im_reply.setImageDrawable(drawable1);
                     }
                     else if(updated_status==2){
+                      //
+
                         Resources ress = _context.getResources();
                         Drawable drawable1 = ress.getDrawable(R.mipmap.ic_power_input_white_24dp);
                         drawable1 = DrawableCompat.wrap(drawable1);
                         DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
                         holder1.im_reply.setImageDrawable(drawable1);
+                        wpage = "user_side";
+                        getWdetails getUWdetails = new getWdetails();
+                        getUWdetails.execute(user_id);
+
                     }
                     else if(updated_status==3){
                         holder1.im_reply.setVisibility(View.GONE);
@@ -782,26 +794,30 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
             if(wallet_status==1){
-                if(wpage.contentEquals("sp_home")) {
-                    wpage = "user_side";
-                    Transactwallet transactwallet = new Transactwallet();
-                    transactwallet.execute(user_id, "0", String.valueOf(user_balance - HomeActivity.min_post_charge),String.valueOf( HomeActivity.min_post_charge));
+                if(updated_status==2){
+                  wpage ="sp_home";
                 }
-                //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
-                else if(wpage.contentEquals("user_side")){
-                    if(lang.contentEquals("Arabic")){
-                        Toast.makeText(_context,"تم تحديث المحفظه",Toast.LENGTH_LONG).show();
-
+                else {
+                    if (wpage.contentEquals("sp_home")) {
+                        wpage = "user_side";
+                        Transactwallet transactwallet = new Transactwallet();
+                        transactwallet.execute(user_id, "0", String.valueOf(user_balance - HomeActivity.min_post_charge), String.valueOf(HomeActivity.min_post_charge));
                     }
-                    else{
-                        Toast.makeText(_context,"User's wallet updated",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(PostActivity.this,"Hello",Toast.LENGTH_LONG).show();
+                    else if (wpage.contentEquals("user_side")) {
+                        if (lang.contentEquals("Arabic")) {
+                            Toast.makeText(_context, "تم تحديث المحفظه", Toast.LENGTH_LONG).show();
 
+                        } else {
+                            Toast.makeText(_context, "User's wallet updated", Toast.LENGTH_LONG).show();
+
+                        }
+                        String otp = String.valueOf(Constants.generatePIN());
+                        ConfirmToReq creq = new ConfirmToReq();
+                        creq.execute(id, "1", otp);
                     }
-                    String otp = String.valueOf(Constants.generatePIN());
-                    ConfirmToReq creq = new ConfirmToReq();
-                    creq.execute(id, "1", otp);
+
                 }
-
 
 
             }

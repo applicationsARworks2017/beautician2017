@@ -13,6 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,6 +37,10 @@ public class ShopListAdapter extends BaseAdapter {
     ArrayList<Shops> new_list;
     Holder holder;
     String lang;
+    private ImageLoader imageLoader;
+    private DisplayImageOptions options;
+
+
     public static String selected_shopid,selected_shop_name;
     public ShopListAdapter(SearchShopList searchShopList, ArrayList<Shops> sList,String lang) {
         this._context=searchShopList;
@@ -67,6 +74,9 @@ public class ShopListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final Shops _pos=new_list.get(position);
         holder=new Holder();
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(_context));
+
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater) _context
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -117,7 +127,14 @@ public class ShopListAdapter extends BaseAdapter {
         holder.Shopname.setText(_pos.getShopname());
         holder.shop_add.setText(_pos.getAddress());
         holder.price_min.setText("$ "+_pos.getPrice());
-        holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" reviews");
+        String reviews=_pos.getNo_of_reviews();
+        if(reviews=="" || reviews==null ||reviews.contentEquals("null")){
+            holder.rev_shop.setText(" No "+" reviews");
+        }
+        else {
+            holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" reviews");
+
+        }
         holder.dis_shop.setText(". ~ "+_pos.getDistance()+" KM");
         String location=_pos.getLatitudelongitude();
         /*if(location==null || location.contentEquals("")){
@@ -147,16 +164,23 @@ public class ShopListAdapter extends BaseAdapter {
         }
 
          if(!_pos.getPhoto1().isEmpty()) {
-            Picasso.with(_context).load(_pos.getPhoto1()).resize(300,300).into(holder.pic1);
+           // Picasso.with(_context).load(_pos.getPhoto1()).resize(300,300).into(holder.pic1);
+             imageLoader.displayImage(_pos.getPhoto1(),holder.pic1,options);
         }
         if(!_pos.getPhoto2().isEmpty()) {
-            Picasso.with(_context).load(_pos.getPhoto2())
-                    .resize(300,300).into(holder.pic2);
+            //Picasso.with(_context).load(_pos.getPhoto2())
+           //         .resize(300,300).into(holder.pic2);
+            imageLoader.displayImage(_pos.getPhoto2(),holder.pic2,options);
+
         }
         if(!_pos.getPhoto3().isEmpty()) {
-            Picasso.with(_context).load(_pos.getPhoto3()).resize(300,300).into(holder.pic3);
+            //Picasso.with(_context).load(_pos.getPhoto3()).resize(300,300).into(holder.pic3);
+            imageLoader.displayImage(_pos.getPhoto3(),holder.pic3,options);
+
         }if(!_pos.getPhoto4().isEmpty()) {
-            Picasso.with(_context).load(_pos.getPhoto3()).resize(300,300).into(holder.pic4);
+            //Picasso.with(_context).load(_pos.getPhoto3()).resize(300,300).into(holder.pic4);
+            imageLoader.displayImage(_pos.getPhoto4(),holder.pic4,options);
+
         }
         holder.reqButton.setOnClickListener(new View.OnClickListener() {
             @Override

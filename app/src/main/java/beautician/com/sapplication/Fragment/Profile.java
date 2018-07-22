@@ -31,6 +31,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -86,6 +89,8 @@ public class Profile extends Fragment {
     File photoFile = null;
     Boolean picAvailable = false;
     int photo_status=0;
+    private ImageLoader imageLoader;
+    private DisplayImageOptions options;
     CircularImageView prifilimage;
     RelativeLayout rel_profile;
     int server_status,filechooser;
@@ -127,6 +132,8 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_profile, container, false);
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(getActivity()));
         user_id = getActivity().getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         lang = getContext().getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
@@ -160,6 +167,7 @@ public class Profile extends Fragment {
             button.setText("Logout");
             editsave.setText("Edit");
         }
+
 
         lang_english.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,7 +270,15 @@ public class Profile extends Fragment {
             public void onClick(View v) {
                 if(editsave.getText().toString().toLowerCase().contentEquals("edit")) {
                     editable = true;
-                    editsave.setText("Save");
+                    if(lang.contentEquals("Arabic")){
+                        editsave.setText("حفظ");
+
+                    }
+                    else{
+                        editsave.setText("Save");
+
+                    }
+
                     name_value.setEnabled(true);
                     et_phone_value.setEnabled(true);
                     et_email_value.setEnabled(true);
@@ -567,7 +583,12 @@ public class Profile extends Fragment {
             progressDialog.dismiss();
             if(server_status==1){
                 editable = false;
-                editsave.setText("Edit");
+                if(lang.contentEquals("Arabic")){
+                    editsave.setText("تصحيح");
+                }
+                else {
+                    editsave.setText("Edit");
+                }
                 name_value.setEnabled(false);
                 et_phone_value.setEnabled(false);
                 et_email_value.setEnabled(false);
@@ -710,8 +731,9 @@ public class Profile extends Fragment {
         if( user_photo==null || user_photo.contentEquals("null") || user_photo.contentEquals("")) {
         }
         else{
-            Picasso.with(getActivity()).load(Constants.PICURL+user_photo)
-                    .resize(300,300).into(prifilimage);
+            imageLoader.displayImage(Constants.PICURL+user_photo,prifilimage);
+            /*Picasso.with(getActivity()).load(Constants.PICURL+user_photo)
+                    .resize(300,300).into(prifilimage);*/
 
         }
 

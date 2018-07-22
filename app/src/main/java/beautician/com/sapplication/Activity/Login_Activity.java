@@ -117,7 +117,7 @@ public class Login_Activity extends AppCompatActivity {
             setTitle("Login");
             et_phone.setHint("Phone Number");
             et_password.setHint("Password");
-            radio_consumer.setText("Costumer");
+            radio_consumer.setText("Customer");
             radio_sp.setText("Service Provider");
             tv_forgotpassword=(TextView)findViewById(R.id.tv_forgotpassword);
             tv_forgotpassword.setText("Forgot Password");
@@ -143,7 +143,7 @@ public class Login_Activity extends AppCompatActivity {
                 // find the radiobutton by returned id
                 radioButton = (RadioButton) findViewById(selectedId);
 
-                if(radioButton.getText().toString().trim().contains("Costumer")|| radioButton.getText().toString().trim().contentEquals("العميل")){
+                if(radioButton.getText().toString().trim().contains("Customer")|| radioButton.getText().toString().trim().contentEquals("العميل")){
                     User_type="USER";
                     SharedPreferences user_type_shred = getSharedPreferences(Constants.SHAREDPREFERENCE_BEAUTICIAN, 0); // 0 - for private mode
                     SharedPreferences.Editor edituser = user_type_shred.edit();
