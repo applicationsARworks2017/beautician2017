@@ -7,12 +7,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.APIManager;
 import beautician.com.sapplication.Utils.Constants;
 
 public class SpRequestHome extends AppCompatActivity {
     LinearLayout lin_public,lin_individual;
-    String lang;
+    String lang,user_id;
     TextView public_post,invalid_requset;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,7 @@ public class SpRequestHome extends AppCompatActivity {
         public_post=(TextView)findViewById(R.id.public_post);
         invalid_requset=(TextView)findViewById(R.id.invalid_requset);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+        user_id = SpRequestHome.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
 
         if(lang.contentEquals("Arabic")){
             setTitle("اختر صنف");
@@ -37,6 +42,7 @@ public class SpRequestHome extends AppCompatActivity {
         lin_public.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CallToAPI(user_id,"ServiceRequest","Shop");
                 Intent intent=new Intent(SpRequestHome.this,CheckPost.class);
                 intent.putExtra("PAGE","sp_home");
                 intent.putExtra("LANG",lang);
@@ -46,6 +52,7 @@ public class SpRequestHome extends AppCompatActivity {
         lin_individual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CallToAPI(user_id,"ServiceIndivisualRequest","Shop");
                 Intent intent=new Intent(SpRequestHome.this,CheckIndividualPost.class);
                 intent.putExtra("PAGE","sp_home");
                 intent.putExtra("LANG",lang);
@@ -53,5 +60,28 @@ public class SpRequestHome extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void CallToAPI(String user_id, String serviceRequest, String shop) {
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("reference_id", user_id);
+            jsonObject.put("type", serviceRequest);
+            jsonObject.put("reference_type", shop);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new APIManager().ModifyAPI(Constants.ONLINEURL + Constants.UPDATE_COUNT, "res", jsonObject, SpRequestHome.this, new APIManager.APIManagerInterface() {
+            @Override
+            public void onSuccess(Object resultObj) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 }

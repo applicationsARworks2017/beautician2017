@@ -30,6 +30,8 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -56,6 +58,7 @@ import java.util.List;
 
 import beautician.com.sapplication.Activity.HomeActivity;
 import beautician.com.sapplication.Activity.Login_Activity;
+import beautician.com.sapplication.Activity.SPProfile;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.SplashScreen;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -324,9 +327,11 @@ public class Profile extends Fragment {
         String phone=et_phone_value.getText().toString().trim();
         String email=et_email_value.getText().toString().trim();
         if(filechooser==2){
-            if (prifilimage.getDrawable() != null) {
-                Bitmap bitmap = ((BitmapDrawable) prifilimage.getDrawable()).getBitmap();
-                imageFile = persistImage(bitmap, name);
+            if(picAvailable == true) {
+                if (prifilimage.getDrawable() != null) {
+                    Bitmap bitmap = ((BitmapDrawable) prifilimage.getDrawable()).getBitmap();
+                    imageFile = persistImage(bitmap, name);
+                }
             }
         }
         if(name.contains("") && name.length()<=0){
@@ -343,8 +348,10 @@ public class Profile extends Fragment {
         }
         else {
             if (prifilimage.getDrawable() != null) {
-                Bitmap bitmap = ((BitmapDrawable) prifilimage.getDrawable()).getBitmap();
-                imageFile = persistImage(bitmap, name);
+                if(picAvailable==true) {
+                    Bitmap bitmap = ((BitmapDrawable) prifilimage.getDrawable()).getBitmap();
+                    imageFile = persistImage(bitmap, name);
+                }
             }
             new EditProfile().execute(name, phone, email,user_id);
         }
@@ -448,6 +455,7 @@ public class Profile extends Fragment {
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String picturePath = cursor.getString(columnIndex);
                 cursor.close();
+                picAvailable = true;
                 prifilimage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             }
 
@@ -533,14 +541,18 @@ public class Profile extends Fragment {
                 String _email = params[2];
                 String _userid = params[3];
                 MultipartUtility multipart = new MultipartUtility(requestURL, charset);
-                multipart.addFormField("mobile", _phone);
                 multipart.addFormField("id", _userid);
                 multipart.addFormField("name", _name);
                 multipart.addFormField("email", _email);
+                multipart.addFormField("mobile", _phone);
+
+
 
                 // after completion of image work please enable this
                 if (imageFile != null) {
-                    multipart.addFilePart("photo", imageFile);
+                    if(picAvailable==true) {
+                        multipart.addFilePart("photo", imageFile);
+                    }
                 }
                 List<String> response = multipart.finish();
                 System.out.println("SERVER REPLIED:");
@@ -560,7 +572,12 @@ public class Profile extends Fragment {
                     JSONObject newObj = new JSONObject(String.valueOf(res_server.getJSONObject("res")));
                     server_status = newObj.optInt("status");
                     if (server_status == 1) {
-                        server_response = "Edit Profile Completed";
+                        if(lang.contentEquals("Arabic")){
+                            server_response="اكتمل تحرير الملف الشخصي";
+                        }
+                        else{
+                            server_response = "Edit Profile Completed";
+                        }
 
                     } else {
                         server_response = "Sorry !! Entry failed";
@@ -579,12 +596,18 @@ public class Profile extends Fragment {
         @Override
         protected void onPostExecute(final Void result) {
             super.onPostExecute(result);
+            if(lang.contentEquals("Arabic")){
+
+            }
+            else{
+
+            }
             showSnackBar(server_response);
             progressDialog.dismiss();
             if(server_status==1){
                 editable = false;
                 if(lang.contentEquals("Arabic")){
-                    editsave.setText("تصحيح");
+                    editsave.setText("تعديل");
                 }
                 else {
                     editsave.setText("Edit");
@@ -731,7 +754,12 @@ public class Profile extends Fragment {
         if( user_photo==null || user_photo.contentEquals("null") || user_photo.contentEquals("")) {
         }
         else{
-            imageLoader.displayImage(Constants.PICURL+user_photo,prifilimage);
+            Glide.with(getActivity()).load(Constants.PICURL+user_photo)//.asBitmap()
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(prifilimage);
+          //  imageLoader.displayImage(Constants.PICURL+user_photo,prifilimage);
             /*Picasso.with(getActivity()).load(Constants.PICURL+user_photo)
                     .resize(300,300).into(prifilimage);*/
 

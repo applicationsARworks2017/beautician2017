@@ -39,6 +39,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -109,6 +111,8 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
     private String provider,fcm_id;
+    Boolean picavailable1=false,picavailable2=false,picavailable3=false,picavailable4=false;
+
 
 
 
@@ -645,12 +649,16 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
 
                     picAvailable = true;
                     if (imageclick == 1) {
+                        picavailable1=true;
                         pic1.setImageBitmap(perfectImage);
                     } else if (imageclick == 2) {
+                        picavailable2=true;
                         pic2.setImageBitmap(perfectImage);
                     } else if (imageclick == 3) {
+                        picavailable3=true;
                         pic3.setImageBitmap(perfectImage);
                     } else {
+                        picavailable4=true;
                         pic4.setImageBitmap(perfectImage);
                     }
                     //    profileImage=img1.toString();
@@ -675,14 +683,18 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                 String picturePath = cursor.getString(columnIndex);
                 cursor.close();
                 if(imageclick==1) {
+                    picavailable1=true;
                     pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                 }
                 else if(imageclick==2) {
+                    picavailable2=true;
                     pic2.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                 }
                 else if(imageclick==3) {
+                    picavailable3=true;
                     pic3.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                 }else if(imageclick==4) {
+                    picavailable4=true;
                     pic4.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                 }
 
@@ -713,26 +725,34 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         String shop_latlng=tv_latlng.getText().toString().trim();
         if(gal1==1) {
             if (pic1.getDrawable() != null) {
-                Bitmap bitmap = ((BitmapDrawable) pic1.getDrawable()).getBitmap();
-                imgfile1 = persistImage(bitmap, shop_name+"1");
+                if(picavailable1==true) {
+                    Bitmap bitmap = ((BitmapDrawable) pic1.getDrawable()).getBitmap();
+                    imgfile1 = persistImage(bitmap, shop_name + "1");
+                }
             }
         }
         if(gal2==1) {
             if (pic2.getDrawable() != null) {
-                Bitmap bitmap = ((BitmapDrawable) pic2.getDrawable()).getBitmap();
-                imgfile2 = persistImage(bitmap, shop_name+"2");
+                if(picavailable2==true) {
+                    Bitmap bitmap = ((BitmapDrawable) pic2.getDrawable()).getBitmap();
+                    imgfile2 = persistImage(bitmap, shop_name + "2");
+                }
             }
         }
         if(gal3==1) {
             if (pic3.getDrawable() != null) {
-                Bitmap bitmap = ((BitmapDrawable) pic3.getDrawable()).getBitmap();
-                imgfile3 = persistImage(bitmap, shop_name+"3");
+                if(picavailable3==true) {
+                    Bitmap bitmap = ((BitmapDrawable) pic3.getDrawable()).getBitmap();
+                    imgfile3 = persistImage(bitmap, shop_name + "3");
+                }
             }
         }
         if(gal4==1) {
             if (pic4.getDrawable() != null) {
-                Bitmap bitmap = ((BitmapDrawable) pic4.getDrawable()).getBitmap();
-                imgfile4 = persistImage(bitmap, shop_name+"4");
+                if(picavailable4==true) {
+                    Bitmap bitmap = ((BitmapDrawable) pic4.getDrawable()).getBitmap();
+                    imgfile4 = persistImage(bitmap, shop_name + "4");
+                }
             }
         }
 
@@ -943,20 +963,40 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
            // Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic1)
                     //.resize(300, 300)
             // .into(pic1);
-            imageLoader.displayImage(Constants.SHOP_PICURL+shop_pic1,pic1,options);
+           // imageLoader.displayImage(Constants.SHOP_PICURL+shop_pic1,pic1,options);
+            Glide.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic1)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(pic1);
 
         }
         if(!shop_pic2.isEmpty()) {
-            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic2)
+           /* Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic2)
                    // .resize(300, 300)
+                    .into(pic2);*/
+            Glide.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic2)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(pic2);
         } if(!shop_pic3.isEmpty()) {
-            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic3)
+            /*Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic3)
                     //.resize(300, 300)
+                    .into(pic3);*/
+            Glide.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic3)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(pic3);
         }if(!shop_pic4.isEmpty()) {
-            Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic4)
+           /* Picasso.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic4)
                     //.resize(300, 300)
+                    .into(pic4);*/
+            Glide.with(SPProfile.this).load(Constants.SHOP_PICURL+shop_pic4)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(pic4);
         }
 
@@ -1032,17 +1072,25 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                 multipart.addFormField("id", _shop_id);
                 multipart.addFormField("latitudelongitude", params[5]);
                 if (imgfile1 != null) {
-                    multipart.addFilePart("photo1", imgfile1);
+                    if(picavailable1==true) {
+                        multipart.addFilePart("photo1", imgfile1);
+                    }
                 }
                 if (imgfile2 != null) {
-                    multipart.addFilePart("photo2", imgfile2);
+                    if(picavailable2==true) {
+                        multipart.addFilePart("photo2", imgfile2);
+                    }
                 }
                 if (imgfile3 != null) {
-                    multipart.addFilePart("photo3", imgfile3);
+                    if(picavailable3==true) {
+                        multipart.addFilePart("photo3", imgfile3);
+                    }
 
                 }
                 if (imgfile4 != null) {
-                    multipart.addFilePart("photo4", imgfile4);
+                    if(picavailable4==true) {
+                        multipart.addFilePart("photo4", imgfile4);
+                    }
 
                 }
                 List<String> response = multipart.finish();

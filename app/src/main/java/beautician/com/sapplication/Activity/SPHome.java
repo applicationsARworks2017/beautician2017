@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -24,6 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.APIManager;
 import beautician.com.sapplication.Utils.Constants;
 
 public class SPHome extends AppCompatActivity {
@@ -127,6 +129,7 @@ public class SPHome extends AppCompatActivity {
         card_proposal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CallToAPI(user_id,"ServicePurposal","Shop");
                 Intent intent = new Intent(SPHome.this, SpProposal.class);
                 intent.putExtra("LANG", lang);
                 intent.putExtra("PAGE", "sp_home");
@@ -136,6 +139,7 @@ public class SPHome extends AppCompatActivity {
         card_mywallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CallToAPI(user_id,"Wallet","Shop");
                 Intent intent = new Intent(SPHome.this, Wallet.class);
                 intent.putExtra("LANG", lang);
                 intent.putExtra("PAGE", "sp_home");
@@ -149,6 +153,31 @@ public class SPHome extends AppCompatActivity {
                 intent.putExtra("LANG", lang);
                 intent.putExtra("PAGE", "sp_home");
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void CallToAPI(String user_id, String wallet, String shop) {
+
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("reference_id", user_id);
+            jsonObject.put("type", wallet);
+            jsonObject.put("reference_type", shop);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new APIManager().ModifyAPI(Constants.ONLINEURL + Constants.UPDATE_COUNT, "res", jsonObject, SPHome.this, new APIManager.APIManagerInterface() {
+            @Override
+            public void onSuccess(Object resultObj) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
             }
         });
     }

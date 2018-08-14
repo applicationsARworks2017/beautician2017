@@ -92,7 +92,7 @@ public class Wallet extends AppCompatActivity {
                 final EditText et_add_money=(EditText) dialog.findViewById(R.id.et_add_money);
 
                 if(lang.contentEquals("Arabic")){
-                    tv_wallet.setText("مبلغ الشحن (بالدولار)");
+                    tv_wallet.setText("مبلغ الشحن (SAR)");
                     add_money.setText("إضافة المال");
 
                 }

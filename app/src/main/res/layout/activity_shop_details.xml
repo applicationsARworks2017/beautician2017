@@ -44,16 +44,14 @@
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
                     android:layout_margin="5dp"
-                    android:background="@drawable/blanck"
+                    android:background="@drawable/customimage"
                     android:id="@+id/img1"/>
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
+                    android:background="@drawable/customimage"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/blanck"
                     android:id="@+id/img2"/>
             </LinearLayout>
             <LinearLayout
@@ -64,16 +62,14 @@
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
                     android:layout_margin="5dp"
-                    android:background="@drawable/blanck"
+                    android:background="@drawable/customimage"
                     android:id="@+id/img3"/>
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/blanck"
+                    android:background="@drawable/customimage"
                     android:id="@+id/img4"/>
             </LinearLayout>
 

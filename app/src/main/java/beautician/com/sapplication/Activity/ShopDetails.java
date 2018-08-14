@@ -15,6 +15,8 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -273,26 +275,47 @@ public class ShopDetails extends AppCompatActivity {
         }
 
         if(!photo1.isEmpty()) {
-            imageLoader.displayImage(Constants.SHOP_PICURL+photo1,img1,options);
+            Glide.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo1)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(img1);
+           // imageLoader.displayImage(Constants.SHOP_PICURL+photo1,img1,options);
             /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo1)
-                    .resize(300,300)
+                    //.resize(300,300)
                     .into(img1);*/
         }
         if(!photo2.isEmpty()) {
-            /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo2).resize(300,300)
+            Glide.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo2)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(img2);
+            /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo2)
+                    //.resize(300,300)
                     .into(img2);*/
-            imageLoader.displayImage(Constants.SHOP_PICURL+photo2,img2,options);
+            //imageLoader.displayImage(Constants.SHOP_PICURL+photo2,img2,options);
 
         }
         if(!photo3.isEmpty()) {
-            /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo3)
-                    .resize(300,300).into(img3);*/
-            imageLoader.displayImage(Constants.SHOP_PICURL+photo3,img3,options);
+            Glide.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo3)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(img3);
+            //Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo3);
+                   // .resize(300,300).into(img3);
+            //imageLoader.displayImage(Constants.SHOP_PICURL+photo3,img3,options);
 
         }if(!photo4.isEmpty()) {
-            /*Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo4)
-                    .resize(300,300).into(img4);*/
-            imageLoader.displayImage(Constants.SHOP_PICURL+photo4,img4,options);
+            Glide.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo4)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(img4);
+          //  Picasso.with(ShopDetails.this).load(Constants.SHOP_PICURL+photo4);
+                    //.resize(300,300).into(img4);
+           // imageLoader.displayImage(Constants.SHOP_PICURL+photo4,img4,options);
 
         }
 

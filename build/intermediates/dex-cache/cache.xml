@@ -30,6 +30,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/amaresh/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3/5b0002c5fb66867ca919be0fbd86de1cfaf76da7/httpmime-4.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5b0002c5fb66867ca919be0fbd86de1cfaf76da7">
+        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/httpmime-4.3_68ed002509b5b321a3d5e7b8e2f10e0338fc1b70/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/amaresh/.android/build-cache/302dfeb94b82c13a7112543b46a32d9e7aab5e69/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -138,6 +147,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/amaresh/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient-android/4.3.5.1/eecbb0b998e77629862a13d957d552b3be58fc4e/httpclient-android-4.3.5.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="eecbb0b998e77629862a13d957d552b3be58fc4e">
+        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/httpclient-android-4.3.5.1_66298f12c613989230548beebbf95153f1ca5719/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/amaresh/.android/build-cache/7581a9d9bf9e3c9a4d842e8b3959049f9ac1f12d/output/jars/libs/okio-1.13.0.jar"
         jumboMode="false"
         optimize="true"
@@ -180,6 +198,15 @@
         revision="25.0.3"
         sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
         <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_eb56d7c4c1f2cbe2635ed914e92dc0f6b666ac81/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/amaresh/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.8.0/9bada650e1afe9c6174ddc0d113c1fce4dc26fe0/glide-3.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9bada650e1afe9c6174ddc0d113c1fce4dc26fe0">
+        <dex dex="/Users/amaresh/Desktop/AmareshWorks/beautician2017/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.8.0_10eab981f3fb9f8c8e4442390fe7ae4415e06656/classes.dex" />
     </item>
     <item
         is-multidex="true"

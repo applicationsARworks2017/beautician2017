@@ -91,7 +91,7 @@ public class IndividualRequest extends AppCompatActivity {
         sp_num=(Spinner)findViewById(R.id.adult_spin);
         post=(Button)findViewById(R.id.submit_post);
         if(lang.contentEquals("Arabic")){
-            shopName.setText("أنت مهتم بـ:");
+            shopName.setText("انت مهتم ب:");
             adult.setText("عدد الاشخاص");
             et_details.setHint("أضف التفاصيل هنا");
             post.setText("ارسال");

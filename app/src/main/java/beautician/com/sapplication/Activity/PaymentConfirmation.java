@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -38,6 +39,7 @@ public class PaymentConfirmation extends AppCompatActivity {
     public static EditText et_name,et_phone,et_email,et_amount,et_address,et_city,et_state,et_country,et_postal;
     Button bt_ok,bt_cancel;
     RelativeLayout con_rel;
+    TextView pay_name,pay_phone,pay_mail,pay_amount,pay_add,pay_city,pay_state,pay_country,pay_code;
     String MERCHANT_EMAIL ="mansour.nz@outlook.com";
     //Merchant Secret Key
     String own_id;
@@ -70,17 +72,6 @@ public class PaymentConfirmation extends AppCompatActivity {
 
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
-        if(lang.contentEquals("Arabic")){
-            setTitle("تأكيد الدفع");
-            lang_to_send="ar";
-        }
-        else{
-            setTitle("Payment Confirmation");
-            lang_to_send="en";
-        }
-        setContentView(R.layout.activity_payment_confirmation);
-
-        con_rel=(RelativeLayout)findViewById(R.id.con_rel);
         et_name=(EditText)findViewById(R.id.et_user_name);
         et_phone=(EditText)findViewById(R.id.et_user_phone);
         et_email=(EditText)findViewById(R.id.et_user_email);
@@ -89,9 +80,60 @@ public class PaymentConfirmation extends AppCompatActivity {
         et_city=(EditText)findViewById(R.id.et_user_city);
         et_state=(EditText)findViewById(R.id.et_user_state);
         et_country=(EditText)findViewById(R.id.et_user_country);
-        et_postal=(EditText)findViewById(R.id.et_user_postal);
+
+
+        pay_name=(TextView)findViewById(R.id.pay_name);
+        pay_phone=(TextView)findViewById(R.id.pay_phone);
+        pay_mail=(TextView)findViewById(R.id.pay_mail);
+        pay_amount=(TextView)findViewById(R.id.pay_amount);
+        pay_add=(TextView)findViewById(R.id.pay_add);
+        pay_city=(TextView)findViewById(R.id.pay_city);
+        pay_state=(TextView)findViewById(R.id.pay_state);
+        pay_country=(TextView)findViewById(R.id.pay_country);
+        pay_code=(TextView)findViewById(R.id.pay_code);
+
         bt_ok=(Button)findViewById(R.id.bt_ok);
         bt_cancel=(Button)findViewById(R.id.bt_cancel);
+
+
+
+        if(lang.contentEquals("Arabic")){
+            setTitle("تأكيد الدفع");
+            lang_to_send="ar";
+            pay_name.setText("اسم");
+            pay_phone.setText("هاتف");
+            pay_mail.setText("بريد");
+            pay_amount.setText("كمية");
+            pay_add.setText("عنوان");
+            pay_city.setText("مدينة");
+            pay_state.setText("حالة");
+            pay_country.setText("بلد");
+            pay_code.setText("الرقم الدولي");
+            bt_ok.setText("حسنا");
+            bt_cancel.setText("إلغاء");
+        }
+        else{
+            setTitle("Payment Confirmation");
+            lang_to_send="en";
+            pay_name.setText("Name");
+            pay_phone.setText("Phone");
+            pay_mail.setText("Mail");
+            pay_amount.setText("Amount");
+            pay_add.setText("Address");
+            pay_city.setText("City");
+            pay_state.setText("State");
+            pay_country.setText("Country");
+            pay_code.setText("Country Code");
+            bt_ok.setText("OK");
+            bt_cancel.setText("Cancel");
+        }
+        setContentView(R.layout.activity_payment_confirmation);
+
+
+        con_rel=(RelativeLayout)findViewById(R.id.con_rel);
+
+        et_postal=(EditText)findViewById(R.id.et_user_postal);
+
         bt_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,6 +199,7 @@ public class PaymentConfirmation extends AppCompatActivity {
                 in.putExtra("pt_merchant_email", MERCHANT_EMAIL);
                 in.putExtra("pt_secret_key", MERCHANT_SECRET_KEY);//Add your Secret Key Here
                 in.putExtra("pt_lang", lang_to_send);//For language change
+                //in.putExtra("pt_lang", "ar");//For language change
                 in.putExtra("pt_transaction_title", "Payment towards Beautician");
                 in.putExtra("pt_amount", amount);
                 in.putExtra("pt_currency_code", "SAR"); //Use Standard 3 character ISO

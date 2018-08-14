@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -91,6 +93,12 @@ public class ShopListAdapter extends BaseAdapter {
             holder.pic2=(ImageView)convertView.findViewById(R.id.pic2);
             holder.pic3=(ImageView)convertView.findViewById(R.id.pic3);
             holder.pic4=(ImageView)convertView.findViewById(R.id.pic4);
+
+            //holder.pic1.setTag(R.id.pic1);
+            //holder.pic2.setTag(R.id.pic2);
+            //holder.pic3.setTag(R.id.pic3);
+            //holder.pic4.setTag(R.id.pic4);
+
             holder.ratingBar=(RatingBar)convertView.findViewById(R.id.rating);
             holder.reqButton=(Button)convertView.findViewById(R.id.reqButton);
             holder.img_lin=(LinearLayout)convertView.findViewById(R.id.img_lin);
@@ -163,23 +171,44 @@ public class ShopListAdapter extends BaseAdapter {
 
         }
 
+
          if(!_pos.getPhoto1().isEmpty()) {
-           // Picasso.with(_context).load(_pos.getPhoto1()).resize(300,300).into(holder.pic1);
-             imageLoader.displayImage(_pos.getPhoto1(),holder.pic1,options);
+             /*Glide.with(_context).load(_pos.getPhoto1())
+                     .thumbnail(0.5f)
+                     .crossFade()
+                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                     .into(holder.pic1);*/
+            Picasso.with(_context).load(_pos.getPhoto1()).resize(100,100).into(holder.pic1);
+            // imageLoader.displayImage(_pos.getPhoto1(),holder.pic1,options);
         }
         if(!_pos.getPhoto2().isEmpty()) {
-            //Picasso.with(_context).load(_pos.getPhoto2())
-           //         .resize(300,300).into(holder.pic2);
-            imageLoader.displayImage(_pos.getPhoto2(),holder.pic2,options);
+            Picasso.with(_context).load(_pos.getPhoto2())
+                    .resize(100,100).into(holder.pic2);
+            /*Glide.with(_context).load(_pos.getPhoto2())
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.pic2);*/
+            //imageLoader.displayImage(_pos.getPhoto2(),holder.pic2,options);
 
         }
         if(!_pos.getPhoto3().isEmpty()) {
-            //Picasso.with(_context).load(_pos.getPhoto3()).resize(300,300).into(holder.pic3);
-            imageLoader.displayImage(_pos.getPhoto3(),holder.pic3,options);
+           Picasso.with(_context).load(_pos.getPhoto3()).resize(100,100).into(holder.pic3);
+            //imageLoader.displayImage(_pos.getPhoto3(),holder.pic3,options);
+            /*Glide.with(_context).load(_pos.getPhoto3())
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.pic3);*/
 
         }if(!_pos.getPhoto4().isEmpty()) {
-            //Picasso.with(_context).load(_pos.getPhoto3()).resize(300,300).into(holder.pic4);
-            imageLoader.displayImage(_pos.getPhoto4(),holder.pic4,options);
+           /* Glide.with(_context).load(_pos.getPhoto4())
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.pic4);*/
+            Picasso.with(_context).load(_pos.getPhoto3()).resize(100,100).into(holder.pic4);
+            //imageLoader.displayImage(_pos.getPhoto4(),holder.pic4,options);
 
         }
         holder.reqButton.setOnClickListener(new View.OnClickListener() {

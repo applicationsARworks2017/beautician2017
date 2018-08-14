@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -31,6 +32,7 @@ import beautician.com.sapplication.Activity.SearchShop;
 import beautician.com.sapplication.Activity.SpProposal;
 import beautician.com.sapplication.Activity.Wallet;
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.APIManager;
 import beautician.com.sapplication.Utils.Constants;
 
 /**
@@ -183,6 +185,7 @@ public class HomeFragment extends Fragment {
         user_propsal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CallToAPI(user_id,"ServicePurposal","User");
                 Intent intent=new Intent(getActivity(),SpProposal.class);
                 intent.putExtra("PAGE","user_side");
                 startActivity(intent);
@@ -191,7 +194,7 @@ public class HomeFragment extends Fragment {
         user_wallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //update
+                CallToAPI(user_id,"UserWallet","User");
                 Intent intent=new Intent(getActivity(),Wallet.class);
                 intent.putExtra("PAGE","user_side");
                 startActivity(intent);
@@ -225,6 +228,30 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
+    private void CallToAPI(String user_id, String wallet, String shop) {
+
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("reference_id", user_id);
+            jsonObject.put("type", wallet);
+            jsonObject.put("reference_type", shop);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new APIManager().ModifyAPI(Constants.ONLINEURL + Constants.UPDATE_COUNT, "res", jsonObject, getContext(), new APIManager.APIManagerInterface() {
+            @Override
+            public void onSuccess(Object resultObj) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -351,6 +378,10 @@ public class HomeFragment extends Fragment {
             if(wallet_req>0){
                 wallet_notification.setVisibility(View.VISIBLE);
                 wallettext.setText(String.valueOf(wallet_req));
+            }
+            if(propsal_req>0){
+                proposal_notification.setVisibility(View.VISIBLE);
+                propsaltext.setText(String.valueOf(propsal_req));
             }
 
         }

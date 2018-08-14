@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="Name"
+            android:id="@+id/pay_name"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -30,13 +30,13 @@
             android:singleLine="true"
             android:id="@+id/et_user_name"
             android:layout_marginTop="5dp"
-            android:hint="Name"/>
+            android:hint=""/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="Phone"
+            android:id="@+id/pay_phone"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="Email"
+            android:id="@+id/pay_mail"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="Amount"
+            android:id="@+id/pay_amount"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="Address"
+            android:id="@+id/pay_add"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="City"
+            android:id="@+id/pay_city"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="State"
+            android:id="@+id/pay_state"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -138,7 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="Country"
+            android:id="@+id/pay_country"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="Postal / Country Phone Code"
+            android:id="@+id/pay_code"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <EditText
@@ -189,7 +189,6 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="40dp"
                 android:textColor="@color/white"
-                android:text="OK"
                 android:id="@+id/bt_ok"
                 android:background="@color/colorPrimary"/>
         </LinearLayout>
