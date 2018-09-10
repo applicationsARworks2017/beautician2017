@@ -99,8 +99,8 @@ public class PropsalAdapter extends BaseAdapter {
         return position;
     }
     private class Holder{
-        TextView propsal_hd,vew_details,gv_feedback,actualtime,user_details,tv_otp;
-        ImageView im_reply,im_agree;
+        TextView propsal_hd,vew_details,gv_feedback,actualtime,user_details,tv_otp,im_reply;
+        TextView im_agree;
         LinearLayout paidline;
     }
     @Override
@@ -117,8 +117,8 @@ public class PropsalAdapter extends BaseAdapter {
             holder.gv_feedback=(TextView)convertView.findViewById(R.id.gv_feedback);
             holder.actualtime=(TextView)convertView.findViewById(R.id.actualtime);
             holder.tv_otp=(TextView)convertView.findViewById(R.id.tv_otp);
-            holder.im_reply=(ImageView)convertView.findViewById(R.id.im_reply);
-            holder.im_agree=(ImageView)convertView.findViewById(R.id.im_agree);
+            holder.im_reply=(TextView)convertView.findViewById(R.id.im_reply);
+            holder.im_agree=(TextView) convertView.findViewById(R.id.im_agree);
             holder.user_details=(TextView) convertView.findViewById(R.id.user_details);
             holder.paidline=(LinearLayout)convertView.findViewById(R.id.paidline);
             convertView.setTag(holder);
@@ -130,7 +130,7 @@ public class PropsalAdapter extends BaseAdapter {
         holder.vew_details.setTag(position);
         holder.actualtime.setTag(position);
         holder.paidline.setTag(position);
-        holder.tv_otp.setTag(position);
+        holder.tv_otp.setTag(holder);
         holder.im_reply.setTag(holder);
         holder.im_agree.setTag(holder);
         holder.gv_feedback.setTag(holder);
@@ -155,59 +155,85 @@ public class PropsalAdapter extends BaseAdapter {
             holder.im_agree.setVisibility(View.VISIBLE);
             if(status.contentEquals("1")) {
                 holder.paidline.setVisibility(View.GONE);
+                if(lang.contentEquals("Arabic")){
+                    holder.im_agree.setText(R.string.confirm_ar);
+                }
+                else {
+                    holder.im_agree.setText("Confirm");
+                }
 
-                Resources ress = _context.getResources();
+                /*Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.black));
-                holder.im_agree.setImageDrawable(drawable1);
+                holder.im_agree.setImageDrawable(drawable1);*/
             }
             else if(status.contentEquals("2")){
+
                 holder.paidline.setVisibility(View.GONE);
                 holder.tv_otp.setVisibility(View.GONE);
-                Resources ress = _context.getResources();
+                holder.im_agree.setText("Skip");
+               /* Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-                holder.im_agree.setImageDrawable(drawable1);
+                holder.im_agree.setImageDrawable(drawable1);*/
             }
             else if(status.contentEquals("3")){
                 holder.paidline.setVisibility(View.VISIBLE);
                 holder.tv_otp.setVisibility(View.VISIBLE);
-                Resources ress = _context.getResources();
+                holder.im_agree.setText(_pos.getOtp());
+                /*Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.deep_background));
-                holder.im_agree.setImageDrawable(drawable1);
+                holder.im_agree.setImageDrawable(drawable1);*/
             }
             else if(status.contentEquals("4")){ // otp given and 5 $ reversed
                 holder.paidline.setVisibility(View.GONE);
                 holder.tv_otp.setVisibility(View.GONE);
                 holder.gv_feedback.setVisibility(View.GONE);
-                Resources ress = _context.getResources();
+                if(lang.contentEquals("Arabic")){
+                    holder.im_agree.setText(R.string.on_going_ar);
+                }
+                else {
+                    holder.im_agree.setText("Ongoing");
+                }
+               /* Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_power_input_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-                holder.im_agree.setImageDrawable(drawable1);
+                holder.im_agree.setImageDrawable(drawable1);*/
             }
             else if(status.contentEquals("5")){ // completed waiting for the feed back
                 holder.paidline.setVisibility(View.GONE);
                 holder.tv_otp.setVisibility(View.GONE);
-                Resources ress = _context.getResources();
+                if(lang.contentEquals("Arabic")){
+                    holder.im_agree.setText(R.string.completed_ar);
+                }
+                else {
+                    holder.im_agree.setText("Completed");
+                }
+               /* Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-                holder.im_agree.setImageDrawable(drawable1);
+                holder.im_agree.setImageDrawable(drawable1);*/
                 holder.gv_feedback.setVisibility(View.VISIBLE);
             }
             else if(status.contentEquals("6")){ // completed feedback submitted
                 holder.paidline.setVisibility(View.GONE);
                 holder.tv_otp.setVisibility(View.GONE);
-                Resources ress = _context.getResources();
+                if(lang.contentEquals("Arabic")){
+                    holder.im_agree.setText(R.string.completed_ar);
+                }
+                else {
+                    holder.im_agree.setText("Completed");
+                }               /* Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-                holder.im_agree.setImageDrawable(drawable1);
+                holder.im_agree.setImageDrawable(drawable1);*/
                 holder.gv_feedback.setVisibility(View.GONE);
             }
             else{
@@ -218,48 +244,79 @@ public class PropsalAdapter extends BaseAdapter {
             holder.im_agree.setVisibility(View.GONE);
             holder.im_reply.setVisibility(View.VISIBLE);
             if(status.contentEquals("1")){
-                Resources ress = _context.getResources(); // no response
+                if(lang.contentEquals("Arabic")){
+                    holder.im_reply.setText(R.string.waiting_ar);
+                }
+                else {
+                    holder.im_reply.setText("Waiting");
+                }
+                /*Resources ress = _context.getResources(); // no response
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_error_black_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.deep_background));
-                holder.im_reply.setImageDrawable(drawable1);
+                holder.im_reply.setImageDrawable(drawable1);*/
             }
-            else if(status.contentEquals("2")){  // got response and wave
-                Resources ress = _context.getResources();
+            else if(status.contentEquals("3")){  // got response and wave
+                if(lang.contentEquals("Arabic")){
+                    holder.im_reply.setText(R.string.enter_otp_ar);
+                }
+                else {
+                    holder.im_reply.setText("Enter OTP");
+                }
+               /* Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_assignment_turned_in_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.black));
-                holder.im_reply.setImageDrawable(drawable1);
+                holder.im_reply.setImageDrawable(drawable1);*/
             }
-            else if(status.contentEquals("3")){ // service is giving after getting user details
-                holder.user_details.setVisibility(View.VISIBLE);
+            else if(status.contentEquals("2")){ // service is giving after getting user details
+                holder.im_reply.setText("Skip");
+                /*holder.user_details.setVisibility(View.VISIBLE);
                 Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_assignment_turned_in_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-                holder.im_reply.setImageDrawable(drawable1);
+                holder.im_reply.setImageDrawable(drawable1);*/
             }
             else if(status.contentEquals("4")){ // otp matched and service continuing
-                Resources ress = _context.getResources();
+                if(lang.contentEquals("Arabic")){
+                    holder.im_reply.setText(R.string.on_going_ar);
+                }
+                else {
+                    holder.im_reply.setText(R.string.on_going_en);
+                }
+                /*Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_power_input_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-                holder.im_reply.setImageDrawable(drawable1);
+                holder.im_reply.setImageDrawable(drawable1);*/
             }
             else if(status.contentEquals("5")){ // completed
-                Resources ress = _context.getResources();
+                if(lang.contentEquals("Arabic")){
+                    holder.im_reply.setText(R.string.completed_ar);
+                }
+                else {
+                    holder.im_reply.setText("Completed");
+                }
+                /*Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-                holder.im_reply.setImageDrawable(drawable1);
+                holder.im_reply.setImageDrawable(drawable1);*/
 
             }
             else if(status.contentEquals("6")){ // completed and got the feedbacks
-                Resources ress = _context.getResources();
+                if(lang.contentEquals("Arabic")){
+                    holder.im_reply.setText(R.string.completed_ar);
+                }
+                else {
+                    holder.im_reply.setText("Completed");
+                }
+               /* Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
                 drawable1 = DrawableCompat.wrap(drawable1);
                 DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-                holder.im_reply.setImageDrawable(drawable1);
+                holder.im_reply.setImageDrawable(drawable1);*/
 
             }
             else {
@@ -326,8 +383,9 @@ public class PropsalAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 holder1=(Holder) v.getTag();
+                String imreply_text=holder1.im_reply.getText().toString().trim();
                 String callTo = null;
-                if(status.contentEquals("1")){
+                if(imreply_text.contentEquals("Waiting") || imreply_text.contentEquals("انتظار")){
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
                         builder.setTitle("آسف");
@@ -360,8 +418,8 @@ public class PropsalAdapter extends BaseAdapter {
                     }
 
                 }
-                else if(status.contentEquals("2")){
-                    callTo = "3";
+                /*else if(imreply_text.contentEquals("Enter OTP")){
+                    //callTo = "3";
                     user_id=_pos.getUser_id();
                     propsal_id=_pos.getId();
                     if(lang.contentEquals("Arabic")){
@@ -410,8 +468,8 @@ public class PropsalAdapter extends BaseAdapter {
                         dialog.show();
                     }
 
-                }
-                else if(status.contentEquals("3")){
+                }*/
+                else if(imreply_text.contentEquals("Enter OTP") || imreply_text.contentEquals("أدخل رقم إنهاء الخدمة")){
                     callTo = "4";
                     updated_status=4;
                     user_id=_pos.getUser_id();
@@ -420,6 +478,15 @@ public class PropsalAdapter extends BaseAdapter {
                     dialog.setContentView(R.layout.otpscreen);
                     ImageView imageView=(ImageView)dialog.findViewById(R.id.close);
                     Button submit=(Button)dialog.findViewById(R.id.add_money);
+                    TextView otp_head=(TextView) dialog.findViewById(R.id.otp_head);
+                    if(lang.contentEquals("Arabic")){
+                        otp_head.setText("أدخل OTP لمتابعة الخدمة");
+                        submit.setText("موافق");
+                    }
+                    else{
+                        otp_head.setText("Enter OTP to continue the service");
+                        submit.setText("Submit");
+                    }
                     final EditText et_add_money=(EditText) dialog.findViewById(R.id.et_add_money);
                     dialog.show();
                     imageView.setOnClickListener(new View.OnClickListener() {
@@ -432,6 +499,7 @@ public class PropsalAdapter extends BaseAdapter {
                         @Override
                         public void onClick(View v) {
                             OTP = et_add_money.getText().toString().trim();
+
                             ConfirmToProp confirmToProp = new ConfirmToProp();
                             confirmToProp.execute(_pos.getId(), finalCallTo);
                             dialog.cancel();
@@ -439,7 +507,7 @@ public class PropsalAdapter extends BaseAdapter {
                     });
 
                 }
-                else if(status.contentEquals("4")){
+                else if(imreply_text.contentEquals("Ongoing") || imreply_text.contentEquals("جاري تنفيذ الطلب")){
                     callTo = "4";
                     updated_status=5;
                     user_id=_pos.getUser_id();
@@ -496,8 +564,10 @@ public class PropsalAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 holder1=(Holder) v.getTag();
+                String imagree_tvtext=holder1.im_agree.getText().toString().trim();
                 String callTo = null;
-                if(status.contentEquals("1")) {
+                user_id=_pos.getUser_id();
+                if(imagree_tvtext.contentEquals("Confirm") || imagree_tvtext.contentEquals("تأكيد")) {
                     callTo = "2";
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
@@ -508,8 +578,17 @@ public class PropsalAdapter extends BaseAdapter {
                             public void onClick(DialogInterface dialog, int id) {
                                 //TODO
                                 //   dialog.dismiss();
+                                /*ConfirmToProp confirmToProp = new ConfirmToProp();
+                                confirmToProp.execute(_pos.getId(), finalCallTo);*/
+                                updated_status=3;
+                                OTP = String.valueOf(Constants.generatePIN());
                                 ConfirmToProp confirmToProp = new ConfirmToProp();
-                                confirmToProp.execute(_pos.getId(), finalCallTo);
+                                confirmToProp.execute(propsal_id, "3");
+                                holder1.im_agree.setText(OTP);
+                                holder1.tv_otp.setVisibility(View.VISIBLE);
+                                holder1.tv_otp.setText(" شارك الكود عند الوصول  للمقدم الخدمة لسترجاع مبلغ تأكييد الحجز إلى المحفظة:" + OTP);
+
+
                             }
                         });
                         builder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
@@ -530,8 +609,18 @@ public class PropsalAdapter extends BaseAdapter {
                             public void onClick(DialogInterface dialog, int id) {
                                 //TODO
                                 //   dialog.dismiss();
+                                /*ConfirmToProp confirmToProp = new ConfirmToProp();
+                                confirmToProp.execute(_pos.getId(), finalCallTo);*/
+                                updated_status=3;
+
+                                OTP = String.valueOf(Constants.generatePIN());
                                 ConfirmToProp confirmToProp = new ConfirmToProp();
-                                confirmToProp.execute(_pos.getId(), finalCallTo);
+                                confirmToProp.execute(_pos.getId(), "3");
+                                holder1.im_agree.setText(OTP);
+                                holder1.tv_otp.setVisibility(View.VISIBLE);
+                                holder1.tv_otp.setText("Share OTP before service and get back your SAR"+HomeActivity.min_post_charge+". OTP : " + OTP);
+
+
                             }
                         });
                         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -545,7 +634,7 @@ public class PropsalAdapter extends BaseAdapter {
                     }
 
                 }
-                else if(status.contentEquals("2")){
+                else if(imagree_tvtext.contentEquals("Waiting") || imagree_tvtext.contentEquals("انتظار")){
                     if(lang.contentEquals("Arabic")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
                         builder.setTitle("تم الموافقه مسبقا ");
@@ -564,7 +653,7 @@ public class PropsalAdapter extends BaseAdapter {
                     }
                     else{
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-                        builder.setTitle("Allready Allowed");
+                        builder.setTitle("Already Allowed");
                         builder.setMessage("You have sent notification for service");
                         final String finalCallTo = callTo;
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -636,7 +725,13 @@ public class PropsalAdapter extends BaseAdapter {
                 conn.setRequestMethod("POST");
 
                 Uri.Builder builder = null;
-                if(_status.contentEquals("3") || _status.contentEquals("4")){
+                if(_status.contentEquals("3")){
+                    builder=new Uri.Builder()
+                            .appendQueryParameter("id", _id)
+                            .appendQueryParameter("status", _status)
+                            .appendQueryParameter("otp", OTP);
+                }
+                else if(_status.contentEquals("4")){
                     builder=new Uri.Builder()
                             .appendQueryParameter("id", _id)
                             .appendQueryParameter("status", _status)
@@ -721,25 +816,55 @@ public class PropsalAdapter extends BaseAdapter {
             }
             else {
                 if (server_status == 1) {
-                    if(updated_status==4){
+                    if(updated_status==3){
 
                         wpage = "user_side";
                         Log.i("userid", user_id);
                         getWdetails getUWdetails = new getWdetails();
                         getUWdetails.execute(user_id);
-                        if (holder1.im_reply.getVisibility() == View.VISIBLE) {
+                        /*if (holder1.im_reply.getVisibility() == View.VISIBLE) {
                             holder1.im_reply.setVisibility(View.GONE);
-                        }
+                        }*/
                     }
-                    else {
+                    else if(updated_status == 4) {
                         Toast.makeText(_context, server_message, Toast.LENGTH_SHORT).show();
-                        if (holder1.im_agree.getVisibility() == View.VISIBLE) {
+                        if(lang.contentEquals("Arabic")){
+                            holder1.im_reply.setText(R.string.on_going_ar);
+
+                        }
+                        else{
+                            holder1.im_reply.setText("Ongoing");
+
+                        }
+                        wpage = "user_side";
+                        Log.i("userid", user_id);
+                        getWdetails getUWdetails = new getWdetails();
+                        getUWdetails.execute(user_id);
+                        /*if (holder1.im_agree.getVisibility() == View.VISIBLE) {
                             holder1.im_agree.setVisibility(View.GONE);
                         } else if (holder1.im_reply.getVisibility() == View.VISIBLE) {
                             holder1.im_reply.setVisibility(View.GONE);
                         } else if (holder1.gv_feedback.getVisibility() == View.VISIBLE) {
                             holder1.gv_feedback.setVisibility(View.GONE);
+                        }*/
+                    }
+                    else if(updated_status == 5) {
+                        Toast.makeText(_context, server_message, Toast.LENGTH_SHORT).show();
+                        if(lang.contentEquals("Arabic")){
+                            holder1.im_reply.setText(R.string.completed_ar);
+
                         }
+                        else{
+                            holder1.im_reply.setText("Completed");
+
+                        }
+                        /*if (holder1.im_agree.getVisibility() == View.VISIBLE) {
+                            holder1.im_agree.setVisibility(View.GONE);
+                        } else if (holder1.im_reply.getVisibility() == View.VISIBLE) {
+                            holder1.im_reply.setVisibility(View.GONE);
+                        } else if (holder1.gv_feedback.getVisibility() == View.VISIBLE) {
+                            holder1.gv_feedback.setVisibility(View.GONE);
+                        }*/
                     }
                 }
                 else{
@@ -914,23 +1039,41 @@ public class PropsalAdapter extends BaseAdapter {
             super.onPostExecute(user);
             progressDialog.dismiss();
             if (server_status == 1) {
-                if(updated_status==4){
+                if(updated_status==4 && wpage.contentEquals("user_side")){
                     Toast.makeText(_context, "Service started", Toast.LENGTH_SHORT).show();
                     wpage = "user_side";
                     Transactwallet transactwallet = new Transactwallet();
                     transactwallet.execute(user_id, String.valueOf(HomeActivity.min_post_charge), String.valueOf(user_balance+HomeActivity.min_post_charge), "0");
                 }
-                else {
-                    if (wpage.contentEquals("sp_home")) {
-                        if (shop_balance >= SPHome.min_sp_balance) {
-                            wpage = "user_side";
+                if (updated_status==4 && wpage.contentEquals("sp_home")) {
+                    if (shop_balance >= SPHome.min_sp_balance) {
+                        wpage = "sp_home";
+                        Transactwallet transactwallet = new Transactwallet();
+                        transactwallet.execute(shop_id, "0", String.valueOf(shop_balance -SPHome.min_service_charge ), String.valueOf(SPHome.min_service_charge));
+                        //Toast.makeText(_context,"go aahead",Toast.LENGTH_LONG).show();
+                            /*wpage = "user_side";
                             Log.i("userid", user_id);
                             getWdetails getUWdetails = new getWdetails();
-                            getUWdetails.execute(user_id);
-                        } else {
-                            Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
-                        }
-                    } else if (wpage.contentEquals("user_side")) {
+                            getUWdetails.execute(user_id);*/
+                    } else {
+                        Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
+                    }
+                }
+                if(updated_status==3){
+                    Toast.makeText(_context, "OTP Generated", Toast.LENGTH_SHORT).show();
+                    if (user_balance >= HomeActivity.min_user_balance) {
+                        wpage = "user_side";
+                        Transactwallet transactwallet = new Transactwallet();
+                        transactwallet.execute(user_id, "0", String.valueOf(user_balance - HomeActivity.min_post_charge), String.valueOf(HomeActivity.min_post_charge));
+                    }
+                    else{
+                        Constants.noInternetDialouge(_context, "You don't have sufficient amount in wallet");
+
+                    }
+
+                }
+                else {
+                     /*else if (wpage.contentEquals("user_side")) {
                         if (user_balance >= HomeActivity.min_user_balance) {
                             wpage = "sp_home";
                             Transactwallet transactwallet = new Transactwallet();
@@ -942,7 +1085,7 @@ public class PropsalAdapter extends BaseAdapter {
 
                         }
 
-                    }
+                    }*/
                 }
 
 
@@ -1104,7 +1247,21 @@ public class PropsalAdapter extends BaseAdapter {
                 super.onPostExecute(user);
                 progressDialog.dismiss();
                 if(wallet_status==1){
-                    if(wpage.contentEquals("sp_home")) {
+                    if(updated_status==4 && wpage.contentEquals("user_side")) {
+                        wpage="sp_home";
+                        getWdetails getWdetails=new getWdetails();
+                        getWdetails.execute(shop_id);
+
+                        if (lang.contentEquals("Arabic")) {
+                            Toast.makeText(_context, "محفظة المستخدم المحدثة", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(_context, "User's wallet updated", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+
+                   /* if(wpage.contentEquals("sp_home")) {
                         wpage = "user_side";
                         Transactwallet transactwallet = new Transactwallet();
                         transactwallet.execute(user_id, "0", String.valueOf(user_balance - HomeActivity.min_post_charge), String.valueOf(HomeActivity.min_post_charge));
@@ -1124,7 +1281,7 @@ public class PropsalAdapter extends BaseAdapter {
                          OTP = String.valueOf(Constants.generatePIN());
                         ConfirmToProp confirmToProp = new ConfirmToProp();
                         confirmToProp.execute(propsal_id, "3");
-                    }
+                    }*/
                 }
                 else{
                     Constants.noInternetDialouge(_context,"Action failed");

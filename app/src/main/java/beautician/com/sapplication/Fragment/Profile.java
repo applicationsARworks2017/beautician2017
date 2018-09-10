@@ -271,7 +271,8 @@ public class Profile extends Fragment {
         editsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editsave.getText().toString().toLowerCase().contentEquals("edit")) {
+                if(editsave.getText().toString().toLowerCase().contentEquals("edit") ||
+                        editsave.getText().toString().trim().contentEquals("تعديل")) {
                     editable = true;
                     if(lang.contentEquals("Arabic")){
                         editsave.setText("حفظ");

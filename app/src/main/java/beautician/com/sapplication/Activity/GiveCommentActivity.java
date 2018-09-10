@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -37,6 +38,7 @@ import beautician.com.sapplication.Utils.Constants;
 
 public class GiveCommentActivity extends AppCompatActivity {
     RatingBar customer_ratings;
+    TextView txt_ratings;
     String ratings_value;
     RelativeLayout rel_ratingpoints;
     ArrayList<RatingsPoints> ratingspoints;
@@ -55,6 +57,10 @@ public class GiveCommentActivity extends AppCompatActivity {
         super.setTheme(R.style.AppUserTheme);
         setContentView(R.layout.activity_give_comment);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+        txt_ratings=(TextView)findViewById(R.id.txt_ratings);
+        et_comments_feedback=(EditText)findViewById(R.id.et_comments_feedback);
+        bt_subratings=(Button)findViewById(R.id.bt_subratings);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -66,16 +72,21 @@ public class GiveCommentActivity extends AppCompatActivity {
         }
         if(lang.contentEquals("Arabic")){
             setTitle("تقييم الخدمة ");
+            txt_ratings.setText("أدخل تقييماتك");
+            et_comments_feedback.setHint("تعليقات");
+            bt_subratings.setText("خضع");
+
         }
         else{
             setTitle("Give Ratings");
+            txt_ratings.setText("Enter your Ratings");
+            et_comments_feedback.setHint("Comments");
+            bt_subratings.setText("Submit");
         }
         user_id = GiveCommentActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         customer_ratings=(RatingBar)findViewById(R.id.customer_ratings);
         rel_ratingpoints=(RelativeLayout)findViewById(R.id.rel_ratingpoints);
         lv_ratings_value=(ListView)findViewById(R.id.ratings_value);
-        et_comments_feedback=(EditText)findViewById(R.id.et_comments_feedback);
-        bt_subratings=(Button)findViewById(R.id.bt_subratings);
         bt_subratings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,10 +110,18 @@ public class GiveCommentActivity extends AppCompatActivity {
         });
 
         ratingspoints = new ArrayList();
-        ratingspoints.add(new RatingsPoints("Shop Interier", false));
-        ratingspoints.add(new RatingsPoints("Service Quality", false));
-        ratingspoints.add(new RatingsPoints("Staff Behaviuor", false));
-        ratingspoints.add(new RatingsPoints("Others", false));
+        if(lang.contentEquals("Arabic")){
+            ratingspoints.add(new RatingsPoints("تقييم جوده المكان", false));
+            ratingspoints.add(new RatingsPoints("جودة الخدمة", false));
+            ratingspoints.add(new RatingsPoints("معاملة الموظفين", false));
+            ratingspoints.add(new RatingsPoints("تعليق", false));
+        }
+        else {
+            ratingspoints.add(new RatingsPoints("Shop Interier", false));
+            ratingspoints.add(new RatingsPoints("Service Quality", false));
+            ratingspoints.add(new RatingsPoints("Staff Behaviuor", false));
+            ratingspoints.add(new RatingsPoints("Others", false));
+        }
         radapter = new RatingspointsAdapter(ratingspoints, getApplicationContext());
         lv_ratings_value.setAdapter(radapter);
 
@@ -280,11 +299,11 @@ user_id:12
                     server_status = j_obj.optInt("status");
                     if (server_status == 1) {
                         if(lang.contentEquals("Arabic")){
-                            server_message = "فعله";
+                            server_message = "تم تقييم الخدمة";
 
                         }
                         else{
-                            server_message = "Done";
+                            server_message = "Submitted";
 
                         }
                     }

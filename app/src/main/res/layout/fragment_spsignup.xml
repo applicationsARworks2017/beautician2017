@@ -77,6 +77,7 @@
                     android:layout_height="match_parent"
                     android:singleLine="true"
                     android:hint=""
+                    android:inputType="phone"
                     android:paddingStart="10dp"
                     android:id="@+id/et_sp_phone"
                     android:background="@drawable/customedittext"/>

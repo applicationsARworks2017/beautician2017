@@ -102,6 +102,13 @@ public class ShopDetails extends AppCompatActivity {
                 finish();
             }
         });
+        if(lang.contentEquals("Arabic")){
+            allservice.setText("تحقق من تفاصيل الخدمة هنا");
+        }
+        else{
+            allservice.setText("Check service details here");
+
+        }
         allservice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

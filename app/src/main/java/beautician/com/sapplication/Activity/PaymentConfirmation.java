@@ -51,6 +51,7 @@ public class PaymentConfirmation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
+        setContentView(R.layout.activity_payment_confirmation);
 
         if (extras != null) {
             page = extras.getString("PAGE");
@@ -100,14 +101,14 @@ public class PaymentConfirmation extends AppCompatActivity {
         if(lang.contentEquals("Arabic")){
             setTitle("تأكيد الدفع");
             lang_to_send="ar";
-            pay_name.setText("اسم");
-            pay_phone.setText("هاتف");
-            pay_mail.setText("بريد");
-            pay_amount.setText("كمية");
-            pay_add.setText("عنوان");
-            pay_city.setText("مدينة");
-            pay_state.setText("حالة");
-            pay_country.setText("بلد");
+            pay_name.setText(R.string.name_ar);
+            pay_phone.setText(R.string.mobile_ar);
+            pay_mail.setText(R.string.mail_ar);
+            pay_amount.setText(R.string.amount_ar);
+            pay_add.setText(R.string.address_ar);
+            pay_city.setText(R.string.city_ar);
+            pay_state.setText(R.string.state_ar);
+            pay_country.setText(R.string.country_ar);
             pay_code.setText("الرقم الدولي");
             bt_ok.setText("حسنا");
             bt_cancel.setText("إلغاء");
@@ -127,7 +128,6 @@ public class PaymentConfirmation extends AppCompatActivity {
             bt_ok.setText("OK");
             bt_cancel.setText("Cancel");
         }
-        setContentView(R.layout.activity_payment_confirmation);
 
 
         con_rel=(RelativeLayout)findViewById(R.id.con_rel);

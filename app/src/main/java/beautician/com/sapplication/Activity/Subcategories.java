@@ -52,7 +52,7 @@ public class Subcategories extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subcategories);
-
+        setTitle("");
         category_id=Categories.category_id;
         user_type=Login_Activity.User_type;
         scList=new ArrayList<>();

@@ -235,12 +235,10 @@ public class CheckPost extends AppCompatActivity {
                 if(page.contentEquals("sp_home")) {
                     serviceReqAdapterSP = new ServiceReqAdapterSP(CheckPost.this, srList,lang);
                     lv_checkpost.setAdapter(serviceReqAdapterSP);
-                    serviceReqAdapterSP.notifyDataSetChanged();
                 }
                 else{
                     serviceReqAdapter = new ServiceReqAdapter(CheckPost.this, srList,lang);
                     lv_checkpost.setAdapter(serviceReqAdapter);
-                    serviceReqAdapter.notifyDataSetChanged();
                 }
             }
             else{

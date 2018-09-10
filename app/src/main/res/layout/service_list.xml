@@ -63,15 +63,14 @@
             android:textColor="@color/colorPrimaryLight"
             android:text="Expected Date"
             />
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:padding="10dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:background="@mipmap/ic_reply_black_24dp"
+        android:background="@drawable/custombutton"
         android:id="@+id/im_reply"
         android:layout_below="@id/name_service"
         />

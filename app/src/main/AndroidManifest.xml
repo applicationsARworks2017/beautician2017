@@ -124,9 +124,7 @@
         <activity
             android:name=".Activity.IndividualRequest"
             android:theme="@style/NoActionUser" />
-        <activity
-            android:name=".Activity.MapActivity"
-             />
+        <activity android:name=".Activity.MapActivity" />
         <activity
             android:name=".Activity.SpRequestHome"
             android:parentActivityName=".Activity.SPHome" />
@@ -170,9 +168,7 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimaryDark" />
 
-        <activity
-            android:name=".Activity.GiveCommentActivity"
-            />
+        <activity android:name=".Activity.GiveCommentActivity" />
         <activity
             android:name=".Activity.ShopDetails"
             android:theme="@style/NoAction" />
@@ -188,10 +184,12 @@
             android:name=".Activity.ForgotPassword"
             android:parentActivityName=".Activity.Login_Activity" />
         <activity
-            android:name=".Activity.PaymentConfirmation"
-            />
-        <activity android:name=".Activity.CountryList"></activity>
-        <activity android:name=".Activity.MapLocation"></activity>
+            android:name=".Activity.USerRequestHome"
+            android:parentActivityName=".Activity.HomeActivity" />
+        <activity android:name=".Activity.PaymentConfirmation" />
+        <activity android:name=".Activity.CountryList" />
+        <activity android:name=".Activity.MapLocation" />
+        <activity android:name=".Activity.RejectOption"></activity>
     </application>
 
 </manifest>

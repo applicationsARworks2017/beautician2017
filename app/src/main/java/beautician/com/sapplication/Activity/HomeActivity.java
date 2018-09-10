@@ -156,7 +156,7 @@ public class HomeActivity extends AppCompatActivity  implements android.location
             MenuItem item_home = mBottomNav.getMenu().findItem(R.id.home);
             item_home.setTitle("Home");
             MenuItem item_mylist = mBottomNav.getMenu().findItem(R.id.mylist);
-            item_mylist.setTitle("My List");
+            item_mylist.setTitle("History");
             MenuItem item_profile = mBottomNav.getMenu().findItem(R.id.profile);
             item_profile.setTitle("Profile");
         }

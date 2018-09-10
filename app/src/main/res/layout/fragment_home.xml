@@ -111,6 +111,58 @@
                     android:background="@color/deep_background">
                 </LinearLayout>
             </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/user_post"
+                android:layout_height="100dp">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_posts"
+                    android:background="@mipmap/baseline_swap_horiz_black_24"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/iv_posts"
+                    android:layout_marginStart="20dp"
+                    android:text="Post List"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/tv_postsheading"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/chk_posts"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="40dp"
+                    android:layout_toEndOf="@id/iv_posts"
+                    android:layout_below="@id/tv_postsheading"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Check your all Posts"/>
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/ic_keyboard_arrow_right_white_24dp"
+                    android:backgroundTint="@color/colorPrimaryLight"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="40dp"
+                    android:background="@color/deep_background">
+                </LinearLayout>
+            </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_marginStart="20dp"

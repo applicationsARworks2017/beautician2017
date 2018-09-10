@@ -137,13 +137,31 @@ public class ShopListAdapter extends BaseAdapter {
         holder.price_min.setText("$ "+_pos.getPrice());
         String reviews=_pos.getNo_of_reviews();
         if(reviews=="" || reviews==null ||reviews.contentEquals("null")){
-            holder.rev_shop.setText(" No "+" reviews");
+            if(lang.contentEquals("Arabic")) {
+                holder.rev_shop.setText(R.string.no_reviews_ar);
+            }
+            else{
+                holder.rev_shop.setText(" No " + " reviews");
+
+            }
         }
         else {
-            holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" reviews");
+            if(lang.contentEquals("Arabic")) {
+                holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" "+R.string.reviews_ar);
+            }
+            else{
+                holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" reviews");
+
+            }
 
         }
-        holder.dis_shop.setText(". ~ "+_pos.getDistance()+" KM");
+        if(lang.contentEquals("Arabic")) {
+            holder.dis_shop.setText(". ~ "+_pos.getDistance()+" "+R.string.km_ar);
+        }
+        else{
+            holder.dis_shop.setText(". ~ "+_pos.getDistance()+" KM");
+
+        }
         String location=_pos.getLatitudelongitude();
         /*if(location==null || location.contentEquals("")){
 
@@ -207,7 +225,7 @@ public class ShopListAdapter extends BaseAdapter {
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.pic4);*/
-            Picasso.with(_context).load(_pos.getPhoto3()).resize(100,100).into(holder.pic4);
+            Picasso.with(_context).load(_pos.getPhoto4()).resize(100,100).into(holder.pic4);
             //imageLoader.displayImage(_pos.getPhoto4(),holder.pic4,options);
 
         }

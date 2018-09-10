@@ -326,7 +326,8 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         editsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editsave.getText().toString().toLowerCase().contentEquals("edit")) {
+                if(editsave.getText().toString().toLowerCase().contentEquals("edit") ||
+                        editsave.getText().toString().trim().contentEquals("تعديل")) {
                     editable = true;
                     if(lang.contentEquals("Arabic")){
                         editsave.setText("حفظ");
@@ -1112,7 +1113,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                     server_status = newObj.optInt("status");
                     if (server_status == 1) {
                         if(lang.contentEquals("Arabic")){
-                            server_message="تحرير ناجحة" ;
+                            server_message=" تم التعديل" ;
                         }
                         else {
                             server_message = "Edit Successful";

@@ -171,7 +171,7 @@ public class Login_Activity extends AppCompatActivity {
                 // find the radiobutton by returned id
                 radioButton = (RadioButton) findViewById(selectedId);
 
-                if(radioButton.getText().toString().trim().contains("Costumer")){
+                if(radioButton.getText().toString().trim().contains("Customer")){
                     Intent intent=new Intent(Login_Activity.this,ForgotPassword.class);
                     intent.putExtra("PAGE","Costumer");
                     intent.putExtra("LANG",lang);

@@ -54,7 +54,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
     }
     public class Holder{
         TextView Name_service,remarks,expected_date,otp_service,gv_feedback;
-        ImageView im_reply;
+        TextView im_reply;
 
     }
     @Override
@@ -70,7 +70,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
             holder.remarks=(TextView)convertView.findViewById(R.id.servicedetails);
             holder.otp_service=(TextView)convertView.findViewById(R.id.otp_service);
             holder.expected_date=(TextView)convertView.findViewById(R.id.expected_date);
-            holder.im_reply=(ImageView)convertView.findViewById(R.id.im_reply);
+            holder.im_reply=(TextView) convertView.findViewById(R.id.im_reply);
             holder.gv_feedback=(TextView) convertView.findViewById(R.id.gv_feedback);
             convertView.setTag(holder);
         }
@@ -97,11 +97,12 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
         if(status.contentEquals("0")){
             holder.gv_feedback.setTag(holder);
             holder.gv_feedback.setVisibility(View.GONE);
-            Resources ress = _context.getResources();
+            /*Resources ress = _context.getResources();
             Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_white_24dp);
             drawable1 = DrawableCompat.wrap(drawable1);
             DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.deep_background));
-            holder.im_reply.setImageDrawable(drawable1);
+            holder.im_reply.setImageDrawable(drawable1);*/
+            holder.im_reply.setText("Waiting");
 
         }
         else if(status.contentEquals("1")){
@@ -115,35 +116,69 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
                 holder.otp_service.setText("Share OTP before service and get back your"+ HomeActivity.min_post_charge+" OTP : "+_pos.getOtp());
 
             }
-            Resources ress = _context.getResources();
+            holder.im_reply.setText(_pos.getOtp());
+
+            /*Resources ress = _context.getResources();
             Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
             drawable1 = DrawableCompat.wrap(drawable1);
             DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.deep_background));
-            holder.im_reply.setImageDrawable(drawable1);
+            holder.im_reply.setImageDrawable(drawable1);*/
 
         }
         else if(status.contentEquals("2")){
-            holder.gv_feedback.setVisibility(View.GONE);
+            /*holder.gv_feedback.setVisibility(View.GONE);
             holder.otp_service.setVisibility(View.GONE);
             Resources ress = _context.getResources();
             Drawable drawable1 = ress.getDrawable(R.mipmap.ic_power_input_white_24dp);
             drawable1 = DrawableCompat.wrap(drawable1);
             DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-            holder.im_reply.setImageDrawable(drawable1);
+            holder.im_reply.setImageDrawable(drawable1);*/
+            if(lang.contentEquals("Arabic")){
+                holder.im_reply.setText(R.string.on_going_ar);
+
+            }
+            else {
+                holder.im_reply.setText("Ongoing");
+            }
+
 
         }
         else if(status.contentEquals("3")){
-            holder.gv_feedback.setVisibility(View.VISIBLE);
+            if(lang.contentEquals("Arabic")){
+                holder.im_reply.setText(R.string.completed_ar);
+
+            }
+            else {
+                holder.im_reply.setText("Completed");
+            }
+            /*holder.gv_feedback.setVisibility(View.VISIBLE);
             holder.otp_service.setVisibility(View.GONE);
             Resources ress = _context.getResources();
             Drawable drawable1 = ress.getDrawable(R.mipmap.ic_done_all_white_24dp);
             drawable1 = DrawableCompat.wrap(drawable1);
             DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.colorPrimary));
-            holder.im_reply.setImageDrawable(drawable1);
+            holder.im_reply.setImageDrawable(drawable1);*/
+
+        }
+        else if (status.contentEquals("8")){
+            if(lang.contentEquals("Arabic")){
+                holder.im_reply.setText(R.string.rejected_ar);
+
+            }
+            else {
+                holder.im_reply.setText("Rejected");
+            }
+            holder.gv_feedback.setVisibility(View.GONE);
 
         }
         else{
-            holder.im_reply.setEnabled(false);
+            if(lang.contentEquals("Arabic")){
+                holder.im_reply.setText(R.string.completed_ar);
+
+            }
+            else {
+                holder.im_reply.setText("Completed");
+            }
             holder.gv_feedback.setVisibility(View.GONE);
 
         }

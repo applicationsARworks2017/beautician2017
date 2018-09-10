@@ -132,13 +132,13 @@ public class SignupActivity extends AppCompatActivity implements android.locatio
     private void setupViewPager(ViewPager viewPager) {
         if(lang.contentEquals("Arabic")){
             ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-            adapter.addFragment(new CostumerSignup(), "مصمم الأزياء");
+            adapter.addFragment(new CostumerSignup(), "العميل");
             adapter.addFragment(new SPSignup(latitude,longitude), "مقدم الخدمة");
             viewPager.setAdapter(adapter);
         }
         else {
             ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-            adapter.addFragment(new CostumerSignup(), "COSTUMER");
+            adapter.addFragment(new CostumerSignup(), "CUSTOMER");
             adapter.addFragment(new SPSignup(latitude, longitude), "SERVICE PROVIDER");
             viewPager.setAdapter(adapter);
         }

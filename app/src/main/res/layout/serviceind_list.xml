@@ -63,15 +63,29 @@
                 android:textColor="@color/colorPrimaryLight"
                 android:text="Expected Date"
                 />
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_height="30dp"
+                android:background="@drawable/custombutton"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
-                android:padding="10dp"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentEnd="true"
                 android:id="@+id/im_reply"
                 android:layout_below="@id/name_service"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/custombutton"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="70dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:padding="5dp"
+                android:layout_below="@id/name_service"
+                android:id="@+id/imreject"
                 />
             <LinearLayout
                 android:layout_width="match_parent"

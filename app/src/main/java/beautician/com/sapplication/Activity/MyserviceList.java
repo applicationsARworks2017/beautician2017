@@ -101,7 +101,12 @@ public class  MyserviceList extends AppCompatActivity {
                 CategoryList users= (CategoryList) parent.getItemAtPosition(position);
                 //  Toast.makeText(AdminUserList.this,users.getUser_name(),Toast.LENGTH_LONG).show();
                 catid = users.getId();
-                value = users.getCategory();
+                if(lang.contentEquals("Arabic")){
+                    value = users.getArabic_title();
+                }
+                else{
+                    value = users.getCategory();
+                }
                 callSub();
             }
         });

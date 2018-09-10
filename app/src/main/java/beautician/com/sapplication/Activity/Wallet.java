@@ -70,7 +70,7 @@ public class Wallet extends AppCompatActivity {
         if(lang.contentEquals("Arabic")){
             tv_refresh.setText("تحديث");
             tv_balance.setText("إجمالي الرصيد");
-            tv_addMoney.setText("إضافة المال");
+            tv_addMoney.setText("إضافة مبلغ الشحن");
             setTitle("محفظة نقود");
         }
         else{
@@ -93,7 +93,7 @@ public class Wallet extends AppCompatActivity {
 
                 if(lang.contentEquals("Arabic")){
                     tv_wallet.setText("مبلغ الشحن (SAR)");
-                    add_money.setText("إضافة المال");
+                    add_money.setText("موافق");
 
                 }
                 else{

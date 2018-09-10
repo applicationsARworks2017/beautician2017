@@ -24,7 +24,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:textColor="@color/black"
-            android:text="Please enter your service cost befor adding."/>
+            android:text=""/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="@color/white"
                 android:background="@color/green"
-                android:text="ADD"
+                android:text=""
                 android:id="@+id/ok"
                 android:layout_marginBottom="20dp"
                 android:layout_height="wrap_content" />

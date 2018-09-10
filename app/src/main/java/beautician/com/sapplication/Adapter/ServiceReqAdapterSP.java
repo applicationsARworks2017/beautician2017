@@ -74,7 +74,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
 
     private class Holder{
         TextView Name_service,servide_details,remarks,tv_expected_date,actualtime;
-        ImageView reply;
+        TextView reply;
     }
 
     @Override
@@ -90,26 +90,33 @@ public class ServiceReqAdapterSP extends BaseAdapter{
             holder.tv_expected_date=(TextView)convertView.findViewById(R.id.tv_expected_date);
             holder.actualtime=(TextView)convertView.findViewById(R.id.actualtime);
             holder.remarks=(TextView)convertView.findViewById(R.id.servicedetails);
-            holder.reply=(ImageView) convertView.findViewById(R.id.im_reply);
+            holder.reply=(TextView) convertView.findViewById(R.id.im_reply);
             convertView.setTag(holder);
         }
         else{
             holder = (Holder) convertView.getTag();
         }
-        if(_pos.getStatus().contentEquals("false") || _pos.getStatus().contentEquals("0")){
-            holder.reply.setVisibility(View.VISIBLE);
-        }
-        else{
-            holder.reply.setVisibility(View.GONE);
-        }
         holder.Name_service.setTag(position);
         holder.tv_expected_date.setTag(position);
         holder.remarks.setTag(position);
-        holder.reply.setTag(position);
+        holder.reply.setTag(holder);
         holder.actualtime.setTag(position);
 
         holder.remarks.setText(_pos.getRemarks());
         holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
+        final String status=_pos.getStatus();
+
+
+        if(status.contentEquals("false") || status.contentEquals("0")){
+            //holder.reply.setVisibility(View.VISIBLE);
+            holder.reply.setText("Reply");
+        }
+        else{
+            // holder.reply.setVisibility(View.GONE);
+            holder.reply.setText("Replied");
+
+        }
+
         if (lang.contentEquals("Arabic")) {
             holder.Name_service.setText(_pos.getName()+" تم نشره ل " + _pos.getSub_category());
 
@@ -143,7 +150,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         holder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // holder1=(Holder)v.getTag();
+                holder1=(Holder)v.getTag();
                 dialog=new Dialog((_context));
                 dialog.setContentView(R.layout.dialog_reply);
                 ImageView im_close=(ImageView)dialog.findViewById(R.id.im_close);
@@ -311,6 +318,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
             super.onPostExecute(user);
             if(server_status==1) {
                 dialog.dismiss();
+                holder1.reply.setText("Replied");
                 UpdateService updateService=new UpdateService();
                 updateService.execute(serviceRequestid,"1");
               //  Toast.makeText(_context,server_message,Toast.LENGTH_SHORT).show();
@@ -472,6 +480,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         protected void onPostExecute(Void user) {
             super.onPostExecute(user);
             progressDialog.dismiss();
+            holder1.reply.setText("Replied");
             Toast.makeText(_context, server_message, Toast.LENGTH_SHORT).show();
         }
     }

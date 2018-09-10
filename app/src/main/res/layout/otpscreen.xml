@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enter OTP to continue the service"
+            android:id="@+id/otp_head"
             android:textColor="@color/colorPrimary"
             android:layout_margin="20dp"/>
 
@@ -38,7 +38,6 @@
             android:layout_height="40dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="Submit"
             android:textColor="@color/colorPrimary"
             android:background="@drawable/customedittext"
             />

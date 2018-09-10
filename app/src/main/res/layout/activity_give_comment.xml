@@ -19,7 +19,6 @@
                 android:id="@+id/txt_ratings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Enter your Ratings"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:layout_marginStart="20dp"
@@ -63,7 +62,7 @@
                 android:layout_below="@id/rel_ratingpoints"
                 android:layout_margin="20dp"
                 android:id="@+id/et_comments_feedback"
-                android:hint="Comments"/>
+                />
 
             <Button
                 android:layout_width="match_parent"
@@ -71,7 +70,6 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"
                 android:background="@color/colorPrimaryLight"
-                android:text="submit"
                 android:textColor="@color/white"
                 android:id="@+id/bt_subratings"/>
         </LinearLayout>

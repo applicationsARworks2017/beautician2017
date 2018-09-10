@@ -104,10 +104,12 @@ public class SubcategoriesAdapter extends BaseAdapter {
 
         if(lang.contentEquals("Arabic")){
             holder.tv_subcategory.setText(_pos.getArabic_title());
+            holder.bt_add.setText(R.string.add_ar);
 
         }
         else{
             holder.tv_subcategory.setText(_pos.getSubcategory());
+            holder.bt_add.setText(R.string.add_en);
 
         }
 
@@ -120,7 +122,20 @@ public class SubcategoriesAdapter extends BaseAdapter {
                 dialog.setContentView(R.layout.dialog_price);
                 ImageView im_close=(ImageView)dialog.findViewById(R.id.im_close);
                 TextView tv_subcat=(TextView)dialog.findViewById(R.id.subcategoryname);
-                tv_subcat.setText(_pos.getSubcategory());
+                TextView dialougehead=(TextView)dialog.findViewById(R.id.dialougehead);
+                Button ok=(Button) dialog.findViewById(R.id.ok);
+                if(lang.contentEquals("Arabic")){
+                    dialougehead.setText(R.string.enter_cost_ar);
+                    ok.setText(R.string.add_ar);
+                    tv_subcat.setText(_pos.getArabic_title());
+
+                }
+                else{
+                    ok.setText(R.string.add_ar);
+                    tv_subcat.setText(_pos.getSubcategory());
+                    dialougehead.setText(R.string.enter_cost_en);
+
+                }
                 im_close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -128,7 +143,6 @@ public class SubcategoriesAdapter extends BaseAdapter {
                     }
                 });
                 final EditText et_cost=(EditText)dialog.findViewById(R.id.et_price);
-                Button ok=(Button)dialog.findViewById(R.id.ok);
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

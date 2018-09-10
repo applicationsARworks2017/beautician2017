@@ -50,7 +50,7 @@
         android:textColor="@color/white"
         android:layout_centerVertical="true"
         android:id="@+id/bt_add"
-        android:text="add"/>
+        android:text=""/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
