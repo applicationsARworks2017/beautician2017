@@ -142,9 +142,11 @@ public class PropsalAdapter extends BaseAdapter {
 
              if (lang.contentEquals("Arabic")) {
             holder.vew_details.setText("تفاصيل الخدمة");
+            holder.gv_feedback.setText("ردود الفعل");
 
         } else {
             holder.vew_details.setText("Service Details");
+            holder.gv_feedback.setText("Give Feedback");
 
         }
 
@@ -280,10 +282,12 @@ public class PropsalAdapter extends BaseAdapter {
             }
             else if(status.contentEquals("4")){ // otp matched and service continuing
                 if(lang.contentEquals("Arabic")){
-                    holder.im_reply.setText(R.string.on_going_ar);
+                    holder.im_reply.setText(R.string.finsih_ar);
+
                 }
                 else {
-                    holder.im_reply.setText(R.string.on_going_en);
+                    holder.im_reply.setText(R.string.finsih_en);
+
                 }
                 /*Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_power_input_white_24dp);
@@ -507,7 +511,7 @@ public class PropsalAdapter extends BaseAdapter {
                     });
 
                 }
-                else if(imreply_text.contentEquals("Ongoing") || imreply_text.contentEquals("جاري تنفيذ الطلب")){
+                else if(imreply_text.contentEquals("Finish") || imreply_text.contentEquals("إنهاء")){
                     callTo = "4";
                     updated_status=5;
                     user_id=_pos.getUser_id();

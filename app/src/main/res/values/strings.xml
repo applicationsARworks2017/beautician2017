@@ -111,6 +111,10 @@
     <string name="km_en">KM</string>
     <string name="submitted_en">Submitted</string>
     <string name="submitted_ar">تم تقييم الخدمة</string>
+    <string name="cancel_ar">إلغاء</string>
+    <string name="ok_ar">موافق</string>
+    <string name="finsih_en">Finish</string>
+    <string name="finsih_ar">إنهاء</string>
     <string name="enter_cost_en">Enter your service cost</string>
     <string name="enter_cost_ar">تكلفة الخدمة الخاصة بك</string>
 </resources>

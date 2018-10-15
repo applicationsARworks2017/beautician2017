@@ -218,8 +218,12 @@ public class OfferSet extends AppCompatActivity {
                             String offer_detail = o_list_obj.getString("remarks");
                             String shop_id=jobj.getString("id");
                             String shopname=jobj.getString("shopname");
+                            String photo1=jobj.getString("photo1");
+                            String photo2=jobj.getString("photo2");
+                            String photo3=jobj.getString("photo3");
+                            String photo4=jobj.getString("photo4");
 
-                            Offers list1 = new Offers(id,title,offer_detail,shop_id,shopname);
+                            Offers list1 = new Offers(id,title,offer_detail,shop_id,shopname,photo1,photo2,photo3,photo4);
                             oList.add(list1);
                         }
                     }

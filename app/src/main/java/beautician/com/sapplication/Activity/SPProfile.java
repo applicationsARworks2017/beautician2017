@@ -38,6 +38,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -52,6 +53,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,6 +68,7 @@ import java.util.List;
 
 import beautician.com.sapplication.Pojo.Shops;
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.Utils.APIManager;
 import beautician.com.sapplication.Utils.Constants;
 import beautician.com.sapplication.Utils.MultipartUtility;
 
@@ -354,9 +357,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             public void onClick(View v) {
                 if(editable==true) {
                     final Dialog dialog = new Dialog(SPProfile.this);
-                    dialog.setContentView(R.layout.chooseaction);
+                    dialog.setContentView(R.layout.chooseaction_profile);
                     TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
                     TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    TextView delete_gallery=(TextView) dialog.findViewById(R.id.delete_gallery);
                     dialog.show();
                     choosecamera.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -377,6 +381,14 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                             captureImage(1,"gallery");
                         }
                     });
+                    delete_gallery.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            CallToAPI(shop_id,"1")  ;
+                            dialog.dismiss();
+
+                        }
+                    });
                 }
                 else{
                     String shop_pic1 = SPProfile.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.SHOP_PIC_ONE, null);
@@ -389,9 +401,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             public void onClick(View v) {
                 if(editable==true) {
                     final Dialog dialog = new Dialog(SPProfile.this);
-                    dialog.setContentView(R.layout.chooseaction);
+                    dialog.setContentView(R.layout.chooseaction_profile);
                     TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
                     TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    TextView delete_gallery=(TextView) dialog.findViewById(R.id.delete_gallery);
                     dialog.show();
                     choosecamera.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -412,6 +425,14 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                             captureImage(2,"gallery");
                         }
                     });
+                    delete_gallery.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            CallToAPI(shop_id,"2")  ;
+                            dialog.dismiss();
+
+                        }
+                    });
 
                 }
                 else{
@@ -425,9 +446,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             public void onClick(View v) {
                 if(editable==true) {
                     final Dialog dialog = new Dialog(SPProfile.this);
-                    dialog.setContentView(R.layout.chooseaction);
+                    dialog.setContentView(R.layout.chooseaction_profile);
                     TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
                     TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    TextView delete_gallery=(TextView) dialog.findViewById(R.id.delete_gallery);
                     dialog.show();
                     choosecamera.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -448,6 +470,14 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                             captureImage(3,"gallery");
                         }
                     });
+                    delete_gallery.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            CallToAPI(shop_id,"3")  ;
+                            dialog.dismiss();
+
+                        }
+                    });
 
                 }
                 else {
@@ -461,9 +491,10 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             public void onClick(View v) {
                 if(editable==true) {
                     final Dialog dialog = new Dialog(SPProfile.this);
-                    dialog.setContentView(R.layout.chooseaction);
+                    dialog.setContentView(R.layout.chooseaction_profile);
                     TextView choosecamera=(TextView) dialog.findViewById(R.id.select_camera);
                     TextView choosegeller=(TextView) dialog.findViewById(R.id.select_gallery);
+                    TextView delete_gallery=(TextView) dialog.findViewById(R.id.delete_gallery);
                     dialog.show();
                     choosecamera.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -482,6 +513,13 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                             filechooser=2;
                             gal4=1;
                             captureImage(4,"gallery");
+                        }
+                    });
+                    delete_gallery.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            CallToAPI(shop_id,"4")  ;
+                            dialog.dismiss();
                         }
                     });
 
@@ -686,6 +724,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
                 if(imageclick==1) {
                     picavailable1=true;
                     pic1.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
                 }
                 else if(imageclick==2) {
                     picavailable2=true;
@@ -710,7 +749,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         OutputStream os;
         try {
             os = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, os);
             os.flush();
             os.close();
         } catch (Exception e) {
@@ -1158,4 +1197,47 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             }
         }
     }
+
+
+    private void CallToAPI(String shop_id,String photo_no) {
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("id", shop_id);
+            if(photo_no.contentEquals("1")){
+                jsonObject.put("photo1", "");
+            }
+            else if(photo_no.contentEquals("2")){
+                jsonObject.put("photo2", "");
+            }
+            else if(photo_no.contentEquals("3")){
+                jsonObject.put("photo3", "");
+            }
+            else if(photo_no.contentEquals("4")){
+                jsonObject.put("photo4", "");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new APIManager().ModifyAPI(Constants.ONLINEURL + Constants.SHOP_EDIT, "res", jsonObject, SPProfile.this, new APIManager.APIManagerInterface() {
+            @Override
+            public void onSuccess(Object resultObj) {
+                getThedetails();
+                if(lang.contentEquals("Arabic")) {
+                    Toast.makeText(SPProfile.this, "تم الحذف", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(SPProfile.this, "Deleted", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(SPProfile.this,error,Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
 }

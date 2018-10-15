@@ -232,11 +232,12 @@ public class CheckIndividualPost extends AppCompatActivity {
                             String personmobile=new_obj.getString("mobile");
                             String personphoto=new_obj.getString("photo");
                             String status=o_list_obj.getString("status");
+                            String reason=o_list_obj.getString("reason");
                             String shopname=new_obj1.getString("shopname");
                             String shopid=new_obj1.getString("id");
                             String expected_date=o_list_obj.getString("expected_date");
                             IndServiceRequest list1 = new IndServiceRequest(id,remarks,personId,personName,personemail,personmobile,
-                                    personphoto,status,no_of_user,shopname,expected_date,otp,shopid,created);
+                                    personphoto,status,no_of_user,shopname,expected_date,otp,shopid,created,reason);
                             isrList.add(list1);
                         }
                     }

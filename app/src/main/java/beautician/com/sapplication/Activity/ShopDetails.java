@@ -268,10 +268,20 @@ public class ShopDetails extends AppCompatActivity {
         shop_email.setText(email);
         shop_address.setText(address);
         if(reviews=="" || reviews==null ||reviews.contentEquals("null")){
-            shop_reviws.setText("No "+ "Reviews");
+            if(lang.contentEquals("Arabic")){
+                shop_reviws.setText(R.string.no_reviews_ar);
+            }
+            else {
+                shop_reviws.setText("No " + "Reviews");
+            }
         }
         else {
-            shop_reviws.setText(reviews+" Reviews");
+            if(lang.contentEquals("Arabic")){
+                shop_reviws.setText(reviews + "الخدمة ");
+            }
+            else {
+                shop_reviws.setText(reviews + " Reviews");
+            }
 
         }
         if(ratings==null || ratings.contentEquals("") || ratings.contentEquals("null")){

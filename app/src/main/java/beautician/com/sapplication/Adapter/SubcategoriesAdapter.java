@@ -276,10 +276,10 @@ public class SubcategoriesAdapter extends BaseAdapter {
                     server_status = j_obj.optInt("status");
                     if (server_status == 1) {
                         if(lang.contentEquals("Arabic")){
-                            server_message="وأضاف";
+                            server_message="تم اضافة الخدمة";
 
                         }else{
-                            server_message="Added";
+                            server_message="Service Added";
 
                         }
                     } else {

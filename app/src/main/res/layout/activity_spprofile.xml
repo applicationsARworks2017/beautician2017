@@ -60,14 +60,6 @@
                         android:layout_height="match_parent"
                         android:id="@+id/photo1"
                         android:background="@drawable/addphoto"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:visibility="gone"
-                            android:background="@mipmap/ic_mode_edit_white_24dp"
-                            android:backgroundTint="@color/colorPrimaryDark"/>
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="160dp"
@@ -78,14 +70,7 @@
                         android:id="@+id/photo2"
                         android:background="@drawable/addphoto"
                         android:layout_marginStart="10dp"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:visibility="gone"
-                            android:background="@mipmap/ic_mode_edit_white_24dp"
-                            android:backgroundTint="@color/colorPrimaryDark"/>
+
                     </RelativeLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -102,14 +87,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/photo3"
                             android:background="@drawable/addphoto"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:visibility="gone"
-                            android:background="@mipmap/ic_mode_edit_white_24dp"
-                            android:backgroundTint="@color/colorPrimaryDark"/>
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="160dp"
@@ -120,14 +97,7 @@
                             android:id="@+id/photo4"
                             android:background="@drawable/addphoto"
                             android:layout_marginStart="10dp"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:visibility="gone"
-                            android:background="@mipmap/ic_mode_edit_white_24dp"
-                            android:backgroundTint="@color/colorPrimaryDark"/>
+
                     </RelativeLayout>
                 </LinearLayout>
                 <!--<RelativeLayout

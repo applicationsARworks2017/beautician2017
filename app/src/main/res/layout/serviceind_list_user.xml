@@ -35,6 +35,16 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/servicedetails"
                 android:layout_marginStart="15dp"
+                android:textColor="@color/red"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="100dp"
+                android:id="@+id/reason"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reason"
+                android:layout_marginStart="15dp"
                 android:text="OTP"
                 android:textColor="@color/black"
                 android:layout_marginEnd="60dp"

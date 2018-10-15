@@ -53,7 +53,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
         return position;
     }
     public class Holder{
-        TextView Name_service,remarks,expected_date,otp_service,gv_feedback;
+        TextView Name_service,remarks,expected_date,otp_service,gv_feedback,reason;
         TextView im_reply;
 
     }
@@ -69,6 +69,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
             holder.Name_service=(TextView)convertView.findViewById(R.id.name_service);
             holder.remarks=(TextView)convertView.findViewById(R.id.servicedetails);
             holder.otp_service=(TextView)convertView.findViewById(R.id.otp_service);
+            holder.reason=(TextView)convertView.findViewById(R.id.reason);
             holder.expected_date=(TextView)convertView.findViewById(R.id.expected_date);
             holder.im_reply=(TextView) convertView.findViewById(R.id.im_reply);
             holder.gv_feedback=(TextView) convertView.findViewById(R.id.gv_feedback);
@@ -81,6 +82,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
         holder.remarks.setTag(position);
         holder.otp_service.setTag(position);
         holder.im_reply.setTag(holder);
+        holder.reason.setTag(holder);
         holder.gv_feedback.setTag(holder);
         holder.remarks.setText(_pos.getRemarks());
         final String status=_pos.getStatus();
@@ -103,10 +105,12 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
             DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.deep_background));
             holder.im_reply.setImageDrawable(drawable1);*/
             holder.im_reply.setText("Waiting");
+            holder.reason.setVisibility(View.GONE);
 
         }
         else if(status.contentEquals("1")){
             holder.gv_feedback.setVisibility(View.GONE);
+            holder.reason.setVisibility(View.GONE);
             holder.otp_service.setVisibility(View.VISIBLE);
             if(lang.contentEquals("Arabic")){
                 holder.otp_service.setText("مشاركة OTP قبل الخدمة واستعادة مبلغ $ 5 OTP الخاص بك : "+_pos.getOtp());
@@ -126,6 +130,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
 
         }
         else if(status.contentEquals("2")){
+            holder.reason.setVisibility(View.GONE);
             /*holder.gv_feedback.setVisibility(View.GONE);
             holder.otp_service.setVisibility(View.GONE);
             Resources ress = _context.getResources();
@@ -144,6 +149,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
 
         }
         else if(status.contentEquals("3")){
+            holder.reason.setVisibility(View.GONE);
             if(lang.contentEquals("Arabic")){
                 holder.im_reply.setText(R.string.completed_ar);
 
@@ -161,6 +167,13 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
 
         }
         else if (status.contentEquals("8")){
+            holder.reason.setVisibility(View.VISIBLE);
+            if(_pos.getReason().contentEquals("null")){
+
+            }
+            else {
+                holder.reason.setText(_pos.getReason());
+            }
             if(lang.contentEquals("Arabic")){
                 holder.im_reply.setText(R.string.rejected_ar);
 
@@ -180,6 +193,7 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
                 holder.im_reply.setText("Completed");
             }
             holder.gv_feedback.setVisibility(View.GONE);
+            holder.reason.setVisibility(View.GONE);
 
         }
 

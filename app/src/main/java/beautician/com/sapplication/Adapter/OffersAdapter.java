@@ -14,8 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 
 import beautician.com.sapplication.Activity.IndividualRequest;
 import beautician.com.sapplication.Activity.OfferSet;
+import beautician.com.sapplication.Activity.ShopDetails;
 import beautician.com.sapplication.Pojo.Offers;
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -69,8 +73,9 @@ public class OffersAdapter extends BaseAdapter {
         return position;
     }
     private class Holder{
-        TextView offerHeading,offer_details;
-        ImageView im_reply;
+        TextView offerHeading,offer_details,shopname;
+        ImageView im_reply,pic1,pic2,pic3,pic4;
+        LinearLayout img_lin;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -83,7 +88,13 @@ public class OffersAdapter extends BaseAdapter {
             user_id = _context.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
             holder.offerHeading=(TextView)convertView.findViewById(R.id.of_heading);
             holder.offer_details=(TextView)convertView.findViewById(R.id.offeredetails);
+            holder.shopname=(TextView)convertView.findViewById(R.id.shopname);
             holder.im_reply=(ImageView) convertView.findViewById(R.id.im_reply);
+            holder.pic1=(ImageView) convertView.findViewById(R.id.pic1);
+            holder.pic2=(ImageView) convertView.findViewById(R.id.pic2);
+            holder.pic3=(ImageView) convertView.findViewById(R.id.pic3);
+            holder.pic4=(ImageView) convertView.findViewById(R.id.pic4);
+            holder.img_lin=(LinearLayout)convertView.findViewById(R.id.img_lin);
             convertView.setTag(holder);
         }
         else{
@@ -92,15 +103,84 @@ public class OffersAdapter extends BaseAdapter {
         holder.offerHeading.setTag(position);
         holder.im_reply.setTag(holder);
         holder.offer_details.setTag(position);
+        holder.shopname.setTag(position);
+        holder.pic1.setTag(position);
+        holder.pic2.setTag(position);
+        holder.pic3.setTag(position);
+        holder.pic4.setTag(position);
+        holder.img_lin.setTag(position);
         holder.offer_details.setText(_pos.getOffer_detail());
+        holder.shopname.setText(_pos.getShopname());
+        holder.shopname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_context, ShopDetails.class);
+                intent.putExtra("SHOP_ID",_pos.getShop_id());
+                intent.putExtra("MAP","false");
+                _context.startActivity(intent);
+            }
+        });
+        holder.img_lin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_context, ShopDetails.class);
+                intent.putExtra("SHOP_ID",_pos.getShop_id());
+                intent.putExtra("MAP","false");
+                _context.startActivity(intent);
+            }
+        });
         if(lang.contentEquals("Arabic")){
-            holder.offerHeading.setText(_pos.getTitle()+" في "+_pos.getShopname());
+            holder.offerHeading.setText(_pos.getTitle());
 
         }
         else{
-            holder.offerHeading.setText(_pos.getTitle()+" at "+_pos.getShopname());
+            holder.offerHeading.setText(_pos.getTitle());
 
         }
+
+
+
+        if(!_pos.getPhoto1().isEmpty()) {
+             /*Glide.with(_context).load(_pos.getPhoto1())
+                     .thumbnail(0.5f)
+                     .crossFade()
+                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                     .into(holder.pic1);*/
+             String uu=Constants.PICURL+_pos.getPhoto1();
+            Picasso.with(_context).load(Constants.SHOP_PICURL+_pos.getPhoto1()).resize(100,100).into(holder.pic1);
+            // imageLoader.displayImage(_pos.getPhoto1(),holder.pic1,options);
+        }
+        if(!_pos.getPhoto2().isEmpty()) {
+            Picasso.with(_context).load(Constants.SHOP_PICURL+_pos.getPhoto2())
+                    .resize(100,100).into(holder.pic2);
+            /*Glide.with(_context).load(_pos.getPhoto2())
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.pic2);*/
+            //imageLoader.displayImage(_pos.getPhoto2(),holder.pic2,options);
+
+        }
+        if(!_pos.getPhoto3().isEmpty()) {
+            Picasso.with(_context).load(Constants.SHOP_PICURL+_pos.getPhoto3()).resize(100,100).into(holder.pic3);
+            //imageLoader.displayImage(_pos.getPhoto3(),holder.pic3,options);
+            /*Glide.with(_context).load(_pos.getPhoto3())
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.pic3);*/
+
+        }if(!_pos.getPhoto4().isEmpty()) {
+           /* Glide.with(_context).load(_pos.getPhoto4())
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.pic4);*/
+            Picasso.with(_context).load(Constants.SHOP_PICURL+_pos.getPhoto4()).resize(100,100).into(holder.pic4);
+            //imageLoader.displayImage(_pos.getPhoto4(),holder.pic4,options);
+
+        }
+
         if(page.contentEquals("user_side")){
             holder.im_reply.setVisibility(View.GONE);
 

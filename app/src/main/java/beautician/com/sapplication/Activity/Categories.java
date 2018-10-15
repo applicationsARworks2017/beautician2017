@@ -77,9 +77,13 @@ public class Categories extends AppCompatActivity {
 
         if(lang.contentEquals("Arabic")){
             setTitle("قائمة الخدمات");
+            bt_ok.setText("موافق");
+            bt_cancel.setText("إلغاء");
         }
         else{
             setTitle("Service List");
+            bt_ok.setText("OK");
+            bt_cancel.setText("Cancel");
         }
 
         if(CheckInternet.getNetworkConnectivityStatus(this)){

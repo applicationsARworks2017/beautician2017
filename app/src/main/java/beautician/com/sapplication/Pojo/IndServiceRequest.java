@@ -6,7 +6,7 @@ package beautician.com.sapplication.Pojo;
 
 public class IndServiceRequest {
     String id,remarks,personId,personName,personemail,personmobile,
-            personphoto,status, no_of_user,shopname,expected_date,otp,shopid,created;
+            personphoto,status, no_of_user,shopname,expected_date,otp,shopid,created,reason;
 
     public String getId() {
         return id;
@@ -120,9 +120,17 @@ public class IndServiceRequest {
         this.created = created;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
     public IndServiceRequest(String id, String remarks, String personId, String personName, String personemail, String personmobile, String personphoto,
                              String status, String no_of_user, String shopname, String ecpected_date,
-                             String otp, String shopid, String created) {
+                             String otp, String shopid, String created, String reason) {
 
         this.id=id;
         this.remarks=remarks;
@@ -138,6 +146,8 @@ public class IndServiceRequest {
         this.otp=otp;
         this.shopid=shopid;
         this.created=created;
+        this.reason=reason;
+
 
 
 

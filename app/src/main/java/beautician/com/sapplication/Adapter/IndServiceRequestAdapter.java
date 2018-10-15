@@ -183,11 +183,11 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         }
         else if (_pos.getStatus().contentEquals("2")) {  // service going on
             if(lang.contentEquals("Arabic")){
-                holder.im_reply.setText(R.string.on_going_ar);
+                holder.im_reply.setText(R.string.finsih_en);
 
             }
             else {
-                holder.im_reply.setText(R.string.on_going_en);
+                holder.im_reply.setText(R.string.finsih_ar);
             }
             holder.imreject.setVisibility(View.GONE);
         }
@@ -367,7 +367,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                     });
                 }
                // else if(status.contentEquals("2") || tv_text.contentEquals("Service On")) {
-                else if(tv_text.contentEquals("Ongoing") || tv_text.contentEquals("جاري تنفيذ الطلب")) {
+                else if(tv_text.contentEquals("Finsih") || tv_text.contentEquals("إنهاء")) {
                     updated_status = 3;
                     if (lang.contentEquals("Arabic")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);

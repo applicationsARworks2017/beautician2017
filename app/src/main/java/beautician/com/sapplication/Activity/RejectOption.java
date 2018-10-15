@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -28,6 +29,7 @@ public class RejectOption extends AppCompatActivity {
     RatingspointsAdapter radapter;
     Button cancel_reject,sub_reject;
     String improve,lang;
+    TextView selectreason;
 
 
 
@@ -44,21 +46,31 @@ public class RejectOption extends AppCompatActivity {
 
 
         lv_ratings_value=(ListView)findViewById(R.id.ratings_value);
+        selectreason=(TextView) findViewById(R.id.selectreason);
         ratingspoints = new ArrayList();
+        cancel_reject=(Button)findViewById(R.id.cancel_reject);
+        sub_reject=(Button)findViewById(R.id.sub_reject);
         if(lang.contentEquals("Arabic")){
             ratingspoints.add(new RatingsPoints("لايويجد وقت شاغر", false));
             ratingspoints.add(new RatingsPoints("الوقت غير مناسب", false));
             ratingspoints.add(new RatingsPoints("تعليق", false));
+            selectreason.setText(R.string.reasons_booking_ar);
+            cancel_reject.setText("إلغاء");
+            sub_reject.setText(R.string.ok_ar);
+
         }
         else {
             ratingspoints.add(new RatingsPoints("Fully booked", false));
             ratingspoints.add(new RatingsPoints("Time isn't suitable", false));
             ratingspoints.add(new RatingsPoints("Others", false));
+            selectreason.setText(R.string.reasons_booking_en);
+            cancel_reject.setText("Cancel");
+            sub_reject.setText("OK");
+
         }
         radapter = new RatingspointsAdapter(ratingspoints, getApplicationContext());
         lv_ratings_value.setAdapter(radapter);
-        cancel_reject=(Button)findViewById(R.id.cancel_reject);
-        sub_reject=(Button)findViewById(R.id.sub_reject);
+
         cancel_reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

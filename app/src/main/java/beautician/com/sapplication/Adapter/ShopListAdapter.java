@@ -134,11 +134,11 @@ public class ShopListAdapter extends BaseAdapter {
 
         holder.Shopname.setText(_pos.getShopname());
         holder.shop_add.setText(_pos.getAddress());
-        holder.price_min.setText("$ "+_pos.getPrice());
+        holder.price_min.setText("SAR "+_pos.getPrice());
         String reviews=_pos.getNo_of_reviews();
         if(reviews=="" || reviews==null ||reviews.contentEquals("null")){
             if(lang.contentEquals("Arabic")) {
-                holder.rev_shop.setText(R.string.no_reviews_ar);
+                holder.rev_shop.setText("كيلو متر");
             }
             else{
                 holder.rev_shop.setText(" No " + " reviews");
@@ -147,7 +147,7 @@ public class ShopListAdapter extends BaseAdapter {
         }
         else {
             if(lang.contentEquals("Arabic")) {
-                holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" "+R.string.reviews_ar);
+                holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" "+"تقييم الخدمة");
             }
             else{
                 holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" reviews");
@@ -156,7 +156,7 @@ public class ShopListAdapter extends BaseAdapter {
 
         }
         if(lang.contentEquals("Arabic")) {
-            holder.dis_shop.setText(". ~ "+_pos.getDistance()+" "+R.string.km_ar);
+            holder.dis_shop.setText(". ~ "+_pos.getDistance()+" "+"التقييم");
         }
         else{
             holder.dis_shop.setText(". ~ "+_pos.getDistance()+" KM");

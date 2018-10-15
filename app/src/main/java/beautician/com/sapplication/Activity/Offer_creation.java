@@ -168,7 +168,7 @@ public class Offer_creation extends AppCompatActivity {
                     server_status = j_obj.optInt("status");
                     if (server_status == 1 ) {
                         if(lang.contentEquals("Arabic")){
-                            server_message="إنشاء العرض";
+                            server_message="تم اضافة العرض";
 
                         }
                         else{

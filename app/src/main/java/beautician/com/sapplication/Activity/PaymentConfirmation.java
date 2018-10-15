@@ -3,12 +3,15 @@ package beautician.com.sapplication.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +30,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Locale;
 
 import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
@@ -43,16 +47,29 @@ public class PaymentConfirmation extends AppCompatActivity {
     String MERCHANT_EMAIL ="mansour.nz@outlook.com";
     //Merchant Secret Key
     String own_id;
-    String lang_to_send="en";
+    String lang_to_send="en",lang_;
     int responsecode=0;
     String MERCHANT_SECRET_KEY="yVvwlwTrcV8LEVrGSBTwU9X8X4e1JHMiCiOYOIq0EyMiudZmPTTJ3RS0V61FOOXr7LpWuPW8oJrSXqfMk9wn0pnWvpBkezLmlbiP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras = getIntent().getExtras();
-        setContentView(R.layout.activity_payment_confirmation);
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+        if(lang.contentEquals("Arabic")){
+            lang_ = "ar";
+        }
+        else{
+            lang_ = "en";
 
+        }
+        Locale myLocale = new Locale(lang_ );
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        setContentView(R.layout.activity_payment_confirmation);
+        Bundle extras = getIntent().getExtras();
         if (extras != null) {
             page = extras.getString("PAGE");
             u_name = extras.getString("NAME");
@@ -71,7 +88,6 @@ public class PaymentConfirmation extends AppCompatActivity {
         own_id = PaymentConfirmation.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
 
 
-        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         et_name=(EditText)findViewById(R.id.et_user_name);
         et_phone=(EditText)findViewById(R.id.et_user_phone);
