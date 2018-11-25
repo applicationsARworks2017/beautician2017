@@ -109,11 +109,22 @@ public class ServiceReqAdapterSP extends BaseAdapter{
 
         if(status.contentEquals("false") || status.contentEquals("0")){
             //holder.reply.setVisibility(View.VISIBLE);
-            holder.reply.setText("Reply");
+            if(lang.contentEquals("Arabic")){
+                holder.reply.setText("الرد");
+
+            }
+            else {
+                holder.reply.setText("Reply");
+            }
         }
         else{
-            // holder.reply.setVisibility(View.GONE);
-            holder.reply.setText("Replied");
+            if(lang.contentEquals("Arabic")){
+                holder.reply.setText("أجاب");
+
+            }
+            else {
+                holder.reply.setText("Replied");
+            }
 
         }
 
@@ -154,6 +165,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
                 dialog=new Dialog((_context));
                 dialog.setContentView(R.layout.dialog_reply);
                 ImageView im_close=(ImageView)dialog.findViewById(R.id.im_close);
+                TextView reply_head = (TextView)dialog.findViewById(R.id.reply_head);
                 final EditText et_comments=(EditText) dialog.findViewById(R.id.et_comments);
                 im_close.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -169,6 +181,18 @@ public class ServiceReqAdapterSP extends BaseAdapter{
                         dialog.dismiss();
                     }
                 });
+                if(lang.contentEquals("Arabic")){
+                    reply_head.setText(R.string.submit_proposal_ar);
+                    ok.setText(R.string.ok_ar);
+                    cancel.setText(R.string.cancel_ar);
+                }
+                else{
+                    reply_head.setText(R.string.submit_proposal_en);
+                    ok.setText(R.string.ok);
+                    cancel.setText(R.string.cancel);
+
+                }
+
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

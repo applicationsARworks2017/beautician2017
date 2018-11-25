@@ -408,7 +408,7 @@ public class IndividualRequest extends AppCompatActivity {
             super.onPostExecute(user);
             progressDialog.dismiss();
             if(server_status==1){
-                if(balance>=HomeActivity.min_user_balance){
+                if(balance>=HomeActivity.first_post_charge){
                     final String postDetails=et_details.getText().toString().trim();
                     final String numof=sp_num.getSelectedItem().toString();
                     exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
@@ -426,7 +426,7 @@ public class IndividualRequest extends AppCompatActivity {
 
                     }
                     else{
-                        Constants.noInternetDialouge(IndividualRequest.this,"Atleast SAR "+HomeActivity.min_user_balance+" is required in your wallet for posting a service");
+                        Constants.noInternetDialouge(IndividualRequest.this,"Atleast SAR "+HomeActivity.first_post_charge+" is required in your wallet for posting a service");
 
                     }
                 }

@@ -42,6 +42,14 @@ public class PropsalView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_propsal_view);
+        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
+        if(lang.contentEquals("Arabic")){
+            setTitle("تفاصيل الطلب");
+        }
+        else{
+            setTitle("Proposal Detail");
+        }
+
         prop_head=(TextView) findViewById(R.id.prop_head);
         _remarks=(TextView) findViewById(R.id._remarks);
         noofpple=(TextView) findViewById(R.id.noofpple);
@@ -63,15 +71,12 @@ public class PropsalView extends AppCompatActivity {
                 finish();
             }
         });
-        lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
             _ok.setText("حسنا");
-            setTitle("تفاصيل الاقتراح");
         }
         else{
             _ok.setText("ok");
-            setTitle("Proposal Detail");
 
         }
 

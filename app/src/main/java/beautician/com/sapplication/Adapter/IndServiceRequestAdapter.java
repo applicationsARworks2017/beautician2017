@@ -240,29 +240,56 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 else {
                     builder.setMessage(R.string.want_reject_en);
                 }
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do nothing
-                        dialog.dismiss();
-                        //finish()   ;
-                    }
-                });
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (CheckInternet.getNetworkConnectivityStatus(_context)) {
-                           // wpage = "sp_home";
-
-                            GetBalance getWalletBalance = new GetBalance();
-                            getWalletBalance.execute(credit_id);
-
-                        } else {
-                            //Constants.noInternetDialouge(_context, "No Internet");
+                if(lang.contentEquals("Arabic")){
+                    builder.setNegativeButton(R.string.cancel_ar, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing
+                            dialog.dismiss();
+                            //finish()   ;
                         }
+                    });
+                    builder.setPositiveButton(R.string.ok_ar, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (CheckInternet.getNetworkConnectivityStatus(_context)) {
+                                // wpage = "sp_home";
 
-                    }
-                });
+                                GetBalance getWalletBalance = new GetBalance();
+                                getWalletBalance.execute(credit_id);
+
+                            } else {
+                                //Constants.noInternetDialouge(_context, "No Internet");
+                            }
+
+                        }
+                    });
+                }
+                else {
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing
+                            dialog.dismiss();
+                            //finish()   ;
+                        }
+                    });
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (CheckInternet.getNetworkConnectivityStatus(_context)) {
+                                // wpage = "sp_home";
+
+                                GetBalance getWalletBalance = new GetBalance();
+                                getWalletBalance.execute(credit_id);
+
+                            } else {
+                                //Constants.noInternetDialouge(_context, "No Internet");
+                            }
+
+                        }
+                    });
+                }
                 builder.show();
             }
         });

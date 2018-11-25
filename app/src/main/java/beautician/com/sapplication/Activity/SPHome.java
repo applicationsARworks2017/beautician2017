@@ -33,7 +33,7 @@ public class SPHome extends AppCompatActivity {
     String lang,user_id;
     TextView check_post, profilee, manage_offers, my_wallet, manage_service, my_proposal;
     public static String user_type;
-    public static double min_sp_balance = 10.0;
+    public static double min_sp_balance = 0.0;
     public static double min_service_charge = 5.0;
     RelativeLayout prop_not_sp, post_not_sp, ser_not_sp, wal_not_sp;
     TextView prop_txt_sp, post_txt_sp, ser_txt_sp, wal_txt_sp;

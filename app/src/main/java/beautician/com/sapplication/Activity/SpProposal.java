@@ -234,11 +234,16 @@ public class SpProposal extends AppCompatActivity {
                             String created = o_list_obj.getString("created");
                             String shop_id=new_obj.getString("id");
                             String shop_name=new_obj.getString("shopname");
+                            String photo1=new_obj.getString("photo1");
+                            String photo2=new_obj.getString("photo2");
+                            String photo3=new_obj.getString("photo3");
+                            String photo4=new_obj.getString("photo4");
+
                             if(page.contentEquals("user_side") && status.contentEquals("6")){
 
                             }
                             else {
-                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name,user_id,otp);
+                                Proposals list1 = new Proposals(id, service_request_id, remarks, status, created, shop_id, shop_name,user_id,otp,photo1,photo2,photo3,photo4);
                                 pList.add(list1);
                             }
                         }

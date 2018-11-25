@@ -672,11 +672,11 @@ public class Login_Activity extends AppCompatActivity {
 
             } catch (Exception exception) {
                 if(lang=="Arabic"){
-                    server_message = "اسم المستخدم أو كلمة المرور غير صحيحة";
+                    server_message = "FCMقد لا تأتي الاشعارات لعدم الحصول على ";
 
                 }
                 else{
-                    server_message = "Incorrect Username or Password";
+                    server_message = "FCM Failed to update";
                 }
                 Log.e(TAG, "SynchMobnum : doInBackground", exception);
             }

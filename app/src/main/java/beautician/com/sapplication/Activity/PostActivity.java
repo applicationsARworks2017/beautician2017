@@ -549,7 +549,7 @@ remarks:jhgjhghjgjg"
             super.onPostExecute(user);
             progressDialog.dismiss();
             if(server_status==1){
-                if(balance>=HomeActivity.min_user_balance){
+                if(balance>=HomeActivity.first_post_charge){
                     String postDetails = et_contentheading.getText().toString().trim();
                     String numof = adult.getSelectedItem().toString();
                     exp_date = txtDate.getText().toString().trim() + " " + txtTime.getText().toString().trim();
@@ -568,7 +568,7 @@ remarks:jhgjhghjgjg"
 
                     }
                     else{
-                        Constants.noInternetDialouge(PostActivity.this,"Atleast SAR "+HomeActivity.min_user_balance+" is required in your wallet for posting a service");
+                        Constants.noInternetDialouge(PostActivity.this,"Atleast SAR "+HomeActivity.first_post_charge+" is required in your wallet for posting a service");
 
                     }
 

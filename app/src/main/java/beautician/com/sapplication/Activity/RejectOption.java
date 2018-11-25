@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class RejectOption extends AppCompatActivity {
     Button cancel_reject,sub_reject;
     String improve,lang;
     TextView selectreason;
+    EditText txtreason;
 
 
 
@@ -47,6 +49,7 @@ public class RejectOption extends AppCompatActivity {
 
         lv_ratings_value=(ListView)findViewById(R.id.ratings_value);
         selectreason=(TextView) findViewById(R.id.selectreason);
+        txtreason=(EditText) findViewById(R.id.txtreason);
         ratingspoints = new ArrayList();
         cancel_reject=(Button)findViewById(R.id.cancel_reject);
         sub_reject=(Button)findViewById(R.id.sub_reject);
@@ -57,6 +60,7 @@ public class RejectOption extends AppCompatActivity {
             selectreason.setText(R.string.reasons_booking_ar);
             cancel_reject.setText("إلغاء");
             sub_reject.setText(R.string.ok_ar);
+            txtreason.setHint(R.string.reason_ar);
 
         }
         else {
@@ -66,6 +70,7 @@ public class RejectOption extends AppCompatActivity {
             selectreason.setText(R.string.reasons_booking_en);
             cancel_reject.setText("Cancel");
             sub_reject.setText("OK");
+            txtreason.setHint(R.string.reason_en);
 
         }
         radapter = new RatingspointsAdapter(ratingspoints, getApplicationContext());
@@ -117,6 +122,9 @@ public class RejectOption extends AppCompatActivity {
     }
 
     private void submit() {
+        if(txtreason.getText().toString().trim().length()>0){
+            improve = improve + " : " + txtreason.getText().toString().trim();
+        }
         final ProgressDialog pd = new ProgressDialog(RejectOption.this);
         if(lang.contentEquals("Arabic")){
             pd.setTitle("Updating Request");

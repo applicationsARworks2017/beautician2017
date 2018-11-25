@@ -10,16 +10,17 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon">
+        tools:replace="android:allowBackup">
         <provider
             android:name=".Utils.GenericFileProvider"
             android:authorities="beautician.com.sapplication"
@@ -119,8 +120,7 @@
             android:parentActivityName=".Activity.HomeActivity" />
         <activity
             android:name=".Activity.PropsalView"
-            android:parentActivityName=".Activity.SPHome"
-            android:theme="@style/NoAction" />
+            android:parentActivityName=".Activity.SPHome" />
         <activity
             android:name=".Activity.IndividualRequest"
             android:theme="@style/NoActionUser" />

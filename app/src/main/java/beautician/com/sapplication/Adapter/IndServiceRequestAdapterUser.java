@@ -104,7 +104,13 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
             drawable1 = DrawableCompat.wrap(drawable1);
             DrawableCompat.setTint(drawable1, _context.getResources().getColor(R.color.deep_background));
             holder.im_reply.setImageDrawable(drawable1);*/
-            holder.im_reply.setText("Waiting");
+            if(lang.contentEquals("Arabic")){
+                holder.im_reply.setText(R.string.waiting_ar);
+
+            }
+            else {
+                holder.im_reply.setText("Waiting");
+            }
             holder.reason.setVisibility(View.GONE);
 
         }

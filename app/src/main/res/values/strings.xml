@@ -85,6 +85,8 @@
     <string name="slct_on_pt_en">Please select atleast one point</string>
     <string name="slct_on_pt_ar">يرجى اختيار احد الخيارات</string>
     <string name="reason_added_ar">تم اضافه السبب</string>
+    <string name="reason_ar">السبب</string>
+    <string name="reason_en">Reason</string>
     <string name="reason_added_en">Reason Added</string>
     <string name="sel_date_en">Select Date</string>
     <string name="sel_date_ar">اختيار التاريخ</string>
@@ -110,6 +112,8 @@
     <string name="add_en">Add</string>
     <string name="km_en">KM</string>
     <string name="submitted_en">Submitted</string>
+    <string name="Proposal_details_ar">تفاصيل الطلب</string>
+    <string name="Proposal_details_en">Proposal Details</string>
     <string name="submitted_ar">تم تقييم الخدمة</string>
     <string name="cancel_ar">إلغاء</string>
     <string name="ok_ar">موافق</string>
@@ -117,4 +121,6 @@
     <string name="finsih_ar">إنهاء</string>
     <string name="enter_cost_en">Enter your service cost</string>
     <string name="enter_cost_ar">تكلفة الخدمة الخاصة بك</string>
+    <string name="submit_proposal_en">Submit your Proposal</string>
+    <string name="submit_proposal_ar">تقديم الاقتراح الخاص بك</string>
 </resources>

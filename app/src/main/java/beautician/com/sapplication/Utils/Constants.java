@@ -37,7 +37,7 @@ import beautician.com.sapplication.R;
 
 public class Constants {
     //public static String ONLINEURL="http://applicationworld.net/beautician/";
-    public static String ONLINEURL="https://beautician.site/admin/";
+    public static String ONLINEURL="https://beautician.life/admin/";
     public static String CATEGORYLIST="categories/index.json";
     public static String OFFER_DELETE="offers/delete.json";
     public static String COUNTRYLIST="CountryCodes/index.json";
@@ -66,8 +66,8 @@ public class Constants {
     public static String EDIT_IND_REQUEST="service-indivisual-requests/edit.json";
     public static String INDICISUAL_REQUEST="service-indivisual-requests/add.json";
     public static String INDICISUAL_REQUEST_LIST="service-indivisual-requests/index.json";
-    public static String PICURL="https://beautician.site/admin/webroot/files/profile/";
-    public static String SHOP_PICURL="https://beautician.site/admin/webroot/files/shop/";
+    public static String PICURL="https://beautician.life/admin/webroot/files/profile/";
+    public static String SHOP_PICURL="https://beautician.life/admin/webroot/files/shop/";
     public static String SHOP_DETAILS="shops/view.json";
     public static String USER_DETAILS="users/view.json";
     public static String USER_BALANCE="UserWallets/index.json";

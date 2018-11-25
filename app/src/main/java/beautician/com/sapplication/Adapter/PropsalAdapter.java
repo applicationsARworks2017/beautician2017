@@ -25,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -99,9 +101,10 @@ public class PropsalAdapter extends BaseAdapter {
         return position;
     }
     private class Holder{
-        TextView propsal_hd,vew_details,gv_feedback,actualtime,user_details,tv_otp,im_reply;
+        TextView propsal_hd,vew_details,gv_feedback,actualtime,user_details,tv_otp,im_reply,shopname;
+        ImageView pic1,pic2,pic3,pic4;
         TextView im_agree;
-        LinearLayout paidline;
+        LinearLayout paidline,img_lin;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -113,6 +116,7 @@ public class PropsalAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.propsal_list, parent, false);
             shop_id = _context.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
             holder.propsal_hd=(TextView)convertView.findViewById(R.id.propsal_hd);
+            holder.shopname=(TextView)convertView.findViewById(R.id.shopname);
             holder.vew_details=(TextView)convertView.findViewById(R.id.view_details);
             holder.gv_feedback=(TextView)convertView.findViewById(R.id.gv_feedback);
             holder.actualtime=(TextView)convertView.findViewById(R.id.actualtime);
@@ -121,6 +125,11 @@ public class PropsalAdapter extends BaseAdapter {
             holder.im_agree=(TextView) convertView.findViewById(R.id.im_agree);
             holder.user_details=(TextView) convertView.findViewById(R.id.user_details);
             holder.paidline=(LinearLayout)convertView.findViewById(R.id.paidline);
+            holder.img_lin=(LinearLayout)convertView.findViewById(R.id.img_lin);
+            holder.pic1= (ImageView)convertView.findViewById(R.id.pic1);
+            holder.pic2= (ImageView)convertView.findViewById(R.id.pic2);
+            holder.pic3= (ImageView)convertView.findViewById(R.id.pic3);
+            holder.pic4= (ImageView)convertView.findViewById(R.id.pic4);
             convertView.setTag(holder);
         }
         else{
@@ -130,6 +139,8 @@ public class PropsalAdapter extends BaseAdapter {
         holder.vew_details.setTag(position);
         holder.actualtime.setTag(position);
         holder.paidline.setTag(position);
+        holder.shopname.setTag(position);
+        holder.img_lin.setTag(position);
         holder.tv_otp.setTag(holder);
         holder.im_reply.setTag(holder);
         holder.im_agree.setTag(holder);
@@ -137,6 +148,39 @@ public class PropsalAdapter extends BaseAdapter {
         holder.user_details.setTag(position);
         holder.gv_feedback.setVisibility(View.GONE);
         holder.user_details.setVisibility(View.GONE);
+
+        holder.shopname.setText(_pos.getShop_name());
+        holder.shopname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_context, ShopDetails.class);
+                intent.putExtra("SHOP_ID",_pos.getShop_id());
+                intent.putExtra("MAP","false");
+                _context.startActivity(intent);
+            }
+        });
+        holder.img_lin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_context, ShopDetails.class);
+                intent.putExtra("SHOP_ID",_pos.getShop_id());
+                intent.putExtra("MAP","false");
+                _context.startActivity(intent);
+            }
+        });
+
+        if(!_pos.getPhoto1().isEmpty()) {
+            Picasso.with(_context).load(Constants.SHOP_PICURL+_pos.getPhoto1()).resize(100,100).into(holder.pic1);
+        }
+        if(!_pos.getPhoto2().isEmpty()) {
+            Picasso.with(_context).load(Constants.SHOP_PICURL+_pos.getPhoto2()).resize(100,100).into(holder.pic2);
+        }
+        if(!_pos.getPhoto3().isEmpty()) {
+            Picasso.with(_context).load(Constants.SHOP_PICURL+_pos.getPhoto3()).resize(100,100).into(holder.pic3);
+        }
+        if(!_pos.getPhoto4().isEmpty()) {
+            Picasso.with(_context).load(Constants.SHOP_PICURL+_pos.getPhoto4()).resize(100,100).into(holder.pic4);
+        }
 
         final String status=_pos.getStatus();
 
@@ -329,11 +373,11 @@ public class PropsalAdapter extends BaseAdapter {
         }
         if(from_page.contentEquals("user_side")) {
             if (lang.contentEquals("Arabic")) {
-                holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + "تم الرد" + _pos.getRemarks());
+                holder.propsal_hd.setText(_pos.getRemarks());
                 holder.tv_otp.setText(" شارك الكود عند الوصول  للمقدم الخدمة لسترجاع مبلغ تأكييد الحجز إلى المحفظة:" + _pos.getOtp());
             } else {
-                holder.propsal_hd.setText(_pos.getShop_name().toUpperCase() + " has replied : " + _pos.getRemarks());
-                holder.tv_otp.setText("Share OTP before service and get back your SAR"+HomeActivity.min_post_charge+". OTP : " + _pos.getOtp());
+                holder.propsal_hd.setText(_pos.getRemarks());
+                holder.tv_otp.setText("Share OTP before service and get back your SAR "+HomeActivity.min_post_charge+". OTP : " + _pos.getOtp());
 
             }
         }
@@ -872,7 +916,13 @@ public class PropsalAdapter extends BaseAdapter {
                     }
                 }
                 else{
-                    Constants.noInternetDialouge(_context, "Failed to update");
+                    if(lang.contentEquals("Arabic")){
+                        Constants.noInternetDialouge(_context, "فشل");
+
+                    }
+                    else {
+                        Constants.noInternetDialouge(_context, "Failed");
+                    }
                 }
             }
 
