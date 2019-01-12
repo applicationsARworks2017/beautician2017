@@ -186,7 +186,7 @@ public class PropsalAdapter extends BaseAdapter {
 
              if (lang.contentEquals("Arabic")) {
             holder.vew_details.setText("تفاصيل الخدمة");
-            holder.gv_feedback.setText("ردود الفعل");
+            holder.gv_feedback.setText("قيم الخدمة المقدمة");
 
         } else {
             holder.vew_details.setText("Service Details");

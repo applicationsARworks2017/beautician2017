@@ -36,7 +36,7 @@ import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
 public class RequestSubcategories extends AppCompatActivity {
-    private String category_id,categoryname;
+    private String category_id,categoryname,categoryname_arabic;
     private ListView lv_subcategory;
     private SwipeRefreshLayout swipe_subcategory;
     ArrayList<SubCategoryList> scList;
@@ -60,6 +60,7 @@ public class RequestSubcategories extends AppCompatActivity {
         setContentView(R.layout.activity_request_subcategories);
         category_id=CategoriesRequest.catid;
         categoryname=CategoriesRequest.value;
+        categoryname_arabic=CategoriesRequest.value_arabic;
         scList=new ArrayList<>();
         shop_id = RequestSubcategories.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
@@ -72,7 +73,12 @@ public class RequestSubcategories extends AppCompatActivity {
         }
 
         cattext=(TextView)findViewById(R.id.cattext);
-        cattext.setText(categoryname);
+        if(lang.contentEquals("Arabic")){
+            cattext.setText(categoryname_arabic);
+        }
+        else{
+            cattext.setText(categoryname);
+        }
         swipe_subcategory=(SwipeRefreshLayout)findViewById(R.id.swipe_subcategory);
         blank_text_sc=(TextView)findViewById(R.id.blank_text_sc);
         lv_subcategory=(ListView)findViewById(R.id.lv_sub_category);

@@ -506,6 +506,7 @@ public class IndividualRequest extends AppCompatActivity {
                         .appendQueryParameter("no_of_user", _no_of_user)
                         .appendQueryParameter("remarks", _remarks)
                         .appendQueryParameter("shop_id", _shop_id)
+                        .appendQueryParameter("sub_category_id", _shop_id)
                         .appendQueryParameter("status", "0")
                         .appendQueryParameter("expected_date", exp_date);
 

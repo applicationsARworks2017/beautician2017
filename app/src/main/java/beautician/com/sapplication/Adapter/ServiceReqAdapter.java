@@ -72,7 +72,7 @@ public class ServiceReqAdapter extends BaseAdapter{
 
         holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
         if(lang.contentEquals("Arabic")){
-            holder.Name_service.setText("تم نشر الخدمه" + _pos.getSub_category());
+            holder.Name_service.setText("تم نشر الخدمه" + _pos.getArabic_sub_category());
 
         }
         else{

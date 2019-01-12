@@ -73,7 +73,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
     }
 
     private class Holder{
-        TextView Name_service,servide_details,remarks,tv_expected_date,actualtime;
+        TextView Name_service,servide_details,remarks,tv_expected_date,actualtime,name;
         TextView reply;
     }
 
@@ -87,6 +87,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
             convertView = mInflater.inflate(R.layout.service_list, parent, false);
             user_id = _context.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
             holder.Name_service=(TextView)convertView.findViewById(R.id.name_service);
+            holder.name=(TextView)convertView.findViewById(R.id.name);
             holder.tv_expected_date=(TextView)convertView.findViewById(R.id.tv_expected_date);
             holder.actualtime=(TextView)convertView.findViewById(R.id.actualtime);
             holder.remarks=(TextView)convertView.findViewById(R.id.servicedetails);
@@ -106,6 +107,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
         final String status=_pos.getStatus();
 
+        holder.name.setText(_pos.getName());
 
         if(status.contentEquals("false") || status.contentEquals("0")){
             //holder.reply.setVisibility(View.VISIBLE);
@@ -129,10 +131,10 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         }
 
         if (lang.contentEquals("Arabic")) {
-            holder.Name_service.setText(_pos.getName()+" تم نشره ل " + _pos.getSub_category());
+            holder.Name_service.setText(" تم نشره ل " + _pos.getArabic_sub_category());
 
         } else {
-            holder.Name_service.setText(_pos.getName()+" has posted for " + _pos.getSub_category());
+            holder.Name_service.setText(" has posted for " + _pos.getSub_category());
 
 
         }

@@ -74,7 +74,7 @@ public class GiveCommentActivity extends AppCompatActivity {
             setTitle("تقييم الخدمة ");
             txt_ratings.setText("أدخل تقييماتك");
             et_comments_feedback.setHint("تعليقات");
-            bt_subratings.setText("خضع");
+            bt_subratings.setText("نشر");
 
         }
         else{

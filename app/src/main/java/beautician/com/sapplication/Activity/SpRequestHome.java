@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -14,20 +15,50 @@ import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.APIManager;
 import beautician.com.sapplication.Utils.Constants;
 
+import static beautician.com.sapplication.Activity.SPHome.ServiceIndivisualRequest;
+import static beautician.com.sapplication.Activity.SPHome.service_public;
+
 public class SpRequestHome extends AppCompatActivity {
     LinearLayout lin_public,lin_individual;
     String lang,user_id;
-    TextView public_post,invalid_requset;
+    RelativeLayout post_not_sp,ind_not_sp;
+    TextView public_post,invalid_requset,indpost_txt_sp,publicpost_txt_sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sp_proposal_home);
         lin_public=(LinearLayout)findViewById(R.id.lin_public);
+        post_not_sp=(RelativeLayout) findViewById(R.id.post_not_sp);
+        ind_not_sp=(RelativeLayout) findViewById(R.id.ind_not_sp);
         lin_individual=(LinearLayout)findViewById(R.id.lin_individual);
         public_post=(TextView)findViewById(R.id.public_post);
         invalid_requset=(TextView)findViewById(R.id.invalid_requset);
+        indpost_txt_sp=(TextView)findViewById(R.id.indpost_txt_sp);
+        publicpost_txt_sp=(TextView)findViewById(R.id.publicpost_txt_sp);
         lang = getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
         user_id = SpRequestHome.this.getSharedPreferences(Constants.SHAREDPREFERENCE_KEY, 0).getString(Constants.USER_ID, null);
+        if(ServiceIndivisualRequest >0){
+            indpost_txt_sp.setVisibility(View.VISIBLE);
+            indpost_txt_sp.setText(String.valueOf(ServiceIndivisualRequest));
+            ind_not_sp.setVisibility(View.VISIBLE);
+
+        }
+        else{
+            indpost_txt_sp.setVisibility(View.GONE);
+            ind_not_sp.setVisibility(View.GONE);
+
+        }
+        if(service_public >0){
+            publicpost_txt_sp.setVisibility(View.VISIBLE);
+            post_not_sp.setVisibility(View.VISIBLE);
+            publicpost_txt_sp.setText(String.valueOf(service_public));
+        }
+        else{
+            publicpost_txt_sp.setVisibility(View.GONE);
+            post_not_sp.setVisibility(View.GONE);
+
+        }
+
 
         if(lang.contentEquals("Arabic")){
             setTitle("اختر صنف");

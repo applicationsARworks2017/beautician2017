@@ -13,13 +13,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:id="@+id/name"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:maxLines="2"
-                android:textStyle="bold"
-                android:text="Amaresh"
                 android:textColor="@color/black"
+                android:text="Amaresh"
+                android:layout_below="@id/name"
                 android:id="@+id/name_service"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"/>
+                />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

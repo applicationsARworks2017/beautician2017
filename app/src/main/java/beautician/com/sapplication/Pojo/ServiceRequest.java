@@ -5,7 +5,8 @@ package beautician.com.sapplication.Pojo;
  */
 
 public class ServiceRequest {
-    String id,name,mobile,email,photo,remarks,category,sub_category,status,created, expected_date;
+    String id,name,mobile,email,photo,remarks,category,sub_category,status,created,
+            expected_date,arabic_category,arabic_sub_category;
 
     public String getId() {
         return id;
@@ -95,8 +96,25 @@ public class ServiceRequest {
         this.expected_date = expected_date;
     }
 
+    public String getArabic_category() {
+        return arabic_category;
+    }
+
+    public void setArabic_category(String arabic_category) {
+        this.arabic_category = arabic_category;
+    }
+
+    public String getArabic_sub_category() {
+        return arabic_sub_category;
+    }
+
+    public void setArabic_sub_category(String arabic_sub_category) {
+        this.arabic_sub_category = arabic_sub_category;
+    }
+
     public ServiceRequest(String id, String name, String mobile, String email, String photo, String remarks,
-                          String category, String sub_category, String status, String created, String expected_date) {
+                          String category, String sub_category, String status, String created, String expected_date,
+                          String arabic_category, String arabic_sub_category) {
         this.id=id;
         this.name=name;
         this.mobile=mobile;
@@ -108,6 +126,9 @@ public class ServiceRequest {
         this.status=status;
         this.created=created;
         this.expected_date=expected_date;
+        this.arabic_sub_category = arabic_sub_category;
+        this.arabic_category = arabic_category;
+
 
     }
 }

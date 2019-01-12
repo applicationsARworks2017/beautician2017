@@ -11,6 +11,10 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <LinearLayout
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:gravity="center"
@@ -24,10 +28,29 @@
                 android:textStyle="bold"
                 android:text="" />
         </LinearLayout>
+        <RelativeLayout
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/cerclelayout"
+            android:id="@+id/post_not_sp"
+            android:layout_margin="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_centerInParent="true"
+                android:id="@+id/publicpost_txt_sp"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
             android:gravity="center"
             android:id="@+id/lin_individual"
             android:background="@drawable/custombutton">
@@ -38,6 +61,21 @@
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 android:text="" />
+        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/ind_not_sp"
+                android:background="@drawable/cerclelayout"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/indpost_txt_sp"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

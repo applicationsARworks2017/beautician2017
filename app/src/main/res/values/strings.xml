@@ -104,10 +104,10 @@
     <string name="walletet_updated_en">Wallet Updated</string>
     <string name="walletet_noupdated_en">Wallet can not be Updated</string>
     <string name="walletet_noupdated_ar">لا يمكن تحديث المحفظة</string>
-    <string name="no_reviews_ar">كيلو متر</string>
+    <string name="no_reviews_ar">التقييم 0</string>
     <string name="no_reviews_en">No reviews</string>
-    <string name="reviews_ar">تقييم الخدمة</string>
-    <string name="km_ar">التقييم</string>
+    <string name="reviews_ar">التقييم</string>
+    <string name="km_ar">كيلو</string>
     <string name="add_ar">إضافة</string>
     <string name="add_en">Add</string>
     <string name="km_en">KM</string>

@@ -37,7 +37,8 @@ public class SPHome extends AppCompatActivity {
     public static double min_service_charge = 5.0;
     RelativeLayout prop_not_sp, post_not_sp, ser_not_sp, wal_not_sp;
     TextView prop_txt_sp, post_txt_sp, ser_txt_sp, wal_txt_sp;
-    private int ServiceIndivisualRequest,service_public,propsal_req,wallet_req;
+    private int propsal_req,wallet_req;
+    public static  int ServiceIndivisualRequest,service_public;
 
 
     @Override

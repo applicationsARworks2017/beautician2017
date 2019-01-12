@@ -131,7 +131,7 @@ public class SubcategoriesAdapter extends BaseAdapter {
 
                 }
                 else{
-                    ok.setText(R.string.add_ar);
+                    ok.setText(R.string.add_en);
                     tv_subcat.setText(_pos.getSubcategory());
                     dialougehead.setText(R.string.enter_cost_en);
 

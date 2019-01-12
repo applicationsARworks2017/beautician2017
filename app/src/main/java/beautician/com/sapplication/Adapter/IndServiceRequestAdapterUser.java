@@ -89,10 +89,13 @@ public class IndServiceRequestAdapterUser extends BaseAdapter {
 
         if(lang.contentEquals("Arabic")){
             holder.Name_service.setText("لقد طلبت ذلك "+_pos.getShopname()+" للخدمة");
+            holder.gv_feedback.setText("قيم الخدمة المقدمة");
 
         }
         else{
             holder.Name_service.setText("You have requested to "+_pos.getShopname()+" for the service");
+            holder.gv_feedback.setText("Give Feedback");
+
 
         }
 

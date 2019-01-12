@@ -41,7 +41,7 @@ public class CategoriesRequest extends AppCompatActivity {
     TextView blank_text,cattext;
     CategoryRequestAdapter cAdapter;
     SearchView searchView_category;
-    public static String catid,value,lang;
+    public static String catid,value,lang,value_arabic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,7 @@ public class CategoriesRequest extends AppCompatActivity {
                 //  Toast.makeText(AdminUserList.this,users.getUser_name(),Toast.LENGTH_LONG).show();
                  catid = users.getId();
                  value = users.getCategory();
+                 value_arabic = users.getArabic_title();
                 callSub();
             }
         });

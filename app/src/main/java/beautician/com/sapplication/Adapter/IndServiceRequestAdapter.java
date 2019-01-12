@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,7 +89,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         return position;
     }
     private class Holder{
-        TextView Name_service,remarks,actualtime,tv_expected_date;
+        TextView Name_service,remarks,actualtime,tv_expected_date,name;
         TextView im_reply, imreject;
 
     }
@@ -105,6 +106,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
             holder.remarks = (TextView) convertView.findViewById(R.id.servicedetails);
             holder.actualtime = (TextView) convertView.findViewById(R.id.actualtime);
             holder.tv_expected_date = (TextView) convertView.findViewById(R.id.tv_expected_date);
+            holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.im_reply = (TextView) convertView.findViewById(R.id.im_reply);
             holder.imreject = (TextView) convertView.findViewById(R.id.imreject);
             convertView.setTag(holder);
@@ -115,11 +117,14 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         holder.actualtime.setTag(position);
         holder.remarks.setTag(position);
         holder.tv_expected_date.setTag(position);
+        holder.name.setTag(position);
         holder.im_reply.setTag(holder);
         holder.imreject.setTag(holder);
         holder.remarks.setText(_pos.getRemarks());
         holder.actualtime.setText(Constants.getOurDate(_pos.getCreated()));
        //  user_id=_pos.getPersonId();
+
+        holder.name.setText(_pos.getPersonName());
 
         if(_pos.getExpected_date().contentEquals("null")){
             if(lang.contentEquals("Arabic")){
@@ -144,11 +149,12 @@ public class IndServiceRequestAdapter extends BaseAdapter {
 
 
          if(lang.contentEquals("Arabic")){
-             holder.Name_service.setText(_pos.getPersonName() + "لقد طلب الخدمات التاليه "+ _pos.getNo_of_user()+"اشخاص");
+
+             holder.Name_service.setText("لقد طلب الخدمات التاليه "+ _pos.getNo_of_user()+"اشخاص");
 
          }
          else{
-             holder.Name_service.setText(_pos.getPersonName() + " has requseted you for the service for "+ _pos.getNo_of_user()+"people");
+             holder.Name_service.setText(" has requseted you for the service for "+ _pos.getNo_of_user()+"people");
 
          }
 
@@ -183,11 +189,11 @@ public class IndServiceRequestAdapter extends BaseAdapter {
         }
         else if (_pos.getStatus().contentEquals("2")) {  // service going on
             if(lang.contentEquals("Arabic")){
-                holder.im_reply.setText(R.string.finsih_en);
+                holder.im_reply.setText(R.string.finsih_ar);
 
             }
             else {
-                holder.im_reply.setText(R.string.finsih_ar);
+                holder.im_reply.setText(R.string.finsih_en);
             }
             holder.imreject.setVisibility(View.GONE);
         }
@@ -394,7 +400,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                     });
                 }
                // else if(status.contentEquals("2") || tv_text.contentEquals("Service On")) {
-                else if(tv_text.contentEquals("Finsih") || tv_text.contentEquals("إنهاء")) {
+                else if(tv_text.contentEquals("Finish") || tv_text.contentEquals("إنهاء")) {
                     updated_status = 3;
                     if (lang.contentEquals("Arabic")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(_context);

@@ -50,6 +50,7 @@ public class ShopDetails extends AppCompatActivity {
     String[] latlonglist ;
     private ImageLoader imageLoader;
     private DisplayImageOptions options;
+    TextView t_title;
 
 
 
@@ -64,12 +65,7 @@ public class ShopDetails extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
-        if(lang.contentEquals("Arabic")){
-            setTitle("تفاصيل المتجر");
-        }
-        else{
-            setTitle("Shop Details");
-        }
+
         if (extras != null) {
             shop_id = extras.getString("SHOP_ID");
             MAP = extras.getString("MAP");
@@ -77,11 +73,20 @@ public class ShopDetails extends AppCompatActivity {
         }
         sp_toolbar=(Toolbar)findViewById(R.id.sp_toolbar);
         rel_back=(RelativeLayout)sp_toolbar.findViewById(R.id.rel_back);
+        t_title=(TextView) sp_toolbar.findViewById(R.id.t_title);
         img1=(ImageView)findViewById(R.id.img1);
         img2=(ImageView)findViewById(R.id.img2);
         img3=(ImageView)findViewById(R.id.img3);
         img4=(ImageView)findViewById(R.id.img4);
 
+        if(lang.contentEquals("Arabic")){
+            setTitle("تفاصيل المتجر");
+            t_title.setText("تفاصيل المتجر");
+        }
+        else{
+            setTitle("Shop Details");
+            t_title.setText("Shop Details");
+        }
         shop_name=(TextView)findViewById(R.id.shop_name);
         shop_email=(TextView)findViewById(R.id.shop_email);
         shop_address=(TextView)findViewById(R.id.shop_address);
@@ -104,6 +109,7 @@ public class ShopDetails extends AppCompatActivity {
         });
         if(lang.contentEquals("Arabic")){
             allservice.setText("تحقق من تفاصيل الخدمة هنا");
+            allservice.setText("تحقق من تفاصيل الخدمة هنا");
         }
         else{
             allservice.setText("Check service details here");
@@ -113,7 +119,7 @@ public class ShopDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(ShopDetails.this,MyserviceList.class);
-                intent.putExtra("PAGE","service_home");
+                intent.putExtra("PAGE","user");
                 intent.putExtra("USERID",shop_id);
                 startActivity(intent);
             }

@@ -86,7 +86,6 @@ public class ShopListAdapter extends BaseAdapter {
             holder.Shopname=(TextView)convertView.findViewById(R.id.Shopname);
             holder.check_details=(TextView)convertView.findViewById(R.id.check_details);
             holder.shop_add=(TextView)convertView.findViewById(R.id.shop_add);
-            holder.price_min=(TextView)convertView.findViewById(R.id.price_min);
             holder.rev_shop=(TextView)convertView.findViewById(R.id.rev_shop);
             holder.dis_shop=(TextView)convertView.findViewById(R.id.dis_shop);
             holder.pic1=(ImageView)convertView.findViewById(R.id.pic1);
@@ -111,7 +110,6 @@ public class ShopListAdapter extends BaseAdapter {
         holder.Shopname.setTag(position);
         holder.check_details.setTag(position);
         holder.shop_add.setTag(position);
-        holder.price_min.setTag(position);
         holder.rev_shop.setTag(position);
         holder.dis_shop.setTag(position);
         holder.pic1.setTag(position);
@@ -134,11 +132,10 @@ public class ShopListAdapter extends BaseAdapter {
 
         holder.Shopname.setText(_pos.getShopname());
         holder.shop_add.setText(_pos.getAddress());
-        holder.price_min.setText("SAR "+_pos.getPrice());
         String reviews=_pos.getNo_of_reviews();
-        if(reviews=="" || reviews==null ||reviews.contentEquals("null")){
+        if(reviews=="" || reviews==null ||reviews.contentEquals("null") || reviews.contentEquals("No")){
             if(lang.contentEquals("Arabic")) {
-                holder.rev_shop.setText("كيلو متر");
+                holder.rev_shop.setText("التقييم 0");
             }
             else{
                 holder.rev_shop.setText(" No " + " reviews");
@@ -147,19 +144,19 @@ public class ShopListAdapter extends BaseAdapter {
         }
         else {
             if(lang.contentEquals("Arabic")) {
-                holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" "+"تقييم الخدمة");
+                holder.rev_shop.setText(_pos.getNo_of_reviews()+" "+ "التقييم");
             }
             else{
-                holder.rev_shop.setText(" . "+_pos.getNo_of_reviews()+" reviews");
+                holder.rev_shop.setText(_pos.getNo_of_reviews()+" reviews");
 
             }
 
         }
         if(lang.contentEquals("Arabic")) {
-            holder.dis_shop.setText(". ~ "+_pos.getDistance()+" "+"التقييم");
+            holder.dis_shop.setText(_pos.getDistance()+" "+"كيلو");
         }
         else{
-            holder.dis_shop.setText(". ~ "+_pos.getDistance()+" KM");
+            holder.dis_shop.setText(_pos.getDistance()+" KM");
 
         }
         String location=_pos.getLatitudelongitude();

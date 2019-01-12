@@ -214,7 +214,10 @@ public class CheckPost extends AppCompatActivity {
                             String created = o_list_obj.getString("created");
                             String status = o_list_obj.getString("status");
                             String expected_date = o_list_obj.getString("expected_date");
-                            ServiceRequest list1 = new ServiceRequest(id,name,mobile,email,photo,remarks,category,sub_category,status,created,expected_date);
+                            String arabic_category = o_list_obj.getString("arabic_category");
+                            String arabic_sub_category = o_list_obj.getString("arabic_sub_category");
+                            ServiceRequest list1 = new ServiceRequest(id,name,mobile,email,photo,remarks,category,sub_category,status,
+                                    created,expected_date,arabic_category,arabic_sub_category);
                             srList.add(list1);
                         }
                     }

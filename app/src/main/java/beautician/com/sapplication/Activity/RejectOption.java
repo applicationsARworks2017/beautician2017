@@ -56,7 +56,7 @@ public class RejectOption extends AppCompatActivity {
         if(lang.contentEquals("Arabic")){
             ratingspoints.add(new RatingsPoints("لايويجد وقت شاغر", false));
             ratingspoints.add(new RatingsPoints("الوقت غير مناسب", false));
-            ratingspoints.add(new RatingsPoints("تعليق", false));
+            ratingspoints.add(new RatingsPoints("أسباب اخرى", false));
             selectreason.setText(R.string.reasons_booking_ar);
             cancel_reject.setText("إلغاء");
             sub_reject.setText(R.string.ok_ar);
@@ -66,7 +66,7 @@ public class RejectOption extends AppCompatActivity {
         else {
             ratingspoints.add(new RatingsPoints("Fully booked", false));
             ratingspoints.add(new RatingsPoints("Time isn't suitable", false));
-            ratingspoints.add(new RatingsPoints("Others", false));
+            ratingspoints.add(new RatingsPoints("Other Reasons", false));
             selectreason.setText(R.string.reasons_booking_en);
             cancel_reject.setText("Cancel");
             sub_reject.setText("OK");

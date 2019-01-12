@@ -708,7 +708,7 @@ remarks:jhgjhghjgjg"
             progressDialog.dismiss();
             if(wallet_status==1){
                 if(lang.contentEquals("Arabic")){
-                    Toast.makeText(PostActivity.this,"سيتم خصم ٣ ريال من المحفظة لهذا المنشور ",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostActivity.this,"سيتم خصم 5 ريال من المحفظة لهذا المنشور ",Toast.LENGTH_LONG).show();
 
                 }
                 else{
