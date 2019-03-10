@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:PayTabs_SDK:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/PayTabs_SDK.aar/a28ed46c7d1198f92ed7ca003e10232c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/PayTabs_SDK.aar/a28ed46c7d1198f92ed7ca003e10232c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/PayTabs_SDK.aar/a28ed46c7d1198f92ed7ca003e10232c/jars/libs/okhttp-3.9.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/PayTabs_SDK.aar/a28ed46c7d1198f92ed7ca003e10232c/jars/libs/okio-1.13.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
