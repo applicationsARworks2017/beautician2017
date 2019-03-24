@@ -10,7 +10,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
     <application
@@ -21,6 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".Activity.SupportActivity"></activity>
+
         <provider
             android:name=".Utils.GenericFileProvider"
             android:authorities="beautician.com.sapplication"
@@ -133,9 +136,7 @@
             android:parentActivityName=".Activity.HomeActivity" />
         <activity
             android:name=".Activity.SubCategoryEditActivity"
-            android:parentActivityName=".Activity.MySubcategories" />
-
-        <!-- Firebase Notifications -->
+            android:parentActivityName=".Activity.MySubcategories" /> <!-- Firebase Notifications -->
         <service android:name=".Firebase.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -189,7 +190,7 @@
         <activity android:name=".Activity.PaymentConfirmation" />
         <activity android:name=".Activity.CountryList" />
         <activity android:name=".Activity.MapLocation" />
-        <activity android:name=".Activity.RejectOption"></activity>
+        <activity android:name=".Activity.RejectOption" />
     </application>
 
 </manifest>

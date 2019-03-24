@@ -30,6 +30,7 @@ import beautician.com.sapplication.Activity.OfferSet;
 import beautician.com.sapplication.Activity.SPHome;
 import beautician.com.sapplication.Activity.SearchShop;
 import beautician.com.sapplication.Activity.SpProposal;
+import beautician.com.sapplication.Activity.SupportActivity;
 import beautician.com.sapplication.Activity.USerRequestHome;
 import beautician.com.sapplication.Activity.Wallet;
 import beautician.com.sapplication.R;
@@ -51,9 +52,9 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private RelativeLayout rel_requsetservice,rel_searchfrmhome,amazing_offers,user_propsal,user_wallet;
     TextView tv_serviceheading,tv_choose_category,tv_SPheading,tv_serch_byname,tv_propsalheading,chk_response,
-            tv_offerheading,offer_check,tv_walletheading,ad_mony;
-    RelativeLayout proposal_notification,wallet_notification,user_post;
-    TextView wallettext,propsaltext,tv_postsheading,chk_posts;
+            tv_offerheading,offer_check,tv_walletheading,tv_supportheading,ad_mony;
+    RelativeLayout proposal_notification,wallet_notification,user_post,user_support;
+    TextView wallettext,supportttext,propsaltext,tv_postsheading,chk_posts;
     String user_id;
     private int propsal_req,wallet_req;
 
@@ -109,6 +110,7 @@ public class HomeFragment extends Fragment {
         rel_searchfrmhome=(RelativeLayout)v.findViewById(R.id.rel_searchfrmhome);
         amazing_offers=(RelativeLayout)v.findViewById(R.id.amazing_offers);
         user_propsal=(RelativeLayout)v.findViewById(R.id.user_propsal);
+        user_support=(RelativeLayout)v.findViewById(R.id.user_support);
         user_post=(RelativeLayout)v.findViewById(R.id.user_post);
         user_wallet=(RelativeLayout)v.findViewById(R.id.user_wallet);
         tv_serviceheading=(TextView)v.findViewById(R.id.tv_serviceheading);
@@ -120,6 +122,7 @@ public class HomeFragment extends Fragment {
         tv_offerheading=(TextView)v.findViewById(R.id.tv_offerheading);
         offer_check=(TextView)v.findViewById(R.id.offer_check);
         tv_walletheading=(TextView)v.findViewById(R.id.tv_walletheading);
+        tv_supportheading=(TextView)v.findViewById(R.id.tv_supportheading);
         ad_mony=(TextView)v.findViewById(R.id.ad_mony);
         tv_postsheading=(TextView)v.findViewById(R.id.tv_postsheading);
         chk_posts=(TextView)v.findViewById(R.id.chk_posts);
@@ -133,6 +136,7 @@ public class HomeFragment extends Fragment {
         wallet_notification.setVisibility(View.GONE);
         propsaltext=(TextView)v.findViewById(R.id.propsaltext);
         wallettext=(TextView)v.findViewById(R.id.wallettext);
+        supportttext=(TextView)v.findViewById(R.id.ad_support);
         getAllNotification();
 
 
@@ -150,6 +154,8 @@ public class HomeFragment extends Fragment {
             ad_mony.setText(" إضافة رصيد، والتحقق من المعاملات.");
             chk_posts.setText(R.string.check_postlist_ar);
             tv_postsheading.setText(R.string.check_postlist_ar);
+            tv_supportheading.setText("");
+            supportttext.setText("");
         }
         else{
             tv_serviceheading.setText("Request for Service");
@@ -164,6 +170,8 @@ public class HomeFragment extends Fragment {
             ad_mony.setText("Add money, check the transactions.");
             chk_posts.setText("Check your all Posts.");
             tv_postsheading.setText("Post List");
+            tv_supportheading.setText("Need Support ?");
+            supportttext.setText("Go ahead and fill the form or send a mail for quick support.");
 
         }
 
@@ -212,6 +220,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),USerRequestHome.class);
+                intent.putExtra("PAGE","user_side");
+                startActivity(intent);
+            }
+        });
+        user_support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), SupportActivity.class);
                 intent.putExtra("PAGE","user_side");
                 startActivity(intent);
             }
