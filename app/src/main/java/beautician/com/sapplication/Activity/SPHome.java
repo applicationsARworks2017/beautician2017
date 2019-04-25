@@ -29,9 +29,10 @@ import beautician.com.sapplication.Utils.APIManager;
 import beautician.com.sapplication.Utils.Constants;
 
 public class SPHome extends AppCompatActivity {
-    CardView card_manageservice, card_profile, card_checkPost, card_proposal, card_mywallet, card_offer;
+    CardView card_manageservice, card_profile, card_checkPost,
+            card_proposal, card_mywallet, card_offer,card_support;
     String lang,user_id;
-    TextView check_post, profilee, manage_offers, my_wallet, manage_service, my_proposal;
+    TextView check_post, profilee, manage_offers, my_wallet, manage_service, my_proposal,support;
     public static String user_type;
     public static double min_sp_balance = 0.0;
     public static double min_service_charge = 5.0;
@@ -59,8 +60,10 @@ public class SPHome extends AppCompatActivity {
         card_proposal = (CardView) findViewById(R.id.card_proposal);
         card_mywallet = (CardView) findViewById(R.id.card_mywallet);
         card_offer = (CardView) findViewById(R.id.card_offer);
+        card_support = (CardView) findViewById(R.id.card_support);
 
         check_post = (TextView) findViewById(R.id.check_post);
+        support = (TextView) findViewById(R.id.support);
         my_proposal = (TextView) findViewById(R.id.my_proposal);
         manage_service = (TextView) findViewById(R.id.manage_service);
         my_wallet = (TextView) findViewById(R.id.my_wallet);
@@ -90,6 +93,7 @@ public class SPHome extends AppCompatActivity {
             my_wallet.setText(("محفظتى"));
             manage_offers.setText(("إدارة العروض"));
             profilee.setText(("الملف الشخصي"));
+            support.setText(R.string.needsp_ar);
         } else {
             check_post.setText(("Check Posts"));
             my_proposal.setText(("My Proposals"));
@@ -97,6 +101,7 @@ public class SPHome extends AppCompatActivity {
             my_wallet.setText(("My Wallet"));
             manage_offers.setText(("Manage Offers"));
             profilee.setText(("Profile"));
+            support.setText(R.string.needsp_en);
 
         }
         card_manageservice.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +156,15 @@ public class SPHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SPHome.this, OfferSet.class);
+                intent.putExtra("LANG", lang);
+                intent.putExtra("PAGE", "sp_home");
+                startActivity(intent);
+            }
+        });
+        card_support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SPHome.this, SupportActivity.class);
                 intent.putExtra("LANG", lang);
                 intent.putExtra("PAGE", "sp_home");
                 startActivity(intent);

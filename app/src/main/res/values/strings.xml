@@ -123,4 +123,8 @@
     <string name="enter_cost_ar">تكلفة الخدمة الخاصة بك</string>
     <string name="submit_proposal_en">Submit your Proposal</string>
     <string name="submit_proposal_ar">تقديم الاقتراح الخاص بك</string>
+    <string name="submit_ar">موافق</string>
+    <string name="submit_en">Submit</string>
+    <string name="needsp_en">Need support?</string>
+    <string name="needsp_ar">تحتاج مساعده</string>
 </resources>

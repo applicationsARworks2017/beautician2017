@@ -50,6 +50,7 @@
                 android:fontFamily="sans-serif"
                 android:textStyle="normal"
                 android:textColor="#ffffff"
+                android:id="@+id/tv_email"
                 android:layout_marginLeft="5dp"
                 android:lineSpacingExtra="-0.4sp"
                 android:text="Email Us"
@@ -60,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/new_"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal">
             <TextView
@@ -70,7 +72,6 @@
                 android:textStyle="normal"
                 android:id="@+id/call"
                 android:textColor="#ffffff"
-                android:layout_marginLeft="70dp"
                 android:lineSpacingExtra="-0.4sp"
                 android:text="+91 - 7026612205"
                 />
@@ -99,6 +100,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:textColor="#466271"
+                    android:visibility="invisible"
                     android:lineSpacingExtra="0sp"
                     android:text="Give your feedback to us"
                     />
@@ -109,10 +111,11 @@
                     android:fontFamily="sans-serif"
                     android:textStyle="normal"
                     android:textColor="#696969"
+                    android:id="@+id/name_head"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:lineSpacingExtra="2sp"
-                    android:text="Your full name"
+                    android:text="Name"
                     />
                 <EditText
                     android:layout_width="match_parent"
@@ -133,11 +136,12 @@
                     android:textSize="13sp"
                     android:fontFamily="sans-serif"
                     android:textStyle="normal"
+                    android:id="@+id/cont_head"
                     android:textColor="#696969"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:lineSpacingExtra="2sp"
-                    android:text="Contact Number"
+                    android:text="Phone"
                     />
                 <EditText
                     android:layout_width="match_parent"
@@ -158,6 +162,7 @@
                     android:textSize="13sp"
                     android:fontFamily="sans-serif"
                     android:textStyle="normal"
+                    android:id="@+id/message_head"
                     android:textColor="#696969"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
@@ -191,5 +196,4 @@
             </LinearLayout>
         </ScrollView>
     </android.support.v7.widget.CardView>
-</RelativeLayout>
 </RelativeLayout>

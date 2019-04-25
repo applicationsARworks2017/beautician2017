@@ -154,8 +154,8 @@ public class HomeFragment extends Fragment {
             ad_mony.setText(" إضافة رصيد، والتحقق من المعاملات.");
             chk_posts.setText(R.string.check_postlist_ar);
             tv_postsheading.setText(R.string.check_postlist_ar);
-            tv_supportheading.setText("");
-            supportttext.setText("");
+            tv_supportheading.setText(R.string.needsp_ar);
+            supportttext.setText("يرجى تعبئه النموذج او ارسل ايميل لخدمتكم باسرع وقت.");
         }
         else{
             tv_serviceheading.setText("Request for Service");
@@ -229,6 +229,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(), SupportActivity.class);
                 intent.putExtra("PAGE","user_side");
+                intent.putExtra("LANG", lang);
                 startActivity(intent);
             }
         });

@@ -83,6 +83,7 @@ public class Constants {
     public static String USER_FORGOTPASS="users/forgotPassword.json";
     public static String SHOP_NOTIFICATION_COUNT="Shops/notificationCount.json";
     public static String UPDATE_COUNT="Shops/notificationUpdate.json";
+    public static String SEND_FEEDBACK="feedbacks/add.json";
 
 //shop_name,address,latitudelongitude,photo1,photo2,photo3,email,mobile
     public static final String SHAREDPREFERENCE_KEY = "beautician" ;
