@@ -571,10 +571,12 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 if(response != null && response.length() > 0) {
                     JSONObject res = new JSONObject(response.trim());
                     JSONArray serviceListArray;
-                    if(wpage.contentEquals("user_side")) {
+                    if(wpage.contentEquals(
+                            "user_side")) {
                         serviceListArray = res.getJSONArray("userWallets");
                         if(serviceListArray.length()<=0) {
                             server_status = 0;
+                            server_message = "No data";
                         }
                         else{
                             server_status = 1;
@@ -589,6 +591,8 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                         serviceListArray = res.getJSONArray("wallets");
                         if(serviceListArray.length()<=0) {
                             server_status = 0;
+                            server_message = "No data";
+
                         }
                         else{
                             server_status = 1;

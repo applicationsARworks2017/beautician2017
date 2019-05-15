@@ -6,25 +6,26 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed96ce8e-1298-4279-9a07-ea9a5398c0a3" name="Default Changelist" comment="">
+    <list default="true" id="b70e6dec-efb7-4e0b-b9be-8bc42ab540b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_rules_0_5_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_rules_0_5_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_0_5_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_0_5_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SPHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SPHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SupportActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SupportActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Fragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Fragment/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sphome.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sphome.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/IndServiceRequestAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/IndServiceRequestAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_support.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_support.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,40 +44,31 @@
     <session id="1250276402">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
-          <entry key="project.open.time.1" value="2" />
-          <entry key="project.open.time.3" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="4" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gradle" value="3" />
-          <entry key="java" value="13" />
-          <entry key="xml" value="10" />
+          <entry key="java" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="13" />
-          <entry key="XML" value="10" />
+          <entry key="JAVA" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="729" />
-          <entry key="xml" value="129" />
+          <entry key="java" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="729" />
-          <entry key="XML" value="129" />
+          <entry key="JAVA" value="21" />
         </counts>
       </usages-collector>
     </session>
@@ -84,85 +76,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SPHome.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/ChooseLanguageActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="103" column="46" selection-start-line="103" selection-start-column="46" selection-end-line="103" selection-end-column="46" />
-              <folding>
-                <element signature="e#4137#4155#0" expanded="true" />
-                <element signature="e#4503#4521#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Fragment/HomeFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
-              <folding>
-                <element signature="e#7137#7155#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sphome.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="279" column="44" selection-start-line="279" selection-start-column="37" selection-end-line="279" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SupportActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
-              <folding>
-                <element signature="e#2187#2203#0" expanded="true" />
-                <element signature="e#2236#2254#0" expanded="true" />
-                <element signature="e#2290#2315#0" expanded="true" />
-                <element signature="e#2348#2366#0" expanded="true" />
-                <element signature="e#2423#2439#0" expanded="true" />
-                <element signature="e#2472#2490#0" expanded="true" />
-                <element signature="e#2526#2551#0" expanded="true" />
-                <element signature="e#2584#2602#0" expanded="true" />
-                <element signature="e#4420#5521#0" expanded="true" />
-                <element signature="e#5520#5521#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="108" column="46" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Tabs/SPSignup.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="164" column="44" selection-start-line="164" selection-start-column="39" selection-end-line="164" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_support.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="102" column="49" selection-start-line="102" selection-start-column="49" selection-end-line="102" selection-end-column="49" />
+            <state relative-caret-position="585">
+              <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -170,27 +87,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Utils/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-251">
-              <caret line="103" column="31" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
+            <state relative-caret-position="84">
+              <caret line="113" column="41" selection-start-line="113" selection-start-column="23" selection-end-line="113" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/IndServiceRequestAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-386">
+              <caret line="594" lean-forward="true" selection-start-line="594" selection-end-line="594" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/Login_Activity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/ServiceReqAdapterSP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1014">
-              <caret line="595" column="56" selection-start-line="595" selection-start-column="40" selection-end-line="595" selection-end-column="56" />
+            <state relative-caret-position="-4583">
+              <caret line="167" column="21" selection-start-line="167" selection-start-column="16" selection-end-line="167" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/PropsalAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="360" column="12" selection-start-line="360" selection-start-column="12" selection-end-line="360" selection-end-column="12" />
+            <state relative-caret-position="15">
+              <caret line="57" column="13" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -199,10 +124,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>file</find>
-      <find>captureImage</find>
-      <find>getinte</find>
-      <find>submit</find>
+      <find>PERMIS</find>
+      <find>dialo</find>
+      <find>oops</find>
+      <find>noInternetDialouge</find>
+      <find>server_message</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -211,29 +137,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Utils/Constants.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_support.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Fragment/HomeFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sphome.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SPHome.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SupportActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/ServiceReqAdapterSP.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/IndServiceRequestAdapter.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="45" />
-    <option name="width" value="1378" />
+    <option name="x" value="3" />
+    <option name="y" value="39" />
+    <option name="width" value="1437" />
     <option name="height" value="780" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <flattenPackages AndroidView="false" />
+      <hideEmptyPackages AndroidView="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -258,37 +179,20 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="sapplication" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="beautician2017" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sapplication" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Fragment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="beautician2017" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sapplication" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Tabs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="beautician2017" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+              <item name="Adapter" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="device.picker.selection" value="c74e07a47d27" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
@@ -311,7 +215,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -370,196 +274,77 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ed96ce8e-1298-4279-9a07-ea9a5398c0a3" name="Default Changelist" comment="" />
-      <created>1553354252142</created>
+      <changelist id="b70e6dec-efb7-4e0b-b9be-8bc42ab540b7" name="Default Changelist" comment="" />
+      <created>1556467357628</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1553354252142</updated>
+      <updated>1556467357628</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="45" width="1378" height="780" extended-state="0" />
+    <frame x="3" y="39" width="1437" height="780" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18338323" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3297491" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" id="Run" />
-      <window_info anchor="bottom" id="Find" />
-      <window_info anchor="bottom" id="Debug" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Logcat" order="1" />
       <window_info anchor="bottom" id="TODO" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="5" weight="0.32932332" />
-      <window_info anchor="bottom" id="Android Profiler" order="6" />
+      <window_info anchor="bottom" id="Find" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="6" visible="true" weight="0.32932332" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Preview" order="4" weight="0.32934132" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SpProposal.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/ChooseLanguageActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3630">
-          <caret line="270" column="45" selection-start-line="270" selection-start-column="45" selection-end-line="270" selection-end-column="45" />
+        <state relative-caret-position="585">
+          <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/provider_paths.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Utils/GenericFileProvider.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/ServiceReqAdapterSP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="-4583">
+          <caret line="167" column="21" selection-start-line="167" selection-start-column="16" selection-end-line="167" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/PropsalAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="147" column="39" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PayTabs_SDK/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SPProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="340" column="48" selection-start-line="340" selection-start-column="48" selection-end-line="340" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/ForgotPassword.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="41" column="9" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="41" selection-end-column="9" />
+        <state relative-caret-position="15">
+          <caret line="57" column="13" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Utils/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-251">
-          <caret line="103" column="31" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
+        <state relative-caret-position="84">
+          <caret line="113" column="41" selection-start-line="113" selection-start-column="23" selection-end-line="113" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/Login_Activity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Adapter/IndServiceRequestAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1014">
-          <caret line="595" column="56" selection-start-line="595" selection-start-column="40" selection-end-line="595" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_support.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="102" column="49" selection-start-line="102" selection-start-column="49" selection-end-line="102" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Tabs/SPSignup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="164" column="44" selection-start-line="164" selection-start-column="39" selection-end-line="164" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="108" column="46" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sphome.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="279" column="44" selection-start-line="279" selection-start-column="37" selection-end-line="279" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SPHome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="103" column="46" selection-start-line="103" selection-start-column="46" selection-end-line="103" selection-end-column="46" />
-          <folding>
-            <element signature="e#4137#4155#0" expanded="true" />
-            <element signature="e#4503#4521#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Fragment/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
-          <folding>
-            <element signature="e#7137#7155#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="360" column="12" selection-start-line="360" selection-start-column="12" selection-end-line="360" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/beautician/com/sapplication/Activity/SupportActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
-          <folding>
-            <element signature="e#2187#2203#0" expanded="true" />
-            <element signature="e#2236#2254#0" expanded="true" />
-            <element signature="e#2290#2315#0" expanded="true" />
-            <element signature="e#2348#2366#0" expanded="true" />
-            <element signature="e#2423#2439#0" expanded="true" />
-            <element signature="e#2472#2490#0" expanded="true" />
-            <element signature="e#2526#2551#0" expanded="true" />
-            <element signature="e#2584#2602#0" expanded="true" />
-            <element signature="e#4420#5521#0" expanded="true" />
-            <element signature="e#5520#5521#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-386">
+          <caret line="594" lean-forward="true" selection-start-line="594" selection-end-line="594" />
         </state>
       </provider>
     </entry>

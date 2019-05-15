@@ -146,8 +146,14 @@ public class SupportActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             if (progressDialog == null) {
-                progressDialog = ProgressDialog.show(SupportActivity.this, "Submitting", "Please wait...");
-            }
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(SupportActivity.this, "جار التحميل", "يرجى الإنتظار...");
+
+                }
+                else{
+                    progressDialog = ProgressDialog.show(SupportActivity.this, "Loading", "Please wait...");
+
+                }            }
 
         }
 
@@ -184,7 +190,7 @@ public class SupportActivity extends AppCompatActivity {
                         .appendQueryParameter("mobile", user_phone)
                         .appendQueryParameter("email", user_email)
                         .appendQueryParameter("description", user_message)
-                        .appendQueryParameter("title", user_message);
+                        .appendQueryParameter("title", user_title);
                 String query = builder.build().getEncodedQuery();
 
                 OutputStream os = conn.getOutputStream();
@@ -214,12 +220,24 @@ public class SupportActivity extends AppCompatActivity {
 
                 if (response != null && response.length() > 0) {
                     JSONObject res = new JSONObject(response);
-                    server_status = res.optInt("status");
+                    JSONObject nreres = res.getJSONObject("res");
+                    server_status = nreres.optInt("status");
                     if (server_status == 1) {
-                        server_message = "Thank You";
-                    } else {
-                        server_message = "Unsuccessfull";
-                    }
+                        if(lang.contentEquals("Arabic")){
+                            server_message="ناجح";
+
+                        }
+                        else{
+                            server_message="Successful";
+
+                        }                    } else {
+                        if(lang.contentEquals("Arabic")){
+                            server_message = "آسف!! فشل الدخول";
+
+                        }else{
+                            server_message = "Sorry !! Entry failed";
+
+                        }                    }
 
                 }
                 return null;
