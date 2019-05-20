@@ -666,7 +666,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                 }
             }
             else{
-                Constants.noInternetDialouge(_context,server_message);
+                Constants.noInternetDialouge(_context,"Error");
 
             }
 

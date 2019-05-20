@@ -113,7 +113,7 @@ public class Constants {
 
     public static void noInternetDialouge(Context _context,String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(_context);
-        builder.setTitle("Oops !");
+        builder.setTitle("");
         builder.setMessage(Message);
         ImageView showImage = new ImageView(_context);
         Resources res = _context.getResources();
