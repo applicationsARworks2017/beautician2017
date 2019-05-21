@@ -263,7 +263,14 @@ public class OffersAdapter extends BaseAdapter {
         protected void onPreExecute() {
             super.onPreExecute();
             if(progressDialog == null) {
-                progressDialog = ProgressDialog.show(_context, "Deleteing", "Please wait...");
+
+                if(lang.contentEquals("Arabic")){
+                    progressDialog = ProgressDialog.show(_context, "جاري الحذف", "يرجى الانتظار...");
+
+                }
+                else {
+                    progressDialog = ProgressDialog.show(_context, "Deleteing", "Please wait...");
+                }
             }
             // onPreExecuteTask();
         }

@@ -36,7 +36,7 @@ public class SPHome extends AppCompatActivity {
     public static String user_type;
     public static double min_sp_balance = 0.0;
     public static double min_service_charge = 5.0;
-    RelativeLayout prop_not_sp, post_not_sp, ser_not_sp, wal_not_sp;
+    public static RelativeLayout prop_not_sp, post_not_sp, ser_not_sp, wal_not_sp;
     TextView prop_txt_sp, post_txt_sp, ser_txt_sp, wal_txt_sp;
     private int propsal_req,wallet_req;
     public static  int ServiceIndivisualRequest,service_public;
@@ -136,6 +136,7 @@ public class SPHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CallToAPI(user_id,"ServicePurposal","Shop");
+                prop_not_sp.setVisibility(View.GONE);
                 Intent intent = new Intent(SPHome.this, SpProposal.class);
                 intent.putExtra("LANG", lang);
                 intent.putExtra("PAGE", "sp_home");
@@ -146,6 +147,7 @@ public class SPHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CallToAPI(user_id,"Wallet","Shop");
+                wal_not_sp.setVisibility(View.GONE);
                 Intent intent = new Intent(SPHome.this, Wallet.class);
                 intent.putExtra("LANG", lang);
                 intent.putExtra("PAGE", "sp_home");

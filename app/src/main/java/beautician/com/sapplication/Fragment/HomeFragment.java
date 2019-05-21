@@ -202,6 +202,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 CallToAPI(user_id,"ServicePurposal","User");
+                proposal_notification.setVisibility(View.GONE);
                 Intent intent=new Intent(getActivity(),SpProposal.class);
                 intent.putExtra("PAGE","user_side");
                 startActivity(intent);
@@ -211,6 +212,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 CallToAPI(user_id,"UserWallet","User");
+                wallet_notification.setVisibility(View.GONE);
                 Intent intent=new Intent(getActivity(),Wallet.class);
                 intent.putExtra("PAGE","user_side");
                 startActivity(intent);

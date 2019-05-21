@@ -61,12 +61,14 @@ public class SupportActivity extends AppCompatActivity {
         }
 
         if(lang.contentEquals("Arabic")){
+            setTitle(R.string.give_feedback_ar);
             name_head.setText(R.string.name_ar);
             cont_head.setText(R.string.mobile_ar);
             message_head.setText(R.string.enter_details_ar);
             send_feed.setText(R.string.submit_ar);
         }
         else{
+            setTitle(R.string.give_feedback_en);
             name_head.setText(R.string.name_en);
             cont_head.setText(R.string.mobile_en);
             message_head.setText(R.string.enter_details_en);
