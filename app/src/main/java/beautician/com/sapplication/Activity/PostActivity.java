@@ -539,6 +539,7 @@ remarks:jhgjhghjgjg"
             } catch(Exception exception){
                 Log.e(TAG, "SynchMobnum : doInBackground", exception);
                 server_message="Network Error";
+                server_status = 0;
             }
 
             return null;
@@ -577,11 +578,11 @@ remarks:jhgjhghjgjg"
             }
             else{
                 if(lang.contentEquals("Arabic")){
-                    Constants.noInternetDialouge(PostActivity.this,server_message);
+                    Constants.noInternetDialouge(PostActivity.this,"مطلوب 10  ريالات على الأقل في محفظتك لنشر الخدمة");
 
                 }
                 else{
-                    Constants.noInternetDialouge(PostActivity.this,server_message);
+                    Constants.noInternetDialouge(PostActivity.this,"Atleast SAR "+HomeActivity.first_post_charge+" is required in your wallet for posting a service");
 
                 }
             }
