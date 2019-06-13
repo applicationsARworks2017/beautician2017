@@ -193,6 +193,7 @@ public class ShopListAdapter extends BaseAdapter {
                      .crossFade()
                      .diskCacheStrategy(DiskCacheStrategy.ALL)
                      .into(holder.pic1);*/
+             String photo1 = _pos.getPhoto1();
             Picasso.with(_context).load(_pos.getPhoto1()).resize(100,100).into(holder.pic1);
             // imageLoader.displayImage(_pos.getPhoto1(),holder.pic1,options);
         }

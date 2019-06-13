@@ -30,6 +30,7 @@ public class APIManager {
     String jsonString = null;
     int server_status;
     String server_message;
+    public String TAG = "API Output";
 
     public interface APIManagerInterface {
         public void onSuccess(Object resultObj);
@@ -46,6 +47,8 @@ public class APIManager {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+
+                            Log.d(TAG,response.toString());
 
                             if (response.getJSONObject(resobjName)!=null) {
                                 JSONObject j_obj = response.getJSONObject(resobjName);

@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
     implementation 'com.github.clans:fab:1.6.2'
     implementation 'com.google.android.gms:play-services-location:10.0.1'
     implementation 'com.google.android.gms:play-services-maps:10.0.1'
