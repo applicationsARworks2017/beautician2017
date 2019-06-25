@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -266,6 +267,34 @@ public class Constants {
             }
         });
         dialog.show();
+    }
+
+
+    public static boolean compareDates(String date){
+        Boolean value = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        Date matchDateTime=null;
+        Date currdate=null;
+        try {
+             matchDateTime = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date dt = new Date();
+        try {
+            currdate = sdf.parse(sdf.format(dt));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int status = matchDateTime.compareTo(currdate);
+        if(status <=0){
+            value = false;
+        }
+        else{
+            value = true;
+        }
+
+        return value;
     }
 
 }

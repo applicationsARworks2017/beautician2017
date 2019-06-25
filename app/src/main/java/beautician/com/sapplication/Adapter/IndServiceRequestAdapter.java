@@ -157,16 +157,35 @@ public class IndServiceRequestAdapter extends BaseAdapter {
              holder.Name_service.setText(" has requseted you for the service for "+ _pos.getNo_of_user()+"people");
 
          }
+        Boolean post_status = Constants.compareDates(_pos.getExpected_date());
 
         if (_pos.getStatus().contentEquals("0")) {  // got the individual request and want to go ahead
 
             if(lang.contentEquals("Arabic")) {
-                holder.im_reply.setText(R.string.accept_ar);
-                holder.imreject.setText(R.string.reject_ar);
+                if(!post_status){
+                    holder.im_reply.setText("تاريخ انتهاء الصلاحية");
+                    holder.imreject.setVisibility(View.INVISIBLE);
+
+                }
+                else {
+                    holder.imreject.setVisibility(View.VISIBLE);
+
+                    holder.im_reply.setText(R.string.accept_ar);
+                    holder.imreject.setText(R.string.reject_ar);
+                }
             }
             else{
-                holder.im_reply.setText("Accept");
-                holder.imreject.setText("Reject");
+                if(!post_status){
+                    holder.im_reply.setText("Date Expired");
+                    holder.imreject.setVisibility(View.INVISIBLE);
+
+
+                }
+                else {
+                    holder.imreject.setVisibility(View.VISIBLE);
+                    holder.im_reply.setText("Accept");
+                    holder.imreject.setText("Reject");
+                }
             }
             holder.imreject.setEnabled(true);
             holder.imreject.setVisibility(View.VISIBLE);

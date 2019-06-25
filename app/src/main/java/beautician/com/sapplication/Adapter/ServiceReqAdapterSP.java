@@ -109,14 +109,29 @@ public class ServiceReqAdapterSP extends BaseAdapter{
 
         holder.name.setText(_pos.getName());
 
+        Boolean post_status = Constants.compareDates(_pos.getExpected_date());
+
         if(status.contentEquals("false") || status.contentEquals("0")){
             //holder.reply.setVisibility(View.VISIBLE);
             if(lang.contentEquals("Arabic")){
-                holder.reply.setText("الرد");
+                if(!post_status){
+                    holder.reply.setText("تاريخ انتهاء الصلاحية");
+
+                }
+                else {
+                    holder.reply.setText("الرد");
+
+                }
 
             }
             else {
-                holder.reply.setText("Reply");
+                if(!post_status){
+                    holder.reply.setText("Date Expired");
+
+                }
+                else {
+                    holder.reply.setText("Reply");
+                }
             }
         }
         else{
@@ -163,70 +178,71 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         holder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder1=(Holder)v.getTag();
-                dialog=new Dialog((_context));
-                dialog.setContentView(R.layout.dialog_reply);
-                ImageView im_close=(ImageView)dialog.findViewById(R.id.im_close);
-                TextView reply_head = (TextView)dialog.findViewById(R.id.reply_head);
-                final EditText et_comments=(EditText) dialog.findViewById(R.id.et_comments);
-                im_close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
+                holder1 = (Holder) v.getTag();
+                String imreply_text=holder1.reply.getText().toString().trim();
+
+                if(imreply_text.contentEquals("Reply") ||
+                        imreply_text.contentEquals("الرد")) {
+                    dialog = new Dialog((_context));
+                    dialog.setContentView(R.layout.dialog_reply);
+                    ImageView im_close = (ImageView) dialog.findViewById(R.id.im_close);
+                    TextView reply_head = (TextView) dialog.findViewById(R.id.reply_head);
+                    final EditText et_comments = (EditText) dialog.findViewById(R.id.et_comments);
+                    im_close.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    Button ok = (Button) dialog.findViewById(R.id.ok);
+                    Button cancel = (Button) dialog.findViewById(R.id.cancel);
+                    cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    if (lang.contentEquals("Arabic")) {
+                        reply_head.setText(R.string.submit_proposal_ar);
+                        ok.setText(R.string.ok_ar);
+                        cancel.setText(R.string.cancel_ar);
+                    } else {
+                        reply_head.setText(R.string.submit_proposal_en);
+                        ok.setText(R.string.ok);
+                        cancel.setText(R.string.cancel);
+
                     }
-                });
-                Button ok=(Button)dialog.findViewById(R.id.ok);
-                Button cancel=(Button)dialog.findViewById(R.id.cancel);
-                cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                if(lang.contentEquals("Arabic")){
-                    reply_head.setText(R.string.submit_proposal_ar);
-                    ok.setText(R.string.ok_ar);
-                    cancel.setText(R.string.cancel_ar);
+
+                    ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (progressDialog == null) {
+                                if (lang.contentEquals("Arabic")) {
+                                    progressDialog = ProgressDialog.show(_context, "جار التحميل", "يرجى الإنتظار...");
+
+                                } else {
+                                    progressDialog = ProgressDialog.show(_context, "Loading", "Please wait...");
+
+                                }
+                            }
+                            String details = et_comments.getText().toString().trim();
+                            serviceRequestid = _pos.getId();
+                            if (details.length() <= 0) {
+                                Toast.makeText(_context, "Please enter in detail", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Toast.makeText(_context,"Done",Toast.LENGTH_SHORT).show();
+                                if (CheckInternet.getNetworkConnectivityStatus(_context)) {
+                                    SetProposal setpropsal = new SetProposal();
+                                    setpropsal.execute(_pos.getId(), user_id, "1", details);
+                                } else {
+                                    Constants.noInternetDialouge(_context, "No Internet");
+                                }
+
+                            }
+                        }
+                    });
+                    dialog.show();
                 }
-                else{
-                    reply_head.setText(R.string.submit_proposal_en);
-                    ok.setText(R.string.ok);
-                    cancel.setText(R.string.cancel);
-
-                }
-
-                ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(progressDialog == null) {
-                            if(lang.contentEquals("Arabic")){
-                                progressDialog = ProgressDialog.show(_context, "جار التحميل", "يرجى الإنتظار...");
-
-                            }
-                            else{
-                                progressDialog = ProgressDialog.show(_context, "Loading", "Please wait...");
-
-                            }
-                        }
-                        String details=et_comments.getText().toString().trim();
-                        serviceRequestid=_pos.getId();
-                        if(details.length()<=0){
-                            Toast.makeText(_context,"Please enter in detail",Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            // Toast.makeText(_context,"Done",Toast.LENGTH_SHORT).show();
-                            if(CheckInternet.getNetworkConnectivityStatus(_context)){
-                                SetProposal setpropsal=new SetProposal();
-                                setpropsal.execute(_pos.getId(),user_id,"1",details);
-                            }
-                            else{
-                                Constants.noInternetDialouge(_context,"No Internet");
-                            }
-
-                        }
-                    }
-                });
-                dialog.show();
 
             }
         });
