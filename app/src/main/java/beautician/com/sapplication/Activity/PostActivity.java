@@ -1,13 +1,19 @@
 package beautician.com.sapplication.Activity;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -41,6 +47,8 @@ import beautician.com.sapplication.R;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
+import static beautician.com.sapplication.Utils.Constants.hasPermissions;
+
 public class PostActivity extends AppCompatActivity {
     TextView tv_services,postHeading,adultt;
     Spinner adult;
@@ -53,6 +61,7 @@ public class PostActivity extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
     Double balance=0.0;
     private ProgressDialog progressDialog = null;
+    private static String[] PERMISSIONS = {Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION};
 
 
     @Override
@@ -103,9 +112,43 @@ public class PostActivity extends AppCompatActivity {
             submit_post.setText("Post");
 
         }
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // here it is checking whether the permission is granted previously or not
+            if (!hasPermissions(PostActivity.this, PERMISSIONS)) {
+                //Permission is granted
+                ActivityCompat.requestPermissions(PostActivity.this, PERMISSIONS, 1);
+
+            }
+        }
+
         submit_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(ContextCompat.checkSelfPermission(PostActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_DENIED){
+                    if(lang.contentEquals("Arabic")){
+                        alert("الرجاء السماح بتحديد موقعك");
+
+                    }
+                    else {
+
+                        alert("Please Allow Beautician to Access Location!");
+                    }
+
+                }
+                if(ContextCompat.checkSelfPermission(PostActivity.this,Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_DENIED){
+                    if(lang.contentEquals("Arabic")){
+                        alert("الرجاء السماح بتحديد موقعك");
+                    }
+                    else {
+
+                        alert("Please Allow Beautician to Access Location!");
+                    }
+                }
+
+
+
                 String nodate,notime,nocontent;
 
                 if(lang.contentEquals("Arabic")){
@@ -144,6 +187,9 @@ public class PostActivity extends AppCompatActivity {
                                 if (txtDate.getText().toString().trim().length() <= 0) {
                                     Toast.makeText(PostActivity.this, "يرجى إعطاء التاريخ المتوقع ", Toast.LENGTH_LONG).show();
                                 } else {
+                                    if(HomeActivity.latitude.isEmpty()){
+                                        Toast.makeText(PostActivity.this, "لم نستطع تحديد موقعك. ربما تحصل على نتائج خاطئة", Toast.LENGTH_LONG).show();
+                                    }
                                     if (CheckInternet.getNetworkConnectivityStatus(PostActivity.this)) {
                                         getWdetails getWdetails = new getWdetails();
                                         getWdetails.execute(user_id);
@@ -176,6 +222,9 @@ public class PostActivity extends AppCompatActivity {
                                 if (txtDate.getText().toString().trim().length() <= 0) {
                                     Toast.makeText(PostActivity.this, "Please give Expected Date", Toast.LENGTH_LONG).show();
                                 } else {
+                                    if(HomeActivity.latitude.isEmpty()){
+                                        Toast.makeText(PostActivity.this, "Location not found for your device. You may get unwanted results.", Toast.LENGTH_LONG).show();
+                                    }
                                     if (CheckInternet.getNetworkConnectivityStatus(PostActivity.this)) {
                                         getWdetails getWdetails = new getWdetails();
                                         getWdetails.execute(user_id);
@@ -230,6 +279,56 @@ public class PostActivity extends AppCompatActivity {
                 selecttime();
             }
         });
+    }
+
+    private void alert(String s) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(PostActivity.this);
+        builder.setTitle("");
+        builder.setMessage(s);
+        if(lang.contentEquals("Arabic")) {
+            builder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    //TODO
+
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", getApplication().getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
+                    dialog.dismiss();
+
+                }
+            });
+            builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+        }
+        else{
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    //TODO
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", getApplication().getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
+                    dialog.dismiss();
+
+
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+        }
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void selecttime() {
