@@ -44,6 +44,7 @@ public class Constants {
     public static String COUNTRYLIST="CountryCodes/index.json";
     public static String CATEGORYLIST_SHOPWISE="ShopDetails/shopListCat";
     public static String SUBCATEGORYLIST_SHOPWISE="ShopDetails/shopListSubCat";
+    public static String SUBCATEGORYLIST_DELETE="ShopDetails/delete.json";
     public static String SUB_CATEGORYLIST="sub-categories/index.json";
     public static String USER_REGISTRATION="users/add.json";
     public static String SHOP_REGISTRATION="shops/add.json";

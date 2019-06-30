@@ -82,6 +82,7 @@ public class Subcategories extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 swipe_subcategory.setRefreshing(false);
+                scList=new ArrayList<>();
 
                 if(CheckInternet.getNetworkConnectivityStatus(Subcategories.this)){
                     new getsubcategoryList().execute();

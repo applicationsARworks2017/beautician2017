@@ -1,6 +1,7 @@
 package beautician.com.sapplication.Activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -78,9 +80,9 @@ public class SubCategoryEditActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(CheckInternet.getNetworkConnectivityStatus(SubCategoryEditActivity.this)){
-                    String price=sub_price.getText().toString();
                         //new SubCEDIT().execute(PRICE_ID, price);
-
+                    SubCDelete subCDelete = new SubCDelete();
+                    subCDelete.execute(PRICE_ID);
                     }
                 }
     });
@@ -190,6 +192,8 @@ public class SubCategoryEditActivity extends AppCompatActivity{
             progressDialog.dismiss();
             if (server_status == 1) {
                 server_message = "Edit Successful";
+                /*Intent intent= new Intent(SubCategoryEditActivity.this,MySubcategories.class);
+                startActivity(intent);*/
                 finish();
             } else {
                 server_message = "Sorry !! Edit failed";
@@ -229,7 +233,7 @@ public class SubCategoryEditActivity extends AppCompatActivity{
                 InputStream in = null;
                 int resCode = -1;
 
-                String link =Constants.ONLINEURL+ Constants.SUBCATEGORY_EDIT ;
+                String link =Constants.ONLINEURL+ Constants.SUBCATEGORYLIST_DELETE ;
                 URL url = new URL(link);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000);
@@ -242,8 +246,7 @@ public class SubCategoryEditActivity extends AppCompatActivity{
                 conn.setRequestMethod("POST");
 
                 Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("id", params[0])
-                        .appendQueryParameter("price", params[1]);
+                        .appendQueryParameter("id", params[0]);
 
                 //.appendQueryParameter("deviceid", deviceid);
                 String query = builder.build().getEncodedQuery();
@@ -300,7 +303,15 @@ public class SubCategoryEditActivity extends AppCompatActivity{
 
             progressDialog.dismiss();
             if (server_status == 1) {
-                server_message = "Delete Successful";
+                if(lang.contentEquals("Arabic")) {
+                    Toast.makeText(SubCategoryEditActivity.this, "تم الحذف", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(SubCategoryEditActivity.this, "Deleted", Toast.LENGTH_LONG).show();
+
+                }
+              /*  Intent intent= new Intent(SubCategoryEditActivity.this,MySubcategories.class);
+                startActivity(intent);*/
                 finish();
             } else {
                 server_message = "Sorry !! Delete failed";

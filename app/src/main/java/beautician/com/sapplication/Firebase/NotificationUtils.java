@@ -97,7 +97,7 @@ public class NotificationUtils {
         inboxStyle.addLine(message);
 
         Notification notification;
-        notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(0)
+        notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(getTimeMilliSec(timeStamp))
                 .setAutoCancel(true)
                 .setContentTitle(title)
                 .setContentIntent(resultPendingIntent)
@@ -105,6 +105,7 @@ public class NotificationUtils {
                 .setStyle(inboxStyle)
                 .setWhen(getTimeMilliSec(timeStamp))
                 .setSmallIcon(R.drawable.logo)
+                .setShowWhen(true)
                 .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
                 .setContentText(message)
                 .build();
@@ -119,13 +120,14 @@ public class NotificationUtils {
         bigPictureStyle.setSummaryText(Html.fromHtml(message).toString());
         bigPictureStyle.bigPicture(bitmap);
         Notification notification;
-        notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(0)
+        notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(getTimeMilliSec(timeStamp))
                 .setAutoCancel(true)
                 .setContentTitle(title)
                 .setContentIntent(resultPendingIntent)
                 .setSound(defaultSoundUri)
                 .setStyle(bigPictureStyle)
                 .setWhen(getTimeMilliSec(timeStamp))
+                .setShowWhen(true)
                 .setSmallIcon(R.drawable.logo)
                 .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
                 //.setLargeIcon()

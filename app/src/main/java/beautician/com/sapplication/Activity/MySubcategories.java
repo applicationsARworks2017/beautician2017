@@ -81,6 +81,7 @@ public class MySubcategories extends AppCompatActivity {
         bt_ok=(Button)findViewById(R.id.bt_ok);
         bt_cancel=(Button)findViewById(R.id.bt_cancel);
         if(CheckInternet.getNetworkConnectivityStatus(this)){
+            scList = new ArrayList<>();
             new getsubcategoryList().execute();
         }
         else{
