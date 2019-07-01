@@ -48,18 +48,24 @@ public class SubCategoryEditActivity extends AppCompatActivity{
 
             // and get whatever type user account id is
         }
+        save=(Button)findViewById(R.id.save);
+        delete=(Button)findViewById(R.id.delete);
         lang =getSharedPreferences(Constants.SHAREDPREFERENCE_LANGUAGE, 0).getString(Constants.LANG_TYPE, null);
 
         if(lang.contentEquals("Arabic")){
             setTitle("SubCategory تحرير");
+            delete.setText(getString(R.string.del_ar));
+            save.setText(getString(R.string.save_ar));
         }
         else{
             setTitle("SubCategory Edit");
+            delete.setText(getString(R.string.del_en));
+            save.setText(getString(R.string.save_en));
+
         }
         sub_name=(EditText)findViewById(R.id.sub_name_edit);
         sub_price=(EditText)findViewById(R.id.sub_pri_edit);
-        save=(Button)findViewById(R.id.save);
-        delete=(Button)findViewById(R.id.delete);
+
         if(lang.contentEquals("Arabic")) {
             sub_name.setText(SUB_CATG_arabic);
 

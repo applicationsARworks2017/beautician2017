@@ -673,11 +673,11 @@ public class SPSignup extends Fragment {
                     }
                     else if(server_status==2)  {
                         if(lang.contentEquals("Arabic")){
-                            server_message = "رقم الجوال مضاف مسبقا";
+                            server_message = "رقم الجوال او الإيميل مسجله مسبقا";
 
                         }
                         else{
-                            server_message = "Mobile Number Already Exist";
+                            server_message = "Mobile or email already exist";
 
                         }
 

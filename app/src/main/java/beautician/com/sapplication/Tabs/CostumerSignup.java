@@ -448,11 +448,11 @@ public class CostumerSignup extends Fragment {
                     }
                     else if(server_status==2)  {
                         if(lang.contentEquals("Arabic")){
-                            server_response = "رقم الجوال مضاف مسبقا";
+                            server_response = "رقم الجوال او الإيميل مسجله مسبقا";
 
                         }
                         else{
-                            server_response = "Mobile Number Already Exist";
+                            server_response = "Mobile or email already exist";
 
                         }
 

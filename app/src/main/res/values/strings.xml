@@ -129,4 +129,9 @@
     <string name="needsp_ar">تحتاج مساعده</string>
     <string name="give_feedback_ar">طلب مساعده</string>
     <string name="give_feedback_en">Give Feedback</string>
+
+    <string name="del_ar">حذف</string>
+    <string name="save_ar">حفظ</string>
+    <string name="save_en">Save</string>
+    <string name="del_en">Delete</string>
 </resources>

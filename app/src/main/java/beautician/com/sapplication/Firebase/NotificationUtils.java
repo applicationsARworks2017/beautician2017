@@ -26,6 +26,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -219,7 +220,11 @@ public class NotificationUtils {
     public static long getTimeMilliSec(String timeStamp) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            Date date = format.parse(timeStamp);
+            Date currentTime = Calendar.getInstance().getTime();
+            String newDate= format.format(currentTime);
+            Date date = format.parse(newDate);
+
+
             return date.getTime();
         } catch (ParseException e) {
             e.printStackTrace();

@@ -125,6 +125,9 @@ public class SPHome extends AppCompatActivity {
         card_checkPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CallToAPI(user_id,"ServiceIndivisualRequest","Shop");
+                CallToAPI(user_id,"ServiceRequest","Shop");
+                post_not_sp.setVisibility(View.GONE);
                 Intent intent = new Intent(SPHome.this, SpRequestHome.class);
                 intent.putExtra("LANG", lang);
                 intent.putExtra("PAGE", "sp_home");
