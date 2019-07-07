@@ -23,7 +23,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
-                android:textStyle="bold"
                 android:text="Shopname"
                 android:textColor="@color/colorPrimary"
                 android:id="@+id/shopname"
@@ -108,7 +107,6 @@
                 android:id="@+id/view_details"
                 android:text=""
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="italic"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginBottom="5dp"/>
@@ -121,7 +119,6 @@
                 android:layout_toEndOf="@id/view_details"
                 android:text="User Details"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="italic"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="5dp"/>
@@ -131,7 +128,6 @@
                 android:layout_below="@id/view_details"
                 android:layout_marginStart="15dp"
                 android:padding="5dp"
-                android:textStyle="bold|italic"
                 android:id="@+id/gv_feedback"
                 android:visibility="visible"/>
             <TextView

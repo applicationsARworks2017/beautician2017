@@ -478,7 +478,7 @@ public class SPSignup extends Fragment {
         OutputStream os;
         try {
             os = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, os);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 60, os);
             os.flush();
             os.close();
         } catch (Exception e) {
@@ -673,7 +673,7 @@ public class SPSignup extends Fragment {
                     }
                     else if(server_status==2)  {
                         if(lang.contentEquals("Arabic")){
-                            server_message = "رقم الجوال او الإيميل مسجله مسبقا";
+                            server_message = "رقم الجوال او الإيميل مسجله مسبقاs";
 
                         }
                         else{

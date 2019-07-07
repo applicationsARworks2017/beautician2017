@@ -153,7 +153,7 @@ public class ShopListAdapter extends BaseAdapter {
 
         }
         if(lang.contentEquals("Arabic")) {
-            holder.dis_shop.setText(_pos.getDistance()+" "+"كيلو");
+            holder.dis_shop.setText(_pos.getDistance()+" "+"كيلو متر");
         }
         else{
             holder.dis_shop.setText(_pos.getDistance()+" KM");

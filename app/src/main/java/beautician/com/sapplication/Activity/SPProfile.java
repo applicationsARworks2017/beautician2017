@@ -749,7 +749,7 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
         OutputStream os;
         try {
             os = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, os);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 60, os);
             os.flush();
             os.close();
         } catch (Exception e) {
@@ -806,7 +806,12 @@ public class SPProfile extends AppCompatActivity implements android.location.Loc
             showSnackBar("Enter Mail");
         }
         else if(!shop_mail.matches(emailPattern)){
-            showSnackBar("Enter Valid Email");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar("الرجاء التأكد من البريد الإلكتروني");
+            }
+            else {
+                showSnackBar("Enter Valid Email");
+            }
         }
         else if(shop_address.length()<=0){
             showSnackBar("Enter Address");

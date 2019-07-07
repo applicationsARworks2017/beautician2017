@@ -22,6 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+
+
         <activity android:name=".Activity.SupportActivity"
             android:parentActivityName=".Activity.HomeActivity"
             android:label="Give Feedback"></activity>

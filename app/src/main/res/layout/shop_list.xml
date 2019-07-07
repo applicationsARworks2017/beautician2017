@@ -25,7 +25,6 @@
                 android:text=""
                 android:textColor="@color/colorPrimary"
                 android:id="@+id/check_details"
-                android:textStyle="italic"
                 android:padding="5dp"/>
             <TextView
                 android:layout_width="wrap_content"

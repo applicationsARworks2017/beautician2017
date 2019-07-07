@@ -74,6 +74,8 @@ public class SpRequestHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CallToAPI(user_id,"ServiceRequest","Shop");
+                publicpost_txt_sp.setVisibility(View.GONE);
+                post_not_sp.setVisibility(View.GONE);
                 Intent intent=new Intent(SpRequestHome.this,CheckPost.class);
                 intent.putExtra("PAGE","sp_home");
                 intent.putExtra("LANG",lang);
@@ -84,10 +86,13 @@ public class SpRequestHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CallToAPI(user_id,"ServiceIndivisualRequest","Shop");
+                indpost_txt_sp.setVisibility(View.GONE);
+                ind_not_sp.setVisibility(View.GONE);
                 Intent intent=new Intent(SpRequestHome.this,CheckIndividualPost.class);
                 intent.putExtra("PAGE","sp_home");
                 intent.putExtra("LANG",lang);
                 startActivity(intent);
+
             }
         });
 
