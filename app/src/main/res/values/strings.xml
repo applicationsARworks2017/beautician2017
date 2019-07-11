@@ -134,4 +134,22 @@
     <string name="save_ar">حفظ</string>
     <string name="save_en">Save</string>
     <string name="del_en">Delete</string>
+
+    <string name="enter_name_en">Please enter name</string>
+    <string name="enter_name_ar">الرجاء ادخال الاسم</string>
+
+    <string name="enter_mobile_en">Please enter mobile number</string>
+    <string name="enter_mobile_ar">الرجاء ادخال رقم الجوال</string>
+
+    <string name="enter_address_en">Please enter address</string>
+    <string name="enter_address_ar">الرجاء ادخال العنوان</string>
+
+    <string name="enter_mail_en">Please enter email id</string>
+    <string name="enter_mail_ar">ادخل البريد الاكتروني </string>
+    
+    <string name="enter_pass_en">Please enter password</string>
+    <string name="enter_pass_ar"> ادخل الرقم السري</string>
+
+    <string name="wrong_c_pass_en">Wrong confirm password</string>
+    <string name="wrong_c_pass_ar">الرقم السري لايتطابق</string>
 </resources>
