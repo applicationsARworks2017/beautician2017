@@ -57,11 +57,13 @@ public class ForgotPassword extends AppCompatActivity {
            email_id.setHint("البريد الإلكتروني");
            phone_nmbr.setHint("رقم الجوال");
            setTitle("هل نسيت كلمة المرور");
+           resetpassword.setText(getString(R.string.reset_pass_ar));
         }
         else{
             email_id.setHint("Email id");
             phone_nmbr.setHint("Phone Number");
             setTitle("Forgot Password");
+            resetpassword.setText(getString(R.string.reset_pass_en));
         }
         resetpassword.setOnClickListener(new View.OnClickListener() {
             @Override

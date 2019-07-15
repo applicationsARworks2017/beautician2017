@@ -149,7 +149,12 @@
     
     <string name="enter_pass_en">Please enter password</string>
     <string name="enter_pass_ar"> ادخل الرقم السري</string>
+    <string name="enter_cpass_ar">تأكيد كلمة المرور</string>
 
     <string name="wrong_c_pass_en">Wrong confirm password</string>
     <string name="wrong_c_pass_ar">الرقم السري لايتطابق</string>
+
+    <string name="reset_pass_en">Reset Password</string>
+    <string name="reset_pass_ar">أعاده تعيين الرقم السري</string>
+    <string name="lat_long_nt">خط الطول خط الطول غير موجود</string>
 </resources>

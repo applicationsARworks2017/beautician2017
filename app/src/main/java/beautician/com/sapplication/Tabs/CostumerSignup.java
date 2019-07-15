@@ -290,29 +290,58 @@ public class CostumerSignup extends Fragment {
         String cpass=et_cpassword.getText().toString().trim();
 
         if(name.contains("") && name.length()<=0){
-        showSnackBar("Enter Name ");
-        }
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_name_ar));
+            }
+            else{
+                showSnackBar("Enter Name");
+            }        }
         else if(phone.contains("") && phone.length()<=0){
-            showSnackBar("Enter Phone");
-        }
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_mobile_ar));
+            }
+            else{
+                showSnackBar("Enter Phone");
+            }        }
         else if(email.contains("") && email.length()<=0){
-            showSnackBar("Enter email");
-        }
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_mail_ar));
+            }
+            else{
+                showSnackBar("Enter Mail");
+            }        }
        /* else if(!email.matches(emailPattern)){
             showSnackBar("Enter Valid Email");
         }*/
        else if(Constants.validate(email)==false){
-            showSnackBar("Enter Valid Email");
-        }
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_mail_ar));
+            }
+            else{
+                showSnackBar("Enter valid Mail");
+            }        }
 
         else if(pass.contains("") && pass.length()<=0){
-            showSnackBar("Enter Password");
-        }
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_pass_ar));
+            }
+            else{
+                showSnackBar("Enter Password");
+            }        }
         else if(cpass.contains("") && cpass.length()<=0){
-            showSnackBar("Enter Confirm Password");
-        }
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_cpass_ar));
+            }
+            else{
+                showSnackBar("Enter Confirm Password");
+            }        }
         else if(!pass.contentEquals(cpass)){
-            showSnackBar("Confirm password should equal to password");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.wrong_c_pass_ar));
+            }
+            else{
+                showSnackBar("Confirm password should equal to password");
+            }
         }
         else{
             if(iv_avtar.getDrawable()!=null) {

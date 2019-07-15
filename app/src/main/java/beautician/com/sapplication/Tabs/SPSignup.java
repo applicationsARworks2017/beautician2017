@@ -521,25 +521,60 @@ public class SPSignup extends Fragment {
         }
 
         if(shop_name.length()<=0){
-            showSnackBar("Enter Name");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_name_ar));
+            }
+            else{
+                showSnackBar("Enter Name");
+            }
         }
         else if(shop_number.length()<0){
-            showSnackBar("Enter Phone");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_mobile_ar));
+            }
+            else{
+                showSnackBar("Enter Phone");
+            }
         }
         else if(shop_mail.length()<=0){
-            showSnackBar("Enter Mail");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_mail_ar));
+            }
+            else{
+                showSnackBar("Enter Mail");
+            }
         }
         else if(Constants.validate(shop_mail)==false){
-            showSnackBar("Enter Valid Email");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_mail_ar));
+            }
+            else{
+                showSnackBar("Enter Valid Email");
+            }
         }
         else if(shop_address.length()<=0){
-            showSnackBar("Enter Address");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_address_ar));
+            }
+            else{
+                showSnackBar("Enter Address");
+            }
         }
         else if(shop_password.length()<=0){
-            showSnackBar("Enter Password");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.enter_pass_ar));
+            }
+            else{
+                showSnackBar("Enter Password");
+            }
         }
         else if(shop_lat_long.length()<=0){
-            showSnackBar("Latitude Longitude not found");
+            if(lang.contentEquals("Arabic")){
+                showSnackBar(getString(R.string.lat_long_nt));
+            }
+            else{
+                showSnackBar("Latitude Longitude not found");
+            }
         }
         else{
             spSignupAsyntask asyntask=new spSignupAsyntask();
