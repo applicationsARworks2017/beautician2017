@@ -386,7 +386,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
                     }
                 }
                // else if(status.contentEquals("1") || tv_text.contentEquals("Enter OTP")){
-                else if(tv_text.contentEquals("Enter OTP") || tv_text.contentEquals("أدخل رقم إنهاء الخدمة")){
+                else if(tv_text.contentEquals("OTP") || tv_text.contentEquals("أدخل")){
                     updated_status=2;
                     final Dialog dialog = new Dialog(_context);
                     dialog.setContentView(R.layout.otpscreen);
@@ -810,7 +810,7 @@ public class IndServiceRequestAdapter extends BaseAdapter {
 
                         }
                         else{
-                            holder1.im_reply.setText("Enter OTP");
+                            holder1.im_reply.setText("OTP");
                         }
                         holder1.imreject.setVisibility(View.GONE);
                         /*Resources ress = _context.getResources();

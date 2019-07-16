@@ -307,7 +307,7 @@ public class PropsalAdapter extends BaseAdapter {
                     holder.im_reply.setText(R.string.enter_otp_ar);
                 }
                 else {
-                    holder.im_reply.setText("Enter OTP");
+                    holder.im_reply.setText("OTP");
                 }
                /* Resources ress = _context.getResources();
                 Drawable drawable1 = ress.getDrawable(R.mipmap.ic_assignment_turned_in_white_24dp);
@@ -517,7 +517,7 @@ public class PropsalAdapter extends BaseAdapter {
                     }
 
                 }*/
-                else if(imreply_text.contentEquals("Enter OTP") || imreply_text.contentEquals("أدخل رقم إنهاء الخدمة")){
+                else if(imreply_text.contentEquals("OTP") || imreply_text.contentEquals("أدخل")){
                     callTo = "4";
                     updated_status=4;
                     user_id=_pos.getUser_id();

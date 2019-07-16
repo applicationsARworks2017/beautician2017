@@ -45,8 +45,8 @@
     <string name="rejected_ar">تم الرفض</string>
     <string name="reject_ar">رفض</string>
     <string name="paygo_en">Pay and Go</string>
-    <string name="enter_otp_ar">أدخل رقم إنهاء الخدمة</string>
-    <string name="enter_otp_en">Enter OTP</string>
+    <string name="enter_otp_ar">أدخل</string>
+    <string name="enter_otp_en">OTP</string>
     <string name="on_going_en">Ongoing</string>
     <string name="on_going_ar">جاري تنفيذ الطلب</string>
     <string name="completed_en">Completed</string>
