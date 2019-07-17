@@ -27,6 +27,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import beautician.com.sapplication.R;
+import beautician.com.sapplication.SplashScreen;
 import beautician.com.sapplication.Utils.CheckInternet;
 import beautician.com.sapplication.Utils.Constants;
 
@@ -257,6 +258,20 @@ public class SupportActivity extends AppCompatActivity {
             progressDialog.cancel();
             Toast.makeText(SupportActivity.this,server_message,Toast.LENGTH_SHORT).show();
             if(server_status == 1){
+                if(user_type.contentEquals("Shop")) {
+                    Intent intent = new Intent(SupportActivity.this, SPHome.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(SupportActivity.this, HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                }
                 SupportActivity.this.finish();
             }
 

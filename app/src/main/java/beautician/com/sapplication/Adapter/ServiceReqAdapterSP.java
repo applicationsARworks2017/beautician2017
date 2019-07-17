@@ -146,7 +146,7 @@ public class ServiceReqAdapterSP extends BaseAdapter{
         }
 
         if (lang.contentEquals("Arabic")) {
-            holder.Name_service.setText(" تم نشره ل " + _pos.getArabic_sub_category());
+            holder.Name_service.setText(" تم نشره ل " + " "+_pos.getArabic_sub_category()+" ");
 
         } else {
             holder.Name_service.setText(" has posted for " + _pos.getSub_category());
@@ -360,7 +360,12 @@ public class ServiceReqAdapterSP extends BaseAdapter{
             super.onPostExecute(user);
             if(server_status==1) {
                 dialog.dismiss();
-                holder1.reply.setText("Replied");
+                if(lang.contentEquals("Arabic")){
+                    holder1.reply.setText("أجاب");
+                }
+                else {
+                    holder1.reply.setText("Replied");
+                }
                 UpdateService updateService=new UpdateService();
                 updateService.execute(serviceRequestid,"1");
               //  Toast.makeText(_context,server_message,Toast.LENGTH_SHORT).show();

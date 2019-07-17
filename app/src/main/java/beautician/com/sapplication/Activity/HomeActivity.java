@@ -37,7 +37,8 @@ public class HomeActivity extends AppCompatActivity  implements android.location
     public  static String latitude, longitude;
     int server_status;
     String lang;
-     Menu menu;
+    long back_pressed = 0;
+    Menu menu;
      String homestring = "Home'";
      String ar_homestring = "الصفحة الرئيسية'";
     public static double  min_user_balance = 0.0;
@@ -318,4 +319,5 @@ public class HomeActivity extends AppCompatActivity  implements android.location
 
         //gps code end
     }
+
 }

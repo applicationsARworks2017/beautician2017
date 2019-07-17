@@ -434,11 +434,11 @@ public class IndividualRequest extends AppCompatActivity {
             }
             else{
                 if(lang.contentEquals("Arabic")){
-                    Constants.noInternetDialouge(IndividualRequest.this,server_message);
+                    Constants.noInternetDialouge(IndividualRequest.this,"مطلوب 10  ريالات على الأقل في محفظتك لنشر الخدمة");
 
                 }
                 else{
-                    Constants.noInternetDialouge(IndividualRequest.this,server_message);
+                    Constants.noInternetDialouge(IndividualRequest.this,"Atleast SAR "+HomeActivity.first_post_charge+" is required in your wallet for posting a service");
 
                 }            }
 
